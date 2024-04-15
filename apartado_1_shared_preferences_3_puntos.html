@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 1. Shared Preferences (3 puntos) | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-21" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 1. Shared Preferences (3 puntos)</h1></div></header>
+<article class="iDevice_wrapper textIdevice" id="id132">
+<div class="iDevice emphasis0" >
+<div id="ta132_114_2" class="block iDevice_content">
+<div class="exe-text"><p>La actividad "Preferencias" será accesible desde el menú de la aplicación (no como un botón de acción). Para acceder a ella, añadid una nueva entrada que aparecerá en la primera posición del menú, encima de "Acerca de". La actividad deberá mostrar una barra de acción con el título "Preferencias" y con el botón "Home" que servirá para salir de la actividad y volver al listado. Además deberá incluir las siguientes preferencias agrupadas por categorías y presentarlas con iconos.</p>
+<p><strong>1. CATEGORÍA "VISUALIZACIÓN"</strong></p>
+<ul>
+<li><strong>Tema (Switch con textos "claro" y "oscuro", Preferencia "tema"):</strong>
+<ul>
+<li>Tipo: Valor booleano (depende de "contraste"). Valor por defecto true.</li>
+<li>Descripción: True indica un tema claro para la aplicación; false indica un tema oscuro. Este ajuste transformará completamente el aspecto de la aplicación. <span style="color: #000000;">(Nota: Podéis utilizar los recursos res/values/styles.xml para el tema claro y res/values-night/styles.xml para el tema oscuro).</span></li>
+</ul>
+</li>
+<li><strong>Alto Contraste (Checkbox. Preferencia "contraste"):</strong>
+<ul>
+<li>Tipo: Valor booleano. Valor por defecto false.</li>
+<li>Descripción: True indica un tema de alto contraste que ajustará el tema de la aplicación para mejorar la visualización de personas con daltonismo. Si esta preferencia está en true, deshabilitará la preferencia "tema"; si está en false, habilitará la preferencia "tema", estableciendo así un tema claro u oscuro.</li>
+</ul>
+</li>
+<li><strong>Tamaño de Letra (Lista de valores. Preferencia "fuente"):</strong>
+<ul>
+<li>Tipo: Valores mostrados: pequeña, mediana y grande. Valores leídos: 1, 2 o 3. Valor por defecto mediana (2).</li>
+<li>Descripción: Deberá mostrarse en la preferencia el valor seleccionado. Este ajuste modificará el tamaño de la letra en toda la aplicación. (Nota: Puede ser útil utilizar un archivo de dimensiones /res/values/dimens.xml).</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. CATEGORÍA "ORDENACIÓN"</strong></p>
+<ul>
+<li><strong>Criterio (Lista de valores. Preferencia "criterio"):</strong>
+<ul>
+<li>Tipo: Valores mostrados: alfabético, fecha de creación, días restantes, progreso. Valores leídos: 1, 2, 3 o 4. Valor por defecto fecha creación (2).</li>
+<li>Descripción: Deberá mostrarse en la preferencia el valor seleccionado. Cambiará el orden de presentación de las tareas según el criterio elegido: alfabético, por fecha de creación, por días restantes o por el estado de progreso. La preferencia "criterio" influirá en esta ordenación.</li>
+</ul>
+</li>
+<li><strong>Orden (Switch con textos "asc" y "desc". Preferencia "orden"):</strong>
+<ul>
+<li>Tipo: Valor booleano. Valor por defecto true.</li>
+<li>Descripción: True indica orden ascendente; false indica orden descendente. Este criterio se aplicará a cualquiera de los criterios de ordenación mencionados anteriormente.</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. CATEGORÍA "ALMACENAMIENTO"</strong></p>
+<ul>
+<li><strong>Almacenamiento en tarjeta SD (Checkbox. Preferencia "sd"):</strong>
+<ul>
+<li>Tipo: Valor booleano. Valor por defecto false.</li>
+<li>Descripción: True indica que los archivos adjuntos se guardarán en la tarjeta SD si está presente; false indica que se guardarán en la memoria interna del dispositivo.</li>
+</ul>
+</li>
+<li><strong>Limpieza de archivos (Número. Preferencia "limpieza"):</strong>
+<ul>
+<li>Tipo: Valor entero. Valor por defecto 0.</li>
+<li>Descripción: Este valor, expresado en días, determina la periodicidad con la que la aplicación llevará a cabo la eliminación automática de archivos considerados antiguos. Un valor establecido de, por ejemplo, 30 días, implicará que la aplicación eliminará automáticamente todos los archivos adjuntos que no hayan sido abiertos en dicho periodo, es decir, aquellos que se consideran antiguos. El valor 0 se interpreta como una duración indefinida, indicando que no se realizará limpieza automática. En este caso, los archivos adjuntos permanecerán en el sistema hasta que el usuario decida eliminarlos manualmente o se elimine la tarea.</li>
+</ul>
+</li>
+<li><strong>Base de Datos (Switch con textos "ext" e "int". Preferencia "bd"):</strong>
+<ul>
+<li>Tipo: Valor booleano. Valor por defecto false (interna).</li>
+<li>Descripción: True indica conexión a una base de datos externa MySQL o MariaDB; false indica conexión a una base de datos local SQLite. Esta preferencia es clave para las configuraciones siguientes. Si es false, todas las preferencias a continuación deben estar deshabilitadas; si es true, deben estar visibles y editables.</li>
+</ul>
+</li>
+</ul>
+<p><strong>3.1 SUBCATEGORÍA "BASE DE DATOS EXTERNA"</strong></p>
+<ul>
+<li><strong>Nombre Base de Datos (Texto. Preferencia "nombrebd"):</strong>
+<ul>
+<li>Tipo: Valor textual (depende de "bd"). Valor por defecto "bd".</li>
+<li>Descripción: Recoge el nombre de la base de datos externa.</li>
+</ul>
+</li>
+<li><strong>IP (Texto. Preferencia "ip"):</strong>
+<ul>
+<li>Tipo: Valor textual (depende de "bd"). Valor por defecto "10.0.2.2".</li>
+<li>Descripción: Almacena la dirección IP o URL del servidor de base de datos.<span style="color: #000000;"> (Nota: La IP 10.0.2.2 permite realizar pruebas contra bases de datos locales desde el dispositivo virtual)</span></li>
+</ul>
+</li>
+<li><strong>Puerto (Texto. Preferencia "puerto"):</strong>
+<ul>
+<li>Tipo: Valor textual (depende de "bd"). Valor por defecto "1001".</li>
+<li>Descripción: Recoge el número de puerto.</li>
+</ul>
+</li>
+<li><strong>Usuario (Texto. Preferencia "usuario"):</strong>
+<ul>
+<li>Tipo: Valor textual (depende de "bd"). Valor por defecto "usuario"</li>
+<li>Descripción: Almacena el nombre de usuario de la base de datos.</li>
+</ul>
+</li>
+<li><strong>Contraseña (Texto. Preferencia "password"):</strong>
+<ul>
+<li>Tipo: Valor textual oculto (depende de "bd"). Valor por defecto "" (cadena vacía).</li>
+<li>Descripción: Almacena la contraseña del usuario.</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Botón de "Restablecer":</strong></p>
+<ul>
+<li>Tipo: Se trata de una dependencia personalizada que solo se va a usar para colocar un layout con un botón.</li>
+<li>Descripción: Aparecerá un botón para restablecer las preferencias de usuario a los valores predeterminados. <span style="color: #000000;">(Nota: Será de utilidad el atributo xml onClick para asignar un método escuchador al botón que tendrá que estar implementado en la actividad "Preferencias")</span></li>
+</ul></div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.5.1.- Utilizando proveedores de contenidos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-123" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.5.1.- Utilizando proveedores de contenidos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id510">
+<div class="iDevice emphasis0">
+<div id="ta510_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-left license-gnu-gpl" style="width: 128px;"><img src="PMDM06_CONT_R23_crear_proveedor.png" width="128" height="128" alt="Icono de una lupa sobre una tablet." title="Lupa." style="float: left;" />
+<div class="figcaption"><a href="https://commons.wikimedia.org/wiki/File:Crystal_Clear_app_demo.png" target="_blank" class="author" title="Acceder a la imagen &quot;Lupa&quot; de &quot;Coelho and YellowIcon&quot; en Wikimedia. (Se abre en una nueva ventana)">Everaldo Coelho and YellowIcon</a> <span class="license"><span class="sep">(</span><a href="https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License" target="_blank" title="Acceder a la Licencia GNU Lesser GPL. (Se abre en una nueva ventana)">GNU Lesser GPL</a><span class="sep">)</span></span></div>
+</div>
+<p>¿Cómo accedemos a los datos que ya existen en otras aplicaciones?<br /><br />Como ya hemos visto, cada <acronym title="Uniform Resource Identifier." lang="en">URI</acronym> indica el recurso al que deseamos acceder, además del prefijo que identifica el tipo de recurso y que en nuestro caso será <code>content://</code> debemos especificar también el proveedor o aplicación a la que deseamos acceder y por último la tabla a la que vamos hacer referencia. Así por ejemplo, si queremos utilizar la tabla donde se almacena la lista de favoritos del navegador tendremos que utilizar la <acronym title="Uniform Resource Identifier." lang="en">URI</acronym> correspondiente que tendrá el formato <code>content://browser/bookmarks</code> aunque es más cómodo utilizar la constante preestablecida <code>Browser.BOOKMARKS_URI</code> que nos proporciona <span lang="en">Android</span>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id511">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta511_44" class="block iDevice_content">
+<p>¿Y qué tipos de proveedores existen? ¿Cómo están identificados?</p>
+<p>En el siguiente enlace puedes encontrar toda la información referente a los <code>Content Provider</code> de <span lang="en">Android</span>.</p>
+<p style="text-align: center;"><a title="Acceder a la documentación oficial de Android sobre “Proveedores de contenido” (Se abre en una ventana nueva)" href="http://developer.android.com/reference/android/provider/package-summary.html" target="_blank" class="html">Proveedores de contenido en <span lang="en">Android</span>.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id512">
+<div class="iDevice emphasis0">
+<div id="ta512_69" class="block iDevice_content">
+<p>Vamos a realizar un ejemplo sencillo para recuperar desde nuestra nueva aplicación la lista de favoritos. Después de solicitar los permisos adecuados en el fichero de manifiesto para acceder al proveedor de contenidos (sólo hace falta el de lectura porque únicamente queremos recuperar los datos), creamos una instancia de la <acronym title="Uniform Resource Identifier.">URI</acronym> que necesitamos para acceder al recurso <code>Browser</code> y la tabla correspondiente utilizando la constante que <span lang="en">Android</span> nos proporciona (<code>BOOKMARKS_URI</code>). Después creamos una referencia a un objeto <code>ContentResolver</code> mediante el método <code>getContentResolver()</code> lo cual nos permitirá realizar operaciones sobre el proveedor de contenidos. La tabla a la que vamos a acceder será  <code>BookmarkColumns</code> que contiene una serie de columnas que debemos indicar en la consulta, para ello crearemos un <span lang="en">array</span> indicando las dos columnas que deseamos obtener. Recuerda que cada proveedor dispone de diferentes tablas y columnas que puedes consultar en la documentación oficial de <span lang="en">Android</span>.</p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>Uri miUri =  Browser.BOOKMARKS_URI;</code></pre>
+<pre> </pre>
+<pre><code>ContentResolver contRes = getContentResolver();</code></pre>
+<pre> </pre>
+<pre><code>String[] columnas = new String[] {</code></pre>
+<pre><code>              Browser.BookmarkColumns.URL,</code></pre>
+<pre><code>              Browser.BookmarkColumns.VISITS };</code></pre>
+<pre> </pre>
+<pre><code>Cursor cur = contRes.query(miUri,</code></pre>
+<pre><code>                    columnas,      </code></pre>
+<pre><code>                    null,       </code></pre>
+<pre><code>                    null,       </code></pre>
+<pre><code>                    null);  </code></pre>
+</div>
+</div>
+<p><br />A partir de aquí sólo nos queda recorrer el cursor para recoger los valores de las dos columnas que hemos pasado. Esto lo hacemos indicando el índice que ocupa cada columna en la tabla de la siguiente forma:</p>
+<div class="codigo elemento_centrado" style="width: 45.050000000000004em;">
+<div class="texto_izquierda">
+<pre><code>int columnaURL = cur.getColumnIndex(Browser.BookmarkColumns.URL);</code></pre>
+<pre><code>int columnaVisits = cur.getColumnIndex(Browser.BookmarkColumns.VISITS);</code></pre>
+</div>
+</div>
+<p> <br />Con el índice ya podemos acceder al campo de cada registro y recuperar su valor.</p>
+<div class="codigo elemento_centrado" style="width: 21.950000000000003em;">
+<div class="texto_izquierda">
+<pre><code>cur.getString(columnaURL);</code></pre>
+<pre><code>cur.getString(columnaVisits);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id513">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta513_46" class="block iDevice_content">
+<p>En el siguiente enlace puedes descargar un proyecto de ejemplo donde se puede ver cómo se accede a los datos de la lista de favoritos del navegador desde una aplicación que creamos nosotros pulsando sobre un botón. Estudia su código y verás que no es muy complicado. Prueba a hacer tú lo mismo accediendo por ejemplo al listado de llamadas.</p>
+<p style="text-align: center;"><a class="paquete" title="Descargar el fichero del proyecto comprimido “EjemploContent”.  Se abre en una ventana nueva [zip - 13.61 MB]" href="EjemploContent.zip" target="_blank">Aplicación de ejemplo sobre la utilización de un Proveedor de Contenidos</a><span class="exe-link-data file-size"> (zip - 13.61 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

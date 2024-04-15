@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.4.4.- Crear Base de Datos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-120" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.4.4.- Crear Base de Datos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id466">
+<div class="iDevice emphasis0">
+<div id="ta466_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="database.png" width="200" height="200" title="Base de datos" alt="Ilustración que muestra la imagen de una base de datos" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/illustrations/base-de-datos-administrar-4941338/" target="_blank" class="author" title="Acceder a la imagen  &quot;Base de datos&quot;, de &quot;IO-Images&quot;, en Pixabay. (Se abre en una nueva ventana)">IO-Images</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Para crear la base de datos partimos del código del apartado <a title="Acceder al taller oficial de Google sobre la librería Room, en concreto el apartado 7 donde se crea la base de datos. (Se abre en una nueva ventana)" href="https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#6" target="_blank" class="html">7. Add a Room Database</a> del taller sobre la arquitectura de componentes de <strong><em></em></strong><span lang="en"><strong><em>Jetpack</em></strong></span> pero que adaptaremos y modificaremos al ser publicada bajo la licencia de<a title="Acceder a la información sobre la licencia Apache 2.0 en Wikipedia (Se abre en una nueva ventana)" href="https://es.wikipedia.org/wiki/Apache_License" target="_blank" class="html">Apache 2.0</a>. Para crear la base de datos realizaremos los siguientes pasos:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>En primer lugar tenemos que crear una clase para la base de datos, esta clase debe ser abstracta y heredar de <code>RoomDatabase.</code> </li>
+<li>Encima de la declaración de la clase se debe añadir la anotación <code>@Database</code> y mediante el parámetro <code><span class="pln">entities</span></code> enumerar tablas y especificar a continuación la versión de la base de datos.</li>
+<li>Ya dentro de la clase, se de debe definir por cada <span title="Data Access Objetc" lang="en"><acronym title="Data Access Objetc" lang="en">DAO</acronym></span>  un método abstracto sin parámetros que devuelva la clase que está anotada con <code>@Dao</code>.<br /><br />
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code><strong>@Database(entities = {Ranking.class},version = 1, exportSchema = false)</strong></code></pre>
+<pre><code>public <strong>abstract</strong> class GameDatabase extends <strong>RoomDatabase</strong> {<br /><br /></code></pre>
+<pre><code></code></pre>
+<pre><code>    public abstract <strong>RankingDao</strong> getRankingDao();<br /><br /></code></pre>
+<pre><code></code></pre>
+<pre><code>    private static volatile GameDatabase INSTANCE;</code></pre>
+<pre><code>    private static String DATABASE_NAME="game";</code></pre>
+<pre><code>    private static final int NUMBER_OF_THREADS = 4;</code></pre>
+<pre><code>    public static final ExecutorService databaseWriteExecutor =</code></pre>
+<pre><code>              Executors.newFixedThreadPool(NUMBER_OF_THREADS);</code></pre>
+</div>
+</div>
+<p></p>
+</li>
+<li>A continuación se crea un objeto<a href="https://es.wikipedia.org/wiki/Singleton" title="Acceder a la definición de  sigleton en Wikipedia. (Se abre en una nueva ventana)" class="html" target="_blank">singleton</a> de la base de datos llamado <code>INSTANCE</code> que será el que utilicen el resto de clases de la aplicación y accederán al objeto mediante un método estático de la clase. </li>
+<li><span lang="en">Room</span> impide el acceso a la base de datos desde el hilo principal para solucionarlo <span lang="en">Google</span> utiliza la clase <code>ExecutorService</code> cuya función es ejecutar operaciones de la base de datos de forma asíncrona en un subproceso en segundo plano. Utilizar esta clase evitará tener que crear clases <code>AsyncTask </code>cada vez que se quiera realizar una operación con la base de datos.
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>    public static void <strong>createDatabase</strong>(final Context context) {</code></pre>
+<pre><code>        if (INSTANCE == null) {</code></pre>
+<pre><code>            synchronized (GameDatabase.class) {</code></pre>
+<pre><code>                if (INSTANCE == null) {</code></pre>
+<pre><code>                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</code></pre>
+<pre><code>                            GameDatabase.class, DATABASE_NAME)</code></pre>
+<pre><code>                            .build();</code></pre>
+<pre><code>                }</code></pre>
+<pre><code>            }</code></pre>
+<pre><code>        }</code></pre>
+<pre><code>    }</code></pre>
+<pre><code></code></pre>
+<pre><code>    public static GameDatabase <strong>getDatabase</strong>(){</code></pre>
+<pre><code>        return INSTANCE;</code></pre>
+<pre><code></code></pre>
+<pre><code>   }</code></pre>
+</div>
+</div>
+<p></p>
+</li>
+<li>Si ves la documentación oficial de <span lang="en">Google</span> en el método  <code>getDatabase()</code> se crea la base de datos si no existiera y se devuelve la instancia. Esto conlleva un problema, ya que desde cualquier parte de la aplicación que quiera acceder a nuestra base de datos hay que pasarle un objeto <code>Context</code>. Para solucionarlo, nosotros hemos creado dos métodos <code>onCreateDatabase()</code> y mantenemos <code>getDatabase()</code>.<br /><br />Para poder crear el objeto de la base de datos definimos una clase personalizada <code>Application</code><span style="font-size: 1em;"> y en el método </span><code>onCreate() </code><span style="font-size: 1em;">llamamos al método de creación de la base de datos:<br /><br /></span>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>public class GameApplication extends Application {</code></pre>
+<pre><code></code></pre>
+<pre><code>public static final String CHANNEL_ID = "1" ;</code></pre>
+<pre><code>    @Override</code></pre>
+<pre><code>    public void onCreate() {</code></pre>
+<pre><code>        super.onCreate();</code></pre>
+<pre><code><strong>        GameDatabase.onCreateDatabase(this);</strong></code></pre>
+<pre><code>    }</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p><br />Es importante definir en el fichero manifiesto que nuestra clase<code>Application</code>, corresponde con el objeto que automáticamente crea cuando se ejecuta la aplicación. Esto se hace añadiendo el atributo <code>android:name</code> al nodo <code>&lt;application&gt;</code>. </p>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>&lt;application</code></pre>
+<pre><code><strong>android:name=".iu.GameApplication"</strong></code></pre>
+<pre><code>................</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id467">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta467_135" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b467" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b467" class="block iDevice_content">
+<p><strong>Si se crea una clase que hereda de <code>Application</code> hay que indicar que  corresponde al  nodo <code>&lt;application&gt; </code>del fichero manifiesto.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b467"><input type="radio" name="option0b467" id="true0b467" class="exe-radio-option exe-radio-option-0-2-0b467-truefalse" /> Verdadero</label> 
+<label for="false0b467"><input type="radio" name="option0b467" id="false0b467" class="exe-radio-option exe-radio-option-1-2-0b467-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b467" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b467-result" class="right">Verdadero</strong></p>
+<p>Si no se declara el atributo <code>android:name </code>dentro del nodo <code>&lt;application&gt; </code>no se vinculará la clase creada con la clase <code>Application</code> que por defecto crea el sistema.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

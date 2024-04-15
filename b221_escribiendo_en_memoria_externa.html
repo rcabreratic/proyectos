@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.2.2.1.- Escribiendo en memoria externa | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-108" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.2.2.1.- Escribiendo en memoria externa</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id488">
+<div class="iDevice emphasis0">
+<div id="ta488_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 162px;"><img src="Lapiz.png" width="162" height="200" alt="Ilustración de un lápiz con goma" title="Lápiz." style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/vectors/l%C3%A1piz-verde-37254/" target="_blank" class="author" title="Acceder a la imagen  &quot;Lápiz&quot;, de &quot;Clker-Free-Vector-Images&quot;, en Pixabay. (Se abre en una nueva ventana)">Clker-Free-Vector-Images</a> <span class="license"><span class="sep">(</span><a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)"><span>Licencia Pixabay</span></a><span class="sep">)</span></span></div>
+</div>
+<p>Para escribir un fichero en una tarjeta de memoria externa tendremos en cuenta los aspectos anteriormente descritos, Así, después de especificar el permiso correspondiente en el fichero de manifiesto, podríamos utilizar el siguiente código para escribir un fichero de texto dentro del espacio reservado a nuestra aplicación en la tarjeta <acronym title="Secure Digital" lang="en">SD</acronym>:</p>
+<div class="codigo elemento_centrado" style="width: 43.400000000000006em;">
+<div class="texto_izquierda">
+<pre><code>String estado = Environment.getExternalStorageState();</code></pre>
+<pre><code>if (estado.equals(Environment.MEDIA_MOUNTED)){</code></pre>
+<pre><code>     File file = new File(getExternalFilesDir(null), "fichero.txt");</code></pre>
+<pre><code>                OutputStreamWriter fout =</code></pre>
+<pre><code>                        new OutputStreamWriter(</code></pre>
+<pre><code>                            new FileOutputStream(file));</code></pre>
+<pre><code>     fout.write("Texto de prueba almacenado en tarjeta SD.");</code></pre>
+<pre><code>     fout.close();                    </code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Recordemos que primero debemos recoger el estado en el que se encuentra la tarjeta, y si ésta se encuentra debidamente montada en el dispositivo, entonces podremos acceder a ella para indicar que en la ruta raíz del espacio reservado para la aplicación dentro de la tarjeta de memoria crearemos un fichero llamado “<code>fichero.txt</code>”. Escribimos el texto deseado y cerramos el fichero.<br /><br />Si deseamos escribir un fichero en uno de los subdirectorios que la tarjeta <span title="Secure Digital" lang="en">SD</span> tiene establecido podríamos realizar la siguiente modificación al código anterior:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre><code>File file = new File(</code></pre>
+<pre><code>         Environment.getExternalStoragePublicDirectory(</code></pre>
+<pre> <code>               Environment.DIRECTORY_PICTURES), "fotografia.jpg");</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Así obtenemos acceso al directorio público <code>/Pictures/</code> para almacenar posteriormente el fichero que le pasamos. No debemos olvidar que estos directorios pueden ser accesibles desde cualquier aplicación, por tanto es conveniente saber qué tipo de fichero se guarda en cada zona.</p>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

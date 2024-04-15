@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.3.2.- Creación de una base de datos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-112" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.3.2.- Creación de una base de datos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id498">
+<div class="iDevice emphasis0">
+<div id="ta498_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 200px;"><img src="BasesDeDatos.png" width="200" height="190" alt="Ilustración de dos símbolos de Bases de datos, dos cilindros compuestos por varios discos apilados cada uno" title="Bases de Datos" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/vectors/base-de-datos-cilindro-3d-circular-155892/" target="_blank" class="author" title="Acceder a la imagen  &quot;Bases de Datos&quot;, de &quot;OpenClipart-Vectors&quot;, en Pixabay. (Se abre en una nueva ventana)">OpenClipart-Vectors</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>¿Cómo empezamos a trabajar con <span lang="en"><abbr title="Structure Query Language Light" lang="en">SQLite</abbr></span>?</p>
+<p>Si nos fijamos en las tres clases anteriores, la primera clase que tenemos que tener en cuenta es <code>SQLiteOpenHelper. </code>En ella encontramos entre otros, los métodos de crear por primera vez una base de datos o actualizar la estructura de la misma. Por tanto vamos a crear una clase que extiende de ella de la siguiente forma:</p>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>public class MiBaseDatosHelper extends SQLiteOpenHelper</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Esta clase contendrá un constructor que no necesitamos sobrescribir y al que se le pasa un objeto <code>Context</code>, el nombre de la base de datos, un objeto <code>CursorFactory </code>y la versión de la base de datos.</p>
+<div class="codigo elemento_centrado" style="width: 40.1em;">
+<div class="texto_izquierda">
+<pre><code>public MiBaseDatosHelper(Context contexto, String nombre,<br />                            CursorFactory factory, int version) {</code></pre>
+<pre><code>    super(contexto, nombre, factory, version);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p><br />El motivo de extender la clase <code>SQLiteOpenHelper </code>nos obliga a sobrescribir los métodos <code>onCreate() </code>y <code>onUpgrade()</code>. El método <code>onCreate() </code>se lanza la primera vez que se ejecute la aplicación para crear la base de datos. Le pasamos un objeto de tipo <code>SQLiteDatabase</code> para ejecutar la sentencia <span lang="en"><acronym title="Structure Query Language" lang="en">SQL</acronym></span> que nos crea la tabla. Recuerda que el método <code>execSQL()</code> para ejecutar sentencias <span lang="en"><acronym title="Structure Query Language" lang="en">SQL</acronym></span> está en la clase <code>SQLiteDatabase</code>.</p>
+<div class="codigo elemento_centrado" style="width: 43.95em;">
+<div class="texto_izquierda">
+<pre><code>@Override</code></pre>
+<pre><code>public void onCreate(SQLiteDatabase db) {</code></pre>
+<pre><code>    db.execSQL(“CREATE TABLE miTabla (campo1 INTEGER, campo2 TEXT)”);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p><br />Como se ha comentado antes, también será obligatorio sobrescribir el método <code>onUpgrade()</code>. Este método se utiliza para actualizar la base de datos. Supongamos que deseamos modificar la estructura de la tabla e incluir un campo nuevo: este método es el que realiza esa actualización de forma automática. Para ello le pasamos como parámetros además de un objeto <code>SQLiteDatabase</code>, el número de versión actual y el número de la nueva versión de la <acronym title="Base de Datos" lang="es">BD</acronym>. La implementación de este método dependerá de los cambios que se hayan producido en la propia estructura de la <acronym title="Base de Datos" lang="es">BD</acronym>,  pero de momento para simplificar el ejemplo de este método lo único que hacemos es borrar la tabla y crearla de nuevo, aunque en un caso real habría que migrar todos los datos a la nueva estructura de la tabla que vayamos a crear entre algunas de las acciones a realizar.</p>
+<div class="codigo elemento_centrado" style="width: 50.550000000000004em;">
+<div class="texto_izquierda">
+<pre><code>@Override</code></pre>
+<pre><code>public void onUpgrade(SQLiteDatabase db, int versionAnterior, int versionNueva) {</code></pre>
+<pre><code>     //Se elimina la versión anterior de la tabla</code></pre>
+<pre><code>     db.execSQL("DROP TABLE IF EXISTS miTabla");</code></pre>
+<pre><code>     //Se crea la nueva versión de la tabla</code></pre>
+<pre><code>     db.execSQL(“CREATE TABLE miTabla (campo1 INTEGER, campo2 TEXT)”);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p><br />Con todo esto, ya tendríamos implementada la clase auxiliar que nos permitirá crear, actualizar y conectarnos a una base de datos en <span lang="en">Android</span>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id499">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-499_51">
+<form name="multi-select-form-499_51" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion499_51" class="block question iDevice_content">
+<p><strong>Los m&eacute;todos que son obligatorios sobrescribir al extender la clase <code>SQLiteOpenHelper </code>son:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op499_510" class="sr-av"><a href="#answer-499_54">Opción 1</a></label><input type="checkbox" id="op499_510" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-499_54"><div id="taans499_54" class="block iDevice_content">
+<p><code>onCreate()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-499_510" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op499_511" class="sr-av"><a href="#answer-499_163">Opción 2</a></label><input type="checkbox" id="op499_511" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-499_163"><div id="taans499_163" class="block iDevice_content">
+<p><code>insert()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-499_511" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op499_512" class="sr-av"><a href="#answer-499_165">Opción 3</a></label><input type="checkbox" id="op499_512" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-499_165"><div id="taans499_165" class="block iDevice_content">
+<p><code>onUpgrade()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-499_512" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op499_513" class="sr-av"><a href="#answer-499_167">Opción 4</a></label><input type="checkbox" id="op499_513" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-499_167"><div id="taans499_167" class="block iDevice_content">
+<p><code>update()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-499_513" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-499_51" /> 
+</p>
+</div>
+<section id="f499_51" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-499_54" class="right">Correcto</a></li>
+<li><a href="#answer-499_163" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-499_165" class="right">Correcto</a></li>
+<li><a href="#answer-499_167" class="wrong">Incorrecto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

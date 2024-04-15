@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.6.4.- Animaciones | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-138" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.6.4.- Animaciones</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id547">
+<div class="iDevice emphasis0">
+<div id="ta547_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R17_PrincipePersia.jpg" alt="Videojuego &quot;Prince of Persia&quot; en manos de una persona." title="Videojuego &quot;Prince of Persia&quot;." width="300" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Acceder a la imagen &quot;Videojuego &quot;Prince of Persia&quot; de &quot;kalleboo&quot; en Flickr. (Se abre en una nueva ventana)" href="http://www.flickr.com/photos/kalleboo/2214788061/sizes/z/in/photolist-4nHnk4-2mqdVy-8LxSb-5PKwAq-5PKwEN-5PKwzh-8GsAFh-9ZmW8-9ZmWF-qeHq-2HspZh-2DM16o-2DGB72-9unLGb-9unLWf-9ujL5k-9unMK9-8ymuDn-cExRoG-dxsQAq-bCtFVA-dxnbNi-bCtCmY-dxsKM3-dxnion-dxsC2N-dxn9Fa-dxsqbJ-dxspAE-dxn3fZ-bCtEdQ-bCtBG3-dxna8n-dxs3H3-dxn7fP-dxsroC-dxs5Bm-dxmYsD-dxsH1E-dxsFGy-dxn8cZ-dxsg41-dxmz2c-dxsnQQ-dxmJcD-dxmC8k-dxnmmB-dxn6qK-dxsMto-dxsahf-dxndAK/" target="_blank">kalleboo.</a></div>
+</div>
+<p>En <span lang="en">Android</span> encontramos todo un mundo al hablar de animaciones. Principalmente podemos utilizar cuatro tipos de animaciones:</p>
+<ul class="lista_verificacion">
+<li><strong>Animaciones de marcos o <code>Drawable</code>:</strong> este tipo de animaciones son las más sencillas y se basa en  la sucesión de varios <code>Drawable</code> a intervalos de tiempos específicos. Para crear esta animación <span lan="en">frame</span> a <span lan="en">frame</span> se utiliza la clase <code>AnimationDrawable</code>. En <acronym title="eXtensible Markup Language" lang="en">XML</acronym> se utiliza la etiqueta <code>animation-list</code> que funciona como un recurso <code>Drawable</code>.</li>
+<li><strong>Animaciones de <span lang="en">layouts</span>:</strong> este tipo de animaciones se utilizan para animar la transición entre <span lan="en">layouts</span> y entre actividades. Se puede seleccionar si se quiere cambiar toda la interfaz o sólo una vista de la interfaz. Este tipo de animaciones sólo necesita el diseño inicial y el diseño final para realizar la transición. Consulta el enlace <a href="https://developer.android.com/training/transitions" title="Acceder a la documentación de cómo realizar cambios de diseño con una transición (Se abre en una ventana nueva)" target="_blank" class="html">Anima los cambios de diseño con una transición</a> de la documentación oficial.</li>
+<li><strong>Animaciones de vistas: </strong>también conocidas por <strong><span lang="en">Tween</span></strong> que permiten crear crear efectos de rotación, traslación, <span lang="en">zoom</span> y transparencia en cualquier vista. La animación se calcula entre el punto inicial y final de un objeto <code>View</code> y se suele definir en <acronym title="eXtensible Markup Language" lang="en">XML</acronym> utilizando como elemento raíz una etiqueta según tipo de animación en base a su posición <code>&lt;translate&gt;</code>, tamaño <code>&lt;scale&gt;</code>, rotación <code>&lt;rotate&gt; </code>o transparencia <code>&lt;alpha&gt;</code>. Si la animación consta de un grupo de elementos se debe utilizar <code>&lt;set&gt;</code>; como puedes ver en el ejemplo <a href="https://developer.android.com/guide/topics/resources/animation-resource#Tween" title="Acceder a la documentación oficial que muestra la animación de vistas (Se abre en una ventana nueva)" class="html" target="_blank">Animación de vistas</a> de la documentación oficial.</li>
+<li>Animación de propiedades: estas animaciones se basan en animar las propiedades de un objeto. Este tipo de animaciones son más completas que las animaciones de vistas que se basan en el cambio de tamaño o rotación ya que se puede especificar qué propiedades se modificarán en el tiempo, establecer un conjunto de animaciones que se reproducen juntas, la frecuencia con la que queremos actualizar cada <span lang="en">frame,</span> <abbr title="etcétera">etc</abbr>. Puedes consultar el siguiente enlace que describe la <strong>animación de propiedades</strong>. Se suele utilizar los elementos raíz <code>&lt;objectAnimator&gt;</code>, <code>&lt;valueAnimator&gt;</code> y <code>&lt;set&gt;</code> para agruparlos cuando se define este tipo de animaciones en un <acronym title="eXtensible Markup Language" lang="en">XML</acronym>.</li>
+</ul>
+<p>Te recomendamos a continuación que veas un ejemplo sencillo sobre una animación <span lang="en">frame</span> a <span lang="en">frame: </span></p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Creamos un fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> donde definimos la animación de imágenes que tenemos en la carpeta <code>Drawable</code> y establecemos el tiempo en milisegundos para mostrar este marco.
+<div class="codigo elemento_centrado" style="width: 75%;">
+<div class="texto_izquierda">
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code></pre>
+<pre><code>&lt;animation-list xmlns:android="http://schemas.android.com/apk/res/android" &gt;</code></pre>
+<pre><code>    &lt;item android:drawable="@drawable/s1" android:duration="50" /&gt;</code></pre>
+<pre><code>    &lt;item android:drawable="@drawable/s2" android:duration="50" /&gt;</code></pre>
+<pre><code>    &lt;item android:drawable="@drawable/s3" android:duration="50" /&gt;</code></pre>
+<pre><code>    &lt;item android:drawable="@drawable/s4" android:duration="50" /&gt;</code></pre>
+<pre><code>    &lt;item android:drawable="@drawable/s5" android:duration="50" /&gt;</code></pre>
+<pre><code>&lt;/animation-list&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>A continuación en código cargamos el objeto <code>ImageView</code> de nuestra interfaz que alojará la animación y establecemos que su fondo será nuestro recurso <acronym title="eXtensible Markup Language" lang="en">XML</acronym> <code>AnimationDrawable</code>.</li>
+<li>Obtenemos la animación que se ha compilado en un objeto <code>AnimationDrawable</code>.</li>
+<li>Y finalmente iniciamos la animación que por defecto se reproduce en bucle. En nuestro ejemplo la animación se ejecuta cuando se pulsa un botón es por ello que comprobamos si la animación está ejecutándose la pararíamos en caso contrario se inicia. 
+<div class="codigo elemento_centrado" style="width: 75%;">
+<div class="texto_izquierda">
+<pre><code>ImageView imgView = (ImageView)findViewById(R.id.imagen);</code></pre>
+<pre><code>imgView.setVisibility(ImageView.VISIBLE);</code></pre>
+<pre><code>imgView.setBackgroundResource(R.drawable.frame_animation);</code></pre>
+<pre><code> </code></pre>
+<pre><code>AnimationDrawable frame = (AnimationDrawable) imgView.getBackground();</code></pre>
+<pre><code>if(frame.isRunning()){</code></pre>
+<pre><code>    	frame.stop();</code></pre>
+<pre><code>}else{</code></pre>
+<pre><code>    	frame.start();</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id548">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta548_50" class="block iDevice_content">
+<p>Sencilla animación realizada con unas imágenes tomadas de la hoja de <span lang="en">sprites</span> sobre el personaje <strong>Príncipe de Persia</strong>, realizada por <span lang="en">Broderbund.</span></p>
+<p align="center"> </p>
+<p align="center"><a class="paquete" title="Descargar el código del ejemplo animación por marco Se abre en una ventana nueva [zip - 12.79 MB]" href="ExampleAnimation.zip">Ejemplo de animación por marco </a><span class="exe-link-data file-size"> (zip - 12.79 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id549">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta549_47" class="block iDevice_content">
+<p>Las animaciones han ido cambiando a medida que ha evolucionando <span lang="en">Android,</span> ya que la forma de interactuar con el usuario se traduce en éxito y calidad en nuestras aplicaciones. Hemos señalado cuatro tipo de animaciones más habituales y que nosotros controlamos, pero es posible utilizar las animaciones en base al mundo real a través de la física.</p>
+<p>Si quieres saber más, consulta la documentación oficial:</p>
+<p align="center"><a title="Acceder a la documentación de Android Developer sobre animaciones (Se abre en una ventana nueva)" href="https://developer.android.com/training/animation/overview?hl=es-419" target="_blank" class="html">Introducción a las animaciones en <span lang="en">Android</span>.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

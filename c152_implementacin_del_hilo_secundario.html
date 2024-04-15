@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.5.2.- Implementación del hilo secundario | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-133" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.5.2.- Implementación del hilo secundario</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id534">
+<div class="iDevice emphasis0">
+<div id="ta534_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="thread.jpg" width="300" height="203" title="Crear un hilo secundario." alt="Ilustración que muestra un conjunto de hilos dentro de una aguja" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/users/myriams-fotos-1627417/" target="_blank" class="author" alt="Acceder a la página del autor (Se abre en una ventana nueva)" title="Acceder a la imagen  &quot;Crear un hilo secundario&quot;, de &quot;Myriams-Fotos&quot;, en Pixabay. (Se abre en una nueva ventana)">Myriams-Fotos</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Crearemos el hilo secundario o clase <code>Thread</code> dentro de la clase <code>SurfaceView.</code> Esta clase llevará a cabo todos los procedimientos de dibujo al <code>Canvas</code>. Si estamos desarrollando un juego, esta clase es la que tiene la mayor carga de trabajo, sería nuestro motor de juego <span lang="en">(<em><strong><span lang="en">Game Engine</span></strong></em>)</span> ya que sería la responsable de:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li><strong>Manejar la lógica del juego</strong> (cargar recursos, mover personajes, controlar las colisiones <abbr title="etcétera" lang="es">etc</abbr>).</li>
+<li><strong>Procesar las entradas del usuario</strong> que recibe de la clase <code>SurfaceView</code></li>
+<li><strong>Dibujar en la pantalla y actualizar los componentes</strong>. </li>
+</ol>
+<p>Siguiendo con el ejemplo anterior vamos a crear un juego que pinte un círculo en la pantalla de la superficie en el lugar donde hemos pulsado en la pantalla. Para ello debemos realizar los siguientes pasos:</p>
+<ol class="lista_esquema">
+<li>Crear una clase interna que hereda de <code>Thread</code>, en nuestro caso la llamaremos <code>GameThread</code>. La ventaja de ser una clase interna es que puede acceder a los atributos de la clase <code>SurfaceView</code> simplificando el código, ya que no es necesario pasar en el constructor de la clase <code>GameThread</code> el objeto <code>SurfaceHolder.</code></li>
+<li>Crear un método <code>update()</code> que servirá para la ejecución principal del juego. En nuestro ejemplo no tenemos que controlar nada, con lo cual será un método vacío. </li>
+<li>Crear un método que dibuje sobre la pantalla, lo llamaremos <code>doDraw()</code>. Este método es el encargado de dibujar el círculo en el punto <code>(X,Y)</code> del evento <code>MotionEvent.</code></li>
+<li>Sobrescribir el método <code>run()</code> que:<ol>
+<li>Obtendrá un objeto  <code>Canvas</code> a través del objeto <code>SurfaceHolder</code> del constructor <code>surfaceHolder.lockCanvas(null)</code>.</li>
+<li>Actualizar la lógica del juego llamando al método <code>update().</code></li>
+<li>Dibujar sobre el objeto <code>Canvas</code> llamando al método <code>doDraw().</code></li>
+<li style="text-align: left;">Ahora hay que decirle a la pantalla principal que debe mostrar lo que se dibujó sobre el <code>Canvas</code>. Esto se realiza mediante la siguiente llamada: <code>surfaceholder.unlockCanvasAndPost(canvas)</code>. <br /><br /></li>
+</ol></li>
+</ol>
+<div class="codigo elemento_centrado" style="width: 90%;">
+<div class="texto_izquierda">
+<pre><code>class GameThread extends Thread {</code></pre>
+<pre><code>        //Flag que usamos para indicar si el hilo debe correr o no.</code></pre>
+<pre><code>        private boolean flagRun = false;</code></pre>
+<pre><code>        private Canvas canvas = null;</code></pre>
+<pre><code></code></pre>
+<pre><code>        @Override</code></pre>
+<pre><code>        public void run() {</code></pre>
+<pre><code>            //empieza el ciclo principal del juego</code></pre>
+<pre><code>            while (flagRun) {</code></pre>
+<pre><code></code></pre>
+<pre><code>                try {</code></pre>
+<pre><code>                    //obtenemos una instancia al canvas de la superficie</code></pre>
+<pre><code><strong>                    canvas = surfaceHolder.lockCanvas(null);</strong></code></pre>
+<pre><code>                    //nos aseguramos de que solo un hilo a la vez manipule la superficie</code></pre>
+<pre><code>                    synchronized (surfaceHolder) {</code></pre>
+<pre><code>                        update();//actualizamos la lógica del juego</code></pre>
+<pre><code>                        doDraw();//dibujamos sobre el canvas</code></pre>
+<pre><code>                    }</code></pre>
+<pre><code>                } finally {</code></pre>
+<pre><code></code></pre>
+<pre><code>                    if (canvas != null) {</code></pre>
+<pre><code><strong>                        surfaceHolder.unlockCanvasAndPost(canvas);</strong></code></pre>
+<pre><code>                    }</code></pre>
+<pre><code>                }</code></pre>
+<pre><code>            }</code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code>        private void update() {</code></pre>
+<pre><code>            //actualiza la lógica aquí</code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code>        private void doDraw() {</code></pre>
+<pre><code>            drawBall();</code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code>        public void setRunning(boolean b) {</code></pre>
+<pre><code>            flagRun = b;</code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code>        /* This method will be invoked to draw a circle in canvas. */</code></pre>
+<pre><code>        public void drawBall() {</code></pre>
+<pre><code>            // Get and lock canvas object from surfaceHolder.</code></pre>
+<pre><code>            Paint surfaceBackground = new Paint();</code></pre>
+<pre><code>            // Set the surfaceview background color.</code></pre>
+<pre><code>            surfaceBackground.setColor(Color.CYAN);</code></pre>
+<pre><code>            // Dibujamos una superficide de un color</code></pre>
+<pre><code>           canvas.drawRect(0, 0, GameSurfaceView.this.getWidth(), GameSurfaceView.this.getHeight(), surfaceBackground);</code></pre>
+<pre><code>            // Dibujamos el círculo en las coordenadas iniciales</code></pre>
+<pre><code>            canvas.drawCircle(circleX, circleY, 100, paint);</code></pre>
+<pre><code></code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code>    }</code></pre>
+</div>
+</div>
+<p></p>
+<p>Puedes descargarte el código completo del proyecto en el siguiente enlace:</p>
+<p style="text-align: center;"><a href="ExampleSurfaceView.zip" title="Acceder a la descarga del ejemplo GameSurfaceView Se abre en una ventana nueva [zip - 0.37 MB]" target="_blank" class="paquete">Código del ejemplo completo GameSurfaceView</a><span class="exe-link-data file-size"> (zip - 0.37 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id535">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta535_47" class="block iDevice_content">
+<p>Acerca de los hilos o <span lang="en">threads</span>, puedes ampliar más la información en el siguiente enlace:</p>
+<p align="center"><a title="Acceder al artículo web titulado &quot;Uso de hilos de ejecución (Threads)&quot;, para Android. (Se abre en una ventana nueva)" href="http://www.androidcurso.com/index.php/tutoriales-android/36-unidad-5-entradas-en-android-teclado-pantalla-tactil-y-sensores/271-hilos-de-ejecucion-en-android" target="_blank" class="html">Hilos en <span lang="en">Android</span>.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

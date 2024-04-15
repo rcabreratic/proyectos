@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 3: Base de datos SQLite + ROOM | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-23" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 3: Base de datos SQLite + ROOM</h1></div></header>
+<article class="iDevice_wrapper textIdevice" id="id134">
+<div class="iDevice emphasis0" >
+<div id="ta134_116_2" class="block iDevice_content">
+<div class="exe-text"><p>Las informaciones a almacenar en la base de datos con respecto a cada noticia se detallan a continuación:</p>
+<ul>
+<li><strong>Id:</strong> Campo numérico autoincrementable, que actuará como clave principal.</li>
+<li><strong>Título:</strong> Campo de texto destinado a contener el título de la noticia. Campo no nulo.</li>
+<li><strong>Fecha de creación:</strong> Campo de fecha designado para almacenar la fecha en que se creó la noticia. Campo no nulo. Valor por defecto, hoy.</li>
+<li><strong>Fecha objetivo:</strong> Campo de fecha designado para almacenar la fecha de vencimiento de la noticia. Campo no nulo. Valor por defecto, la fecha de hoy más una semana.</li>
+<li><strong>Progreso:</strong> Campo numérico (rango: 0 a 100) que indica el porcentaje de completitud de la noticia. Valor por defecto, 0.</li>
+<li><strong>Prioritaria:</strong> Campo booleano que registra si la noticia se considera prioritaria o no. Valor por defecto, falso.</li>
+<li><strong>Descripción:</strong> Campo de texto destinado a contener la descripción detallada de la noticia. Campo opcional.</li>
+<li><strong>URL_doc</strong>: Campo de texto que indica la ubicación de un archivo de documento asociado a la noticia. Campo opcional</li>
+<li><strong>URL_img</strong>: Campo de texto que especifica la ubicación de un archivo de imagen vinculado a la noticia. Campo opcional.</li>
+<li><strong>URL_aud:</strong> Campo de texto que indica la ubicación de un archivo de audio asociado a la noticia. Campo opcional</li>
+<li><strong>URL_vid</strong>: Campo de texto que especifica la ubicación de un archivo de vídeo vinculado a la noticia. Campo opcional.</li>
+</ul>
+<p>Consultas o filtrados que se pueden hacer:</p>
+<ol>
+<li>Consulta de todas las tareas o solamente las tareas prioritarias. Tendréis que tener en cuenta todas las posibilidades contempladas en las preferencias del usuario en cuanto al criterio de ordenación y el sentido ascendente o descendente.</li>
+<li>Añadid una entrada en el menú de la aplicación que aparecerá en tercera posición, entre las opciones "Acerca de" y "Salir", llamada "<strong>Estadísticas</strong>". Deberéis mostrar informaciones de estadísticas sobre las tareas. Diseñad esta sección con libertad, podéis mostrar informaciones como el promedio de progreso, la cantidad de tareas en cada estado, la fecha objetivo promedio .... Esto podría ser útil para proporcionar a los usuarios información sobre su progreso general.</li>
+</ol>
+<p><span style="color: #000000;">(Nota: Deberéis utilizar la librería ROOM con un <strong>repositorio de datos</strong> ya que es una buena práctica para abstraer la capa de persistencia de datos del resto de la aplicación, proporcionando una interfaz limpia y fácil de usar para interactuar con la base de datos. Al aislar la lógica de la base de datos en un repositorio, se logra una separación clara de responsabilidades: el repositorio de datos actúa como un intermediario entre la capa de datos y las demás partes de la aplicación, mejorando la coherencia y la modularidad del código).</span></p></div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.4.5.- Clase Repository: accediendo a Room desde la app | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-121" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.4.5.- Clase Repository: accediendo a Room desde la app</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id468">
+<div class="iDevice emphasis0">
+<div id="ta468_154" class="block iDevice_content">
+<div class="elemento_izquierda">
+<div class="elemento_centrado"><img src="repository.jpg" width="260" height="136" title="Cadena" alt="Ilustración que muestra varios eslabones de una cadena. En concreto uno es de color rojo que cierra la cadena" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/illustrations/cadena-eslab%C3%B3n-de-la-cadena-conexi%C3%B3n-2364831/" target="_blank" class="author" title="Acceder a la imagen  &quot;Cadena&quot;, de &quot;PIRO4D&quot;, en Pixabay. (Se abre en una nueva ventana)">PIRO4D</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)" target="_blank">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Ya tenemos todos los componentes de <span lang="en">Room</span> definidos, y nos queda acceder a la base de datos desde la aplicación y lo haremos mediante el <strong>patrón <em><span lang="en">Repository.</span></em></strong></p>
+<p>¿De qué se encarga este patrón?</p>
+<p>En primer lugar se llama patrón a una solución que resuelve problemas comunes en el desarrollo de <span lang="en">software</span> y que después de comprobar su efectividad se convierte en una solución estándar. Un patrón ahorra tiempo a los programadores ya que tienen la seguridad que su solución es válida. El patrón <strong><em><span lang="en">Repository</span></em></strong> añade una capa dentro de nuestra aplicación cuya misión es mover la información entre los objetos de nuestra aplicación (clases <acronym title="Plain Old Java Object" lang="en">POJO</acronym>) y el sistema de almacenamiento que puede ser una base de datos <span lang="en"><abbr title="Structure Query Language Light" lang="en">SQLite</abbr></span>, un sistema de archivos o bien estar en un servidor remoto, <acronym title="etcétera" lang="es">etc</acronym>.</p>
+<p>En nuestro ejemplo esta clase será la responsable de interactuar con la base de datos de <span lang="en">Room</span> en nombre de la vista y deberá proporcionar métodos que utilicen el <acronym title="Data Access Objetc" lang="en">DAO</acronym> para insertar, eliminar y consultar registros del <span lang="en">ranking</span>. Estas operaciones de base de datos deberán realizarse en subprocesos separados del subproceso principal usando la clase <em><span lang="en"><strong>AsyncTask</strong></span></em>.</p>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>   public void insert(final Ranking ranking) {</code></pre>
+<pre><code>        new AsyncTask&lt;Void, Void, Void&gt;() {</code></pre>
+<pre><code>            @Override </code></pre>
+<pre><code>            protected Void doInBackground(Void... voids) {</code></pre>
+<pre><code>                rankingDao.insert(ranking);</code></pre>
+<pre><code>                return null;</code></pre>
+<pre><code>            }</code></pre>
+<pre><code>        }.execute();</code></pre>
+<pre><code>   }<br /></code></pre>
+<pre><code></code></pre>
+</div>
+</div>
+<p><br />¿Cómo accede toda la aplicación a esta clase repositorio?</p>
+<p>Pues mediante una única instancia de la clase <span lang="en">Repository</span> de forma que el resto de la aplicación puede consultar la información del <span lang="en">ranking</span> de nuestra aplicación sólo a través de esta clase. Esto se consigue aplicando el <strong>patrón <span lang="en">Singleton</span></strong> que consiste en:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li><span>Declarar el constructor de la clase como privado de forma que sólo la propia clase puede crear una instancia de ella misma.</span></li>
+<li><span>Declarar un método de obtención de esta instancia comprobando que si es la primera vez que se accede a ella se crea el objeto y se devuelve. Este método suele llamarse <code>getInstance()</code> como se muestra en el siguiente código:</span>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>    private RankingRepository() {</code></pre>
+<pre><code>        rankingDao = GameDatabase.getDatabase().getRankingDao();</code></pre>
+<pre><code></code></pre>
+<pre><code>    }</code></pre>
+<pre><code></code></pre>
+<pre><code>    public static RankingRepository getInstance() {</code></pre>
+<pre><code></code></pre>
+<pre><code>        if (instance == null)</code></pre>
+<pre><code>            instance = new RankingRepository();</code></pre>
+<pre><code>        return instance;</code></pre>
+}</div>
+</div>
+<p></p>
+</li>
+</ol>
+<p>Ya hemos dicho que cualquier componente (normalmente actividades y fragmentos) pueden llamar a cualquier método de la clase repositorio y hemos dicho que estos métodos son asíncronos, es decir, que la ejecución de la aplicación sigue su curso. Entonces, nos planteamos la siguiente pregunta:</p>
+<p>¿Cómo avisa el repositorio a las actividades o fragmentos que ya tiene los datos o qué se ha eliminado un elemento?</p>
+<p>Declarando una interfaz en la clase repositorio de forma que toda clase que quiera una respuesta del repositorio debe implementar la siguiente interfaz:</p>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code>public interface RankingRepositoryCallback {</code></pre>
+<pre><code></code></pre>
+<pre><code>        void onSuccess(List&lt;Ranking&gt; list);</code></pre>
+<pre><code>        void onSuccess();</code></pre>
+<pre><code>    }</code></pre>
+}</div>
+</div>
+<p></p>
+<p>Veamos el ejemplo a la hora de eliminar un <span lang="en">ranking</span>. Este método recibe por parámetro la clase que implementa la interfaz <code>RankingRepositoryCallback</code> de forma que cuando se elimina un <span lang="en">ranking</span> se llama al método <code>onSucess()</code> de esta clase que ejecutará las acciones pertinentes, en nuestro ejemplo actualizará el listado de <span lang="en">ranking:</span></p>
+<div class="codigo elemento_centrado" style="width: 45em;">
+<div class="texto_izquierda">
+<pre><code> public void delete(final Ranking ranking, final RankingRepositoryCallback callback) {</code></pre>
+<pre><code>         if (ranking != null) {</code></pre>
+<pre><code>             new AsyncTask&lt;Void, Void, Void&gt;() {</code></pre>
+<pre><code>                 @Override</code></pre>
+<pre><code>                 protected Void doInBackground(Void... voids) {</code></pre>
+<pre><code>                     rankingDao.delete(ranking);</code></pre>
+<pre><code>                     callback.onSuccess();</code></pre>
+<pre><code>                     return null;</code></pre>
+<pre><code>                 }</code></pre>
+<pre><code>             }.execute();</code></pre>
+<pre><code>         }</code></pre>
+<pre><code>     } </code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id469">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta469_148" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b469" class="block iDevice_content">
+<p>En el siguiente enlace te puedes descargar el proyecto entero que hemos explicado en este apartado. Presta atención a cómo las clases <code>ListRankingFragment</code> y <code>AddRankingFragment </code>se comunican con la clase repositorio <code>RankingRepository </code>y viceversa. </p>
+<p style="text-align: center;"><a title="Descargar el proyecto GemRoom. Se abre en una nueva ventana [zip - 2.07 MB]" href="GameRoom.zip" target="_blank" class="paquete">Descarga el proyecto GameRoom</a><span class="exe-link-data file-size"> (zip - 2.07 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.</p>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

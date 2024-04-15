@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.6.2.- Efectos: transiciones | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-136" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.6.2.- Efectos: transiciones</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id542">
+<div class="iDevice emphasis0">
+<div id="ta542_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R15_Movimiento.jpg" alt="Imagen movida de un tren en marcha." title="Tren en movimiento" height="160" width="240" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc-sa" title="CC by-nc-sa" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc-sa</span></a> <a title="Acceder a la imagen &quot;Tren en movimiento&quot; de &quot;fisserman&quot; en Flickr. (Se abre en una nueva ventana)" href="http://www.flickr.com/photos/fisserman/4067295771/sizes/s/in/photolist-7cpXka-dRwtPy-a2wNQZ-u73nj-dBEwjm-yBzzh-5HtRrD-HMME-9VHwai-6rAi3S-872EUR-32XgWs-32SKdz-9Nd74K-6rvNLH-yeTLf-yqEga-hiDWq-ewJ1WT-ewLWid-ewHEUD-hiDUS-hiDTi-yeTGG-7jznuj-7jvtqV-7jznKW-bsnxzy-8oF2MR-etVvCV-5gU6k4-5gYrRW-eEemf5-eE8eYT-ezqXBr-ezr7qn-ezr7GX-ezujiJ-bDNXTr-ewP3K6-ewNvLc-ewNFG4-ewNDZ6-ewNv8F-6SpBNW-9wsHba-9cTYhW-4DSeGT-qZH2p-4T5a8p-ahBWTu/%20" target="_blank">fisserman</a></div>
+</div>
+<p>La clase <code>TransitionDrawable</code> hereda de <code>LayerDrawable</code>, que es descendiente de <code>Drawable</code>, que permite efectos de transición en una primera y una segunda capa. Para iniciar la transición hay que llamar al método <code>startTransition(int tiempo)</code>. Sólo permite la transición entre dos capas, se puede volver a la primera capa con el método <code>resetTransition()</code>.</p>
+<p>A continuación tienes un ejemplo que puedes descargar, de un proyecto donde hemos seguido los siguientes pasos para su construcción:</p>
+<ol class="lista_esquema">
+<li>Creamos un nuevo proyecto con nombre <strong><em>Efectos</em></strong>.</li>
+<li>Crea el fichero de recursos en <strong><span style="font-size: medium;"><code>res/drawable/transicion.xml</code></span></strong> con el código que puedes ver en el proyecto, donde ponemos los dos elementos primera y segunda. Copiamos dos fotos con esos nombres, <strong><em>primera</em></strong> y <strong><em>segunda</em></strong> en la carpeta de recursos.</li>
+<li>En el fuente, <code>TransicionActivity.java</code> lo hemos llamado en este caso, escribimos el código que ves en dicho proyecto y que básicamente instancia un objeto de la clase <strong><span style="font-size: medium;"><code>TransitionDrawable</code></span></strong> e inicia la transición. También, se añade un oyente para iniciar la transición al hacer clic en la imagen.</li>
+</ol>
+<p>Igualmente una transición se puede definir en un fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym>. Mediante el elemento <code>transition</code> cada objeto <code>Drawable</code> en la transición se define en un <code>item</code> anidado. Puedes consultar la documentación oficial<a href="https://developer.android.com/guide/topics/resources/drawable-resource#Transition" title="Acceder a la documentación oficial para definir un elemento de diseño de transición (Se abre en una ventana nueva) " target="_blank" class="html">Definir un elemento de diseño de transición</a> y realizar el mismo ejercicio que te hemos planteado en <acronym title="eXtensible Markup Language" lang="en">XML</acronym>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id543">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta543_46" class="block iDevice_content">
+<p>Te recomendamos que descargues el siguiente proyecto, lo importes como proyecto de código existente, lo ejecutes y estudies el código detenidamente.</p>
+<p style="text-align: center;"><a href="ExampleTransition.zip" target="_blank" class="paquete" title="Acceder al ejemplo de transiciones de imágenes. Se abre en una ventana nueva [zip - 12.79 MB]">Efecto de transición</a><span class="exe-link-data file-size"> (zip - 12.79 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.4.1.- Componentes de la librería | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-117" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.4.1.- Componentes de la librería</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id458">
+<div class="iDevice emphasis0">
+<div id="ta458_154" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-CC-BY" style="width: 200px;"><a href="room_architecture.png" title="Ampliar imagen &quot;Diagrama de Arquitectura de Room&quot;. (Se abre en una nueva ventana)"><img src="room_architecture.png" width="200" height="181" alt="Diagrama que muestra en la parte superior un cuadro &quot;Room Database&quot; (Base de datos de Room) y en la parte inferior otro cuadro &quot;Rest of the App&quot; (Resto de la aplicación). En medio hay dos cuadros más pequeños, &quot;Data Access Objetcs&quot; (Objetos de acceso a datos) y &quot;Entities&quot; (Entidades). Del cuadro inferior parten fleclas en doble sentido hacia los otros tres componentes, etiquetadas.  Las flechas que unen el resto de la aplicación con la base de datos de Room, se etiqueta como &quot;Get DAO&quot; (Obtener Objeto de Acceso a Datos). Las flechas que van hasta los objetos de acceso a datos, se etiquetan como &quot;Get Entities from db&quot; (Botener entidades de la Base de Datos) y &quot;Persist changes&quot; back to db&quot; (Cambios persistentes vuelven a la Base de datos). Las felchas que van hasta las Entidades se etiquetan con &quot;get/set field values&quot; (Obtener o asignar valores de campo)." title="Diagrama de Arquitectura de  Room" class="imagen_ampliable" style="float: right;" /></a>
+<div class="figcaption"><a href="room_architecture.png" title="Ampliar imagen &quot;Diagrama de Arquitectura de Room&quot;. (Se abre en una nueva ventana)">Android Open Source Project</a><a href="room_architecture.png" title="Ampliar imagen &quot;Diagrama de Arquitectura de Room&quot;. (Se abre en una nueva ventana)"> <span class="license"><span class="sep">(</span>CC BY<span class="sep">)</span></span></a></div>
+</div>
+<p>Los componentes de la librería <span lang="en"><strong><em>Room</em></strong> , como puede verse en el esquema de la derecha, que engloba todos los componentes,</span>son:</p>
+<ul class="lista_verificacion">
+<li><strong>Entidades</strong>: son las clases de <span lang="en">Java</span> que comúnmente se llaman <acronym title="Plain Old Java Object" lang="en">POJO.</acronym> Son clases simples, que representan un objeto en el mundo real. Normalmente estará compuesto por sus atributos privados y sus correspondientes <strong><em><span lang="en">getters</span></em></strong> y <strong><em><span lang="en">setters</span></em></strong> públicos. En nuestro ejemplo tenemos una clase <acronym title="Plain Old Java Object" lang="en">POJO</acronym> y es la clase <code>Ranking.</code></li>
+<li><strong>Objetos de acceso a datos</strong> o <acronym title="Data Access Object) " lang="en">DAO</acronym>: estos objetos incluyen métodos que ofrecen un acceso abstracto a la base de datos. Es abstracto, porque serán interfaces o clases abstractas donde se definirán todas las operaciones de lectura y escritura necesarias en la aplicación.</li>
+<li><strong>Base de datos:</strong> habrá que declarar la base de datos de nuestra aplicación y definir el objeto que nos permita acceder.</li>
+</ul>
+<p>Ya tenemos clara la estructura de componentes de nuestro proyecto pero, ¿cómo <span lang="en">Room</span> trabaja con <abbr title="Structure Query Language Light" lang="en">SQLite</abbr>? Pues es a través de las <em><strong>Anotaciones</strong></em> que la librería <span lang="en">Room</span>genera código <abbr title="Structure Query Language Light" lang="en">SQLite</abbr> internamente. Cuando una anotación precede a la definición de un componente, <span lang="en">Room</span> implementa el código para interactuar con la base de datos. Por ejemplo para indicar que la clase <code>Ranking</code> es una entidad se añadirá la anotación <code>@Entity</code> en la definición de clase:</p>
+<div class="elemento_izquierda">
+<div class="elemento_izquierda"><a href="example_project.png" target="_blank" title="Ampliar imagen para: Ver cómo se organiza un proyecto en diferentes paquetes. (Se abre en una nueva ventana)."><img src="example_project.png" alt="Captura de pantalla que muestra un ejemplo cómo organizar el proyecto en paquetes. Se crean los paquetes adapter, bd, dao, entity, iu y repository." title="Organización en paquetes de un proyecto." height="340" width="208" class="imagen_ampliable" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<div class="codigo elemento_centrado" style="width: 300px;">
+<div class="texto_izquierda">
+<pre><strong><code>@Entity</code></strong></pre>
+<pre><code>public class Ranking {</code></pre>
+<pre><code>private int position;</code></pre>
+<pre><code>private String avatar;</code></pre>
+<pre><code>......................</code></pre>
+</div>
+</div>
+<p><span style="font-size: 1em;">El número de clases que tendrá nuestro proyecto crecerá considerablemente, con lo cual es deseable organizarlas en base a su función. Planteamos estructurar el proyecto en los siguientes </span><code>package</code><span style="font-size: 1em;"> que mostramos en la imagen de la derecha. Desde el </span><code>package gamepreferences:</code></p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Seleccionamos las siguientes opciones <em><strong><span lang="en">Refactor-&gt; Rename </span></strong></em>y le damos otro nombre.</li>
+<li>Añadimos los diferentes <span lang="en">package</span> mediante <strong><span lang="en"><em>File -&gt; New -&gt; Package</em>.</span></strong> </li>
+</ol>
+<p>Esta solución es orientativa, puedes darles otro nombre o bien organizarlas de otra forma siempre y cuando las clases que contenga el paquete estén relacionadas. </p>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id459">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-459_141" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion459_141" class="block question iDevice_content">
+<p><strong>En <span lang="en">Room</span>, las clases abstractas o interfaces que definen los métodos de lectura y escritura para acceder a la base de datos son:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i459_144" class="sr-av"><a href="#answer-459_144">Opción 1</a></label><input type="radio" name="option459_141" id="i459_144" class="exe-radio-option exe-radio-option-0-4-459_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-459_144"><div id="taans459_144" class="block iDevice_content">
+<p>Entidades.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i459_514" class="sr-av"><a href="#answer-459_514">Opción 2</a></label><input type="radio" name="option459_141" id="i459_514" class="exe-radio-option exe-radio-option-1-4-459_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-459_514"><div id="taans459_514" class="block iDevice_content">
+<p><acronym title="Data Access Objects" lang="en">DAO</acronym></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i459_517" class="sr-av"><a href="#answer-459_517">Opción 3</a></label><input type="radio" name="option459_141" id="i459_517" class="exe-radio-option exe-radio-option-2-4-459_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-459_517"><div id="taans459_517" class="block iDevice_content">
+<p>Clases <acronym title="Plain Old Java Object" lang="en">POJO</acronym></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i459_520" class="sr-av"><a href="#answer-459_520">Opción 4</a></label><input type="radio" name="option459_141" id="i459_520" class="exe-radio-option exe-radio-option-3-4-459_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-459_520"><div id="taans459_520" class="block iDevice_content">
+<p>Clases <span lang="en">Helper.</span></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b459_141" class="feedback js-hidden">
+<p>Incorrecto</p>
+</section>
+<section id="sa1b459_141" class="feedback js-hidden">
+<div id="taf459_514" class=" iDevice_content">
+<p>¡Correcto! Veamos cómo se implementa en <span lang="en">Room</span> estas clases abstractas o interfaces.</p>
+</div>
+</section>
+<section id="sa2b459_141" class="feedback js-hidden">
+<p>Incorrecto</p>
+</section>
+<section id="sa3b459_141" class="feedback js-hidden">
+<p>Incorrecto</p>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-459_144">Incorrecto</a><span> (<a href="#sa0b459_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-459_514">Opción correcta</a><span> (<a href="#sa1b459_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-459_517">Incorrecto</a><span> (<a href="#sa2b459_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-459_520">Incorrecto</a><span> (<a href="#sa3b459_141">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id460">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta460_128" class="block iDevice_content">
+<p>Puedes consultar el taller que <span lang="en">Google</span> ofrece para conocer esta librería bien en<a href="https://codelabs.developers.google.com/codelabs/android-room-with-a-view" target="_blank" class="html" title="Acceder al taller de la librería Room en Java (Se abre en una nueva ventana)">Java</a> o en<a href="https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin" class="html" title="Acceder al taller de la librería Room en Kotlin (Se abre en una nueva ventana)" target="_blank">Kotlin</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

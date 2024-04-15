@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.1.1.- Diseño de la pantalla de preferencias I | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-100" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.1.1.- Diseño de la pantalla de preferencias I</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id454">
+<div class="iDevice emphasis0">
+<div id="ta454_69" class="block iDevice_content">
+<p>Como veíamos en la unidad de <strong>Programación en <span lang="en"> Android</span>: Interfaz de usuario</strong>, el diseño de pantalla de preferencias se basa en ficheros <acronym title="eXtensible Markup Language" lang="en">XML</acronym>. <span lang="en">Android</span> dispone de un mecanismo que hace muy fácil la gestión de preferencias de una aplicación para el desarrollador.</p>
+<div class="exe-fx exe-accordion">
+<h2>Crear recurso <acronym title="eXtensible Markup Language" lang="en">XML</acronym> de las preferencias</h2>
+<p>Para crear este nuevo fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> de preferencias donde poder definir la interfaz gráfica podemos seguir los siguientes pasos desde el <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio</span>:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>En primer lugar creamos una carpeta nueva llamada <code>/xml/ </code>dentro de la carpeta <code>/res/</code>. Para ello, pulsamos botón derecho sobre la carpeta <code>/res/</code>  y seleccionamos<code> New - Android resource directory.</code></li>
+<li>En la pantalla que se abre seleccionamos el tipo de recurso <acronym title="eXtensible Markup Language" lang="en">XML</acronym>.</li>
+<li>Sobre la carpeta que acabamos de crear pulsamos botón derecho y seleccionamos <code>New - XML resource file</code>.</li>
+<li>En la siguiente ventana del asistente ponemos un nombre al fichero (<abbr title="Ejemplo">Ej</abbr>: <span lang="en"><strong>settings.xml</strong>)</span> que automáticamente lo almacenará con el tipo <span title="eXtensible Markup Language" lang="en"><acronym title="eXtensible Markup Language" lang="en"><span>XML</span></acronym></span>.</li>
+<li>Pulsamos en el botón <code>Finish </code>y ya podemos comenzar con el diseño de la pantalla. Podemos asegurarnos viendo el código <acronym title="eXtensible Markup Language" lang="en">XML</acronym> de la plantilla creada que tiene como <span lang="en">layout</span> principal <code>PreferenceScreen</code> y en vista diseño podremos incorporar los elementos de esta pantalla que necesitemos.</li>
+</ol>
+<p class="destacado"><strong>Si nos sale el siguiente error <code>"android.preference.PreferenceScreen is deprecated"</code> es que tenemos que añadir al proyecto la librería específica <span lang="en">AndroidX</span>.</strong></p>
+<p>Para ello vamos a <strong><span lang="en">File</span></strong> -&gt;<span lang="en"> <strong>Projects Structure</strong></span>. Se selecciona el módulo <span lang="en"><strong>app</strong></span>, y se da al icono <img src="icon_add.png" width="21" height="21" style="vertical-align: middle;" alt="icono con un símbolo de suma" title="Añadir" />-&gt;<span lang="en"><strong>Library Dependency</strong></span> y en el campo de búsqueda se pone <code>androidx.preference</code>.</p>
+<p><a title="Ampliar imagen para: Añadir una librería a un proyecto. (Se abre en una nueva ventana)." href="add_library_preferences.png" target="_blank"><img src="add_library_preferences.png" width="545" height="300" alt="Esta imagen describe los pasos de cómo añadir la librería androidx.preference a un proyecto: 1.-elegir en elmenú de la izquierda la opción Dependencies. 2.- Elegir app en el panel Modules. 3.- Darle al botón Añadir (+) en el panel de dependencias (Library Dependency). 4.-En el cuadro de diálogo, buscar androidx.preference." title="Añadir una librería a un proyecto" class="imagen_ampliable" style="display: block; margin-left: auto; margin-right: auto;" /></a></p>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+<p></p>
+<p>Recordemos que para diseñar una interfaz de usuario debemos tener en cuenta el contenedor donde se organizan los objetos o controles. En el caso de la pantalla de preferencias, este contenedor está formado por las etiquetas:</p>
+<div class="codigo elemento_centrado" style="width: 34.05em;">
+<div class="texto_izquierda">
+<pre><code>&lt;PreferenceScreen&gt; ...... &lt;/PreferenceScreen&gt;</code></pre>
+</div>
+</div>
+<p><br />Además los objetos también pueden estar a su vez agrupados u organizados en categorías de forma que se muestra el título de categoría y añade una línea divisoria al final de la categoría separando visualmente los grupos de preferencias.  En este caso se va a crear una categoría que muestre los <strong>"Datos del usuario"</strong> y dentro de ella agruparemos el resto de preferencias:</p>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>&lt;PreferenceCategory android:title="@string/category_user_information"&gt;</code></pre>
+<pre><code>...... <br />&lt;/PreferenceCategory&gt;</code></pre>
+</div>
+</div>
+<p></p>
+<h2>Tipos de preferencias</h2>
+<p>Para que el usuario de la aplicación pueda configurar sus preferencias utilizaremos una serie de controles u objetos entre los que destacamos los siguientes por ser los más utilizados:</p>
+<ul class="lista_verificacion">
+<li><code>Preference:</code> muestra un elemento de texto simple. Hay que definir al menos tres atributos:
+<ul>
+<li>clave (<code>key</code>): esta clave se utiliza para hacer referencia al valor que el usuario introduce en el fichero de preferencias. Es la misma clave que se utiliza para recuperar el valor de nuestras preferencias.</li>
+<li>título (<code>title</code>): el título de la preferencia.</li>
+<li>resumen (<code>summary</code>): es una descripción que se muestra debajo del título con un tamaño de texto menor.</li>
+<li>icono (<code>icon</code>): se puede utilizar un icono que represente a la preferencia.</li>
+</ul>
+<div class="codigo elemento_centrado" style="width: 34.05em;">
+<div class="texto_izquierda">
+<pre><span style="background-color: initial;">&lt;Preference</span></pre>
+<pre><code> android:key="preference_key"</code></pre>
+<pre><code> android:title="@string/preference_user"</code></pre>
+<pre><code> android:summary="@string/preference_user_summary"</code></pre>
+<pre><code> android:icon="@drawable/ic_action_user" &gt;</code></pre>
+<pre><code>   </code></pre>
+</div>
+</div>
+</li>
+<li><code>CheckBoxPreference</code>: marca que el usuario puede activar o desactivar. El valor que devuelve esta preferencia es si está habilitado o deshabilitado. Esta opción suele estar en desuso, ya que se suele utilizar<code> SwitchPreferenceCompat</code>.</li>
+<li><code>SwitchPreferenceCompat</code>: guarda dos estados al igual que <code>CheckBoxPreference</code> pero se muestra como un pequeño interruptor.
+<div class="codigo elemento_centrado" style="width: 34.05em;">
+<div class="texto_izquierda">
+<pre><code>&lt;SwitchPreference</code></pre>
+<pre><code>android:defaultValue="true"</code></pre>
+<pre><code>android:key="preference_saveuser_key"</code></pre>
+<pre><code>android:title="@string/preference_saveuser" /&gt;</code></pre>
+</div>
+</div>
+</li>
+<li><code>EditTextPreference</code>: aparece un cuadro de diálogo donde el usuario puede introducir una cadena de texto sencilla. A veces es recomendable que el valor introducido por el usuario aparezca como valor resumen.  Para habilitar este comportamiento se tiene que añadir el atributo <code>app:useSimpleSummaryProvider="true"</code> dentro de la preferencia en <acronym title="eXtensible Markup Language" lang="en">XML</acronym>. En el caso de que no esté definido aparece <span lang="en"><strong>Not Set</strong></span>.
+<div class="codigo elemento_centrado" style="width: 34.05em;">
+<div class="texto_izquierda">
+<pre><code>&lt;EditTextPreference</code></pre>
+<pre><code> android:dialogTitle="@string/dialog_title_name_avatar"</code></pre>
+<pre><code> android:key="preference_name_avatar_key"</code></pre>
+<pre><code> android:title="@string/preference_name_avatar"</code></pre>
+<pre><code> app:useSimpleSummaryProvider="true"</code></pre>
+<pre><code> android:icon="@drawable/ic_action_name_avatar"/&gt;</code></pre>
+</div>
+</div>
+</li>
+<li><code>SeekBarPreference</code>: esta preferencia muestra un <code>SeekBar</code> para introducir un valor entero. En este ejemplo se introduce 18 como valor inicial mediante <code>android:defaultValue</code>. Además se puede establecer un valor máximo con el atributo <code>android:max</code>
+<div class="codigo elemento_centrado" style="width: 34.05em;">
+<div class="texto_izquierda">
+<pre><code>  &lt;SeekBarPreference</code></pre>
+<pre><code>   android:key="preference_age_key"</code></pre>
+<pre><code>   android:title="@string/preference_age"</code></pre>
+<pre><code>   android:defaultValue="18"/&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id455">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-455_51">
+<form name="multi-select-form-455_51" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion455_51" class="block question iDevice_content">
+<p><strong>El atributo <code>android:key </code>se utiliza en los controles de preferencias:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op455_510" class="sr-av"><a href="#answer-455_54">Opción 1</a></label><input type="checkbox" id="op455_510" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-455_54"><div id="taans455_54" class="block iDevice_content">
+<p><code>MultiSelectListPreference</code></p>
+<div id="gtx-trans" style="position: absolute; left: 121px; top: -12px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-455_510" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op455_511" class="sr-av"><a href="#answer-455_75">Opción 2</a></label><input type="checkbox" id="op455_511" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-455_75"><div id="taans455_75" class="block iDevice_content">
+<p><code>CheckBoxPreference</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-455_511" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op455_512" class="sr-av"><a href="#answer-455_77">Opción 3</a></label><input type="checkbox" id="op455_512" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-455_77"><div id="taans455_77" class="block iDevice_content">
+<p><code>EditTextPreference</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-455_512" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op455_513" class="sr-av"><a href="#answer-455_79">Opción 4</a></label><input type="checkbox" id="op455_513" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-455_79"><div id="taans455_79" class="block iDevice_content">
+<p><code>ListPreference</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-455_513" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-455_51" /> 
+</p>
+</div>
+<section id="f455_51" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+<div id="tafeedback455_51" class="feedback iDevice_content">
+<p>Todas las opciones son correctas, puesto que este atributo es necesario para guardar y recuperar la preferencia.</p>
+</div>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-455_54" class="right">Correcto</a></li>
+<li><a href="#answer-455_75" class="right">Correcto</a></li>
+<li><a href="#answer-455_77" class="right">Correcto</a></li>
+<li><a href="#answer-455_79" class="right">Correcto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.4.3.- Crear DAO | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-119" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.4.3.- Crear DAO</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id463">
+<div class="iDevice emphasis0">
+<div id="ta463_154" class="block iDevice_content">
+<p>Un <acronym title="Data Access Objetc" lang="en">DAO</acronym> en <span lang="en">Room</span> es una clase abstracta o una interfaz que define un conjunto de métodos que ofrecen acceso a la base de datos utilizando consultas en <acronym title="Structured Query Language" lang="en">SQL</acronym>. Estos métodos los implementa <span lang="en">Room</span> en tiempo de compilación y realiza ciertas comprobaciones. Por ejemplo, en los métodos <code>@Query</code> <span lang="en">Room</span> verifica si hay un problema con la consulta, si fuera así muestra un error de compilación en el panel <strong></strong><em><span lang="en"><strong>Build</strong></span></em> como muestra la siguiente imagen:</p>
+<div class="elemento_centrado">
+<div class="elemento_centrado"><img src="error_compilacion_Room.png" alt="Muestra un error de la librería Room en la pestaña Build Output del panel Build" title="Mensaje de error en la compilación de la librería Room" width="717" height="135" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)" href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p>En <span lang="en">Room</span> se pueden realizar las siguientes consultas:</p>
+<ul class="lista_verificacion">
+<li><code>@Query</code>: se hacen consultas directamente a la base de datos. A veces se necesita filtrar una serie de datos en base a un parámetro que se pasa al método, en este caso <span lang="en">Room</span> hace coincidir el parámetro de vinculación <code>:avatar</code> con el parámetro del método <code>avatar</code>. Cualquier error que hubiera se muestra en tiempo de compilación.
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>@Query("SELECT * FROM ranking WHERE avatar=:avatar")</code></pre>
+<pre><code>Ranking findByShortName(String avatar);</code></pre>
+</div>
+</div>
+</li>
+<li><code>@Insert</code>: <span>inserta todos los parámetros en la base de datos con una sola transacción.<br /><br /></span>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>@Insert(onConflict = OnConflictStrategy.IGNORE)</code></pre>
+<pre><code>long insert(Ranking ranking);</code></pre>
+</div>
+</div>
+<p><br />Si sólo se inserta un único objeto este método puede devolver un valor <code>long</code> que muestra el <abbr title="identificador">id</abbr> de la fila o <code>rowId</code> insertada en la base de datos. Si el parámetro es un <span lang="en">Array</span> o una colección, debería ser <code>long[]</code> o <code>List&lt;Long&gt;</code><span style="font-size: 1em;">.</span></p>
+</li>
+<li><code>@Update</code>: modifica un conjunto de entidades proporcionadas que se pasan por parámetros. Normalmente suele ser un objeto que se actualiza en la base de datos teniendo en cuenta la clave primaria o <code>PrimaryKey:</code>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>@Update </code></pre>
+<pre><code>void update(Ranking ranking);</code></pre>
+</div>
+</div>
+<p><br />Este método puede devolver un valor <code>int </code>que indica la cantidad de filas actualizadas en la base de datos.</p>
+</li>
+<li><code>@Delete: </code>elimina un conjunto de registros de la base de datos en base a los parámetros del método de igual forma que el método <code>@Update.</code>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>@Delete</code></pre>
+<pre><code>void delete(Ranking ranking);</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id464">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta464_128" class="block iDevice_content">
+<p>Puedes consultar la documentación oficial donde se muestran otras soluciones que se pueden dar en las operaciones a realizar con la base de datos:</p>
+<p style="text-align: center;"><a title="Acceder a la documentación oficial de Room en Android Deverloper (Se abre en una nueva ventana)" href="https://developer.android.com/training/data-storage/room/accessing-data?hl=es" target="_blank" class="html">Cómo acceder a datos mediante <acronym title="Data Access Objetcs" lang="en">DAO</acronym></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id465">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-465_141" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion465_141" class="block question iDevice_content">
+<p><strong>El método que devuelve el valor <code>rowId</code> de una fila es:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i465_144" class="sr-av"><a href="#answer-465_144">Opción 1</a></label><input type="radio" name="option465_141" id="i465_144" class="exe-radio-option exe-radio-option-0-4-465_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-465_144"><div id="taans465_144" class="block iDevice_content">
+<p><span lang="en">Delete</span></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i465_571" class="sr-av"><a href="#answer-465_571">Opción 2</a></label><input type="radio" name="option465_141" id="i465_571" class="exe-radio-option exe-radio-option-1-4-465_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-465_571"><div id="taans465_571" class="block iDevice_content">
+<p><span lang="en">Insert</span></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i465_574" class="sr-av"><a href="#answer-465_574">Opción 3</a></label><input type="radio" name="option465_141" id="i465_574" class="exe-radio-option exe-radio-option-2-4-465_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-465_574"><div id="taans465_574" class="block iDevice_content">
+<p><span lang="en">Update</span></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i465_577" class="sr-av"><a href="#answer-465_577">Opción 4</a></label><input type="radio" name="option465_141" id="i465_577" class="exe-radio-option exe-radio-option-3-4-465_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-465_577"><div id="taans465_577" class="block iDevice_content">
+<p><span lang="en">Query</span></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b465_141" class="feedback js-hidden">
+<div id="taf465_144" class=" iDevice_content">
+<p>No es correcto.</p>
+<div id="gtx-trans" style="position: absolute; left: -34px; top: 34px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</section>
+<section id="sa1b465_141" class="feedback js-hidden">
+<div id="taf465_571" class=" iDevice_content">
+<p>¡Correcto!  <abbr title="Structure Query Language Light" lang="en">SQLite</abbr>  utiliza internamente una columna llamada <code>rowid </code>que es autoincrementable de forma que cuando se inserta una nueva fila en la tabla su valor no se repite ya que se incrementa en uno.</p>
+</div>
+</section>
+<section id="sa2b465_141" class="feedback js-hidden">
+<div id="taf465_574" class=" iDevice_content">
+<p>No es la opción correcta.</p>
+</div>
+</section>
+<section id="sa3b465_141" class="feedback js-hidden">
+<div id="taf465_577" class=" iDevice_content">
+<p>No has acertado.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-465_144">Incorrecto</a><span> (<a href="#sa0b465_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-465_571">Opción correcta</a><span> (<a href="#sa1b465_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-465_574">Incorrecto</a><span> (<a href="#sa2b465_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-465_577">Incorrecto</a><span> (<a href="#sa3b465_141">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

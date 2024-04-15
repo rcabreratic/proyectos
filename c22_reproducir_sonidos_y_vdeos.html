@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.2.2.- Reproducir sonidos y vídeos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-142" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.2.2.- Reproducir sonidos y vídeos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id562">
+<div class="iDevice emphasis0">
+<div id="ta562_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para:  Ver aplicación grabadora. (Se abre en una nueva ventana)." href="media_player.jpg" target="_blank"><img src="media_player.jpg" alt="Captura pantalla de la aplicación grabadora de un teléfono." title="Aplicación Grabadora." class="imagen_ampliable" width="200" height="416" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p>¿Se puede incluir el audio o el vídeo en nuestra aplicación como un recurso?</p>
+<p>Por supuesto que sí. Simplemente, tendrías que seguir los siguientes pasos:</p>
+<ul class="lista_verificacion">
+<li>Crear una nueva carpeta con nombre <strong><span style="font-size: medium;"><code>raw </code></span></strong>dentro de la carpeta <strong><span style="font-size: medium;"><code>res</code></span></strong>.</li>
+<li>Copiar a esa carpeta el fichero de audio o vídeo, como por ejemplo <strong><span style="font-size: medium;"><code>xanadu.mp3</code>.</span></strong></li>
+<li>Añadir el siguiente código:</li>
+</ul>
+<div class="codigo elemento_centrado" style="width: 40%;">
+<div class="texto_izquierda">
+<pre><code>MediaPlayer mep = MediaPlayer.create(this, R.raw.xanadu);</code>
+</pre>
+<pre><code>mep.start() ;</code>
+</pre>
+</div>
+</div>
+<p></p>
+<p>Para parar la reproducción tendrías que usar el método <code>stop()</code>. Y si después, quieres volver a reproducirlo, deberías usar el método <code>prepare()</code> y a continuación <code>start()</code>. También puedes usar <code>pause()</code> y <code>start()</code> para ponerlo en pausa y reanudarlo.</p>
+<p>Otra opción, en vez de meterlo como recurso en el proyecto, es reproducirlo desde un fichero utilizando el código de más abajo. En este caso hay que llamar al método <code>prepare()</code>. En el caso anterior no era preciso porque esa llamada se hace desde <code>create()</code>.</p>
+<div class="codigo elemento_centrado" style="width: 40%;">
+<div class="texto_izquierda">
+<pre><code>MediaPlayer mep = new MediaPlayer();</code>
+</pre>
+<pre><code>mep.setDataSource(Ruta_al_fichero_a_Reproducir);</code>
+</pre>
+<pre><code>mep.prepare();</code>
+</pre>
+<pre><code>mep.start();</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id563">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta563_43" class="block iDevice_content">
+<p>Para reproducir sonido en segundo plano, como un servicio, puedes consultar este interesante tutorial:</p>
+<p style="text-align: center;"><a title="Acceder  a un tutorial web sobre &quot;Sonido como servicio&quot; (Se abre en una ventana nueva)" href="http://www.maestrosdelweb.com/editorial/curso-android-servicios-sonido/" target="_blank" class="html">Reproducción de sonido de fondo.</a></p>
+<p style="text-align: left;">Otro tutorial también bastante recomendable, sobre la reproducción de sonidos, es el siguiente:</p>
+<p style="text-align: center;"><a title="Acceder al tutorial web &quot;Reproduciendo sonidos en Android&quot; (Se abre en una ventana nueva)" href="http://trucosandroidstudio.blogspot.com.es/2015/03/sonido-en-android-studio-clase-soundpool.html" target="_blank" class="html">Reproducir sonidos.</a></p>
+<p style="text-align: left;">Página donde se muestra paso a paso la inclusión de vídeos en una aplicación <span style="text-align: left;" lang="en">Android</span>:</p>
+<p style="text-align: center;"><a title="Acceder a una web sobre cómo incluir vídeos en Android (Se abre en una ventana nueva)" href="http://www.androidcurso.com/index.php/recursos-didacticos/tutoriales-android/37-unidad-6-multimedia-y-ciclo-de-vida/165-la-vista-videoview" target="_blank" class="html">Incluir vídeo.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id564">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta564_54" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b564" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b564" class="block iDevice_content">
+<p><strong>Para poner en pausa un sonido usaremos el m&eacute;todo <code>pause()</code>.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b564"><input type="radio" name="option0b564" id="true0b564" class="exe-radio-option exe-radio-option-0-2-0b564-truefalse" /> Verdadero</label> 
+<label for="false0b564"><input type="radio" name="option0b564" id="false0b564" class="exe-radio-option exe-radio-option-1-2-0b564-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b564" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b564-result" class="right">Verdadero</strong></p>
+<p>Es verdadero.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

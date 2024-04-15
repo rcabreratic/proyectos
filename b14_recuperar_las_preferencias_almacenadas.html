@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.1.4.- Recuperar las preferencias almacenadas | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-103" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.1.4.- Recuperar las preferencias almacenadas</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id476">
+<div class="iDevice emphasis0">
+<div id="ta476_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="rescue_pereferences.png" width="200" height="200" title="Recuperar las preferencias del usuario." alt="Ilustración que muestra un salvavidas y el icono de las preferencias: recuperar las preferencias" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/vectors/guardar-artes-mensaje-la-vida-4625651/" target="_blank" class="author" title="Acceder a la imagen &quot;Recuperar las preferencias del usuario.&quot; de &quot;Megan_Rexazin&quot; en Pixabay. (Se abre en una nueva ventana)">Megan_Rexazin</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Como acabamos de ver el usuario selecciona e introduce una serie de datos en la pantalla de preferencias que hemos diseñado y mostrado en el dispositivo móvil para configurar la aplicación. Pero, ¿dónde se almacenan los valores de estas opciones? ¿Cómo se pueden recuperar? ¿Se eliminan cuando salimos de la aplicación o apagamos nuestro dispositivo móvil?<br /><br />De nada serviría una pantalla de preferencias donde el usuario ha elegido una configuración determinada si después no se almacena y no se pueden recuperar los datos. En realidad, este tipo de gestión de datos es transparente incluso para el programador. <span lang="en">Android</span> almacena internamente estas preferencias en forma de <code>clave-valor</code>, es decir, cada una de ellas está compuesta por una clave o identificador único y un valor asociado a ese identificador. Como desarrollador nos interesa conocer cómo manejar esas preferencias compartidas en la aplicación. Por tanto debemos utilizar la clase <code>androidx.preference.PreferenceManager</code> y<code> android.content.SharedPreferences</code>. <br /><br />Primero obtenemos una instancia de la clase <code>SharedPreferences </code>mediante la clase <code>PreferenceManager</code>:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre><code>SharedPreferences <span>sharedPreferences</span> =</code></pre>
+<pre><code>               PreferenceManager.getDefaultSharedPreferences(activity_context)</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Después recuperamos los valores de preferencias dependiendo del tipo de dato almacenado en cada una de ellas. Así podremos utilizar los siguientes métodos:</p>
+<div class="codigo elemento_centrado" style="width: 21.400000000000002em;">
+<div class="texto_izquierda">
+<pre><code><span>sharedPreferences</span>.getString(key, default_value)</code></pre>
+<pre><code><span>sharedPreferences</span>.getInt(key, default_value)</code></pre>
+<pre><code>sharedPreferences</code>.getFloat(key, default_value)<br /><span style="background-color: initial;">sharedPreferences</span>.getBoolean(key, default_value)</pre>
+<pre><code>...</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Si queremos recuperar el valor de un <code>SwitchPreference</code> utilizaremos <code>getBoolean(key,default_value)</code> donde <code>key</code> es la clave de la preferencia especificada mediante el atributo <code>android:key</code> y el parámetro <code>default_value</code>  es el valor por defecto en el caso que el usuario no lo haya especificado.</p>
+<div class="codigo elemento_centrado" style="width: 40.1em;">
+<div class="texto_izquierda">
+<pre><code>Boolean </code>saveuser <code>= </code><code>sharedPreferences</code><code>.getBoolean(“</code>preference_saveuser_key<code>”, true);</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Evidentemente <span lang="en">Android</span> hace todo esto por nosotros de forma automática y transparente, puesto que al salir de la pantalla de preferencias e incluso cerrar la aplicación posteriormente cuando volvemos a abrir esta pantalla tendremos los valores que se introdujeron por última vez.</p>
+<p> </p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ReflectionfpdIdevice em_iDevice em_iDevice_reflexionfpd" id="id477">
+<div class="iDevice emphasis_reflexionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_reflexionfpd.png)"><h1 class="iDeviceTitle">Reflexiona</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta477_34" class="block iDevice_content">
+<p>Entonces, ¿para qué puede servirnos recuperar estos datos si ya lo hace <span lang="en">Android</span> por nosotros?</p>
+</div>
+<form name="feedback-form-477" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedback477text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-477" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-477" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<div id="ta477_35" class="block iDevice_content">
+<p>En este caso, cuando entramos de nuevo en la pantalla de preferencias, el sistema inicializa todos los controles con sus valores, pero puede ser que algunos de estos valores los necesitemos para implementar otras partes de nuestra aplicación. Si no, ¿de qué serviría que hayamos elegido un nivel "Profesional"  en el control <code>ListPreference </code>de la pantalla de preferencias, si después cuando iniciemos el juego no se actualizara el nivel?</p>
+</div>
+</section>
+</form>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id478">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta478_63" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b478" class="block iDevice_content">
+<p>Siguiendo el ejemplo de nuestra pantalla de preferencias en cualquiera de las versiones, debes crear una opción en el menú principal de la actividad llamado “<strong><em>Ver Preferencias</em></strong>” que nos muestre los datos almacenados en cada uno de los controles de preferencia.</p>
+</section>
+<form name="feedback-form-quesFeedback0b478" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedbackquesFeedback0b478text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-quesFeedback0b478" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-quesFeedback0b478" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Importa uno de los proyectos de ejemplo de preferencias del apartado “<strong><em>Mostrar la pantalla de preferencias</em></strong>”.</li>
+<li>Crea el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> <code>activity_main.xml</code>  en el directorio <code>/res/menu/</code> y añade las opciones del menú. </li>
+<li>En el fichero  <code>MainActivity.java</code> implementa el método <code>onOptionsItemSelected(MenuItem item)</code> y cuando se haya seleccionado la opción  <code>action_show_settings</code> se ejecutará un método que  muestra los valores almacenados:<br />
+<div class="texto_izquierda"></div>
+<div class="codigo elemento_centrado" style="width: 600px;">
+<div class="texto_izquierda">
+<pre><code>  public boolean onOptionsItemSelected(MenuItem item) {</code></pre>
+<pre><code>        switch (item.getItemId()) {</code></pre>
+<pre><code>         .................................</code></pre>
+<pre><code>            case R.id.action_show_settings:</code></pre>
+<pre><code>                showPreferences();</code></pre>
+<pre><code>                return true;</code></pre>
+<pre><code></code></pre>
+<pre><code>           case R.id.action_settings:</code></pre>
+<pre><code>                showSettingsFragment();</code></pre>
+<pre><code>                return true;</code></pre>
+<pre><code>            default:</code></pre>
+<pre><code>                return super.onOptionsItemSelected(item);</code></pre>
+<pre><code>        }</code></pre>
+<pre><code>    }</code></pre>
+<pre><code></code></pre>
+<pre><code>  private void showPreferences() {</code></pre>
+<pre><code>     SharedPreferences sharedPreferences =</code></pre>
+<pre><code>            PreferenceManager.getDefaultSharedPreferences(this);</code></pre>
+<pre><code>     String user = sharedPreferences.getString("preference_user_key","No declarado");</code></pre>
+<pre><code>     Boolean saveuser=sharedPreferences.getBoolean("preference_saveuser_key",true);</code></pre>
+<pre><code>     String nameavatar = </code></pre>
+<pre><code>            sharedPreferences.getString("preference_name_avatar_key","No declarado");</code></pre>
+<pre><code>     int age = sharedPreferences.getInt("preference_age_key",18);</code></pre>
+<pre><code>     String level = sharedPreferences.getString("preference_level","1");</code></pre>
+<pre><code>     Set&lt;String&gt; n = new HashSet&lt;&gt;(); n.add("sonido");</code></pre>
+<pre><code>     Set&lt;String&gt; options=</code></pre>
+<pre><code>            sharedPreferences.getStringSet("preference_options_key",n);</code></pre>
+<pre><code>     StringBuilder mensaje = new StringBuilder("Nombre de usuario: "+user +"\n");</code></pre>
+<pre><code>     mensaje.append("Salvar usuario: "+saveuser+"\n");</code></pre>
+<pre><code>     mensaje.append("Nombre avatar: "+nameavatar+"\n");</code></pre>
+<pre><code>     mensaje.append("Edad: "+age+"\n");</code></pre>
+<pre><code>     mensaje.append("Nivel: "+level+"\n");</code></pre>
+<pre><code>     mensaje.append("Opciones: "+options.toString());</code></pre>
+<pre><code>     Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();</code></pre>
+<pre><code>    }</code></pre>
+</div>
+</div>
+</li>
+<li>Sólo queda desplegar la aplicación en un emulador y ver los resultados al pulsar sobre la opción del menú que ya existía para abrir la pantalla de preferencias y por supuesto probar la opción que muestre los valores de preferencia almacenados.</li>
+</ol></section>
+</form>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id479">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta479_128" class="block iDevice_content">
+<p>En este apartado se ha explicado la utilidad de la clase <code>SharedPreferences</code>, unida a la clase <code>Preferences</code> que muestran los valores clave-valor mediante controles.</p>
+<p>Esta clase también tiene otra utilidad que es guardar valores en un fichero de preferencias, aunque<strong> NO tenga interfaz gráfica</strong> de preferencias. Este es el supuesto de querer guardar cierta información de la aplicación que siempre esté accesible. </p>
+<p style="text-align: center;"><a href="https://developer.android.com/training/data-storage/shared-preferences" target="_blank" class="html" title="Acceder a la documentación oficial para ver cómo se guardan los pares clave-valor (Se abre en una nueva ventana)">Cómo guardar datos de pares clave-valor</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

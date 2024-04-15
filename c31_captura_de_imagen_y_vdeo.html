@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.3.1.- Captura de imagen y vídeo | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-144" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.3.1.- Captura de imagen y vídeo</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id567">
+<div class="iDevice emphasis0">
+<div id="ta567_73" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 137px;"><img src="CapturaDeVideo.png" width="137" height="200" alt="Ilustración de un móvil con múltiples cámaras" title="Captura de vídeo con el móvil" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/vectors/im%C3%A1genes-predise%C3%B1adas-icono-iphone-5284754/" target="_blank" class="author" title="Acceder a la imagen  &quot;Captura de vídeo con el móvil&quot;, de &quot;mayurbhutada&quot;, en Pixabay. (Se abre en una nueva ventana)">mayurbhutada</a> <span class="license"><span class="sep">(</span><a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)" target="_blank"><span>Licencia Pixabay</span></a><span class="sep">)</span></span></div>
+</div>
+<p>La mayoría de dispositivos <span lang="en">Android</span> tienen al menos una aplicación de cámara instalada. Para advertir que tu aplicación depende de que tenga cámara, debes poner una etiqueta, un <span lang="en">tag</span> en tu fichero <em><strong><span lang="en">manifest</span></strong></em>:</p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>&lt;manifest ... &gt;</code>
+</pre>
+<pre><code>    &lt;uses-feature android:name="android.hardware.camera" /&gt;</code>
+</pre>
+<pre><code>&lt;/manifest ... &gt;</code>
+</pre>
+</div>
+</div>
+<p></p>
+<p>Si la aplicación utiliza la cámara, pero no es imprescindible, se aconseja añadir <code>android:required="false"</code> al <span lang="en">tag</span>. De este modo, <span lang="en">Google Play</span> permitirá a los terminales sin cámara descargar tu aplicación. Es por tanto responsabilidad del programador de la aplicación comprobar la disponibilidad de la cámara en tiempo de ejecución llamando a <code>hasSystemFeature(PackageManager.FEATURE_CAMERA)</code>.</p>
+<p>En <span lang="en">Android</span>, el modo de delegar acciones a otras aplicaciones es invocar una intención (<em><strong><span lang="en">Intent</span></strong></em>) que describe lo que quieres hacer. Este proceso conlleva tres cosas:</p>
+<ul class="lista_verificacion">
+<li>La intención <em><strong><span lang="en">Intent</span></strong></em> en sí misma.</li>
+<li>Una llamada para iniciar la <em><strong><span lang="en">Activity</span></strong></em> externa.</li>
+<li>Algún código para gestionar los <strong>datos de la imagen</strong> cuando el foco retorne a la aplicación.</li>
+</ul>
+<p>Una función que invoca una <strong><span lang="en">intent</span></strong> para capturar una foto puede ser:<code></code></p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>private void dispatchTakePictureIntent(int actionCode) { </code>
+</pre>
+<pre><code>  Intent takePictureIntent =</code>
+</pre>
+<pre><code>	 new Intent(MediaStore.ACTION_IMAGE_CAPTURE);</code>
+</pre>
+<pre><code>  startActivityForResult(takePictureIntent, actionCode);</code>
+</pre>
+<pre><code>}</code>
+</pre>
+</div>
+</div>
+<p>Para comprobar si una aplicación puede gestionar una <strong><span lang="en">intent</span></strong>, puedes usar un método como éste:</p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>public static boolean isIntentAvailable(Context context, </code>
+</pre>
+<pre><code>	String action) {</code>
+</pre>
+<pre><code>  final PackageManager packageManager =</code>
+</pre>
+<pre><code>	 context.getPackageManager();</code>
+</pre>
+<pre><code>  final Intent intent = new Intent(action);</code>
+</pre>
+<pre><code>  List list = pacackageManager.queryIntentActivities(intent,</code>
+</pre>
+<pre><code>	 PackageManager.MATCH_DEFAULT_ONLY);</code>
+</pre>
+<pre><code>  return list.size() &gt; 0;</code> 
+</pre>
+<pre><code>}</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id568">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta568_51" class="block iDevice_content">
+<p>En la siguiente guía se explica detalladamente cómo capturar vídeo y reproducirlo. Para la captura de vídeo se usa la clase <code>MediaRecorder</code>. Para la reproducción se utiliza la clase <code>MediaPlayer</code>. También se usa la clase <code>SurfaceView</code> para la vista previa del vídeo y su reproducción.</p>
+<p align="center"><a title="Acceder a una guía web sobre Capturar y reproducción de vídeo en Android (Se abre en una ventana nueva)" href="http://www.maestrosdelweb.com/editorial/curso-android-grabacion-reproduccion-de-video/" target="_blank" class="html">Capturando vídeo</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id569">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta569_47" class="block iDevice_content">
+<p>En el siguiente proyecto puedes ver una aplicación completa para grabar imagen y vídeo. Te recomendamos que la descargues y estudies el código detenidamente.</p>
+<p align="center"><a class="paquete" title="Descargar proyecto para grabar imagen y vídeo. Se abre en ventana nueva [zip - 12.47 MB]" href="ExampleImageVideo.zip" target="_blank">Proyecto para capturar imagen y vídeo. </a><span class="tamano"> (zip - 12.47 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id570">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta570_54" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b570" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b570" class="block iDevice_content">
+<p><strong>No es cosa del programador comprobar la disponibilidad de la c&aacute;mara en tiempo de ejecuci&oacute;n.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b570"><input type="radio" name="option0b570" id="true0b570" class="exe-radio-option exe-radio-option-0-2-0b570-truefalse" /> Verdadero</label> 
+<label for="false0b570"><input type="radio" name="option0b570" id="false0b570" class="exe-radio-option exe-radio-option-1-2-0b570-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b570" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b570-result" class="wrong">Falso</strong></p>
+<p>Es recomendable que el programador compruebe en tiempo de ejecuci&oacute;n que se dispone de c&aacute;mara.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

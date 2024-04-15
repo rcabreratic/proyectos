@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.1.- Decidiendo dónde dibujar | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-127" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.1.- Decidiendo dónde dibujar</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id521">
+<div class="iDevice emphasis0">
+<div id="ta521_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R05_lienzos.jpg" alt="Tres lienzos: corazón, luna y estrella." title="Lienzos." height="180" width="240" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc" title="CC by-nc" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc</span></a> <a title="Ir a la imagen de angellea (glitterbug) en Flickr. (Se abre en una ventana nueva)" href="http://www.flickr.com/photos/28757002@N03/2914033248/in/faves-30121856@N00/%20" target="_blank">angellea (glitterbug)</a></div>
+</div>
+<p>En las API del <strong><a href="#t675dd810-3aef-978f-75e7-d93194b7a6d1" id="link675dd810-3aef-978f-75e7-d93194b7a6d1" class="exe-tooltip definition-tt titled-tt blue-tt">framework</a> <span lang="en">Android</span></strong> encontramos un conjunto específico para <strong>dibujar en <abbr title="Dos dimensiones.">2D</abbr></strong>. Así, podemos representar nuestros propios gráficos sobre un <code>Canvas</code> (también llamado lienzo) o bien modificar una <code>View</code> (en español vista) para personalizar su aspecto, o lo que en habla inglesa se conoce como "<span lang="en">look and feel</span>". Cuando nos planteamos dibujar en <abbr title="Dos dimensiones.">2D</abbr> tenemos dos caminos:</p>
+<ul class="lista_verificacion">
+<li><code></code><strong>Dibujar los gráficos o animaciones en un objeto <span style="font-size: medium;"><code>View</code></span> de nuestro<span lang="en"> layout</span>.</strong> De esta manera, el dibujo de nuestro gráficos se gestiona por el proceso de dibujado que rige en la jerarquía de la vista, es decir, nosotros simplemente definimos los gráficos que van dentro de la vista.<br />Es la mejor si lo que queremos es dibujar gráficos sencillos que no necesitan cambiar dinámicamente y no forman parte de un juego que requiera alto desempeño. Así, por ejemplo, deberíamos dibujar gráficos en una vista si queremos mostrar un gráfico estático o animación predefinida, <abbr title="etcétera.">etc</abbr>.</li>
+<li><code></code><strong>Dibujar nuestros gráficos directamente en un <span style="font-size: medium;"><code>Canvas</code></span>.</strong> De este modo, nosotros llamamos personalmente al método <strong><span style="font-size: medium;"><code>onDraw()</code></span></strong> apropiado de la clase, pasándole el <span style="font-size: medium;"><strong><code>Canvas</code></strong></span>, o uno de los métodos <strong><span style="font-size: medium;"><code>draw...()</code></span></strong> del <strong><span style="font-size: medium;"><code>Canvas</code></span></strong>, como <strong><span style="font-size: medium;"><code>drawPicture()</code></span></strong>, <abbr title="etcétera.">etc</abbr>.<br /><span style="font-size: 1em;">Es lo mejor si nuestra aplicación necesita redibujarse regularmente . Por eso, aplicaciones como los videojuegos deberían dibujar sobre </span><code>Canvas</code><span style="font-size: 1em;">.</span></li>
+</ul>
+<div id="t675dd810-3aef-978f-75e7-d93194b7a6d1" class="exe-tooltip-text">
+<p>La Wikipedia nos dice que es una estructura conceptual y tecnológica de soporte definido, normalmente<strong> con módulos de <span lang="en">software</span> concretos,</strong> que puede servir de base para la <strong>organización y desarrollo de <span lang="en">software</span></strong>. Suele incluir <strong>soporte de programas, bibliotecas, y un lenguaje interpretado, entre otras herramientas,</strong> para así ayudar a desarrollar y unir los diferentes componentes de un proyecto.</p>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id522">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta522_135" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b522" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b522" class="block iDevice_content">
+<p><strong>En el caso que una aplicación tenga que dibujar regularmente su vista es recomendable dibujar los gráficos en un objeto <code>View</code> dentro del layout.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b522"><input type="radio" name="option0b522" id="true0b522" class="exe-radio-option exe-radio-option-0-2-0b522-truefalse" /> Verdadero</label> 
+<label for="false0b522"><input type="radio" name="option0b522" id="false0b522" class="exe-radio-option exe-radio-option-1-2-0b522-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b522" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b522-result" class="wrong">Falso</strong></p>
+<p>La opción recomendable es dibujar directamente sobre un objeto <code>Canvas</code></p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

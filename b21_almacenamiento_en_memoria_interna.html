@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.2.1.- Almacenamiento en memoria interna | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-105" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.2.1.- Almacenamiento en memoria interna</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id486">
+<div class="iDevice emphasis0">
+<div id="ta486_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 250px;"><img src="microchips.jpg" width="250" height="141" alt="Foto de una placa con microchips" title="Microchips" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/illustrations/microchips-electr%C3%B3nica-semiconductor-4924170/" target="_blank" class="author" title="Acceder a la imagen  &quot;Microchips&quot;, de &quot;CristianIS&quot;, en Pixabay. (Se abre en una nueva ventana)">CristianIS</a> <span class="license"><span class="sep">(</span><a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)"><span>Licencia Pixabay</span></a><span class="sep">)</span></span></div>
+</div>
+<p>Cuando trabajamos con ficheros en la memoria interna del dispositivo debemos tener en cuenta que ésta es muy limitada y no debemos sobrecargarla. Cuando se instala una aplicación en el dispositivo móvil, el sistema reserva un espacio para que se almacenen los ficheros de datos necesarios. Este espacio no hay que confundirlo con la estructura de carpetas del proyecto de la aplicación. La ruta de la memoria interna de una aplicación es la siguiente:</p>
+<div class="codigo elemento_centrado" style="width: 26.35em;">
+<div class="texto_izquierda">
+<pre><code> /data/data/paquete.aplicación/files/</code></pre>
+</div>
+</div>
+<p>Algunos de los métodos que utilizaremos para manipular los ficheros son:</p>
+<ul class="lista_verificacion">
+<li><code>openFileOutput()</code>: abrir un fichero en modo escritura.</li>
+<li><code>openFileInput()</code>: abrir un fichero en modo lectura.</li>
+<li><code>getFilesDir()</code>: recuperar la ruta absoluta del directorio donde se encuentran los ficheros internos.</li>
+<li><code>getDir()</code>: crear o abrir un directorio interno de la aplicación.</li>
+<li><code>deleteFile()</code>: eliminar un fichero.</li>
+<li><code>fileList()</code>: devuelve un <span lang="en">array</span> con todos los ficheros internos de la aplicación.</li>
+<li><code>openRawResource()</code>: leer los ficheros de recursos almacenados en la carpeta <code>/res/raw/</code>.</li>
+</ul>
+<p>Aunque los ficheros que se almacenan en la memoria interna son de carácter privado, el modo de acceso a estos ficheros puede variar utilizando las siguientes constantes asociadas al contexto:</p>
+<ul class="lista_verificacion">
+<li><code>MODE_PRIVATE</code>: otras aplicaciones no pueden acceder al fichero.</li>
+<li><code>MODE_WORLD_READABLE</code>: otras aplicaciones pueden leer el fichero.</li>
+<li><code>MODE_WORLD_WRITABLE</code>: otras aplicaciones pueden escribir sobre el fichero.</li>
+</ul>
+<p>En la versión <acronym title="Application Programming Interface" lang="en">API</acronym> 17 se ha declarado como obsoleto el uso de los dos últimos modos debido al riesgo de que una aplicación pueda manipular ficheros internos de otra. Por tanto, lo más aconsejable es utilizar el modo privado. Veamos el código necesario para guardar una cadena de texto en un fichero de la memoria interna:</p>
+<div class="codigo elemento_centrado" style="width: 46.150000000000006em;">
+<div class="texto_izquierda">
+<pre><code>      //Abrimos el fichero en modo privado para escribir.     </code></pre>
+<pre> <code>     OutputStreamWriter fout= new OutputStreamWriter(</code></pre>
+<pre><code>                    openFileOutput("fichero.txt", Context.MODE_PRIVATE));</code></pre>
+<pre> <code>     //Escribimos en el fichero</code></pre>
+<pre> <code>     fout.write("Esto es un texto de prueba");</code></pre>
+<pre> <code>     //Cerramos el fichero</code></pre>
+<pre> <code>     fout.close();</code></pre>
+</div>
+</div>
+<p></p>
+<p>Y si queremos leer el fichero de texto anterior podríamos escribir algo así:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre><code>     //Abrimos el fichero para leer.</code></pre>
+<pre><code>     BufferedReader fin =new BufferedReader(new InputStreamReader(</code></pre>
+<pre><code>                         openFileInput("fichero.txt")));</code></pre>
+<pre><code>     // Leemos el fichero.</code></pre>
+<pre><code>     String texto = fin.readLine();</code></pre>
+<pre><code>     //Cerramos el fichero</code></pre>
+<pre><code>     fin.close();</code></pre>
+</div>
+</div>
+<p></p>
+<p>¿Cómo podemos consultar la ubicación del fichero almacenado? <span lang="en">Android Studio</span> incorpora un explorador de archivos que permite visualizar el sistema de ficheros del dispositivo. Puedes abrirlo desde<code> Tools - Android - Android Device Monitor</code>. En la ventana que se abre podemos ver la pestaña <code>File Explorer.</code></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id487">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta487_43" class="block iDevice_content">
+<p>Si necesitas recordar los conceptos sobre la gestión de ficheros en <span lang="en">Java</span> puedes consultar el siguiente enlace donde se ven algunos ejemplos.</p>
+<p style="text-align: center;"><a title="Acceder a un artículo web titulado “Lectura y escritura de ficheros en Java” (Se abre en una ventana nueva)" href="http://chuwiki.chuidiang.org/index.php?title=Lectura_y_Escritura_de_Ficheros_en_Java" target="_blank" class="html"> Lectura y escritura de ficheros en Java</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

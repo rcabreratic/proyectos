@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.5.- Proveedores de Contenidos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-122" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.5.- Proveedores de Contenidos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id517">
+<div class="iDevice emphasis0">
+<div id="ta517_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-left license-gnu-gpl" style="width: 128px;"><img src="PMDM06_CONT_R22_proveedor.png" width="128" height="128" alt="Icono con una bola del mundo junto a una carpeta clasificadora." title="Contenido para el mundo." style="float: left;" />
+<div class="figcaption"><a href="https://commons.wikimedia.org/wiki/File:Crystal_Clear_filesystem_folder_html.png" target="_blank" class="author" title="Acceder a la imagen  &quot;Contenido para el mundo&quot;, de &quot;Everaldo Coelho and YellowIcon&quot;, en Wikimedia. (Se abre en una nueva ventana)">Everaldo Coelho and YellowIcon</a> <span class="license"><span class="sep">(</span><a href="https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License" target="_blank" title="Acceder a la Licencia GNU Lesser GPL. (Se abre en una nueva ventana)">GNU Lesser GPL</a><span class="sep">)</span></span></div>
+</div>
+<p>Ya hemos visto que los datos se pueden almacenar en un dispositivo móvil a través de ficheros o mediante una base de datos. Ahora bien, ¿son estos datos accesibles únicamente desde la aplicación donde se han generado? No tendría mucho sentido prohibir el acceso a determinados datos que puedan necesitar otras aplicaciones. Evitaríamos así utilizar más espacio de memoria y hablando de dispositivos móviles, ya sabemos que esta limitación es muy importante.<br /><br />Android dispone de un mecanismo que se encarga de compartir los datos entre varias aplicaciones que se llama<code> Content Provider</code> o proveedores de contenidos. La forma de acceder a esos contenidos se hace mediante el uso de <acronym title="Uniform Resource Identifier." lang="en">URI</acronym>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DestacadofpdIdevice" id="id518">
+<div class="iDevice emphasis0" >
+<div class="iDevice_destacadofpd">
+<div id="ta518_66" class="block iDevice_content">
+<p><strong>Una <acronym title="Uniform Resource Identifier." lang="en">URI</acronym> es una cadena de caracteres que identifica de forma única un recurso (<abbr title="Ejemplo">ej:</abbr> una llamada de teléfono, un <acronym title="Short Message Service" lang="en">SMS</acronym>, un correo electrónico, <abbr title="etcétera">etc.</abbr>)</strong></p>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id519">
+<div class="iDevice emphasis0">
+<div id="ta519_69" class="block iDevice_content">
+<p>Una <acronym title="Uniform Resource Identifier." lang="en">URI</acronym> está formada por varias partes. La primera es el prefijo que nos indica el tipo de recurso al que se desea acceder. Aquí tienes tan sólo algunos ejemplos de las distintas <acronym title="Uniform Resource Identifier." lang="en">URI</acronym> que ofrece <span lang="en">Android</span>:</p>
+<ul class="lista_verificacion">
+<li><code>http://</code> para acceder a una página <span lang="en">web.</span></li>
+<li><code>smsto:</code> para envío de mensajes.</li>
+<li><code>mailto:</code> para envío de correo.</li>
+<li><code>content://</code> para acceder a los proveedores de contenido que veremos en este apartado con más profundidad.</li>
+</ul>
+<p>Sobre los datos de los proveedores de contenidos podemos realizar cualquier operación de inserción, actualización, borrado y por supuesto consulta. Además como ya sabemos utilizar el motor de base de datos <span lang="en"><abbr title="Structure Query Language Light" lang="en">SQLite</abbr></span> la forma de trabajar será muy parecida utilizando incluso sentencias <span lang="en"><acronym title="Structure Query Language" lang="en">SQL</acronym></span> y utilizando cursores para recorrer los resultados obtenidos.<br /><br />También hay que tener en cuenta que debemos solicitar permiso en el fichero de manifiesto para realizar cualquier tipo de operación (lectura y/o escritura). Así por ejemplo si deseamos acceder al proveedor de contenidos <code>Browser</code> para consultar la tabla del historial de navegación, tendremos que incluir el siguiente código dependiendo del permiso que necesitemos:</p>
+<div class="codigo elemento_centrado" style="width: 56.050000000000004em;">
+<div class="texto_izquierda">
+<pre><code>&lt;uses-permission android:name=”com.android.browser.permission.READ_HISTORY_BOOKMARKS”/&gt;</code></pre>
+<pre><code>&lt;uses-permission android:name=”com.android.browser.permission.WRITE_HISTORY_BOOKMARKS”/&gt;</code></pre>
+</div>
+</div>
+<p><span style="font-size: 1em;"><br />En este apartado nos centraremos en detalle en cómo gestionar datos de otros proveedores de contenidos ya que normalmente cuando creemos una aplicación nos puede ser muy útil utilizar los datos de otras aplicaciones como el registro de llamadas, la lista de contactos, páginas visitadas, <abbr title="etcétera">etc</abbr>. </span></p>
+<p>También veremos cómo podemos crear un proveedor de contenidos para que otras aplicaciones puedan utilizar los propios datos que genere nuestra aplicación.</p>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

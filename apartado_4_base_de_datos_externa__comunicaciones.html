@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 4: Base de datos externa + comunicaciones | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-24" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 4: Base de datos externa + comunicaciones</h1></div></header>
+<article class="iDevice_wrapper textIdevice" id="id135">
+<div class="iDevice emphasis0" >
+<div id="ta135_117_2" class="block iDevice_content">
+<div class="exe-text"><p><strong></strong>Implementad ahora la misma base de datos utilizando un servidor externo. Podéis hacer las pruebas en local usando un servidor MySQL/MariaDB. <span style="color: #000000;">(Nota: Os propongo que indaguéis sobre los contenedores Docker para levantar el servicio de Base de Datos de forma limpia y con el mínimo esfuerzo)</span></p>
+<ul>
+<li>Para utilizar un servicio externo podréis utilizar la librería de Android <strong>HttpURLConnection</strong>, aunque también se pueden utilizar otras librerías externas más avanzadas como<strong> Volley</strong>,<strong> OkHttp</strong> o <strong>Retrofit</strong>. Estas librerías os permitirán manejar comunicaciones mediante los protocolos HTTP/HTTPS. El servicio lo proporcionará una API externa que haga consultas a la Base de Datos.</li>
+<li>De forma alternativa se podrá utilizar un driver JDBC para hacer las consultas directamente desde la aplicación cliente. El grupo debe sopesar la opción más adecuada.</li>
+<li>Maneja las operaciones de manera asíncrona para no bloquear el hilo principal de la interfaz de usuario. En su caso, deberás implementar hilos mediante las clases <strong>Thread</strong> o <strong>ExecutorService</strong>. Para acceder al hilo principal, donde se ejecuta la interfaz de usuario, utiliza la clase <strong>Handler</strong>.</li>
+<li>Por último, debes tener en cuenta la correcta sincronización entre las bases de datos local y externa para garantizar la coherencia de la información.</li>
+</ul></div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

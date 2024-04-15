@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.3.3.1.- Inserción, actualización y eliminación de registros | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-114" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.3.3.1.- Inserción, actualización y eliminación de registros</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id500">
+<div class="iDevice emphasis0">
+<div id="ta500_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-gnu-gpl" style="width: 128px;"><img src="PMDM06_CONT_R20_insercion.png" width="128" height="128" alt="Icono de un cajón en el que se está introduciendo una carpeta con documentos" title="Inserción" style="float: right;" />
+<div class="figcaption"><a href="https://commons.wikimedia.org/wiki/File%3ACrystal_Clear_app_ark.png" target="_blank" class="author" title="Acceder a la imagen &quot;Inserción&quot;, de Everaldo Coelho and YellowIcon  en Wikimedia. (Se abre en una nueva ventana)">Everaldo Coelho and YellowIcon</a> <span class="license"><span class="sep">(</span><a href="https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License" target="_blank" title="Ir a la Licencia GNU Lesser/GPL. (Se abre en una nueva ventana">GNU Lesser GPL</a><span class="sep">)</span></span></div>
+</div>
+<p><span style="font-size: 1em;">Revisando la clase </span><code>SQLiteDatabase</code><span style="font-size: 1em;"> nos damos cuenta de que existen varios métodos para ejecutar sentencias </span><span lang="en" style="font-size: 1em;"><acronym title="Structure Query Language" lang="en">SQL</acronym></span><span style="font-size: 1em;">. Entonces, ¿cuáles son los más apropiados para cada tipo de operación? ¿Se pueden emplear indistintamente aunque la operación no devuelva ningún resultado?</span></p>
+<p><span lang="en">Android</span> nos proporciona una serie de métodos para que trabajemos sobre la base de datos dependiendo del tipo de operación que se realiza sobre la misma. En este apartado vamos a trabajar con los métodos necesarios para realizar operaciones de manipulación de datos, es decir, la inserción, la actualización y la eliminación de registros que recordamos no devuelven ningún registro.<br /><br />Empezaremos viendo una forma muy sencilla.: el método <code>execSQL()</code>, que recibe como parámetro una sentencia <span lang="en"><acronym title="Structure Query Language" lang="en">SQL</acronym></span> completa y la ejecuta. Aquí tienes algunos ejemplos:</p>
+<div class="codigo elemento_centrado" style="width: 46.7em;">
+<div class="texto_izquierda">
+<pre><code>bd.execSQL(“INSERT INTO miTabla (campo1, campo2) VALUES (1, 'unTexto')” );</code></pre>
+<pre><code>bd.execSQL(“UPDATE miTabla SET campo2 = 'otroTexto' WHERE campo1 = 1 ” );</code></pre>
+<pre><code>bd.execSQL(“DELETE FROM miTabla WHERE campo1 = 1 ” );</code></pre>
+</div>
+</div>
+<p> </p>
+<p>Otra opción que se incluye en <span lang="en">Android</span> es utilizar métodos en los que se separan las tablas, los valores y las condiciones en parámetros. Éstos métodos son: <code>insert()</code>, <code>update()</code> y <code>delete()</code>.<br /><br />El método <code>insert()</code> recibe tres parámetros en el siguiente orden:</p>
+<ul class="lista_verificacion">
+<li><strong>Nombre de la tabla</strong>.</li>
+<li><strong>Condiciones</strong>: normalmente en la operación de inserción este valor será <code>null</code> porque no se precisan.</li>
+<li><strong>Valores del registro</strong>: utilizaremos un objeto <code>ContentValues</code> para almacenarlos en forma de <code>clave-valor</code>.</li>
+</ul>
+<p>    Aquí tienes un ejemplo de inserción:</p>
+<div class="codigo elemento_centrado" style="width: 48.900000000000006em;">
+<div class="texto_izquierda">
+<pre><code>               //Creamos el objeto ContentValues con los valores del registro.</code></pre>
+<pre><code>               ContentValues miRegistro = new ContentValues();</code></pre>
+<pre><code>               miRegistro.put("campo1", 1);</code></pre>
+<pre><code>               miRegistro.put("campo2", "unTexto");</code></pre>
+<pre><code>               //Insertamos el registro.</code></pre>
+<pre><code>               bd.insert("miTabla", null, miRegistro);</code></pre>
+</div>
+</div>
+<p> </p>
+<p>El método <code>update()</code> recibe cuatro parámetros en el siguiente orden:</p>
+<ul class="lista_verificacion">
+<li><strong>Nombre de la tabla</strong>.</li>
+<li><strong>Valores</strong>: el objeto <code>ContentValues</code> como en el caso anterior.</li>
+<li><strong>Condición</strong>: la cláusula <code>WHERE</code> de la sentencia que podemos dejar a <code>null</code> si no los necesitamos.</li>
+<li><strong>Argumentos de la condición</strong>: que podemos dejar a <code>null</code> si no los necesitamos.</li>
+</ul>
+<p>    Aquí tienes un ejemplo de actualización:</p>
+<div class="codigo elemento_centrado" style="width: 43.400000000000006em;">
+<div class="texto_izquierda">
+<pre><code>               //Valores a actualizar.</code></pre>
+<pre><code>               ContentValues miRegistro = new ContentValues();</code></pre>
+<pre><code>               valores.put("campo2","otroTexto");</code></pre>
+<pre><code>               //Actualizar el registro</code></pre>
+<pre><code>               bd.update("miTabla", miRegistro, "campo1=1", null);</code></pre>
+</div>
+</div>
+<p> </p>
+<p>El método <code>delete()</code> recibe tres parámetros en el siguiente orden:</p>
+<ul class="lista_verificacion">
+<li><strong>Nombre de la tabla</strong>.</li>
+<li><strong>Condición</strong>: la cláusula <code>WHERE</code> de la sentencia que podemos dejar a <code>null</code> si no los necesitamos.</li>
+<li><strong>Argumentos de la condición</strong>: que podemos dejar a <code>null</code> si no los necesitamos.</li>
+</ul>
+<p>    Aquí tienes un ejemplo de eliminación:</p>
+<div class="codigo elemento_centrado" style="width: 36.800000000000004em;">
+<div class="texto_izquierda">
+<pre><code>               //Eliminamos el registro.</code></pre>
+<pre><code>               bd.delete("miTabla", "campo1=1", null);</code></pre>
+</div>
+</div>
+<p> </p>
+<p>En los métodos <code>delete()</code> y <code>update()</code> hemos visto el parámetro de argumentos de la condición. Este parámetro lo podemos utilizar para simplificar la cadena de texto que pasamos como condición. Para ello, utilizamos un <span lang="en">array</span> con los valores de cada argumento en el mismo orden que aparecerán en la cláusula <code>WHERE</code> y en la condición introducimos el carácter <code>(?)</code> por cada valor que deseamos reemplazar. Veamos un ejemplo:</p>
+<p> </p>
+<div class="codigo elemento_centrado" style="width: 43.95em;">
+<div class="texto_izquierda">
+<pre><code>String[] argumentos = new String[]{"valor1","valor2"};</code></pre>
+<pre><code>bd.update("miTabla", miRegistro, "campo2=? OR campo2=?", argumentos);</code></pre>
+</div>
+</div>
+<p><br />También se puede utilizar este parámetro en el método <code>execSQL()</code>:</p>
+<div class="codigo elemento_centrado" style="width: 46.150000000000006em;">
+<div class="texto_izquierda">
+<pre><code>String[] argumentos = new String[]{"valor1","valor2"};</code></pre>
+<pre><code>bd.execSQL("DELETE FROM miTabla WHERE campo2=? OR campo2=?", argumentos);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id501">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta501_43" class="block iDevice_content">
+<p>Es recomendable que consultes cada uno de los métodos que se han visto en el apartado en la documentación oficial de <span lang="en">Android</span>.</p>
+<p style="text-align: center;"><a title="Acceder a la web oficial de Android sobre “La clase SQLiteDatabase” (Se abre en una ventana nueva)" href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html" target="_blank" class="html">Documentación oficial de la clase SQLiteDatabase</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id502">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-502_51">
+<form name="multi-select-form-502_51" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion502_51" class="block question iDevice_content">
+<p><strong>Marca las sentencias en las que se produciría un error:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op502_510" class="sr-av"><a href="#answer-502_54">Opción 1</a></label><input type="checkbox" id="op502_510" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-502_54"><div id="taans502_54" class="block iDevice_content">
+<p><code>bd.insert("miTabla", null, miRegistro);</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-502_510" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op502_511" class="sr-av"><a href="#answer-502_173">Opción 2</a></label><input type="checkbox" id="op502_511" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-502_173"><div id="taans502_173" class="block iDevice_content">
+<p><code>bd.delete("miTabla", null, null);</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-502_511" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op502_512" class="sr-av"><a href="#answer-502_175">Opción 3</a></label><input type="checkbox" id="op502_512" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-502_175"><div id="taans502_175" class="block iDevice_content">
+<p><code>bd.execSQL("DELETE FROM miTabla WHERE campo1 = ? ", null);</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-502_512" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op502_513" class="sr-av"><a href="#answer-502_177">Opción 4</a></label><input type="checkbox" id="op502_513" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-502_177"><div id="taans502_177" class="block iDevice_content">
+<p><code>bd.insert("miTabla", miRegistro);</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-502_513" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-502_51" /> 
+</p>
+</div>
+<section id="f502_51" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+<div id="tafeedback502_51" class="feedback iDevice_content">
+<p>Las dos primeras opciones serían correctas. En la tercera opción falta indicar en el último parámetro los argumentos del <code>WHERE</code>. En la última opción faltaría pasar un parámetro entre los dos que se pasan. Normalmente estará a <code>null</code> pero hay que ponerlo.</p>
+</div>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-502_54" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-502_173" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-502_175" class="right">Correcto</a></li>
+<li><a href="#answer-502_177" class="right">Correcto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

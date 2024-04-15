@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.6.3.- Fondos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-137" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.6.3.- Fondos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id544">
+<div class="iDevice emphasis0">
+<div id="ta544_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 250px;"><img src="Fondo_Azul.jpg" width="250" height="173" alt="Foto de una flor sobre un fondo azul" title="Fondo azul." style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/photos/gota-de-agua-por-goteo-flor-planta-571956/" target="_blank" class="author" title="Acceder a la imagen  &quot;Fondo Azul&quot;, de &quot;DreamyArt&quot;, en Pixabay. (Se abre en una nueva ventana)">DreamyArt</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)" target="_blank">Licencia Pixabay</a></span><span class="sep">)</span></span></div>
+</div>
+<p>Con la clase <code>Drawable</code> podemos <strong>crear fondos</strong> para usarlos <strong>en botones</strong> o <strong>como fondo de pantalla</strong>.</p>
+<p>Mediante el uso de los recursos <acronym title="eXtended Markup Language." lang="en">XML</acronym>, puedes crear fondos personalizados con diferentes formas y no preocuparte sobre los tamaños de pantalla. Puedes definir diferentes formas de fondo como oval, anillo, un rectángulo o una línea, aplicar esquinas redondeadas para formas rectangulares, sólidos, degradados, <abbr title="etcétera.">etc</abbr>.</p>
+<p>En el proyecto que puedes descargarte más abajo, ponemos un fondo azul con esquinas redondeadas. Los pasos seguidos son bien sencillos:</p>
+<ol class="lista_esquema">
+<li>Crear el proyecto y crear un fichero <strong><span style="font-size: medium;"><code>.xml</code></span></strong> llamado <strong><span style="font-size: medium;"><code>rectangulo.xml</code></span></strong> en la carpeta <strong><span style="font-size: medium;"><code>res/drawable-mdpi</code></span></strong> con el sencillo código que ves en él.</li>
+<li style="text-align: left;">Establecer en el fichero principal del <span lang="en">layout</span>, en nuestro caso<strong><span style="font-size: medium;"> <code>activity_main.xml</code></span></strong>, el fondo que vas a usar mediante <strong><span style="font-size: medium;"><code>android:background="@drawable/rectangulo"</code></span></strong>.</li>
+<li>En <strong><span style="font-size: medium;"><code>strings.xml</code></span></strong> hemos puesto el mensaje que deseábamos mostrar.</li>
+</ol>
+<p style="text-align: center;"><a class="paquete" title="Descargar el proyecto &quot;Establecer fondo rectangular azul&quot;. Se abre en una ventana nueva [zip - 18.67 MB]" href="ExampleCreateBackground.zip" target="_blank">Poner fondo azul.</a><span class="exe-link-data file-size"> (zip - 18.67 <abbr lang="en" title="MegaBytes">MB</abbr>)</span> <span class="tamano">(13.5 MB)</span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id545">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta545_43" class="block iDevice_content">
+<p>En el siguiente enlace puedes profundizar sobre la mejora en el diseño del aspecto de las aplicaciones, con la siguiente herramienta:</p>
+<p style="text-align: center;"><a title="Acceder a la web sobre la herramienta draw9patch (Se abre en una ventana nueva)" href="https://developer.android.com/studio/write/draw9patch.html" target="_blank" class="html">La herramienta <code>draw9patch</code> del <acronym title="Standard Development Kit" lang="en">SDK</acronym> de <span lang="en">Android</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id546">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-546_55">
+<form name="multi-select-form-546_55" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion546_55" class="block question iDevice_content">
+<p><strong>Con <span lang="en">Android</span>, podemos crear fondos con formas:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op546_550" class="sr-av"><a href="#answer-546_58">Opción 1</a></label><input type="checkbox" id="op546_550" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-546_58"><div id="taans546_58" class="block iDevice_content">
+<p>De anillo.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-546_550" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op546_551" class="sr-av"><a href="#answer-546_83">Opción 2</a></label><input type="checkbox" id="op546_551" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-546_83"><div id="taans546_83" class="block iDevice_content">
+<p>Ovales.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-546_551" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op546_552" class="sr-av"><a href="#answer-546_85">Opción 3</a></label><input type="checkbox" id="op546_552" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-546_85"><div id="taans546_85" class="block iDevice_content">
+<p>Rectangulares, pero sin poder aplicar esquinas redondeadas.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-546_552" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op546_553" class="sr-av"><a href="#answer-546_87">Opción 4</a></label><input type="checkbox" id="op546_553" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-546_87"><div id="taans546_87" class="block iDevice_content">
+<p>Lineales.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-546_553" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-546_55" /> 
+</p>
+</div>
+<section id="f546_55" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+<div id="tafeedback546_55" class="feedback iDevice_content">
+<p>Todas son posibles, incluso rect&aacute;ngulos con las esquinas redondeadas, lo que hace que la tercera opci&oacute;n no sea correcta.</p>
+</div>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-546_58" class="right">Correcto</a></li>
+<li><a href="#answer-546_83" class="right">Correcto</a></li>
+<li><a href="#answer-546_85" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-546_87" class="right">Correcto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 2. Ficheros | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-22" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 2. Ficheros</h1></div></header>
+<article class="iDevice_wrapper textIdevice" id="id133">
+<div class="iDevice emphasis0" >
+<div id="ta133_115_2" class="block iDevice_content">
+<div class="exe-text"><p>Vamos a incorporar la capacidad de adjuntar archivos a las tareas utilizando la funcionalidad de almacenamiento de archivos en el dispositivo. Deberás usar <strong>archivos de prueba</strong> para las 4 categorías.</p>
+<ol>
+<li><strong>Interfaz de usuario:</strong>
+<ul>
+<li>Modificad el layout del fragmento 2 utilizado en las actividades de creación y edición de una tarea para agregar 4 botones que permitan a los usuarios seleccionar archivos de tipos: documento, imagen, audio y vídeo, respectivamente, desde el almacenamiento de su dispositivo. <span style="color: #000000;">(Nota: Podéis utilizar el <em>Intent.ACTION_GET_CONTENT</em> para abrir un selector de archivos y permitir a los usuarios elegir cualquier tipo de archivo compatible con la aplicación)</span></li>
+<li><span style="color: #000000;">Si no lo hicisteis en la tarea anterior, añadid un botón "Cancelar" en el fragmento 1 que sirva para cancelar la acción de Creación/Edición de una tarea.</span></li>
+</ul>
+</li>
+<li><strong>Almacenamiento local de archivos</strong>:
+<ul>
+<li>Cuando los usuarios seleccionen un archivo, guardadlo en un directorio específico de almacenamiento local de tu aplicación. Podéis crear un directorio para cada tarea o simplemente almacenar todos los archivos adjuntos en una carpeta designada para la aplicación. Si el dispositivo cuenta con una tarjeta SD y la preferencia correspondiente así lo indica, la aplicación almacenará los archivos adjuntos en ella.</li>
+</ul>
+</li>
+<li><strong>Asociación de archivos con tareas:</strong>
+<ul>
+<li>Mantened un registro de los archivos adjuntos almacenando sus URL en la base de datos. El usuario, de momento, no podrá visualizar o reproducir los archivos multimedia pero deberá aparecer una sección en la vista de <strong>detalle</strong> de la tarea (renombra la opción de la tarea anterior 'descripción' por 'detalle') que muestre iconos que indiquen a los usuarios la naturaleza de los archivos adjuntos a dicha tarea (documento, imagen, audio o vídeo). Es decir, deberemos crear una <strong>nueva actividad para detallar la tarea</strong> que contenga una extensa zona donde mostrar su descripción y una zona con cuatro botones para documento, imagen, audio o vídeo. Cuando el usuario seleccione algún archivo, debe mostrarse información del mismo. Solo hay que adjuntar archivos y controlar su ubicación, no hay que abrir ni reproducir ninguno de ellos. Diseñad con libertad esta actividad.</li>
+</ul>
+</li>
+<li><strong>Permisos de almacenamiento:</strong>
+<ul>
+<li>En caso de ser necesario, aseguraos de solicitar y gestionar los permisos de almacenamiento en la aplicación para que los usuarios puedan seleccionar y guardar archivos de manera efectiva.</li>
+</ul>
+</li>
+<li><strong>Gestión de espacio y limpieza:</strong>
+<ul>
+<li>Implementad una gestión adecuada del espacio en disco y ofreced a los usuarios la capacidad de eliminar archivos adjuntos en la actividad de edición. También implementad la función de limpieza automática de archivos no utilizados o antiguos según se indique en la preferencia correspondiente.</li>
+</ul>
+</li>
+</ol></div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

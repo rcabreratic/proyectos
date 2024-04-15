@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.2.2.- Almacenamiento en memoria externa | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-107" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.2.2.- Almacenamiento en memoria externa</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id492">
+<div class="iDevice emphasis0">
+<div id="ta492_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right" style="width: 200px;"><img src="Tarjeta_SD.jpg" width="200" height="133" alt="Ilustración de una tarjeta SD de 64 GB" title="Tarjeta SD" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/illustrations/tarjeta-sd-memoria-mapa-azul-1191273/" target="_blank" class="author">kalhh</a> (<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)">Licencia Pixabay</a>)</div>
+</div>
+<p>El almacenamiento de ficheros en memoria externa suele hacerse en las tarjetas de memoria <acronym title="Secure Digital" lang="en">SD</acronym> extraíbles. Estas tarjetas suelen tener mayores capacidades y los ficheros que almacenamos  en ellas pueden corresponder a archivos privados de la aplicación que se instala en la tarjeta o bien ficheros públicos compartidos por varias aplicaciones. En cualquier caso, para trabajar con los ficheros almacenados en este tipo de memoria, debemos tener en cuenta varios aspectos:</p>
+<ul class="lista_verificacion">
+<li><strong>Seguridad y permiso del usuario:</strong> los ficheros pueden ser públicos y por tanto accesibles a varias aplicaciones. Es necesario solicitar el permiso correspondiente al usuario para tener acceso a la tarjeta de memoria. En el archivo de manifiesto será necesario incluir lo siguiente:<br /><br />
+<div class="codigo elemento_centrado" style="width: 49.45em;">
+<div class="texto_izquierda">
+<pre><code>&lt;uses-permission android:name=”android.permission.WRITE_EXTERNAL_STORAGE”&gt;<br />&lt;/uses-permission&gt;</code></pre>
+</div>
+</div>
+<img style="display: block; margin-left: auto; margin-right: auto;" src="PMDM06_CONT_R12_ficheroManifiestoPermisos.png" alt=" Captura de pantalla del código del fichero de manifiesto con las líneas de permiso: android:minSdkVersion=&quot;8&quot; android:targetSdkVersion=&quot;17&quot; &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt; &lt;/uses-permission&gt; &lt;application android:allowBackup=&quot;true&quot;" title=" Código de permiso en fichero manifiesto." width="534" height="120" /></li>
+<li><strong>Estado de la tarjeta de memoria: </strong>la tarjeta <acronym title="Secure Digital" lang="en">SD</acronym> puede no estar presente en el dispositivo o aunque esté insertada no estar debidamente montada. Para ello será necesario antes de comenzar a tratar los ficheros, recuperar su estado de la siguiente forma:<br /><br />
+<div class="codigo elemento_centrado" style="width: 35.150000000000006em;">
+<div class="texto_izquierda">
+<pre><code>String estado = Environment.getExternalStorageState()</code></pre>
+</div>
+</div>
+</li>
+<li><span lang="en">Android</span> devolverá una constante dependiendo del estado en el que se encuentre la tarjeta <acronym title="Secure Digital" lang="en">SD</acronym>. Aquí tienes algunos ejemplos:
+<ul>
+<li><code>MEDIA_MOUNTED</code>: la tarjeta está montada y disponible para lectura y escritura.</li>
+<li><code>MEDIA_MOUNTED_READ_ONLY</code>: la tarjeta está montada en modo lectura.</li>
+<li><code>MEDIA_UNMOUNTED</code>: la tarjeta está insertada pero no se encuentra montada.</li>
+<li><code>MEDIA_REMOVED</code>: la tarjeta no está insertada.</li>
+</ul>
+</li>
+<li><strong>Acceso al directorio de la tarjeta de memoria: </strong>utilizamos uno de los siguientes métodos:
+<ul>
+<li><code>getExternalFilesDir()</code> devuelve la ruta de una carpeta determinada de nuestra aplicación. Podemos pasar como parámetro <code>null</code> y nos recuperará la carpeta raíz de la aplicación en el directorio:<br />
+<div class="codigo elemento_centrado" style="width: 33.5em;">
+<div class="texto_izquierda">
+<pre><code>/mnt/sdcard/Android/data/paquete.aplicación/files/</code></pre>
+</div>
+</div>
+</li>
+<li><code>getExternalStoragePublicDirectory()</code> devuelve la ruta de una carpeta pública.</li>
+</ul>
+<p>En <span lang="en">Android</span> podemos indicar alguno de los subdirectorios definidos por alguna de las siguientes constantes para clasificar los contenidos, como por ejemplo se hace en la galería multimedia.</p>
+<table class="tabla" summary="En la tabla se lista una serie de constantes para saber qué tipo de ficheros almacena cada una y en qué subcarpeta." border="0" align="center"><caption>Subcarpetas multimedia</caption>
+<thead>
+<tr align="center"><th scope="col">Constante</th><th scope="col">¿Qué almacena?</th><th scope="col">¿Dónde se almacena?</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DIRECTORY_PICTURES</code></td>
+<td>Ficheros de imágenes, fotos</td>
+<td><code>Pictures/</code></td>
+</tr>
+<tr>
+<td><code>DIRECTORY_MOVIES</code></td>
+<td>Ficheros de películas.</td>
+<td><code>Movies/</code></td>
+</tr>
+<tr>
+<td><code>DIRECTORY_MUSIC</code></td>
+<td>Ficheros de música.</td>
+<td><code>Music/</code></td>
+</tr>
+<tr>
+<td><code>DIRECTORY_RINGTONES</code></td>
+<td>Ficheros de tonos.</td>
+<td><code>Ringtones/</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><strong>Configurar la memoria externa en el emulador: </strong>para probar el correcto funcionamiento del almacenamiento de ficheros en memoria externa debemos configurar en un emulador (<acronym title="Android Virtual Device" lang="en">AVD</acronym>) la opción <code>SD Card Size</code> con un tamaño de memoria adecuado. Para visualizar los ficheros utilizaremos la misma opción que en los ficheros internos (<code>File Explorer</code>).</li>
+</ul>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

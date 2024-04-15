@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.4.- La clase Path | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-130" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.4.- La clase Path</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id529">
+<div class="iDevice emphasis0">
+<div id="ta529_73" class="block iDevice_content">
+<div class="exe-figure exe-image float-left license-pd" style="width: 200px;"><img src="Camino.jpg" width="200" height="125" alt="Ilustración de  paisaje atravesado por un camino. " title="Camino (PATH)" style="float: left;" />
+<div class="figcaption"><a href="https://pixabay.com/es/illustrations/campo-de-fondo-prado-diversi%C3%B3n-1728099/" target="_blank" class="author" title="Acceder a la imagen  &quot;Camino (PATH)&quot;, de &quot;seventhemes&quot;, en Pixabay. (Se abre en una nueva ventana)">seventhemes</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)" target="_blank">Licencia Pixabay</a></span><span class="sep">)</span></span></div>
+</div>
+<p><br />Con esta clase puedes definir un trazado a partir de segmentos de línea y curvas. Se puede por tanto definir caminos geométricos que consisten en segmentos de líneas rectas, curvas, curvas cuadráticas y cúbicas. Así, el trazado puedes dibujarlo con <code>canvas.drawPath(Path, Paint)</code>.</p>
+<p>Con la clase <code>Path</code> también puedes dibujar un texto sobre el trazado determinado. Prueba a poner entre comentarios o bien a eliminar el código que hemos probado en el método <code>onDraw()</code> del ejercicio resuelto anterior, y cámbialo por éste que ves a continuación. Cambia más cosas y experimenta.</p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>…</code>
+</pre>
+<pre><code>// Crear un trazo </code>
+</pre>
+<pre><code>    Path trazo = new Path(); </code>
+</pre>
+<pre><code>// Definir un círculo</code>
+</pre>
+<pre><code>    trazo.addCircle(160, 160, 120, Direction.CCW); </code>
+</pre>
+<pre><code>    canvas.drawColor(Color.GRAY);</code>
+</pre>
+<pre><code>// Crear un pincel y definirle las características </code>
+</pre>
+<pre><code>    Paint pincel = new Paint(); </code>
+</pre>
+<pre><code>    pincel.setColor(Color.RED);</code>
+</pre>
+<pre><code>    pincel.setStrokeWidth(5);</code>
+</pre>
+<pre><code>    pincel.setStyle(Style.FILL_AND_STROKE) ;</code>
+<code>// Dibujar el trazo sobre el canvas con los datos</code>
+</pre>
+<pre><code>// definidos para el pincel </code>
+</pre>
+<pre><code>    canvas.drawPath(trazo, pincel);</code>
+</pre>
+<pre><code>// Características del pincel para escribir texto</code>
+</pre>
+<pre><code>    pincel.setStrokeWidth(1); </code>
+</pre>
+<pre><code>    pincel.setStyle(Style.FILL);</code>
+</pre>
+<pre><code>    pincel.setTextSize(20);</code>
+</pre>
+<pre><code>    pincel.setTypeface(Typeface.MONOSPACE);</code>
+</pre>
+<pre><code>// Escribir el texto</code>
+</pre>
+<pre><code>    canvas.drawTextOnPath("DAM y DAW. en IES. Aguadulce",</code>
+</pre>
+<pre><code>                          trazo, 10, 40, pincel);</code>
+</pre>
+<pre><code>…</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id530">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta530_44" class="block iDevice_content">
+<p>Tienes en el siguiente vídeo información sobre los métodos de la clase <code>Paint</code> y <code>Path.</code></p>
+<div class="exe-figure exe-media position-center" style="width: 350px;">
+<div class="figcaption header">La clase <span class="figcaption header" lang="en">Paint</span> en <span class="figcaption header" lang="en">Android</span></div>
+<iframe width="350" height="288" src="//www.youtube.com/embed/_SU8TjI5EW8" frameborder="0"></iframe><br />
+<div class="figcaption">
+<div class="elemento_centrado credenciales"><a title="Acceder al resumen textual alternativo para el vídeo &quot;Métodos de las clases Paint y Path&quot; (Se abre en ventana nueva)" href="descripcion_video_paint.html" target="_blank">Resumen textual alternativo</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id531">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-531_63" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion531_63" class="block question iDevice_content">
+<p><strong>Se&ntilde;ala qu&eacute; m&eacute;todo corresponde a la clase <code>Path</code>:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i531_66" class="sr-av"><a href="#answer-531_66">Opción 1</a></label><input type="radio" name="option531_63" id="i531_66" class="exe-radio-option exe-radio-option-0-4-531_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-531_66"><div id="taans531_66" class="block iDevice_content">
+<p><code>setColorBW(int colorbw) </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i531_87" class="sr-av"><a href="#answer-531_87">Opción 2</a></label><input type="radio" name="option531_63" id="i531_87" class="exe-radio-option exe-radio-option-1-4-531_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-531_87"><div id="taans531_87" class="block iDevice_content">
+<p><code>drawCircle(float x, float y, float radio, Paint painty) </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i531_90" class="sr-av"><a href="#answer-531_90">Opción 3</a></label><input type="radio" name="option531_63" id="i531_90" class="exe-radio-option exe-radio-option-2-4-531_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-531_90"><div id="taans531_90" class="block iDevice_content">
+<p><code>moveTo(int x, int y) </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i531_93" class="sr-av"><a href="#answer-531_93">Opción 4</a></label><input type="radio" name="option531_63" id="i531_93" class="exe-radio-option exe-radio-option-3-4-531_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-531_93"><div id="taans531_93" class="block iDevice_content">
+<p><code>rotate(float grades, float xCenter, float yCenter) </code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b531_63" class="feedback js-hidden">
+<div id="taf531_66" class=" iDevice_content">
+<p>&iexcl;Incorrecto!</p>
+</div>
+</section>
+<section id="sa1b531_63" class="feedback js-hidden">
+<div id="taf531_87" class=" iDevice_content">
+<p>¡Oh!  No has acertado.</p>
+</div>
+</section>
+<section id="sa2b531_63" class="feedback js-hidden">
+<div id="taf531_90" class=" iDevice_content">
+<p>&iexcl;Correcto!</p>
+</div>
+</section>
+<section id="sa3b531_63" class="feedback js-hidden">
+<div id="taf531_93" class=" iDevice_content">
+<p> No es la opción correcta.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-531_66">Incorrecto</a><span> (<a href="#sa0b531_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-531_87">Incorrecto</a><span> (<a href="#sa1b531_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-531_90">Opción correcta</a><span> (<a href="#sa2b531_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-531_93">Incorrecto</a><span> (<a href="#sa3b531_63">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

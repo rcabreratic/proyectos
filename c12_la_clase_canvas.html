@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.2.- La clase Canvas | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-128" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.2.- La clase Canvas</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id523">
+<div class="iDevice emphasis0">
+<div id="ta523_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R07_cars.jpg" alt="Coche de juguete sobre el dibujo de un circuito." title="Coche de juguete" width="230" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc" title="CC by-nc" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc</span></a> <a title="Ir a la imagen de Gerry Dulay en Flickr. (Se abre en una nueva ventana)" href="http://www.flickr.com/photos/76799341@N00/3654079583/in/photolist-6yU7y8-93MBLu-7U7JJK-6ihGEx-94EcJg-dPP3WP-5kNcBH-84ZvHT-9m1Qt6-8xGuVy-776bkY-62uSdj-8QoPWZ-dY7op2-5WSA3P-523cSB-6Dyz7M%20" target="_blank">Gerry Dulay</a></div>
+</div>
+<p>La clase <code>Canvas</code> representa un lienzo donde podemos dibujar. Esta clase proporciona una serie de métodos que permiten dibujar líneas, círculos, rectángulos, texto, <abbr title="etcétera.">etc</abbr>. Lo que hay que dibujar en el lienzo se debe escribir en el método <code>onDraw()</code> de forma que sobrescribiremos este método para crear nuestra interfaz de usuario personalizada. Finalmente para dibujar en un <code>Canvas</code> necesitamos definir un pincel mediante la clase <code>Paint, </code>donde indicaremos el color, grosor de trazo, transparencia, y otras propiedades. </p>
+<p>Las vistas se suelen dibujar con frecuencia, con lo cual se ejecuta el método <code>onDraw()</code> varias veces. Inicializar los componentes en este método supone un coste de rendimiento, con lo que crearemos un método llamado <code>init()</code> que llamaremos desde el constructor de la clase <code>Canvas</code>. Puedes consultar la documentación oficial  <a href="https://developer.android.com/training/custom-views/custom-drawing?hl=es#java" title="Acceder al tutorial de cómo crear objetos de diseño (Se abre en una ventana nueva)" target="_blank" class="html">Cómo crear objetos de diseño</a> para ver un ejemplo. </p>
+<p>Podemos resumir que con la clase <code>Canvas</code> indicamos <em>qué</em> diseñar y con la clase <code>Paint</code> <em>cómo</em>.</p>
+<p>En la siguiente tabla te presentamos algunos de los métodos de la clase <code>Canvas</code>. No es un listado completo, por lo tanto es recomendable que consultes la documentación en <span lang="en">Android Developers</span> sobre la<a href="https://developer.android.com/reference/android/graphics/Canvas?hl=en" title="Acceder a la documentación de la clase Canvas en Android Developers (Se abre en una ventana nueva)" target="_blank" class="html"> <acronym title="Application Programming Interface" lang="en">API</acronym> del objeto Canvas.</a><span style="font-size: 1em;"><br /></span></p>
+<table border="0" style="width: 90%;" class="tabla" summary="Tabla que muestra para cada función de la primera columna, algunos métodos para implementarla de la clase Canvas en la segunda columna.."><caption>Métodos de la clase <code>Canvas</code>.</caption>
+<tbody>
+<tr><th scope="col">Función</th><th scope="col">Métodos</th></tr>
+<tr>
+<td><strong>Dibujar figuras geométricas</strong></td>
+<td>
+<ul class="lista_verificacion">
+<li><code>drawCircle(float cx, float cy, float radio, Paint <span>paint</span>)</code></li>
+<li><code>drawOval(RectF rect, Paint <span>paint</span>)</code></li>
+<li><code>drawRect(RectF rect, Paint <span>paint</span>)</code></li>
+<li><code>drawPoint(float x, float y, Paint <span>paint</span>)</code></li>
+<li><code>drawPoints(float[] pts, Paint <span>paint</span>)</code></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><strong>Dibujar líneas y arcos</strong></td>
+<td>
+<ul class="lista_verificacion">
+<li><code>drawLine(float iniX, float iniY, float finX, float finY,Paint <span>paint</span></code>)</li>
+<li><code style="text-align: justify;">drawLines(float[] pts, Paint paint)</code></li>
+<li><code style="text-align: justify;">drawArc(RectF rect, float startAngle, float angle,boolean useCenter,Paint paint)</code></li>
+<li><code style="text-align: justify;">drawPath(Path trazo, Paint paint)</code></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><strong>Dibujar texto</strong></td>
+<td>
+<ul class="lista_verificacion">
+<li><code>drawText(String <span>text</span>, float x, float y, Paint <span>paint</span>)</code></li>
+<li><code></code><code>drawTextOnPath(String text, Path path, float hOffset, float vOffset, Paint paint</code>)</li>
+<li><code>drawPosText(String text, float[] position, Paint paint)</code></li>
+</ul>
+<p></p>
+</td>
+</tr>
+<tr>
+<td><strong>Dibujar imágenes</strong></td>
+<td>
+<ul class="lista_verificacion">
+<li><code>drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint)<code></code></code></li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><strong>Tamaño del Canvas</strong></td>
+<td>
+<ul class="lista_verificacion">
+<li><code>int getHeight()<code></code></code></li>
+<li><code>int getWidth()<code></code></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>A la hora de dibujar podemos modificar el área donde dibujar:</p>
+<ul class="lista_verificacion">
+<li>Reducir la región de la pantalla en la que realizaremos las operaciones de dibujo pueden escribir. Podemos establecer un área rectangular mediante <code>Canvas.clipRect(float left, <span>float </span>top, <span>float </span>right, <span>float </span>bottom)</code>. No tiene por qué ser rectangular mediante <code>Canvas.clipPath(Path path) o Canvas.<span class="pln">clipRegion</span><span class="pun">(</span><span class="typ">Region</span><span class="pln"> region</span><span class="pun">)</span></code></li>
+<li>También podemos  definir una matriz de <abbr title="Tres por tres. ">3x</abbr>3  mediante <code>Canvas.setMatrix(matrix)</code> que nos permitirá transformar coordenadas aplicando una traslación, escala o rotación:
+<ul>
+<li><code>concat(Matrix matriz)</code></li>
+<li><code>translate(float dx, float dy)</code></li>
+<li><code>scale(float sx, float sy)</code></li>
+<li><code>rotate(float degrees, float px, float py)</code></li>
+<li><code>skew(float dx, float dy)</code></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id524">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta524_128" class="block iDevice_content">
+<p>Te proponemos el siguiente taller de <span lang="en">Android Developer</span> donde aprenderás a dibujar múltiples formas en un lienzo creando diferentes regiones de recorte: </p>
+<p style="text-align: center;"><a href="https://codelabs.developers.google.com/codelabs/advanced-android-training-apply-clipping-to-canvas/index.html?index=..%2F..advanced-android-training#4" title="Acceder al tutorial de Canvas en Android Developer (Se abre en una ventana nueva)" target="_blank" class="html" lang="en">Advanced Android 11.1 Part C: Apply clipping to Canvas objects </a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id525">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-525_63" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion525_63" class="block question iDevice_content">
+<p><strong>Para dibujar figuras geom&eacute;tricas, emplearemos el m&eacute;todo:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i525_66" class="sr-av"><a href="#answer-525_66">Opción 1</a></label><input type="radio" name="option525_63" id="i525_66" class="exe-radio-option exe-radio-option-0-4-525_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-525_66"><div id="taans525_66" class="block iDevice_content">
+<p><code>drawCircle() </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i525_78" class="sr-av"><a href="#answer-525_78">Opción 2</a></label><input type="radio" name="option525_63" id="i525_78" class="exe-radio-option exe-radio-option-1-4-525_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-525_78"><div id="taans525_78" class="block iDevice_content">
+<p><code>drawRect() </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i525_81" class="sr-av"><a href="#answer-525_81">Opción 3</a></label><input type="radio" name="option525_63" id="i525_81" class="exe-radio-option exe-radio-option-2-4-525_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-525_81"><div id="taans525_81" class="block iDevice_content">
+<p><code>drawOval() </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i525_84" class="sr-av"><a href="#answer-525_84">Opción 4</a></label><input type="radio" name="option525_63" id="i525_84" class="exe-radio-option exe-radio-option-3-4-525_63-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-525_84"><div id="taans525_84" class="block iDevice_content">
+<p>Todos&nbsp; los anteriores son m&eacute;todos v&aacute;lidos.</p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b525_63" class="feedback js-hidden">
+<div id="taf525_66" class=" iDevice_content">
+<p>&iexcl;No es la respuesta m&aacute;s correcta!, pero casi aciertas.</p>
+</div>
+</section>
+<section id="sa1b525_63" class="feedback js-hidden">
+<div id="taf525_78" class=" iDevice_content">
+<p>&iexcl;Uff!, no es&nbsp; tampoco la respuesta correcta.</p>
+</div>
+</section>
+<section id="sa2b525_63" class="feedback js-hidden">
+<div id="taf525_81" class=" iDevice_content">
+<p>No es la opci&oacute;n correcta.</p>
+</div>
+</section>
+<section id="sa3b525_63" class="feedback js-hidden">
+<div id="taf525_84" class=" iDevice_content">
+<p>&iexcl;En efecto!</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-525_66">Incorrecto</a><span> (<a href="#sa0b525_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-525_78">Incorrecto</a><span> (<a href="#sa1b525_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-525_81">Incorrecto</a><span> (<a href="#sa2b525_63">Retroalimentación</a>)</span></li>
+<li><a href="#answer-525_84">Opción correcta</a><span> (<a href="#sa3b525_63">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

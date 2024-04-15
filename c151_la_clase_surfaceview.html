@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.5.1.- La clase SurfaceView | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-132" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.5.1.- La clase SurfaceView</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id532">
+<div class="iDevice emphasis0">
+<div id="ta532_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R11_mascotas.jpg" alt="Estatuas de muñecos mascota de las API Google." title="Cuartel general de google." /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-sa" title="CC by-sa" href="http://creativecommons.org/licenses/by-sa/3.0/deed.es" target="_blank"><span class="transparente">CC by-sa</span></a> <a title="Acceder a la imagen &quot;Cuartel general de google.&quot; de LuisJouJR en Flickr. (Se abre en una nueva ventana)" href="http://www.flickr.com/photos/47379538@N00/7273754114/in/photolist-c5KTFG-5xkEcy-6aqrX3-85pbDj-8Gcx2v-85m3Wk-62spzU-85m37r-85m3ci-85m3Kv-85pc8d-85m3Qi-8CRM4J-85pcnh-85m3QD-9oyEPo-5HktNd-85m3LR-8antds-4V4YQM-8U5zbb-8U5yYA-8U5z1s-8U5z3C-8U5z9f-8U2vbR-dyqxpV-85m3MV-5kQnqL%20" target="_blank">LuisJouJR.</a></div>
+</div>
+<p>¿Qué nos aporta la clase <code>SurfaceView</code>?</p>
+<p>Es una subclase especial de <code>View</code>, que ofrece una superficie de dibujo dedicada dentro de la jerarquía <code>View</code>. El objetivo de esta clase es ofrecer la superficie de dibujo a un hilo secundario de la aplicación, para que ésta no tenga que esperar a que la jerarquía <code>View</code> del sistema esté lista para dibujar. Así, en lugar de tener que esperar, un subproceso secundario que tiene referencia a una <code>SurfaceView</code> puede dibujar en su <code>Canvas</code> a su propio ritmo.</p>
+<p>Para empezar, es necesario crear una nueva clase que hereda de <code>SurfaceView</code>. La clase debe implementar también <code>SurfaceHolder.Callback</code>. Esta subclase es una interfaz que notificará la información sobre la superficie subyacente, por ejemplo, cuando se crea, cambia o es destruida. Estos eventos son importantes para que sepas cuándo se puede empezar a dibujar, si es necesario hacer ajustes basados en las nuevas propiedades de la superficie, y cuándo parar de dibujar.</p>
+<p>Vamos a crear un proyecto y vamos a realizar los siguientes pasos:</p>
+<ol>
+<li><span style="font-size: 1em;">Creamos una clase que hereda de </span><code>SurfaceView</code><span style="font-size: 1em;"> que será la clase encargada de gestionar el hilo secundario y recibir las entradas del usuario y enviar el evento al hilo secundario.</span></li>
+<li>Cuando otros objetos quieran gestionar el objeto de superficie o <code>SurfaceView</code> no lo harán directamente sino que lo harán a través de la interfaz <code>SurfaceHolder</code> que implementa nuestra clase <code>SurfaceView</code>. Es probable que se pueda tener más de un objeto de superficie pero la forma de trabajar con las clases <code>SurfaceView</code>  es estándar utilizando esta interfaz. Por lo tanto, cuando se inicia nuestro <code>SurfaceView</code> tenemos que:
+<ul class="lista_verificacion">
+<li>Crear una variable SurfaceHolder e inicializarla llamando al método <code>getHolder()</code>.</li>
+<li>A continuación, deberíamos notificar a <strong><code>SurfaceHolder</code></strong> que queremos recibir devoluciones de llamada <code>SurfaceHolder</code> (desde <code>SurfaceHolder.Callback)</code> llamando <code>addCallback()</code>.</li>
+<li>Finalmente reemplazaremos cada uno de los métodos <code>SurfaceHolder.Callback</code> dentro de nuestra clase <code>SurfaceView</code>.<br />
+<div class="codigo elemento_centrado" style="width: 75%;">
+<div class="texto_izquierda">
+<pre><span>public class </span>GameSurfaceView <span>extends </span>SurfaceView <span>implements </span>SurfaceHolder.Callback <code>{</code></pre>
+<pre><code>    // Variables globales<br />    <strong>private </strong></code><strong>SurfaceHolder surfaceHolder = null;</strong></pre>
+<pre><code>    </code><code>...</code></pre>
+<pre><code>    // Constructor de la clase GameSurfaceView</code></pre>
+<pre><code>    public </code><code>GameSurfaceView </code><code>(Context context, AttributeSet attrs) {</code></pre>
+<pre><code>        super(context, attrs);<br />        <strong>surfaceHolder=getHolder();</strong></code></pre>
+<pre><code> <strong>       surfaceHolder.addCallback(this);</strong></code></pre>
+<pre><code>        ...</code></pre>
+<pre><code>    }</code></pre>
+<pre><code> </code></pre>
+<pre><code>    public void surfaceCreated(SurfaceHolder holder) {</code></pre>
+<pre><code>        ...</code></pre>
+<pre><code>    }</code></pre>
+<pre><code> </code></pre>
+<pre><code>    public void surfaceDestroyed(SurfaceHolder holder) {</code></pre>
+<pre><code>        ...</code></pre>
+<pre><code>    }</code></pre>
+<pre><code> </code></pre>
+<pre><code>    public void surfaceChanged(SurfaceHolder holder, int format, int width,  int height) {</code></pre>
+<pre><code>        ...</code></pre>
+<pre><code>    }</code></pre>
+<pre><code> </code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li>Añadimos la clase creada <code>SurfaceView</code> al archivo <code>activity_main.xml</code> y un texto que aparecerá en la parte inferior.<br />
+<div class="codigo elemento_centrado" style="width: 26.900000000000002em;">
+<div class="texto_izquierda">
+<pre><code>&lt;com.example.surfaceview.GameSurfaceView</code></pre>
+<pre><code>        android:id="@+id/gameSurfaceView"</code></pre>
+<pre><code>        android:layout_width="match_parent"</code></pre>
+<pre><code>        android:layout_height="match_parent"</code></pre>
+<pre><code>        app:layout_constraintBottom_toTopOf="parent"</code></pre>
+<pre><code>        app:layout_constraintEnd_toEndOf="parent"</code></pre>
+<pre><code>        app:layout_constraintStart_toStartOf="parent"</code></pre>
+<pre><code>        app:layout_constraintTop_toTopOf="parent" /&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id533">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta533_44" class="block iDevice_content">
+<p>En el siguiente enlace se puede ver un ejemplo de cómo dibujar en la clase <code>View</code> y cómo hacerlo usando la clase <code>SurfaceView</code><code></code>.</p>
+<p style="text-align: center;"><a href="http://blog.openalfa.com/como-dibujar-graficos-en-android" target="_blank" title="Acceder al ejemplo de cómo dibujar gráficos en Android (Se abre en una ventana nueva)" class="html">Dibujar gráficos en <span lang="en">Android</span></a></p>
+<p class="enlace_centrado" style="text-align: left;">Y este otro, puedes consultar la documentación oficial de la clase <code>SurfaceView</code> en <span lang="en">Android</span>.</p>
+<p style="text-align: center;"><a title="Acceder a un artículo web titulado &quot;Usando SurfaceView en Android&quot; (Se abre en una ventana nueva)" href="https://developer.android.com/reference/android/view/SurfaceView.html" target="_blank" class="html">Usando <code>SurfaceView</code> en <span lang="en">Android</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

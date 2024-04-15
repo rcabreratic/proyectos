@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.1.3.- Mostrar la pantalla de preferencias | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-102" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.1.3.- Mostrar la pantalla de preferencias</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id472">
+<div class="iDevice emphasis0">
+<div id="ta472_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para: ver la pantalla de preferencias que se creará en este apartado (Se abre en una nueva ventana)." href="example_preferences.png" target="_blank"><img src="example_preferences.png" alt="Captura pantalla de las preferencias del ejemplo a realizar" title="Pantalla de preferencias" class="imagen_ampliable" width="216" height="400" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p>¿Recuerdas cómo se muestra la pantalla de una actividad? En efecto, utilizando código <span lang="en"><strong><span lang="en">Java</span></strong></span>.<br /><br />Las nuevas versiones de <span lang="en">Android</span> van cambiando la implementación de algunas funcionalidades que se quedan obsoletas, y aunque siguen funcionando, es preferible utilizar las nuevas técnicas si queremos desarrollar aplicaciones para las versiones más utilizadas de forma que nuestra aplicación funcione en la mayor parte de los dispositivos móviles de forma correcta. En este caso, desde la <acronym title="Application Programming Interface" lang="en">API</acronym> 11 se ha implementado una nueva forma de mostrar las preferencias y aunque sigue funcionando la anterior, la nueva técnica se desarrolla utilizando <strong><span lang="en">Fragments</span></strong>. No obstante vamos a explicar las dos formas de mostrar la interfaz gráfica.</p>
+<ol class="lista_esquema">
+<li>Mediante la clase <code>PreferenceActivity </code>(para versiones anteriores a la <acronym title="Application Programming Interface" lang="en">API</acronym> 11 aunque sigue funcionando en las versiones actuales). De la misma forma que para mostrar una pantalla o actividad necesitamos crear una clase <span lang="en">Java</span> que extiende de la clase <code>Activity</code>, para mostrar la interfaz gráfica de preferencias debemos crear una clase <span lang="en">Java</span> que en esta ocasión extenderá de la clase <code>PreferenceActivity, </code>la cual hereda de la superclase <code>Activity</code>. En esta clase se sobrescribe el método <code>onCreate() </code>de la misma forma que lo hacemos en una actividad, la única diferencia es que debemos llamar al método <code>addPreferencesFromResource() </code>para cargar el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> que contiene el diseño de la pantalla de preferencias.
+<p class="destacado"><strong>No olvides registrar la actividad que muestra las preferencias en el fichero de manifiesto. </strong></p>
+</li>
+<li>Mediante la clase <code>PreferenceFragment </code>para versiones a partir de la <acronym title="Application Programming Interface" lang="en">API</acronym> 11. Como ya se ha comentado, en esta ocasión se implementa utilizando fragmentos y por tanto debemos crear una nueva clase que extenderá de la clase <code>PreferenceFragment</code>. En esta clase es donde se sobrescribe el método <code>onCreate() </code>y se llama al método <code>setPreferencesFromResource() </code>para cargar el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> que contiene el diseño de la pantalla de preferencias como veíamos en la técnica anterior. Tal y como se muestra en la siguiente imagen.
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para: ver cómo se asigna el recurso XML a la vista del Fragment. (Se abre en una nueva ventana)." href="example_preferencefragment.1.png" target="_blank"><img src="example_preferencefragment.1.png" alt="Captura de pantalla de cómo asignar la interfaz gráfica a un Fragment" title="Asignar interfaz gráfica de preferencias a un Fragment." class="imagen_ampliable" width="300" height="148" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+</li>
+</ol>
+<p>Ahora tan sólo nos queda crear la clase <span lang="en">Java</span> para mostrar el fragmento que acabamos de implementar, para ello esta clase sólo extenderá de la clase <code>Activity </code>y debemos utilizar <code>FragmentManager</code> para reemplazar el contenido de la pantalla (<code>R.id.fragmentcontainer</code>) por el de nuestro fragmento. Como puedes ver en el código cuando el usuario pulsa sobre la opción <code>settings</code> del menú de la barra de acción se muestra las preferencias de la aplicación.</p>
+<p class="destacado"><strong>Recuerda que <code>R.id.fragmentcontainer</code> es un <code>FrameLayout</code> que ocupa toda la pantalla y es donde se visualizan los fragmentos.</strong></p>
+<div class="codigo elemento_centrado" style="width: 43.95em;">
+<div class="texto_izquierda">
+<pre><code>public boolean onOptionsItemSelected(MenuItem item) {</code></pre>
+<pre><code>        switch (item.getItemId()) {</code></pre>
+<pre><code>.......</code></pre>
+<pre><code>             case R.id.action_settings:</code></pre>
+<pre><code>                 showSettingsFragment();</code></pre>
+<pre><code>                 return true;</code></pre>
+<pre><code>             default:</code></pre>
+<pre><code>                 return super.onOptionsItemSelected(item);</code></pre>
+<pre><code>        }</code></pre>
+<pre><code>}</code></pre>
+<br />
+<pre><code>  public void showSettingsFragment() {</code></pre>
+<pre><code></code></pre>
+<pre><code>        FragmentManager fm = getSupportFragmentManager();</code></pre>
+<pre><code>        settingsFragment = (SettingsFragment) fm.findFragmentByTag(SettingsFragment.TAG);</code></pre>
+<pre><code>        if (settingsFragment == null) {</code></pre>
+<pre><code>            settingsFragment = new SettingsFragment();</code></pre>
+<pre><code>        }</code></pre>
+<pre><code></code></pre>
+<pre><code>        FragmentTransaction ft = fm.beginTransaction();</code></pre>
+<pre><code>        ft.replace(R.id.fragmentcontainer, settingsFragment, SettingsFragment.TAG);</code></pre>
+<pre><code>        ft.addToBackStack(null);</code></pre>
+<pre><code>        ft.commit();</code></pre>
+<pre><code></code></pre>
+<pre><code>    } </code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ReflectionfpdIdevice em_iDevice em_iDevice_reflexionfpd" id="id473">
+<div class="iDevice emphasis_reflexionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_reflexionfpd.png)"><h1 class="iDeviceTitle">Reflexiona</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta473_34" class="block iDevice_content">
+<p>Y ahora bien, &iquest;desde d&oacute;nde puede acceder el usuario a esta pantalla en nuestra aplicaci&oacute;n?</p>
+</div>
+<form name="feedback-form-473" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedback473text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-473" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-473" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<div id="ta473_35" class="block iDevice_content">
+<p>Si sueles utilizar aplicaciones <span lang="en">Android</span>, sabrás que se suele acceder desde el botón que abre el menú de la aplicación o desde el <code>ActionBar</code>.</p>
+</div>
+</section>
+</form>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id474">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta474_129" class="block iDevice_content">
+<p>En este enlace encontrarás un proyecto base de ejemplo de preferencias implementado mediante la clase <code>PreferenceActivity</code>.</p>
+<p style="text-align: center;"><a class="paquete" title="Descargar el fichero del proyecto comprimido “Ejemplo Preferences”. Se abre en ventana nueva" target="_blank" href="EjemploPreferences.zip" rel="noopener">Código del proyecto Ejemplo Preferences </a><span style="font-size: x-small;"> [1.3 <abbr lang="en" title="MegaBytes">MB</abbr>]</span></p>
+<p>En este otro enlace encontrarás el proyecto <code>GamePreferences</code> donde se ha implementado las preferencias utilizando <code>PreferenceFragment</code>.</p>
+<p style="text-align: center;"><a href="EjemploPrefFragment.zip" class="paquete" title="Descargar el fichero del proyecto comprimido “Ejemplo GamePreferences. Se abre en ventana nueva” [zip - 15.6 MB]" target="_blank" rel="noopener">Código del proyecto GamePreferences</a><span class="exe-link-data file-size"> (zip - 15.6 <abbr title="MegaBytes" lang="en">MB</abbr>)</span>.<span style="font-size: x-small;"><br /></span></p>
+<p style="text-align: center;"> </p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id475">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta475_50" class="block iDevice_content">
+<p><strong>&nbsp;</strong></p>
+</div>
+<section class="question">
+<form name="true-false-form-0b475" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b475" class="block iDevice_content">
+<p><strong>Siempre es necesario registrar en el archivo de manifiesto la clase de la actividad que lanza la pantalla de preferencias. </strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b475"><input type="radio" name="option0b475" id="true0b475" class="exe-radio-option exe-radio-option-0-2-0b475-truefalse" /> Verdadero</label> 
+<label for="false0b475"><input type="radio" name="option0b475" id="false0b475" class="exe-radio-option exe-radio-option-1-2-0b475-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b475" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b475-result" class="right">Verdadero</strong></p>
+<p>Es cierto porque toda actividad necesita registrarse previamente en el fichero de manifiesto de la aplicaci&oacute;n.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

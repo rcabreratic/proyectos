@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.7.- Gráficos 3D | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-139" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.7.- Gráficos 3D</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id554">
+<div class="iDevice emphasis0">
+<div id="ta554_73" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 300px;"><img src="Graficos_3D_-_Ajedrez.jpg" width="300" height="171" alt="Gráficos 3D con un tablero de ajedrez y sus fichas" title="Gráficos 3D: Ajedrez" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/illustrations/ajedrez-juego-de-ajedrez-1702761/" target="_blank" class="author" title="Acceder a la imagen  &quot;Graficos 3D: Ajedrez&quot;, de &quot;PIRO4D&quot;, en Pixabay. (Se abre en una nueva ventana)">PIRO4D</a> <span class="license"><span class="sep">(</span><a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)"><span>Licencia Pixabay</span></a><span class="sep">)</span></span></div>
+</div>
+<p><span lang="en">Android</span> incluye soporte para gráficos mediante la <acronym title="Application Programming Interface." lang="en">API</acronym> <abbr title="Open Graphics Library." lang="en">OpenGL</abbr>, concretamente <abbr title="Open Graphics Library for Embedded Systems." lang="en">OpenGL ES</abbr>.</p>
+<p><abbr title="Open Graphics Library for Embedded Systems." lang="en">OpenGL ES</abbr> es un aderezo a la especificación <abbr title="Open Graphics Library." lang="en">OpenGL</abbr> pensada para dispositivos embebidos.</p>
+<p>La <acronym title="Application Programming Interface." lang="en">API</acronym> específica proporcionada por <span lang="en">Android</span> es similar a la <acronym title="Application Programming Interface." lang="en">API</acronym> <acronym title="Java 2 Micro Edition. " lang="en">J2ME</acronym> <acronym title="Java Specification Request" lang="en">JSR</acronym>239 de <abbr title="Open Graphics Library for Embedded Systems." lang="en">OpenGL ES</abbr>, aunque no idéntica.</p>
+<p>La creación de aplicaciones <abbr title="Tres Dimensiones. " lang="en">3D</abbr> usando <abbr title="Open Graphics Library." lang="en">OpenGL</abbr> está más allá del alcance de este módulo y si te interesa el tema, se te deja como investigación, pero básicamente, los pasos a seguir para utilizar esta <acronym title="Application Programming Interface." lang="en">API</acronym>, de modo muy resumido serían:</p>
+<ul class="lista_verificacion">
+<li>Escribir una subclase <strong><span style="font-size: medium;"><code>View</code></span></strong> personalizada.</li>
+<li>Obtener un identificador para un <strong><abbr title="Open Graphics Library." lang="en">OpenGL</abbr> <span lang="en">Context</span></strong>, que proporciona acceso a la funcionalidad de <abbr title="Open Graphics Library." lang="en">OpenGL</abbr>.</li>
+<li>En el método <strong><span style="font-size: medium;"><code>OnDraw()</code></span></strong> de tu vista, obtener un identificador para un objeto<strong> <acronym title="Graphics Library." lang="en">GL</acronym></strong>, y utilizar sus métodos para realizar las operaciones.</li>
+</ul>
+<p>Para ver un ejemplo de este modelo de uso, que muestra cómo utilizar con hilos, puedes mirar este fuente de los ejemplos que vienen con el <acronym title="Standard Development Kit." lang="en">SDK</acronym>:</p>
+<div class="enlace_centrado"><a class="documento" title="Descargar el Código fuente del ejemplo de clase para 3D. (Se abre en una nueva ventana) [java - 1.97 KB]" href="GLSurfaceViewActivity.java" target="_blank">Ejemplo clase para <abbr title="Tres dimensiones.">3D</abbr></a><span class="tamano"> (java - 1.97 <abbr lang="en" title="KiloBytes">KB</abbr>)</span></div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id555">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta555_47" class="block iDevice_content">
+<p>En este enlace puedes ver esquemáticamente algo más sobre gráficos en <span lang="en">Android</span>.</p>
+<div class="enlace_centrado"><a class="html" title="Acceder al documento de gráficos 2D y 3D en Android. (Se abre en una nueva ventana)" href="http://academiaandroid.com/post-series/graficos-2d-3d-en-android-opengl/">Gráficos <abbr title="Dos Dimensiones.">2D</abbr> y <abbr title="Tres Dimensiones.">3D</abbr> con <span lang="en">Android</span>.</a> </div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id556">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta556_54" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b556" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b556" class="block iDevice_content">
+<p><strong><abbr title="Open Graphics Library for Embedded Systems" lang="en">OpenGL ES</abbr> es un a&ntilde;adido a la especificaci&oacute;n <acronym title="Open Graphics Library." lang="en">OpenGL</acronym> que surge para dispositivos embebidos.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b556"><input type="radio" name="option0b556" id="true0b556" class="exe-radio-option exe-radio-option-0-2-0b556-truefalse" /> Verdadero</label> 
+<label for="false0b556"><input type="radio" name="option0b556" id="false0b556" class="exe-radio-option exe-radio-option-1-2-0b556-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b556" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b556-result" class="right">Verdadero</strong></p>
+<p>Totalmente verdadero.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

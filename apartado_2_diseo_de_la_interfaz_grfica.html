@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 2. Diseño de la interfaz gráfica | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-40" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 2. Diseño de la interfaz gráfica</h1></div></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id27">
+<div class="iDevice emphasis0">
+<div id="ta27_85" class="block iDevice_content">
+<p>Para el diseño de la <strong>INTERFAZ GRÁFICA</strong> deben aparecer los siguientes elementos:</p>
+<ul><!--Lista principal -->
+<li><strong>Pantalla de Inicio (MainActivity)</strong>: Deben aparecer los siguientes elementos:
+<ul>
+<li>El texto: "Tus tareas, tu ritmo, tu éxito."</li>
+<li>Justo debajo del texto anterior, el logotipo de la aplicación "TrassTarea". Utiliza una imagen vectorial para este apartado (puede ser la misma que el icono de la aplicación) y agrégala al proyecto.</li>
+<li>Debajo del logotipo, habrá un botón con el texto "EMPEZAR" para ir a la pantalla del listado de tareas.</li>
+</ul>
+</li>
+<li><strong>Pantalla de Listado de tareas (ListadoTareasActivity)</strong>: Utiliza un RelativeLayout para esta actividad. Deben aparecer los siguientes elementos:
+<ul>
+<li><strong>Listado a pantalla completa:</strong> RecyclerView con la lista de las tareas añadidas en la aplicación. <em style="font-size: 1em;">Nota: Ya que la aplicación no cuenta con persistencia de datos, generamos previamente varias tareas de ejemplo para que se muestren en el RecyclerView y no aparezca vacío al ejecutar la aplicación.</em></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Si en algún momento la lista de tareas estuviera vacía, debe aparecer el mensaje "No hay tareas disponibles".</li>
+<li style="text-align: left;">El elemento individual del listado deberá tener un aspecto como este:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: center;"><img src="Elemento_indidvidual.png" alt="Elemento individual del listado" width="525" height="240" style="text-align: center; font-size: 1em;" /></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>La barra de progreso (Progress Bar) mostrará el valor del campo progreso de la Tarea (entre 0 y 100).</li>
+<li>Cuando la tarea esté finalizada, el valor del campo "días restantes" debe ponerse automáticamente a 0 y el título de la tarea deberá aparecer tachado</li>
+<li>Si la tarea es prioritaria deber aparecer el icono (estrella) de color amarillo y el título en negrita.</li>
+<li>El valor de los días restantes se calculará como el día de la fecha objetivo menos el día de hoy. Si el número es negativo aparecerá en color rojo.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

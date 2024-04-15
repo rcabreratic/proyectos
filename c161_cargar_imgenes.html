@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.6.1.- Cargar imágenes | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-135" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.6.1.- Cargar imágenes</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id539">
+<div class="iDevice emphasis0">
+<div id="ta539_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-CC-BY-NC-SA" style="width: 200px;"><img src="Imagenes_Android.jpg" width="200" height="200" alt="Ilustración que modifica el logo de Android con pelo, gafas, camisa, jersey, pantalones y zapatos, dándole aspecto de persona" title="Imagen Android" style="float: right;" />
+<div class="figcaption"><a href="https://www.flickr.com/photos/greatkithain/5728209824/in/photolist-9Jbzdm-Eut2Xv-7NqpD6-bq6J68-UqJqUt-herWDg-7s3xNE-Feby4f-YvPTKG-EzfpFb-8Cy1yW-oxwdtQ-e6vimN-byBKPc-FHecUY-9xhDqX-dRnDWe-oAVk51-dxVcpZ-qT5dcK-H4e7Vw-euBi97-N1hv6E-hCrpTU-kySmUL-jYHUNr-ebxJCf-xuTo6z-e9ZBEx-kMGd2D-c8Eh8N-8p6un2-hJtEaP-et7Zwb-ncUir9-GuDH8f-fZy7Dj-QwrvD7-p17abj-dYpwYn-nmjgby-ifpgR8-nD3JCi-ofsEdx-bZtcqf-2iPp6YJ-qN21VB-D5QqHB-f5gbHn-f8dwZd" target="_blank" class="author" title="Acceder a &quot;Imagen Android&quot; de &quot;Andrés Santamaría&quot; en Flickr. (Se abre en una nueva ventana)">Andrés Santamaría</a> <span class="license"><span class="sep">(</span><a href="http://creativecommons.org/licenses/?lang=es" target="_blank" title="Creative Commons BY-NC-SA. (se abre en una nueva ventana)">CC BY-NC-SA</a><span class="sep">)</span></span></div>
+</div>
+<p>Uno de los usos más básicos a la hora de usar gráficos por pantalla consiste en la carga de imágenes almacenadas en las carpetas de recursos <code>Drawable</code>. De este modo, puedes mostrar una imagen mediante el componente <code>ImageView</code>. Además del identificador o <code>id</code> hay otros atributos que nos ayudan a configurar esta clase en nuestro fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym>:</p>
+<ul class="lista_verificacion">
+<li><code>src</code>: para establecer el archivo fuente de la imagen. En el caso que se haga mediante código utilizaremos el método <code>setImageResource().</code></li>
+<li><code>background</code>: para establecer <span lang="en">un color o un dibujo en el fondo de un <code>ImageView</code>. En código <span lang="en">Java</span> equivale al método <code>setBackgroundColor(Color.BLACK).</code> </span></li>
+<li><code>padding</code>: para establecer el relleno de la imagen (<code>paddingRight,paddingLeft, paddingTop, paddingBottom</code> o bien <code>padding</code> para todos los lados).</li>
+<li><code>scaleType</code>: para controlar cómo se debe cambiar el tamaño o mover la imagen para que coincida con el tamaño del componente <code>ImageView</code>. El valor de escalado puede ser:
+<ul>
+<li><code>center</code>: muestra la imagen centrada en la vista sin escala.</li>
+<li><code>center_crop</code>: ajusta la imagen de manera que las dimensiones x e y sean mayores o iguales que la vista, manteniendo la relación de aspecto de la imagen; centra la imagen en la vista.</li>
+<li><code>center_inside</code>: ajusta la imagen para que quepa dentro de la vista, manteniendo la relación de aspecto de la imagen. Si la imagen ya es más pequeña que la vista, entonces esto es lo mismo que centrar.</li>
+<li><code>fit_center</code> <strong>(opción por defecto)</strong>: ajusta la imagen para que quepa dentro de la vista, manteniendo la relación de aspecto de la imagen. Al menos un eje coincidirá exactamente con la vista, y el resultado se centra dentro de la vista.</li>
+<li><code>fit_start</code>: igual que <code>fitCenter</code> pero alineado a la parte superior izquierda de la vista.</li>
+<li><code>fit_end:</code> igual que <code>fitCenter</code> pero alineado en la parte inferior derecha de la vista.</li>
+<li><code>fit_xy</code>: permite establecer el tamaño exacto de la imagen en su diseño. Sin embargo, pueden producirse posibles distorsiones de la imagen debido a la escala. </li>
+</ul>
+</li>
+</ul>
+<p>Puedes ver, en el código de la clase que se muestra más abajo, dos métodos para cargar imágenes, en concreto dos imágenes. Ambas fotos deben estar almacenadas en nuestra carpeta de recursos, en <code>res/drawable-mdpi</code></p>
+<p>Con esas imágenes en los recursos, creamos un proyecto y en la clase que se nos crea por defecto, en el método <code>onCreate()</code> introducimos el código que nos interesa. Como puedes observar en el código de la misma, se cargan dos imágenes, cada una cargada de una manera, aunque con idéntico resultado:</p>
+<div class="elemento_centrado">
+<div class="elemento_centrado"><a title="Ampliar imagen &quot;Cargar imágenes&quot;. (Se abre en una nueva ventana)" href="PMDM07_CONT_R13_codigocargaimg.png" target="_blank"><img alt="Código para cargar imágenes." class="imagen_ampliable" src="PMDM07_CONT_R13_codigocargaimg_mini.png" style="width: 192px; height: 144px;" title="Cargar imágenes" /></a>
+<p class="enlace_centrado"><a class="documento" title="Descargar archivo con el código de la clase. [.java – 1KB]" href="PMDM07_CONT_R14_codigocargaimg.java">Código de la clase para cargar imágenes.</a> <span class="tamano">(1 KB)</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper CitasparapensarfpdIdevice em_iDevice em_iDevice_citasparapensarfpd" id="id540">
+<div class="iDevice emphasis_citasparapensarfpd" >
+<header class="iDevice_header" style="background-image:url(icon_citasparapensarfpd.png)"><h1 class="iDeviceTitle">Citas para pensar</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta540_49" class="block iDevice_content">
+<blockquote class="exe-quote-cite styled-qc">
+<p>Podrán cortar todas las flores, pero no podrán detener la primavera.</p>
+<cite>Pablo Neruda</cite></blockquote>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id541">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-541_60" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion541_60" class="block question iDevice_content">
+<p><strong>Las im&aacute;genes que usemos como recursos en nuestra aplicaci&oacute;n, normalmente estar&aacute;n ubicadas en la carpeta:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i541_63" class="sr-av"><a href="#answer-541_63">Opción 1</a></label><input type="radio" name="option541_60" id="i541_63" class="exe-radio-option exe-radio-option-0-4-541_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-541_63"><div id="taans541_63" class="block iDevice_content">
+<p><code>res/imageview</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i541_74" class="sr-av"><a href="#answer-541_74">Opción 2</a></label><input type="radio" name="option541_60" id="i541_74" class="exe-radio-option exe-radio-option-1-4-541_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-541_74"><div id="taans541_74" class="block iDevice_content">
+<p><code>res/onCreate</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i541_77" class="sr-av"><a href="#answer-541_77">Opción 3</a></label><input type="radio" name="option541_60" id="i541_77" class="exe-radio-option exe-radio-option-2-4-541_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-541_77"><div id="taans541_77" class="block iDevice_content">
+<p><code>res/fotos</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i541_80" class="sr-av"><a href="#answer-541_80">Opción 4</a></label><input type="radio" name="option541_60" id="i541_80" class="exe-radio-option exe-radio-option-3-4-541_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-541_80"><div id="taans541_80" class="block iDevice_content">
+<p><code>res/drawable-mdpi</code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b541_60" class="feedback js-hidden">
+<div id="taf541_63" class=" iDevice_content">
+<p>No es correcto, prueba de nuevo.</p>
+</div>
+</section>
+<section id="sa1b541_60" class="feedback js-hidden">
+<div id="taf541_74" class=" iDevice_content">
+<p>Incorrecto.</p>
+</div>
+</section>
+<section id="sa2b541_60" class="feedback js-hidden">
+<div id="taf541_77" class=" iDevice_content">
+<p>&iexcl;&iexcl;No!!</p>
+</div>
+</section>
+<section id="sa3b541_60" class="feedback js-hidden">
+<div id="taf541_80" class=" iDevice_content">
+<p>&iexcl;Has acertado!</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-541_63">Incorrecto</a><span> (<a href="#sa0b541_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-541_74">Incorrecto</a><span> (<a href="#sa1b541_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-541_77">Incorrecto</a><span> (<a href="#sa2b541_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-541_80">Opción correcta</a><span> (<a href="#sa3b541_60">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

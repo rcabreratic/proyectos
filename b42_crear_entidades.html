@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.4.2.- Crear Entidades | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-118" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.4.2.- Crear Entidades</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id461">
+<div class="iDevice emphasis0">
+<div id="ta461_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="entity.png" width="150" height="150" title="Entidad o clase Java" alt="Ilustración que muestra una Entidad o clase Java" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/illustrations/extracci%C3%B3n-de-textos-1476780/" target="_blank" class="author" title="Acceder a la imagen  &quot;Entidad o clase Java&quot;, de &quot;mcmurryjulie&quot;, en Pixabay. (Se abre en una nueva ventana)">mcmurryjulie</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Una entidad es una tabla de base de datos y una clase <acronym title="Plain Old Java Object" lang="en">POJO</acronym> representa una fila de esa tabla. ¿Cómo se consigue esta traducción?</p>
+<p>De la siguiente forma:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>La clase de entidad o <acronym title="Plain Old Java Object" lang="en">POJO</acronym> está marcada con la anotación <code>@Entity</code>. Por defecto el nombre de la tabla coincide con la clase, se puede cambiar usando la propiedad <code>tableName</code> en<code> @Entity.</code></li>
+<li>Cada atributo de la clase es una columna de la tabla. Por defecto el nombre del atributo es el nombre de la columna pero se puede modificar mediante la anotación <code>@ColumnInfo(name = "other_name")</code>.</li>
+</ol>
+<p class="destacado" style="text-align: center;"><strong>En <span lang="en">SQLite</span>, los nombres de tabla no distinguen entre mayúsculas y minúsculas.</strong></p>
+<p>Además se pueden utilizar las siguientes anotaciones:</p>
+<ul class="lista_verificacion">
+<li><code>@Ignore</code>: con esta anotación se indica a <span lang="en">Room</span> que ignore un campo en particular.</li>
+<li><code>@PrimaryKey (autoGenerate = true)</code>; con esta anotación indicamos a <span lang="en">Room</span> que una variable (normalmente<code> ID</code>)  es un valor que se autogenera al crear un objeto de esta clase y que no podrá repetirse. Es un valor único y se puede utilizar para localizar un objeto concreto.</li>
+<li><code>@NonNull</code>: esta anotación indica que un campo no puede ser nulo.</li>
+</ul>
+<p><span lang="en">Room</span> tiene ciertas <strong>restricciones</strong> que si no se cumplen dan error al generar la tabla en la base de datos y son las siguientes:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Hay que tener en cuenta que <span lang="en">Room</span> debe ser capaz de crear un objeto de esta clase, con lo cual nos obliga a tener  un constructor sin parámetros o bien un constructor con todos los campos no marcados con<code> @Ignore.</code></li>
+<li>Si los atributos de la clase los marcamos como <code>private</code>, tenemos que definir sus correspondientes <code>setter</code> y <code>getter</code> </li>
+</ol>
+<p>Finalmente el código de nuestra clase <code>Ranking</code> quedaría de la siguiente forma:</p>
+<div class="codigo elemento_centrado" style="width: 26.900000000000002em;">
+<div class="texto_izquierda">
+<pre><code>@Entity(primaryKeys = {"date", "avatar"})</code></pre>
+<pre><code>public class Ranking implements Parcelable {</code></pre>
+<pre><code></code></pre>
+<pre><code>  public static final String TAG = "Ranking";</code></pre>
+<pre><code></code></pre>
+<pre><code>  @NonNull</code></pre>
+<pre><code>  private String avatar;</code></pre>
+<pre><code>  @NonNull</code></pre>
+<pre><code>  private String date;</code></pre>
+<pre><code>  private int points;</code></pre>
+<pre><code></code></pre>
+<pre><code>  public Ranking(String avatar, String date, int points) {</code></pre>
+<pre><code>     this.avatar = avatar;</code></pre>
+<pre><code>     this.date = date;</code></pre>
+<pre><code>     this.points = points;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code>  <br />  //region: Implementacioń métodos GET y SET</code></pre>
+<pre><code></code></pre>
+<pre><code>  public String getAvatar() {</code></pre>
+<pre><code>      return avatar;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code>  public void setAvatar(String avatar) {</code></pre>
+<pre><code>      this.avatar = avatar;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code></code></pre>
+<pre><code>  public String getDate() {</code></pre>
+<pre><code>      return date;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code></code></pre>
+<pre><code>  public void setDate(String date) {</code></pre>
+<pre><code>      this.date = date;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code></code></pre>
+<pre><code>  public int getPoints() {</code></pre>
+<pre><code>      return points;</code></pre>
+<pre><code>  }</code></pre>
+<pre><code></code></pre>
+<pre><code>  public void setPoints(int points) {</code></pre>
+<pre><code>      this.points = points;</code><code>   </code></pre>
+<pre><code>  }</code></pre>
+<pre><code></code></pre>
+<pre><code>  //endregion</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id462">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta462_128" class="block iDevice_content">
+<p>En el caso que necesites implementar índices o quieras saber cómo implementar otras opciones puedes consultar la documentación oficial en el siguiente enlace:</p>
+<p style="text-align: center;"><a href="https://developer.android.com/training/data-storage/room/defining-data" target="_blank" class="html" title="Acceder a la documentación oficial de Android Developer para ver cómo crear Entidades (Se abre en una nueva ventana)">Cómo definir datos mediante entidades.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

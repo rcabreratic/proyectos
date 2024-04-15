@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.2.2.2.- Leyendo de la memoria externa | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-109" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.2.2.2.- Leyendo de la memoria externa</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id489">
+<div class="iDevice emphasis0">
+<div id="ta489_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 200px;"><img src="Lupa.png" width="200" height="197" alt="Ilustración de una lupa" title="Leer con lupa" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/vectors/lupa-vidrio-lupa-vidrio-aumento-189254/" target="_blank" class="author">TheUjulala </a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Para leer un fichero que está almacenado en la memoria externa del dispositivo móvil tendremos en cuenta los mismo aspectos que se ha visto para la escritura.<br /><br />Tanto si queremos leer un fichero que está en el directorio de la aplicación como si éste es público en alguno de los subdirectorios de <span lang="en">Android</span>, sólo cambiará el método para recuperar la ruta del fichero.<br /><br />Como ejemplo, veamos cómo podemos leer un fichero de texto situado en la zona reservada para la aplicación:</p>
+<div class="codigo elemento_centrado" style="width: 43.400000000000006em;">
+<div class="texto_izquierda">
+<pre><code>String estado = Environment.getExternalStorageState();</code></pre>
+<pre><code>if (estado.equals(Environment.MEDIA_MOUNTED)){</code></pre>
+<pre><code>     File file = new File(getExternalFilesDir(null), "fichero.txt");</code></pre>
+<pre><code>     BufferedReader br = new BufferedReader(</code></pre>
+<pre><code>                             new InputStreamReader(</code></pre>
+<pre><code>                                 new FileInputStream(file)));</code></pre>
+<pre><code>     String texto = br.readLine()</code></pre>
+<pre><code>     br.close();</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id490">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta490_46" class="block iDevice_content">
+<div class="exe-figure exe-image float-right" style="width: 286px;"><a href="PMDM06_CONT_R15_ficherosSD.png" title="Ampliar imagen &quot;Ficheros en tarjeta SD&quot;. (Se abre en una nueva ventana)"><img src="PMDM06_CONT_R15_ficherosSD_mini.png" width="286" height="178" alt="Captura de pantalla explorador de ficheros de Eclipse mostrando el contenido de la SD." title="Ficheros en tarjeta SD." class="imagen_ampliable" style="float: right;" /></a>
+<div class="figcaption"><span class="author">Captura tomada del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span> cuya licencia es <span lang="en">Eclipse Public License</span></span><a href="PMDM06_CONT_R15_ficherosSD.png" title="Ampliar imagen &quot;Ficheros en tarjeta SD&quot;. (Se abre en una nueva ventana)"></a></div>
+</div>
+<p>En el siguiente enlace puedes descargar un proyecto de ejemplo donde se puede ver el funcionamiento de los ficheros en la memoria externa. Consta de un objeto <code>EditText </code>donde se puede introducir el texto a guardar y tres objetos <code>Button </code>(dos botones para escribir y leer el fichero dentro de la tarjeta de memoria pero en el espacio reservado para la aplicación y por último un botón para escribir  el fichero en la subcarpeta pública <code>DOWNLOAD</code>). Así mismo podrás estudiar su código para aprender más sobre la gestión de ficheros.</p>
+<p style="text-align: center;"><br /><a href="EjemploFicherosExternos.zip" title="Descargar aplicación de ejemplo sobre los ficheros externos en Android. Se abre en una nueva ventana [zip - 13.62 MB]" target="_blank" class="paquete">Aplicación de ejemplo sobre los ficheros externos en Android. </a><span style="font-size: x-small;"> (zip - 13.62 <abbr lang="en" title="MegaBytes">MB</abbr>)</span> </p>
+<div class="elemento_centrado">
+<div class="elemento_centrado"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id491">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-491_56" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion491_56" class="block question iDevice_content">
+<p><strong>Es necesario solicitar permiso al usuario en el archivo de manifiesto para gestionar ficheros en:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_59" class="sr-av"><a href="#answer-491_59">Opción 1</a></label><input type="radio" name="option491_56" id="i491_59" class="exe-radio-option exe-radio-option-0-4-491_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_59"><div id="taans491_59" class="block iDevice_content">
+<p>La memoria interna.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_127" class="sr-av"><a href="#answer-491_127">Opción 2</a></label><input type="radio" name="option491_56" id="i491_127" class="exe-radio-option exe-radio-option-1-4-491_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_127"><div id="taans491_127" class="block iDevice_content">
+<p>La memoria externa.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_130" class="sr-av"><a href="#answer-491_130">Opción 3</a></label><input type="radio" name="option491_56" id="i491_130" class="exe-radio-option exe-radio-option-2-4-491_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_130"><div id="taans491_130" class="block iDevice_content">
+<p>La carpeta de recursos <code>/res/raw/</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_133" class="sr-av"><a href="#answer-491_133">Opción 4</a></label><input type="radio" name="option491_56" id="i491_133" class="exe-radio-option exe-radio-option-3-4-491_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_133"><div id="taans491_133" class="block iDevice_content">
+<p>Todas las respuestas son correctas.</p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b491_56" class="feedback js-hidden">
+<div id="taf491_59" class=" iDevice_content">
+<p>¡Casi! Repasa mejor los contenidos.</p>
+</div>
+</section>
+<section id="sa1b491_56" class="feedback js-hidden">
+<div id="taf491_127" class=" iDevice_content">
+<p>¡Exacto!</p>
+</div>
+</section>
+<section id="sa2b491_56" class="feedback js-hidden">
+<div id="taf491_130" class=" iDevice_content">
+<p>No es correcto.</p>
+</div>
+</section>
+<section id="sa3b491_56" class="feedback js-hidden">
+<div id="taf491_133" class=" iDevice_content">
+<p>Sólo es necesario cuando queremos gestionar ficheros de la memoria externa (tarjeta <acronym title="Secure Digital" lang="en">SD</acronym>).</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-491_59">Incorrecto</a><span> (<a href="#sa0b491_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_127">Opción correcta</a><span> (<a href="#sa1b491_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_130">Incorrecto</a><span> (<a href="#sa2b491_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_133">Incorrecto</a><span> (<a href="#sa3b491_56">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+<br/><section class="question">
+<form name="multi-choice-form-491_136" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion491_136" class="block question iDevice_content">
+<p><strong>Para obtener la ruta de una carpeta determinada de nuestra aplicaci&oacute;n situada en la memoria externa utilizaremos el siguiente m&eacute;todo:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_139" class="sr-av"><a href="#answer-491_139">Opción 1</a></label><input type="radio" name="option491_136" id="i491_139" class="exe-radio-option exe-radio-option-0-4-491_136-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_139"><div id="taans491_139" class="block iDevice_content">
+<p><code>getExternalStorageState()</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_142" class="sr-av"><a href="#answer-491_142">Opción 2</a></label><input type="radio" name="option491_136" id="i491_142" class="exe-radio-option exe-radio-option-1-4-491_136-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_142"><div id="taans491_142" class="block iDevice_content">
+<p><code>getExternalFilesDirectory()</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_145" class="sr-av"><a href="#answer-491_145">Opción 3</a></label><input type="radio" name="option491_136" id="i491_145" class="exe-radio-option exe-radio-option-2-4-491_136-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_145"><div id="taans491_145" class="block iDevice_content">
+<p><code>getExternalFilesDir()</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i491_148" class="sr-av"><a href="#answer-491_148">Opción 4</a></label><input type="radio" name="option491_136" id="i491_148" class="exe-radio-option exe-radio-option-3-4-491_136-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-491_148"><div id="taans491_148" class="block iDevice_content">
+<p><code>getExternalStoragePublicDirectory()</code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b491_136" class="feedback js-hidden">
+<div id="taf491_139" class=" iDevice_content">
+<p>No es as&iacute;.</p>
+</div>
+</section>
+<section id="sa1b491_136" class="feedback js-hidden">
+<div id="taf491_142" class=" iDevice_content">
+<p>¡Casi, casi! Fíjate bien en el método.</p>
+</div>
+</section>
+<section id="sa2b491_136" class="feedback js-hidden">
+<div id="taf491_145" class=" iDevice_content">
+<p>¡Muy bien! En efecto, ese es el método.</p>
+</div>
+</section>
+<section id="sa3b491_136" class="feedback js-hidden">
+<div id="taf491_148" class=" iDevice_content">
+<p>No es correcto, repasa los contenidos.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-491_139">Incorrecto</a><span> (<a href="#sa0b491_136">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_142">Incorrecto</a><span> (<a href="#sa1b491_136">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_145">Opción correcta</a><span> (<a href="#sa2b491_136">Retroalimentación</a>)</span></li>
+<li><a href="#answer-491_148">Incorrecto</a><span> (<a href="#sa3b491_136">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

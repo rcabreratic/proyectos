@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.5. Aplicando movimiento a los objetos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-131" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.5. Aplicando movimiento a los objetos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id536">
+<div class="iDevice emphasis0">
+<div id="ta536_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM07_CONT_R09_bolas.jpg" alt="Bolas de billar sobre el tapete de la mesa de billar." title="Bolas de billar." height="214" width="380" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Acceder a  la imagen &quot;Bolas de billar&quot; de &quot;Steve Webster&quot; en Flickr. (Se abre en una nueva ventana)." href="http://www.flickr.com/photos/99522272@N00/3347799302/in/photolist-66Qm6C-dFmKyL-7KierD-7pfyih-vMVnP-custio-4ayQWt-9MdJ7D-88C4Hx-x7keC-5WrNup-6veYBZ-4VQref-7gjQb-6fW7Zk-bNMFk-5U7K5H-adTcMy-d74e4w-6eTSTw-Mhsz-5EjgJH-7y9Zty-7CHD33-6PZVz3-8KnVdj-5hrBSw-7wFvxA-83GP9c-8sUGtH-5Uc7sL-eXmou-6pjC96-bngapX-41fK3a-Dmraj-7eWYF-erAx2-6ysK5q-9GX8wH-2DispU-coTWBG-9fzVeL-e3bduC-9H1139-9GX8mV-9GXfmv-dRpvp-7fZ6KL-8Gfrc-7fVo2B%20" target="_blank">Steve Webster.</a></div>
+</div>
+<p>Hay dos formas básicas de dibujar en <abbr title="Dos Dimensiones">2D</abbr> en <span lang="en">Android:</span></p>
+<ol>
+<li><strong>Dibujar nuestros gráficos y animaciones dentro de un <code>View</code></strong>: de esta forma el sistema se encarga de dibujar y animar por nosotros. Esta opción es la recomendada cuando se trata de objetos estáticos o animaciones que no requieren de mucho procesamiento. Hay ciertos juegos como el ajedrez, <span>mahjong, sudoku</span> que no requieren mucho trabajo en la parte gráfica.</li>
+<li><strong>Dibujar dentro de un <code>Canvas</code></strong>: si el objeto está en movimiento, o necesita ser redibujado con frecuencia, entonces es mejor usar un <code>Canvas</code> donde el desarrollador toma el control de lo que se dibuja sobre la pantalla. Si optamos por esta opción tenemos dos formas de realizar el movimiento de un objeto:
+<ul class="lista_verificacion">
+<li>Sobre el hilo principal de la aplicación (<code>UI Thread</code>). Sólo escogeremos esta opción cuando las operaciones de dibujo y movimiento no consuma demasiado tiempo en ejecutarse como es el caso del ejemplo que te proponemos en este apartado.</li>
+<li>En un hilo aparte que dibuje sobre un <code>Canvas</code> tan rápido como nos sea posible.</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id537">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta537_46" class="block iDevice_content">
+<p>Te recomendamos que estudies el código del ejemplo que te proporcionamos en el siguiente enlace para su descarga, en el que se presenta un círculo que se mueve por pantalla. </p>
+<p style="text-align: center;"><a href="example_movement_circle.zip" class="paquete" title="Descarga del ejemplo círculo moviendose por pantalla- Se abre en ventana nueva. [zip - 12.45 MB]" target="_blank">Círculo moviéndose por la pantalla.</a><span class="exe-link-data file-size"> (zip - 12.45 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id538">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta538_57" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b538" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b538" class="block iDevice_content">
+<p><strong>Cuando un objeto se redibuje con bastante asiduidad es mejor utilizar un<code> View</code>.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b538"><input type="radio" name="option0b538" id="true0b538" class="exe-radio-option exe-radio-option-0-2-0b538-truefalse" /> Verdadero</label> 
+<label for="false0b538"><input type="radio" name="option0b538" id="false0b538" class="exe-radio-option exe-radio-option-1-2-0b538-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b538" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b538-result" class="wrong">Falso</strong></p>
+<p>Es mejor usar un <code>Canvas</code> en ese caso.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

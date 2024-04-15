@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.3.- La clase Paint | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-129" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.3.- La clase Paint</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id526">
+<div class="iDevice emphasis0">
+<div id="ta526_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="pincel.jpg" width="300" height="200" title="Pinceles" alt="Foto que muestra un conjunto de pinceles formando un manojo." /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/photos/pinceles-arte-pintura-herramienta-1683134/" target="_blank" class="author" title="Acceder a la imagen  &quot;Pinceles&quot;, de &quot;Coyot&quot;, en Pixabay. (Se abre en una nueva ventana)">Coyot</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)" target="_blank">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>La mayor parte de los métodos de la clase <code>Canvas</code> utilizan un parámetro de tipo <code>Paint</code>. Con esta clase podrás definir el color, estilo y el grosor del trazado de un gráfico vectorial.</p>
+<p>Para indicar los colores, en <span lang="en">Android</span> se usan enteros de 32 <span lang="en">bits</span>, divididos en 4 campos de 8 <span lang="en">bits</span>: alfa, rojo, verde y azul (o <abbr title="Alfa Red Green Blue." lang="en">ARGB</abbr> por las iniciales en inglés). Cada campo, al estar formado por 8 bits, puede tomar<abbr title="Dos elevado a ocho es  igual a doscientos cincuenta y seis."> 2<sup>8</sup> = 256</abbr> valores diferentes.</p>
+<p>Los componentes rojo, verde y azul se usan para definir el color y el componente alfa define el grado de transparencia con respecto al fondo. Un valor 255 representa un color opaco y a medida que se va reduciendo el valor el dibujo se irá haciendo transparente.</p>
+<p>Hay un detalle importante que tenemos que tener en cuenta, y que probablemente habrás visto en otros módulos del ciclo, y es referente a la conveniencia de separar el diseño de la programación en sí. En este sentido, cuando definimos un color tenemos varias opciones para hacerlo:</p>
+<p><code>int miColor; </code></p>
+<ul class="lista_verificacion">
+<li><span style="font-size: medium;"><strong><code>miColor = Color.RED ; // Rojo </code></strong></span></li>
+<li><span style="font-size: medium;"><strong><code>miColor = Color.argb(127, 0, 255, 0) ; // Verde transparente</code></strong></span></li>
+<li><span style="font-size: medium;"><strong><code>miColor = 0x7F00FF00 ; // Verde transparente </code></strong></span></li>
+<li><span style="font-size: medium;"><strong><code>miColor = getResources().getColor(R.color.color_Triangulo);</code></strong></span></li>
+</ul>
+<p>Pero, ¿cuál es la mejor opción?</p>
+<p>En la línea de lo que decíamos, se recomienda utilizar la última opción listada para no definir los colores directamente en código, sino utilizar el fichero de recursos <code>res/values/colors.xml</code>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id527">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta527_47" class="block iDevice_content">
+<p>En el enlace que hay a continuación, puedes ver el código del color que selecciones en la paleta que aparece en la parte superior, en el centro.</p>
+<div align="center"><a title="Acceder a una web con información sobre Colores en hexadecimal (Se abre en una ventana nueva)" href="http://www.color-hex.com/" target="_blank" class="html">Acceder a paleta de colores</a></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id528">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta528_63" class="block story iDevice_content">
+<p>Ahora, puedes descargar un proyecto muy sencillo donde se muestra un ejemplo. En él se crea una vista dibujada por código por medio de un <code>Canvas</code>. Enumeramos los pasos que hemos realizado para que puedas crear el ejemplo:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Creamos un proyecto y seleccionamos <code>Empty Activity.</code></li>
+<li>Creamos una clase personalizada <code>DrawView</code> que hereda de <code>View</code> y sobrescribiremos su método <code>onDraw()</code> donde dibujaremos un rectángulo verde y un círculo amarillo.</li>
+<li>Finalmente, le diremos a la <code>Activity</code> que nuestro objeto <code>View</code> será su vista mediante el método <code>setContentView(new RectView(this)).</code></li>
+</ol>
+</section>
+<section id="taquesQuestion0b528" class="block iDevice_content">
+
+</section>
+<form name="feedback-form-quesFeedback0b528" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedbackquesFeedback0b528text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-quesFeedback0b528" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-quesFeedback0b528" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p class="enlace_centrado"><a href="example_canvas.zip" title="Descargar el código del ejemplo canvas que dibuja rectángulo y círculo. Se abre en una ventana nueva [zip - 12.36 MB]" target="_blank" class="paquete">Proyecto sencillo de dibujo </a><span class="exe-link-data file-size"> (zip - 12.36 <abbr lang="en" title="MegaBytes">MB</abbr>)</span><span class="tamano"><br /></span></p>
+<p class="enlace_centrado"><span class="tamano"> </span></p></section>
+</form>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

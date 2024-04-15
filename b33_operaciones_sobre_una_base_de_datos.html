@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.3.3.- Operaciones sobre una base de datos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-113" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.3.3.- Operaciones sobre una base de datos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id506">
+<div class="iDevice emphasis0">
+<div id="ta506_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 200px;"><img src="Herramientas.png" width="200" height="198" alt="Ilustración de un destornillador y una llave fija, cruzados en forma de X. " title="Herramientas" style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/vectors/herramientas-destornillador-llave-24220/" target="_blank" class="author" title="Acceder a la imagen  &quot;Heramientas&quot;, de &quot;Clker-Free-Vector-Images&quot;, en Pixabay. (Se abre en una nueva ventana)">Clker-Free-Vector-Images</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a la Licencia Pixabay (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Y ahora, ¿cuándo y cómo utilizamos esta clase auxiliar en nuestra aplicación <span lang="en">Android</span>?</p>
+<p>La utilizaremos cada vez que queramos lanzar una actividad donde se vaya a realizar alguna operación sobre la base de datos.</p>
+<p><span style="font-size: 1em;">Estas operaciones se pueden clasificar en dos grupos dependiendo de si se recupera o no algún resultado tras su ejecución. Así pues, tendremos:</span></p>
+<ul class="lista_verificacion">
+<li>Inserción, actualización y eliminación de registros que no devuelven ningún registro, sólo se modifican.</li>
+<li>La selección, que retorna un conjunto de registros en un cursor.</li>
+</ul>
+<p>Como ya hemos visto, las diferentes pantallas de <span lang="en">Android</span> se lanzan desde sus respectivas clases codificadas en <span lang="en">Java</span>. Aquellas pantallas que realicen algún tipo de operación sobre la base de datos necesitan apoyarse en la clase auxiliar. Pero dejando a un lado de momento el diseño que tendrán las pantallas, nos centramos en la implementación de sus respectivas clases.</p>
+<p>Para esta implementación se pueden seguir los siguientes pasos:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Crear un objeto de la clase <code>SQLiteOpenHelper</code> para poder abrir la base de datos. A este objeto le pasamos el contexto (que será la propia actividad), el nombre de la base de datos,  un objeto <code>CursorFactory</code> que normalmente no es necesario y lo dejamos a <code>null</code> y el número de versión de la <acronym title="Base de Datos" lang="es">BD</acronym>. Cuando se crea el objeto puede ocurrir alguna de las siguientes situaciones:<ol>
+<li>Si la base de datos existe y su versión coincide con la que le pasamos como parámetro, entonces se crea la conexión.</li>
+<li>Si la base de datos existe pero su versión es anterior a la que le pasamos como parámetro, entonces se lanzará de forma automática el método <code>onUpgrade() </code>para actualizar la nueva <acronym title="Base de Datos" lang="es">BD</acronym> y realizar así la conexión.</li>
+<li>Si la base de datos no existe se lanzará de forma automática el método <code>onCreate()</code> y después se realizará la conexión.</li>
+</ol></li>
+<li>Abrir la base de datos en modo lectura y/o escritura según la operación que deseamos realizar.</li>
+<li>Comprobar que la base de datos está abierta y utilizar los métodos apropiados para realizar cualquier tipo de operación sobre la misma.</li>
+<li>Para finalizar no debemos olvidar cerrar siempre la base de datos.</li>
+</ol>
+<p>El código podría ser muy similar al que mostramos a continuación:</p>
+<div class="codigo elemento_centrado" style="width: 40.1em;">
+<div class="texto_izquierda">
+<pre><code>//Creamos un objeto de la clase auxiliar.</code></pre>
+<pre><code>MiBaseDatosHelper bdhelp = </code></pre>
+<pre><code>                 new MiBaseDatosHelper(this, "nombreBD", null, 1);</code></pre>
+<pre> </pre>
+<pre><code>//Abrimos en modo lectura y escritura la base de datos 'MiBD' </code></pre>
+<pre><code>SQLiteDatabase bd = bdhelp.getWritableDatabase();</code></pre>
+<pre> </pre>
+<pre><code>//Si la base de datos está abierta.</code></pre>
+<pre><code>if(bd.isOpen())</code></pre>
+<pre><code>{</code></pre>
+<pre><code>     //Aquí hay que añadir el código necesario para realizar </code></pre>
+<pre><code>     //cualquier tipo de operación sobre la base de datos.</code></pre>
+<pre><code>     //Veremos algunos métodos en los apartados siguientes.</code></pre>
+<pre> </pre>
+<pre><code>     //Cerramos la base de datos</code></pre>
+<pre><code>      bd.close();</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

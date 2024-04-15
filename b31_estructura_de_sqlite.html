@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>B.3.1.- Estructura de SQLite | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-111" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">B.3.1.- Estructura de SQLite</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id495">
+<div class="iDevice emphasis0">
+<div id="ta495_69" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-pd" style="width: 200px;"><img src="SQLite370.svg" width="200" height="95" alt="Logotipo de SQLite, formado por un recuadro azul, medio tapado por una pluma, y al lado el texto SQLite" title="SQLite" style="float: right;" />
+<div class="figcaption"><a href="https://commons.wikimedia.org/wiki/File:SQLite370.svg" target="_blank" class="author" title="Aceder a la imagen &quot;SQLite&quot; en Wikimedia. (Se abre en una nueva ventana)">Richard Hipp/</a><a href="https://commons.wikimedia.org/wiki/User:Mwtoews" title="User:Mwtoews">Mike Toews</a> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></div>
+</div>
+<p>¿Cómo se integra <span>SQLite</span> con <span lang="en">Android</span>?</p>
+<p>En la  <abbr title="Application Programming Interface" lang="en">API</abbr> de <span lang="en">Android</span> se encuentran las clases relacionadas con la gestión de <acronym title="Base de Datos"><span title="Base de Datos" lang="es">BD</span></acronym>. Aquí nos centraremos únicamente en las tres clases más utilizadas que nos permita desarrollar un ejemplo sencillo utilizando base de datos:</p>
+<ul class="lista_verificacion">
+<li><code>SQLiteOpenHelper</code>: gestiona la creación y actualización de las bases de datos. Entre los métodos más utilizados de esta clase destacan:
+<ul>
+<li><code>onCreate()</code>: se lanza para crear la base de datos por primera vez.</li>
+<li><code>onUpgrade()</code>: se lanza para actualizar la estructura de la base de datos.</li>
+<li><code>getReadableDatabase()</code>: abrir una base de datos en modo lectura.</li>
+<li><code>getWritableDatabase()</code>: abrir una base de datos en modo lectura y escritura</li>
+<li><code>getDatabaseName()</code>: recupera el nombre de la base de datos</li>
+<li><code>close()</code>: cerrar la base de datos.</li>
+</ul>
+</li>
+<li><code>SQLiteDatabase</code>: incluye los métodos para gestionar una base de datos. Entre los métodos más utilizados de esta clase destacan:
+<ul>
+<li><code>insert()</code>: insertar un nuevo registro.</li>
+<li><code>update()</code>: modificar un registro.</li>
+<li><code>delete()</code>: eliminar un registro.</li>
+<li><code>execSQL()</code>: ejecuta una sentencia <acronym title="Structure Query Language" lang="en">SQL</acronym> que no devuelve ningún registro.</li>
+<li><code>rawQuery()</code>: lanza una sentencia de consulta utilizando un comando completo <acronym title="Structure Query Language" lang="en">SQL</acronym> y se recupera el resultado en un cursor.</li>
+<li><code>query()</code>: lanza una sentencia de consulta mediante varios parámetros y se recupera el resultado en un cursor.</li>
+<li><code>isOpen()</code>: comprobar si está abierta la base de datos.</li>
+</ul>
+</li>
+<li><code>SQLiteCursor</code>: gestiona el cursor para recorrer las filas recuperadas mediante una sentencia <acronym title="Structure Query Language" lang="en">SQL</acronym>. Entre los métodos más utilizados de esta clase destacan:
+<ul>
+<li><code>moveToFirst()</code>: posiciona el cursor en el primer registro.</li>
+<li><code>moveToNext()</code>: posiciona el cursor en el siguiente registro.</li>
+<li><code>getString()</code>: recupera en un <code>String </code> el valor del campo.</li>
+<li><code>getInt()</code>: recupera en un entero el valor del campo</li>
+<li><code>getFloat()</code>: recupera en un <code>Float</code> el valor del campo.</li>
+<li><code>getLong()</code>: recupera en un <code>Long</code> el valor del campo.</li>
+<li><code>getColumnCount()</code>: recupera el número de columnas.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id496">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta496_43" class="block iDevice_content">
+<p>En la documentación oficial de <span lang="en">Android</span> puedes encontrar la <acronym title="Application Programming Interface" lang="en">API</acronym> con todas las clases que incorpora <abbr title="Structure Query Language Light" lang="en">SQLite</abbr> y que se incluyen en el paquete<code> android.database.sqlite</code>.</p>
+<p style="text-align: center;" align="CENTER"><a title="Acceder a la página oficial de Android sobre “android.database.sqlite”. (Se abre en una ventana nueva)" href="http://developer.android.com/reference/android/database/sqlite/package-summary.html" target="_blank" class="html">SQLite en Android</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id497">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-497_56" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion497_56" class="block question iDevice_content">
+<p><strong>La clase de <abbr title="Structure Query Language Light" lang="en">SQLite</abbr> que contiene los métodos para insertar, actualizar, eliminar y consultar los registros de una base de datos es:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i497_59" class="sr-av"><a href="#answer-497_59">Opción 1</a></label><input type="radio" name="option497_56" id="i497_59" class="exe-radio-option exe-radio-option-0-4-497_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-497_59"><div id="taans497_59" class="block iDevice_content">
+<p><code>SQLiteCursor.</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i497_154" class="sr-av"><a href="#answer-497_154">Opción 2</a></label><input type="radio" name="option497_56" id="i497_154" class="exe-radio-option exe-radio-option-1-4-497_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-497_154"><div id="taans497_154" class="block iDevice_content">
+<p><code>SQLiteDatabase.</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i497_157" class="sr-av"><a href="#answer-497_157">Opción 3</a></label><input type="radio" name="option497_56" id="i497_157" class="exe-radio-option exe-radio-option-2-4-497_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-497_157"><div id="taans497_157" class="block iDevice_content">
+<p><code>SQLiteOpenHelper.</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i497_160" class="sr-av"><a href="#answer-497_160">Opción 4</a></label><input type="radio" name="option497_56" id="i497_160" class="exe-radio-option exe-radio-option-3-4-497_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-497_160"><div id="taans497_160" class="block iDevice_content">
+<p><code>SQLiteExecSQL.</code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b497_56" class="feedback js-hidden">
+<div id="taf497_59" class=" iDevice_content">
+<p>No es la opci&oacute;n correcta. Repasa los contenidos.</p>
+</div>
+</section>
+<section id="sa1b497_56" class="feedback js-hidden">
+<div id="taf497_154" class=" iDevice_content">
+<p>&iexcl;Muy bien!</p>
+</div>
+</section>
+<section id="sa2b497_56" class="feedback js-hidden">
+<div id="taf497_157" class=" iDevice_content">
+<p>&Eacute;sta no es la clase.</p>
+</div>
+</section>
+<section id="sa3b497_56" class="feedback js-hidden">
+<div id="taf497_160" class=" iDevice_content">
+<p>Fallaste, fíjate bien.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-497_59">Incorrecto</a><span> (<a href="#sa0b497_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-497_154">Opción correcta</a><span> (<a href="#sa1b497_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-497_157">Incorrecto</a><span> (<a href="#sa2b497_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-497_160">Incorrecto</a><span> (<a href="#sa3b497_56">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

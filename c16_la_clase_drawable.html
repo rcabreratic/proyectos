@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>C.1.6.- La clase Drawable | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-134" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">C.1.6.- La clase Drawable</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id550">
+<div class="iDevice emphasis0">
+<div id="ta550_73" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="drawable.jpg" width="280" height="186" title="Recursos Drawable" alt="Ilustración que muestra unas témperas y lápices de colores" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/photos/regreso-a-la-escuela-l%C3%A1pices-1576791/" target="_blank" class="author" title="Acceder a la imagen  &quot;Recursos Drawable&quot;, de &quot;Mimzy&quot;, en Pixabay. (Se abre en una nueva ventana)">Mimzy </a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)" target="_blank">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>La documentación de <span lang="en">G<span lang="en">oogle</span></span><span lang="en"></span> nos dice que <strong><span lang="en"><code>Drawable</code></span></strong> es una abstracción general de "algo que puede ser dibujado".</p>
+<p>A partir de esa definición nosotros podemos definir objetos gráficos más específicos a través que clases que heredan de ella. Puedes consultar la documentación en <a href="https://developer.android.com/guide/topics/resources/drawable-resource?hl=es" title="Acceder a la documentación sobre las subclases Drawables en Android (Se abre en una ventana nueva) " target="_blank" class="html">Recursos de elementos de diseño</a> para ver el conjunto de clases que heredan de <code>Drawable</code>: <code>BitmapDrawable, ShapeDrawable, VectorDrawable, LayerDrawable, StateListDrawable, GradientDrawable, TransitionDrawable</code> y <code>AnimationDrawable</code> entre otras. </p>
+<p>Nos detendremos un poco con la clase <code>VectorDrawable.</code> </p>
+<p>Cuando tenemos que hacer uso de muchos recursos gráficos es conveniente el uso de <strong>Gráficos Vectoriales Escalables</strong> o <acronym title="Scalable Vector Graphics" lang="en">SVG</acronym> ya que disminuye el tamaño de nuestro <acronym title="Android Aplication Package" lang="en">APK.</acronym> Utilizar este recurso es útil en imágenes que no sean complejas, ni tenga patrones ni degradados; en estos supuestos es mejor utilizar los recursos convencionales de mapa de <span lang="en">bits</span>. Si se abre un fichero con extensión <code>.svg</code> en un editor de texto encontraremos el código que indica cómo pintar la imagen de forma que puede ser redimensionada al no estar generada por píxeles. Y para agregar la imagen utilizamos un <code>ImageView</code> mediante el atributo <code>app:srcCompat</code>. Consulta la documentación en <span lang="en">Android Developers:</span><a href="https://developer.android.com/studio/write/vector-asset-studio?hl=es-419" title="Acceder a la documentación oficial cómo agregar gráficos vectoriales de varias densidades (Se abre en una ventana nueva)" target="_blank" class="html">Cómo agregar gráficos vectoriales de varias densidades. </a></p>
+<p>Un recurso <code>Drawable</code> se puede definir en código como muestra el siguiente código donde usamos la clase <code>ShapeDrawable</code> para dibujar un rectángulo.</p>
+<div class="codigo elemento_centrado" style="width: 31.85em;">
+<div class="texto_izquierda">
+<pre><code>public class FormasDibujables extends View {</code>
+</pre>
+<pre><code>	ShapeDrawable sdRectan ;</code>
+</pre>
+<pre><code>	public FormasDibujables(Context context, </code>
+</pre>
+<pre><code>		AttributeSet attrs) { </code>
+</pre>
+<pre><code>		super(context, attrs);</code>
+</pre>
+<pre> <code>		// Crear un rectángulo</code>
+</pre>
+<pre><code>		sdRectan = new ShapeDrawable(new RectShape());</code>
+</pre>
+<pre><code>		sdRectan.setBounds(200, 5, 300, 100) ; </code>
+</pre>
+<pre><code>		// De color verde</code>
+</pre>
+<pre><code>		sdRectan.getPaint().setColor(Color.GREEN) ;</code>
+</pre>
+<pre><code>	}</code>
+</pre>
+<pre><code>	@Override </code>
+</pre>
+<pre><code>	protected void onDraw(Canvas canvas) { </code>
+</pre>
+<pre><code>		// Pintar el rectángulo</code>
+</pre>
+<pre><code>		 sdRectan.draw(canvas) ;</code>
+</pre>
+<pre><code>	}</code>
+</pre>
+<pre><code>}</code>
+</pre>
+<pre><code>…</code>
+</pre>
+</div>
+</div>
+<p> </p>
+<p>Hay tres formas de definir e instanciar un objeto:</p>
+<ul class="lista_verificacion">
+<li><strong>Usando una imagen guardada</strong> en los recursos del proyecto.</li>
+<li><strong>Utilizando un fichero <acronym title="eXtended Markup Language." lang="en">XML</acronym></strong> que define las propiedades del objeto para luego recuperarlo mediante <strong><span style="font-size: medium;"><code>getDrawable()</code></span></strong> y el <abbr title="Identificador">ID</abbr> que se le asigne en el <acronym title="eXtended Markup Language." lang="en">XML.</acronym></li>
+<li><strong>Usando los constructores</strong> propios de la clase.</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id551">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta551_44" class="block iDevice_content">
+<p>Este vídeo sobre la clase <code>Drawable </code>y sus descendientes es fundamental que lo veas por su interés.</p>
+<div class="exe-figure exe-media position-center" style="width: 350px;">
+<div class="figcaption header"><strong>Clase <span lang="en">Clase Drawable</span></strong></div>
+<iframe width="350" height="288" src="//www.youtube.com/embed/iHrf1H4AY-4" frameborder="0"></iframe><br />
+<div class="figcaption">
+<div class="elemento_centrado credenciales"><a href="descripcion_video_drawable.html" title="Acceder al resumen textual alternativo para el vídeo Crear un objeto clase Drawable. (Se abre en una nueva ventana)" target="_blank">Resumen textual alternativo</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id552">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta552_128" class="block iDevice_content">
+<p>Te ponemos a continuación un enlace donde puedes ver ejemplos en código <span title="Extensible Markup Language" lang="en"><acronym title="eXtensible Markup Language" lang="en">XML</acronym></span> de clases que heredan de <code>Drawable</code> y su uso en el diseño de una interfaz:</p>
+<p style="text-align: center;"><a href="http://www.jtech.ua.es/dadm/restringido/android/sesion05-apuntes.html" title="Acceder a la documentación sobre Drawables  en Jtech (Se abre en una ventana nueva)" target="_blank" class="html"><span lang="en">Drawables</span> en Desarrollo de Aplicaciones para Dispositivos Móviles.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id553">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-553_60" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion553_60" class="block question iDevice_content">
+<p><strong>&iquest;Qu&eacute; subclase de <code>Drawable</code> permite hacer animaciones <span lang="en">frame</span> a <span lang="en">frame</span> partiendo de objetos <code>Drawable</code>?</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i553_63" class="sr-av"><a href="#answer-553_63">Opción 1</a></label><input type="radio" name="option553_60" id="i553_63" class="exe-radio-option exe-radio-option-0-4-553_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-553_63"><div id="taans553_63" class="block iDevice_content">
+<p><code>StateListDrawable</code>.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i553_74" class="sr-av"><a href="#answer-553_74">Opción 2</a></label><input type="radio" name="option553_60" id="i553_74" class="exe-radio-option exe-radio-option-1-4-553_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-553_74"><div id="taans553_74" class="block iDevice_content">
+<p><code>LayerDrawable. </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i553_77" class="sr-av"><a href="#answer-553_77">Opción 3</a></label><input type="radio" name="option553_60" id="i553_77" class="exe-radio-option exe-radio-option-2-4-553_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-553_77"><div id="taans553_77" class="block iDevice_content">
+<p><code>TransitionDrawable. </code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i553_80" class="sr-av"><a href="#answer-553_80">Opción 4</a></label><input type="radio" name="option553_60" id="i553_80" class="exe-radio-option exe-radio-option-3-4-553_60-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-553_80"><div id="taans553_80" class="block iDevice_content">
+<p><code>AnimationDrawable. </code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b553_60" class="feedback js-hidden">
+<div id="taf553_63" class=" iDevice_content">
+<p>No, te has equivocado.</p>
+</div>
+</section>
+<section id="sa1b553_60" class="feedback js-hidden">
+<div id="taf553_74" class=" iDevice_content">
+<p>No, prueba de nuevo.</p>
+</div>
+</section>
+<section id="sa2b553_60" class="feedback js-hidden">
+<div id="taf553_77" class=" iDevice_content">
+<p>No has acertado, int&eacute;ntalo de nuevo.</p>
+</div>
+</section>
+<section id="sa3b553_60" class="feedback js-hidden">
+<div id="taf553_80" class=" iDevice_content">
+<p>&iexcl;Correcto!</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-553_63">Incorrecto</a><span> (<a href="#sa0b553_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-553_74">Incorrecto</a><span> (<a href="#sa1b553_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-553_77">Incorrecto</a><span> (<a href="#sa2b553_60">Retroalimentación</a>)</span></li>
+<li><a href="#answer-553_80">Opción correcta</a><span> (<a href="#sa3b553_60">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

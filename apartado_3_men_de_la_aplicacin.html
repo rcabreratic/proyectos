@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Apartado 3. Menú de la aplicación | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-41" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">Apartado 3. Menú de la aplicación</h1></div></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id28">
+<div class="iDevice emphasis0">
+<div id="ta28_85" class="block iDevice_content">
+<ul>
+<li><strong>Menú de la aplicación: </strong>En la pantalla Tareas, el usuario tendrá visible un menú con las opciones "Acerca de" y "Salir". Además aparecerán dos botones en la barra de la aplicación "Añadir" y "Prioritarias".
+<ul>
+<li>Posible apariencia (ver imagen a la derecha) <img src="menu.png" alt="Menú de la aplicación" width="196" height="158" style="float: right;" /></li>
+<li>‘<strong>Acerca de</strong>’: Debe contener un texto con el título de la aplicación "TrassTarea", el nombre del centro "IES Trassierra", tu nombre como autor/a de la misma y el año actual. No se creará una actividad para esto. Bastará un texto emergente con un botón "Aceptar". Tras pulsar el botón desaparecerá el texto.</li>
+<li>'<strong>Salir</strong>': Para cerrar la aplicación completamente. Lanzará un Toast con el mensaje "Hasta pronto".</li>
+<li>Botón '<strong>Añadir Tarea': </strong>Este botón aparecerá con texto si cabe (posiblemente solo en orientación horizontal).
+<ul>
+<li>Lanzará la actividad <strong>CrearTareaActivity</strong>.
+<ul>
+<li>Esta actividad deberá utilizar un ConstraintLayout en el que aparecerá el título de la actividad "Añadir tarea" y debajo utilizarás un contenedor (LinearLayout) para un formulario realizado mediante la sucesión de dos fragmentos (Fragment) que se comunicarán mediante ViewModel.</li>
+<li>El primer fragmento (ConstraintLayout) contendrá las vistas necesarias para introducir:
+<ul>
+<li>Título de la tarea (EditText)</li>
+<li>Fecha de creación de la tarea (EditText con DatePickerFragment)</li>
+<li>Fecha objetivo para la finalización de la tarea (EditText con DatePickerFragment)</li>
+<li>Progreso (Spinner) para seleccionar una opción de una lista desplegable en la que el usuario podría elegir el estado de progreso de la tarea: "No iniciada", "Iniciada", "Avanzada", "Casi finalizada" o "Finalizada" que se guardarán en dicho atributo con los valores numéricos (0%, 25%, 50%, 75% y 100%, respectivamente)</li>
+<li>Prioritaria, valor booleano (CheckBox). Si la tarea es prioritaria (valor true) en el listado se mostrará la tarea con el título en negrita y la estrella en amarillo.</li>
+<li>Botón "Siguiente" (Button) que servirá para dar paso a un segundo fragmento.</li>
+</ul>
+</li>
+<li>El segundo fragmento (LinearLayout) contendrá:
+<ul>
+<li>Descripción: (EditText multilínea) para escribir la descripción completa de la tarea. Este campo puede contener miles de caracteres.</li>
+<li>Ventana con barra de desplazamiento vertical (Scroll) que contendrá la vista anterior por si la descripción desborda el tamaño de la pantalla del dispositivo. Se pueden usar generadores de texto aleatorio, del tipo Lorem Ipsum, para generar una descripción que desborde la pantalla.</li>
+<li>Botón "Volver" (Button), fuera del scroll, alineado a la izquierda, que cargará el fragmento anterior con los contenidos correspondientes.</li>
+<li>Botón "Guardar" (Button), fuera del scroll, alineado a la derecha, que guardará todos los campos del formulario en un nuevo objeto Tarea.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Botón '<strong>Prioritarias</strong>': Este botón aparecerá con texto si cabe (posiblemente solo en orientación horizontal).
+<ul>
+<li>Conmutará el modo "Todas las tareas" con el modo "Tareas prioritarias" para que se muestren en el listado todas las tareas o únicamente las tareas prioritarias.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>
