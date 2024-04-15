@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.5.1.- Según la orientación de la pantalla | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-75" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.5.1.- Según la orientación de la pantalla</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id395">
+<div class="iDevice emphasis0">
+<div id="ta395_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para  &quot;Recursos Orientación&quot;" href="PMDM05_CONT_R16_recurso_land.png"><img src="PMDM05_CONT_R16_recurso_land_miniatura.jpg" alt="Ejemplo de recurso-land. Se muestran dos capturas de pantalla del móvil, la primera en vertical y la segunda en horizontal, con el mismo conjunto de botones, y entre ambas una flecha que da a entender que pulsando Control+F11 se pasa de la primera a la segunda." title="Recursos orientación." class="imagen_ampliable" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span>  <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p>¿Qué ocurre cuando ponemos nuestro dispositivo móvil en posición horizontal?</p>
+<p>Este simple gesto es muy habitual y debe tenerse muy en cuenta a la hora de diseñar las interfaces de usuario de las aplicaciones, porque a veces no resulta conveniente utilizar la misma plantilla si nuestro dispositivo está en posición vertical u horizontal.</p>
+<p>Veamos esto con un ejemplo. Supongamos que tenemos una interfaz gráfica como la que se muestra en la imagen de la izquierda que podría estar hecho con un <code>LinearLayout</code> y cuatro botones en orientación vertical. Si giramos nuestro emulador veríamos el resultado, tal y como se muestra en la imagen de la derecha.</p>
+<p>La mejor solución sería crear un recurso alternativo de la siguiente forma:</p>
+<ul class="lista_verificacion">
+<li><strong>Paso 1:</strong> crear una carpeta llamada <code>/res/layout-land/</code>. Puedes hacerlo pinchando el botón derecho del ratón sobre la carpeta<code> /res/</code> y elegir <code>New - Android Resource Directory</code>. En el tipo de recurso seleccionamos <code>Layout</code> y entre los posibles atributos (<code>Available Qualifiers</code>) seleccionamos la orientación (<code>Orientation)</code> y elegimos la opción horizontal (<code>Landscape). </code>Si nos fijamos en el nombre del directorio que se va a crear es el mismo que el original añadiendo el sufijo <code>-land</code>, de esta manera cuando el dispositivo se encuentre en posición horizontal, automáticamente cogerá de esta carpeta la plantilla a mostrar.</li>
+<li><strong>Paso 2:</strong> crear el fichero <acronym title="eXtended Markup Language." lang="en">XML</acronym> correspondiente a la nueva plantilla alternativa que debe mostrarse cuando el dispositivo esté en horizontal dentro de la carpeta <code>res/layout-land/</code>. El nombre del fichero debe ser el mismo de la plantilla que se toma por defecto en la carpeta<code> /res/layout/</code>. Para crear dicho fichero nos situamos en la carpeta recién creada y con el botón derecho del ratón seleccionamos <code>New - Layout resource file </code> A continuación ponemos el mismo nombre del fichero original y ya podremos editar con otro tipo de <span lang="en">layout </span>diferente el contenido de la nueva plantilla. (<strong>NOTA:</strong> Una buena opción suele ser copiar y pegar el fichero original y modificar el tipo de<span lang="en"> layout</span> por el que más se ajuste cambiando los atributos que sean necesarios).</li>
+</ul>
+<p>Ahora, cuando la aplicación detecta que el dispositivo está orientado horizontalmente se cargaría la plantilla alternativa. Podría quedar algo así utilizando para este nuevo caso un <code>TableLayout</code>.</p>
+<div class="elemento_centrado">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R17_recursoHorizontal.png" alt="Ejemplo de orientación horizontal. Se ve una captura de pantalla del móvil en horizongal, cuya ventana de aplicación muestra el título Ejemplo Recursos, y dentro contiene cuatro botones en dos filas y dos columnas, con nombres Uno, Dos, Tres, Cuatro." title="Recursos orientación 2." width="410" height="180" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span> <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p></p>
+<p>¡Vamos, inténtalo tú ahora!</p>
+<p>Seguro que con los conocimientos de los diferentes <span lang="en">layouts </span>y los distintos tipos de controles no te costará sacar el código y probarlo en tu equipo.</p>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

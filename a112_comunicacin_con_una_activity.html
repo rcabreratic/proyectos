@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.11.2.- Comunicación con una Activity | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-95" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.11.2.- Comunicación con una Activity</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id445">
+<div class="iDevice emphasis0">
+<div id="ta445_154" class="block iDevice_content">
+<div class="elemento_izquierda">
+<div class="elemento_centrado"><img src="whatsapp.jpg" width="200" height="133" alt="Ilustración que muestra la aplicación WhatsAppa a través de la cual nos comunicamos" title="Aplicación WhatsApp" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/photos/whatsapp-messenger-tecnolog%C3%ADa-2714400/" target="_blank" class="author" title="Acceder a la web de descarga de la imagen de alberthbq  en Pixabay. (Se abre en una nueva ventana)">alberthbq</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>En este apartado veremos cómo un <code>Fragment</code> se comunica con la<code> Activity</code> que lo contiene, bien porque envía o recibe información que necesita. En el proyecto que estamos realizando vamos a añadir un nuevo fragmento llamado<code> ViewNoteFragment</code> que mostrará la información de la nota seleccionada en<code> NoteListFragment.</code> Para ello este último fragmento le pasará un objeto<code> Note </code>a <code>ViewNoteFragment</code> a través de la <code> Activity</code> que contiene a ambos. </p>
+<p>La forma más fácil de comunicar el fragmento con su actividad es mediante interfaces. La idea es básicamente definir una interfaz dentro de un fragmento y dejar que la actividad implemente esa interfaz:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Primero se define una interfaz que describa la acción que se desea.
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>  interface ListNoteFragmentCallback { </code></pre>
+<pre><code>      void  onNoteView(Note note); </code></pre>
+<pre><code>  } </code></pre>
+</div>
+</div>
+</li>
+<li>Implementar la interfaz definida en la actividad.
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>  public class MainActivity extends AppCompatActivity <br />                       implements ListNoteFragment.ListNoteFragmentCallback</code></pre>
+</div>
+</div>
+</li>
+<li>Adquirir instancia de la interfaz desde el <code>Fragment</code>.
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><span>private </span>ListNoteFragmentCallback <span>callback</span>;<br />.........................................</pre>
+<pre><code><br />@Override</code></pre>
+<pre><code>public void onAttach(Context context) {</code></pre>
+<pre><code>   super.onAttach(context);</code></pre>
+<pre><code>   try {</code></pre>
+<pre><code>       callback = (ListNoteFragmentCallback) context;</code></pre>
+<pre><code>   } catch (ClassCastException e) { <br /></code><code>            throw new ClassCastException(context.toString() + " must implement </code></pre>
+<pre><code>            ListNoteFragmentCallback");</code></pre>
+<pre><code>   }</code></pre>
+<pre><code>} </code></pre>
+</div>
+</div>
+</li>
+<li>Invocar la instancia de interfaz cuando sea necesario.
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><span>listener </span>= <span>new </span>NoteAdapter.OnItemClickListener() {<br />    <span>@Override<br /></span><span>    </span><span>public void </span>onItemClick(Note note) {<br />        <span>callback</span>.onNoteView(note);<br />    }<br />};</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id446">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta446_135" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b446" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b446" class="block iDevice_content">
+<p><strong>Para comunicar un fragmento con su actividad, el fragmento debe implementar la interfaz que se ha declarado en la actividad que lo contiene. </strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b446"><input type="radio" name="option0b446" id="true0b446" class="exe-radio-option exe-radio-option-0-2-0b446-truefalse" /> Verdadero</label> 
+<label for="false0b446"><input type="radio" name="option0b446" id="false0b446" class="exe-radio-option exe-radio-option-1-2-0b446-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b446" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b446-result" class="wrong">Falso</strong></p>
+<p>La interfaz se define dentro del fragmento y es la actividad quien implementa esa interfaz:</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

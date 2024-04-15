@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.7.2.- Creando un menú principal con submenús II | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-82" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.7.2.- Creando un menú principal con submenús II</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id413">
+<div class="iDevice emphasis0">
+<div id="ta413_154" class="block iDevice_content">
+<p>Cuando ejecutemos la aplicación veremos los botones en la barra de acción y el funcionamiento seguirá siendo el mismo. Se puede tener un menú con un submenú dentro de una de las opciones, sería similar al siguiente código:</p>
+<div class="codigo elemento_centrado" style="width: 43.95em;">
+<div class="texto_izquierda">
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;</code></pre>
+<pre>&lt;item<br />        android:id="@+id/action_settings"<br />        android:title="@string/menu_settings"<br />        android:orderInCategory="98"<code>&gt;</code></pre>
+<pre><code>         &lt;menu&gt;</code></pre>
+<pre><code>            &lt;item android:id="@+id/action_modo_noche"</code></pre>
+<pre><code>                  android:title="@string/menu_modo_noche" /&gt;</code></pre>
+<pre><code>        &lt;/menu&gt;</code></pre>
+<pre><code>    &lt;/item&gt;</code></pre>
+<pre><code>   ...........</code></pre>
+<pre><code>&lt;/menu&gt;</code></pre>
+</div>
+</div>
+<p></p>
+<p>Si te fijas bien, verás que hay que editar el fichero <code>strings.xml </code>para poner los recursos de tipo texto que aparecerán en cada una de las opciones del menú. Por ejemplo las siguientes:</p>
+<div class="codigo elemento_centrado" style="width: 43.95em;">
+<div class="texto_izquierda"><code></code>
+<pre>&lt;<span>string </span><span>name</span><span>="action_order"</span>&gt;Ordernar por&lt;/<span>string</span>&gt;<br />&lt;<span>string </span><span>name</span><span>="menu_aboutus"</span>&gt;Sobre nosotros&lt;/<span>string</span>&gt;<br />&lt;<span>string </span><span>name</span><span>="menu_help"</span>&gt;Ayuda&lt;/<span>string</span>&gt;<br />&lt;<span>string </span><span>name</span><span>="menu_settings"</span>&gt;Configuración&lt;/<span>string</span>&gt;<br />&lt;<span>string </span><span>name</span><span>="action_share"</span>&gt;Compartir&lt;/<span>string</span>&gt;</pre>
+</div>
+</div>
+<p></p>
+<p>El siguiente paso será llamar a este menú desde nuestra clase J<span lang="en">ava </span>donde queremos que se visualice, en nuestro caso en la actividad principal. Primero hay que obtener una referencia al objeto <code>Inflater</code> con el método <code>getMenuInflater() </code>para después generar el menú con el método <code>inflate() </code>pasando el identificador.</p>
+<div class="codigo elemento_centrado" style="width: 33.5em;">
+<div class="texto_izquierda"><code></code>
+<pre><code>public boolean onCreateOptionsMenu(Menu menu) {<br />     getMenuInflater().inflate(R.menu.menu, menu);<br />     return true;<br />}<br /></code></pre>
+</div>
+</div>
+<p></p>
+<p>Aunque ya puedes comprobar que se visualiza el menú en tu emulador, faltaría proporcionar la funcionalidad a los botones, lo que conseguiremos sobrescribiendo el método <code>onOpcionItemSelected()</code> al que se le pasa el objeto de tipo <code>MenuItem</code> que almacena la opción pulsada.</p>
+<div class="codigo elemento_centrado" style="width: 46.7em;">
+<div class="texto_izquierda">
+<pre><span>public boolean </span>onOptionsItemSelected(MenuItem item) {<br />    <span>switch </span>(item.getItemId()) {<br />        <span>case </span>R.id.<span>action_order</span>:<br />            Toast.<span>makeText</span>(<span>this</span>,<br />                    <span>"Has pulsado la opción ordenar alfabéticamente"</span>, Toast.<span>LENGTH_SHORT</span>).show();<br />            <span>return true</span>;<br />        <span>case </span>R.id.<span>action_share</span>:<br />            Toast.<span>makeText</span>(<span>this</span>,<br />                    <span>"Has pulsado la opción compartir"</span>, Toast.<span>LENGTH_SHORT</span>).show();<br />            <span>return true</span>;<br />        .............................................<br />        <span>default</span>:<br />            <span>return super</span>.onOptionsItemSelected(item);<br />    }<br />}</pre>
+</div>
+</div>
+<p></p>
+<p>Al lanzar la aplicación veremos que pulsando sobre el botón <strong>menú</strong> nos aparecerán las opciones que hemos creado, incluyendo el submenú que tiene la primera opción.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id414">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta414_135" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b414" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b414" class="block iDevice_content">
+<p><strong>Para mostrar mostrar el menú que se ha definido en un recurso <code>menu</code> hay que llamar al método <code>inflate()</code> de la clase <code>MenuInflater</code></strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b414"><input type="radio" name="option0b414" id="true0b414" class="exe-radio-option exe-radio-option-0-2-0b414-truefalse" /> Verdadero</label> 
+<label for="false0b414"><input type="radio" name="option0b414" id="false0b414" class="exe-radio-option exe-radio-option-1-2-0b414-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b414" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b414-result" class="right">Verdadero</strong></p>
+
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

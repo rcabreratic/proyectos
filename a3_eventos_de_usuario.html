@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.3.- Eventos de usuario | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-65" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.3.- Eventos de usuario</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id366">
+<div class="iDevice emphasis0">
+<div id="ta366_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R22_button.jpg" alt="Botón para abrir." title="Botón." height="200" width="150" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc" title="CC by-nc" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc</span></a> <a title="Acceder a la web de descarga de la imagen de Tim Ellis. (Se abre en una nueva ventana)" href="http://farm1.staticflickr.com/164/337893938_5fba49efec_n.jpg" target="_blank">Tim Ellis</a></div>
+</div>
+<p>Como has podido comprobar hasta ahora el diseño de la interfaz de usuario se ha realizado mediante <acronym title="eXtensible Markup Language" lang="en">XML</acronym>, ahora comenzaremos a trabajar con <span lang="en">Java</span> para proporcionar los mecanismos apropiados para esa interacción con el usuario. Comencemos por ver algunos conceptos necesarios:</p>
+<ul class="lista_verificacion">
+<li><strong>Eventos</strong>: son las acciones que los usuarios realizan sobre el dispositivo móvil o sobre algún objeto de la pantalla. (<abbr title="Ejemplo:">Ej. </abbr>pulsar un botón, arrastrar un elemento por la pantalla, <abbr title="etcétera.">etc.</abbr>)</li>
+<li><strong>Escuchadores (<span lang="en">Listeners</span>)</strong>: son los componentes que gestionan los eventos. Normalmente existe un <span lang="en">listener</span> por evento. Se representan por clases abstractas donde el desarrollador debe implementar el método que recibirá el evento.</li>
+<li><strong>Métodos que registran los escuchadores</strong>: son los métodos que permiten registrar los <span lang="en">listeners </span>para que puedan ser utilizados. Puedes encontrarlos en la clase <code>android.view.View</code>. (<abbr title="Ejemplo.">Ej.</abbr>: el método <code>setOnClickListener() </code>registra el <span lang="en">listener</span> <code>OnClickListener</code> que capturará los eventos cuando se pulsa sobre un elemento de la pantalla).</li>
+</ul>
+<p>Para registrar los escuchadores podemos utilizar varias técnicas según la documentación oficial, pero vamos a centrarnos en las siguientes que seguiremos con un ejemplo muy sencillo.</p>
+<ul class="lista_verificacion">
+<li><strong>Implementación anónima:</strong> creamos un objeto anónimo del escuchador con la implementación del evento dentro y su registro se hace desde la clase de la actividad.<br />
+<div class="codigo elemento_centrado" style="width: 40.1em;">
+<div class="texto_izquierda">
+<pre><code>// Registramos el escuchador</code></pre>
+<pre><code>Button boton = (Button)findViewById(R.id.button1);</code></pre>
+<pre><code>boton.setOnClickListener(miEscuchador); </code></pre>
+<pre> </pre>
+<pre><code>//Implementamos  el evento dentro del Listener</code></pre>
+<pre><code>private OnClickListener miEscuchador = new OnClickListener() {</code></pre>
+<pre><code>    public void onClick(View v) { </code></pre>
+<pre><code>     TextView texto = (TextView)findViewById(R.id.textView1);</code></pre>
+<pre><code>     texto.setText(R.string.despedida);</code></pre>
+<pre><code>    }</code></pre>
+<pre><code>};</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Implementación en la misma clase:</strong> en este caso la clase de la actividad implementaría la interfaz del escuchador y lo registramos desde aquí. Esta opción es la más recomendada, puesto que tiene menos gasto de memoria.</p>
+<div class="codigo elemento_centrado" style="width: 44.5em;">
+<div class="texto_izquierda">
+<pre><code>public class MainActivity extends Activity implements OnClickListener </code></pre>
+<pre><code>     ...</code></pre>
+<pre><code>     // Registramos el escuchador</code></pre>
+<pre><code>     Button boton =(Button)findViewById(R.id.button1);</code></pre>
+<pre><code>     boton.setOnClickListener(this); </code></pre>
+<pre><code>}</code></pre>
+<pre><code>//Implementamos el evento</code></pre>
+<pre><code>public void onClick(View v) {</code></pre>
+<pre><code>     TextView texto = (TextView)findViewById(R.id.textView1);</code></pre>
+<pre><code>     texto.setText(R.string.despedida);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id367">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta367_46" class="block iDevice_content">
+<p>En los siguientes enlaces puedes descargarte los proyectos de ejemplo de cada caso (implementación anónima e implementación en la misma clase). Puedes estudiar su código con lo que se ha explicado anteriormente.</p>
+<p class="enlace_centrado"><a href="ImplementacionAnonima.zip" target="_blank" class="paquete" title="Descargar el paquete con el ejemplo de implementación anónima. Se abre en una nueva ventana [zip - 26.57 MB]">Ejemplo de implementación anónima</a><span class="exe-link-data file-size"> (zip - 26.57 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>. <span class="tamano"><br /></span></p>
+<p class="enlace_centrado"><a href="ImplementacionMismaClase.zip" target="_blank" class="paquete" title="Descargar el paquete con el ejemplo de implementación en la misma clase. Se abre en una nueva ventana [zip - 26.48 MB]">Ejemplo de implementación en la misma clase.</a><span class="exe-link-data file-size"> (zip - 26.48 <abbr lang="en" title="MegaBytes">MB</abbr>)</span> <span class="tamano"><br /></span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id368">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta368_44" class="block iDevice_content">
+<p>Existen muchos tipos de eventos, algunos de ellos comunes a varios tipos de objetos, otros más específicos de cada uno. Es fundamental consultar la página oficial de <span lang="en">Android</span>.</p>
+<p class="enlace_centrado"><a class="html" title="Acceder a la web de consulta de los tipos de eventos y listeners en la página oficial de Android." href="http://developer.android.com/guide/topics/ui/ui-events.html">Tipos de eventos en <span lang="en">Android</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id369">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta369_50" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b369" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b369" class="block iDevice_content">
+<p><strong>Un escuchador o <span lang="en">listener</span> es una acción que realiza el usuario en su dispositivo móvil.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b369"><input type="radio" name="option0b369" id="true0b369" class="exe-radio-option exe-radio-option-0-2-0b369-truefalse" /> Verdadero</label> 
+<label for="false0b369"><input type="radio" name="option0b369" id="false0b369" class="exe-radio-option exe-radio-option-1-2-0b369-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b369" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b369-result" class="wrong">Falso</strong></p>
+<p>La afirmación es falsa porque la definición se corresponde a un evento. El <span lang="en">listener</span> es el componente que gestiona esa acción o evento.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

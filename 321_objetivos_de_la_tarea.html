@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>3.2.1.- Objetivos de la tarea | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-20" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">3.2.1.- Objetivos de la tarea</h1></div></header>
+<article class="iDevice_wrapper objectivesIdevice em_iDevice em_iDevice_objectives" id="id38">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Objetivos</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta38_169_2" class="block iDevice_content">
+<p>El <strong>objetivo principal</strong> de la aplicación será trabajar con la persistencia de datos y las comunicaciones externas. La aplicación será una continuación de la tarea grupal 1, ampliando sus funcionalidades.</p>
+<p><em><span style="font-size: 10pt;"></span></em></p>
+<p>Los <strong>objetivos específicos</strong> de esta tarea están centrados en la utilización de varias tecnologías y enfoques que paso a enumerar:</p>
+<h4>1. SharedPreferences:</h4>
+<ul>
+<li>Usaremos SharedPreferences para almacenar las opciones de la aplicación, como configuraciones de usuario, preferencias de visualización, temas, etc.</li>
+<li>Deberás proporcionar una pantalla de preferencias donde los usuarios puedan ajustar estas opciones y luego guarda los valores en SharedPreferences.</li>
+</ul>
+<h4>2. Ficheros:</h4>
+<ul>
+<li>Se permitirá a los usuarios adjuntar archivos a las tareas y guardar esos archivos en el almacenamiento interno o externo (tarjeta SD) del dispositivo.</li>
+<li>Vamos a implementar la funcionalidad para adjuntar archivos asociados a cada tarea.</li>
+<li>Deberemos usar una adecuada gestión de permisos y de ubicación de almacenamiento.</li>
+</ul>
+<h4>3. Base de datos SQLite interna:</h4>
+<ul>
+<li>Para la persistencia de la colección de tareas, usaremos una base de datos SQLite de Android.</li>
+<li>Permitiremos a los usuarios consultar las tares almacenadas y también agregar, editar y eliminar tareas, asegurándonos de que estas operaciones quedan reflejadas en la base de datos.</li>
+</ul>
+<h4>4. Base de datos MySQL/MariaDB externa:</h4>
+<ul>
+<li>Alternativamente a la base de datos interna, deberás crear una base de datos MySQL/MariaDB en un servidor externo que tendrá la misma estructura que la base de datos interna.</li>
+</ul>
+<h4>5. Librería ROOM</h4>
+<ul>
+<li>La aplicación tendrá un diseño independiente del almacén de datos, es decir, no se verá afectado cuando cambiemos la BD interna por la externa o viceversa. Para esto utilizaremos un repositorio de datos.</li>
+<li>Deberás usar la librería ROOM para acceder y realizar operaciones de creación, consulta, actualización y borrado del repositorio de datos.</li>
+</ul>
+<h4>6. Comunicaciones HTTP/HTTPS</h4>
+<ul>
+<li>Se utilizarán clases que permitan comunicar la aplicación, mediante HTTP/HTTPS, con la base de datos externa.</li>
+</ul>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

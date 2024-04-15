@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.1.1.- La pantalla de Android | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-54" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.1.1.- La pantalla de Android</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id334">
+<div class="iDevice emphasis0">
+<div id="ta334_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R02_screens-densities.png" alt="Distintos tipos de densidades en los smartphones: LDPI, MDPI, HDPI y XHDPI" title="Densidades pantalla." width="231" height="231" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Google Inc. (Se abre en una nueva ventana)" href="http://developer.android.com/images/screens_support/screens-densities.png" target="_blank">Google Inc.</a></div>
+</div>
+<p>Vamos a destacar una de las características principales que debemos tener en cuenta antes de comenzar a desarrollar la interfaz de usuario: <strong>la pantalla.</strong></p>
+<p>Como desarrolladores de aplicaciones <span lang="en">Android</span>, nuestro objetivo es que las aplicaciones se puedan instalar en el máximo número posible de terminales, tanto <span lang="en">smartphones</span> como <span lang="en">tablets</span>. Como sabemos, cada dispositivo tiene un tamaño distinto de pantalla y eso nos va a condicionar mucho a la hora de elaborar nuestras aplicaciones.</p>
+<p>Pero el tamaño de la pantalla no es lo único que hay que tener en cuenta, <span lang="en">Android</span> también considera las diferentes <strong>densidades de la pantalla</strong>. Veamos algunos conceptos a tener en cuenta para diseñar las interfaces de usuario de una aplicación <span lang="en">Android</span>.</p>
+<ul class="lista_verificacion">
+<li><strong>Tamaño:</strong> longitud de la pantalla en diagonal, se mide en pulgadas. <span lang="en">Android</span> hace cuatro grupos (<strong><span lang="en">small, normal, large</span></strong> y <strong><span lang="en">extra large</span></strong>).</li>
+<li><strong>Densidad:</strong> cantidad de píxeles en un área física de la pantalla. Se mide en puntos por pulgadas (<acronym title="Dots per inch." lang="en">DPI</acronym>). <span lang="en">Android </span>establece cuatro grupos según la densidad (<strong><span lang="en">low</span> o <acronym title="Low Dots Per Inch." lang="en">LDPI</acronym>, <span lang="en">medium</span> o <acronym title="Medium Dots Per Inch." lang="en">MDPI</acronym>, <span lang="en">high</span> o <acronym title="High Dots Per Inch." lang="en">HDPI</acronym> y <span lang="en">extra high</span> o <acronym title="eXtra High Dots Per Inch." lang="en">XHDPI</acronym>)</strong>.</li>
+<li><strong>Resolución:</strong> cantidad de píxeles de la pantalla en horizontal y vertical. Recuerda que las aplicaciones <span lang="en">Android</span> no trabajan directamente con la resolución, sino que tienen en cuenta el tamaño y la densidad.</li>
+<li><strong><span lang="en">Píxeles</span> independientes de la densidad (<acronym title="Density Pixels." lang="en">DP</acronym>):</strong> ésta es la unidad de píxel virtual que se utiliza en la definición de un diseño de interfaz de usuario para expresar las dimensiones del diseño o la posición de manera independiente a la densidad. Un píxel independiente de la densidad representa un píxel físico en una pantalla de 160 <acronym title="Dots Per Inch." lang="en">DPI</acronym> (densidad media). En tiempo de ejecución, el diseño de la interfaz se adapta de forma transparente al usuario escalando al tamaño adecuado según la pantalla que tenga el dispositivo.</li>
+</ul>
+<p>En la siguiente tabla se muestran algunos de los tipos de pantalla más comunes teniendo en cuenta ambas características. Estas pantallas las podremos representar con el emulador y así probar mejor nuestras aplicaciones.</p>
+<table class="tabla" summary="La tabla muestra algunos tipos de pantalla comunes según tamaño y densidad. Cada columna representa una densidad y cada fila un tamaño." border="0"><caption>Tipos de pantalla más comunes según tamaño y densidad</caption>
+<tbody>
+<tr><th rowspan="2" colspan="2" scope="col">
+<p style="text-align: center;">Tipos de pantalla</p>
+</th><th scope="col" colspan="4">
+<p style="text-align: center;">DENSIDAD</p>
+</th></tr>
+<tr><th scope="col">
+<p><acronym title="Low Dots Per Inch." lang="en">LDPI</acronym></p>
+<p>(120)</p>
+</th><th scope="col">
+<p><acronym title="Medium Dots Per Inch." lang="en">MDPI</acronym></p>
+<p>(160)</p>
+</th><th scope="col">
+<p><acronym title="High Dots Per Inch." lang="en">HDPI</acronym></p>
+<p>(240)</p>
+</th><th scope="col">
+<p><acronym title="eXtra High Dots Per Inch." lang="en">XHDPI</acronym></p>
+<p>(320)</p>
+</th></tr>
+<tr><th scope="row" rowspan="4">
+<p>TAMAÑO</p>
+</th><th scope="row">
+<p>Pequeña</p>
+</th>
+<td style="text-align: center;">
+<p><acronym title="Quarter Video Graphics Array." lang="en">QVGA</acronym></p>
+<p>(240x320)</p>
+</td>
+<td style="text-align: center;"> </td>
+<td style="text-align: center;">
+<p>480x640</p>
+</td>
+<td style="text-align: center;"> </td>
+</tr>
+<tr><th scope="row">Normal</th>
+<td style="text-align: center;">
+<p><acronym title="Wide Quarter Video Graphics Array" lang="en">WQVGA</acronym>400</p>
+<p>(240x400)</p>
+<p> </p>
+<p><acronym title="Wide Quarter Video Graphics Array" lang="en">WQVGA </acronym></p>
+<p>(240x432)</p>
+</td>
+<td style="text-align: center;">
+<p><acronym title="Half-size Video Graphics Array" lang="en">HVGA</acronym></p>
+<p>(320x480)</p>
+</td>
+<td style="text-align: center;">
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>800</p>
+<p>(480x800)</p>
+<p> </p>
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>854</p>
+<p>(480x854)</p>
+<p> </p>
+<p>600x1024</p>
+</td>
+<td style="text-align: center;">
+<p>640x960</p>
+</td>
+</tr>
+<tr><th scope="row">Grande</th>
+<td style="text-align: center;">
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>800</p>
+<p>(480x800)</p>
+<p> </p>
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>854</p>
+<p>(480x854)</p>
+</td>
+<td style="text-align: center;">
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>800</p>
+<p>(480x800)</p>
+<p> </p>
+<p><acronym title="Wide Video Graphics Array" lang="en">WVGA</acronym>854</p>
+<p>(480x854)</p>
+<p> </p>
+<p>600x1024</p>
+</td>
+<td style="text-align: center;"> </td>
+<td style="text-align: center;"> </td>
+</tr>
+<tr><th scope="row">Extragrande</th>
+<td style="text-align: center;">
+<p>1024x600</p>
+</td>
+<td style="text-align: center;"> </td>
+<td style="text-align: center;">
+<p>1536x1152</p>
+<p> </p>
+<p>1920x1152</p>
+<p> </p>
+<p>1920x1200</p>
+</td>
+<td style="text-align: center;">
+<p>2048x1536</p>
+<p> </p>
+<p>2560x1536</p>
+<p> </p>
+<p>2560x1600</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div id="gtx-trans" style="position: absolute; left: 480px; top: 870.266px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id335">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta335_43" class="block iDevice_content">
+<p>Si deseas profundizar más sobre los diferentes tipos de pantallas en <span lang="en">Android</span> puedes consultar la referencia de <span lang="en">Android</span>.</p>
+<p class="enlace_centrado"><a class="html" title="Acceder a la página web oficial de Android sobre “Soporte de múltiples pantallas”." href="http://developer.android.com/guide/practices/screens_support.html">Tipos de pantallas en Android.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ClozefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id336">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta336_122" class="block instructions iDevice_content">
+<p><strong>Rellena la siguiente frase con las palabras adecuadas. </strong></p>
+</section>
+<section class="activity" id="activity-336_123"><form name="cloze-form-336_123" action="#" class="activity-form cloze-activity-form"><div id="cloze336_123"><input type="hidden" name="clozeFlag336_123.strictMarking" id="clozeFlag336_123.strictMarking" value="false"/>
+<input type="hidden" name="clozeFlag336_123.checkCaps" id="clozeFlag336_123.checkCaps" value="false"/>
+<input type="hidden" name="clozeFlag336_123.instantMarking" id="clozeFlag336_123.instantMarking" value="false"/>
+<p><span lang="en">En dispositivos que tienen Android (móviles, tablets, <label for="clozeBlank336_123.0" class="sr-av">Rellenar huecos (1):</label><input class="autocomplete-off" type="text" value="" id="clozeBlank336_123.0" style="width:2ch" /><span style="display:none" id="clozeAnswer336_123.0">JXUwMDBjJXUwMDAy
+</span> ...) nos podemos encontrar </span><span>pantallas con diferentes tamaños y  píxeles. Tomemos una imagen que se muestra correctamente en un dispositivo <label for="clozeBlank336_123.1" class="sr-av">Rellenar huecos (2):</label><input class="autocomplete-off" type="text" value="" id="clozeBlank336_123.1" style="width:4ch" /><span style="display:none" id="clozeAnswer336_123.1">JXUwMDE1JXUwMDA5JXUwMDE0JXUwMDE5
+</span> con 160 píxeles, cuando se visualiza en un dispositivo <acronym title="eXtra High Dot Per Inch" lang="en">XHDPI</acronym> con <label for="clozeBlank336_123.2" class="sr-av">Rellenar huecos (3):</label><input class="autocomplete-off" type="text" value="" id="clozeBlank336_123.2" style="width:3ch" /><span style="display:none" id="clozeAnswer336_123.2">JXUwMDZiJXUwMDAxJXUwMDAy
+</span> píxeles el <span>sistema escalará la imagen y probablemente se mostrará borrosa. Para solucionar este problema la medida de nuestras imágenes será el píxel  <label for="clozeBlank336_123.3" class="sr-av">Rellenar huecos (4):</label><input class="autocomplete-off" type="text" value="" id="clozeBlank336_123.3" style="width:13ch" /><span style="display:none" id="clozeAnswer336_123.3">JXUwMDMxJXUwMDA3JXUwMDBhJXUwMDAxJXUwMDE1JXUwMDE1JXUwMDBiJXUwMDBhJXUwMDBkJXUw
+MDBjJXUwMDBiJXUwMDFhJXUwMDEx
+</span> de la densidad (<acronym title="Density Pixels" lang="en">DP</acronym>) como unidad de medida.</span><span></span></span></p><div class="block iDevice_buttons"><p><input class="button" type="submit" name="submit336_123" value="Enviar"  id="submit336_123" />
+<input type="button" name="restart336_123" value="Reiniciar" style="display:none" id="restart336_123" onclick="$exe.cloze.restart('336_123')" />
+ <input type="button" name="336_123showAnswersButton" value="Mostrar las respuestas" style="display:none" id="showAnswersButton336_123" onclick="$exe.cloze.fillInputs('336_123')" />
+<span class="js-hidden js-warning">Habilitar JavaScript</span></p></div><div id="clozeScore336_123"></div></div></form></section></div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

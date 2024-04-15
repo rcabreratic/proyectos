@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.11.- Fragmentos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-93" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.11.- Fragmentos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id450">
+<div class="iDevice emphasis0">
+<div id="ta450_154" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-CC-BY" style="width: 131px;"><a href="fragment_lifecycle.png" title="Ampliar imagen para &quot;Ciclo de vida de un Fragment&quot;. (Se abre en una nueva ventana)"><img src="fragment_lifecycle_mini.jpg" width="145" height="387" alt="Diagrama de flujo con  el ciclo de vida de un fragment, en inglés. (Ver descripción larga en enlace bajo la imagen)" title="Ciclo de Vida de un Fragment" class="imagen_ampliable" style="float: right;" longdesc="Descripción larga." /></a>
+<div class="figcaption"><a href="fragment_lifecycle.png" title="Ampliar imagen para &quot;Ciclo de vida de un Fragment&quot;. (Se abre en una nueva ventana)">Google Inc.</a><a href="fragment_lifecycle.png" title="Ampliar imagen para &quot;Ciclo de vida de un Fragment&quot;. (Se abre en una nueva ventana)"> </a><a href="descripcion_larga_imagen_CicloVidaFragment.html" title="Ampliar imagen para &quot;Ciclo de vida de un Fragment&quot;. (Se abre en una nueva ventana)"><span class="title"><em>Descripción larga.</em></span></a><a href="fragment_lifecycle.png" title="Ampliar imagen para &quot;Ciclo de vida de un Fragment&quot;. (Se abre en una nueva ventana)"> <span class="license"><span class="sep">(</span>CC BY<span class="sep">)</span></span></a></div>
+</div>
+<p>Los fragmentos surgen con la versión 3.0 de <span lang="en">Android,</span> ya que aparecen en el mercado diferentes dispositivos con diferentes tamaños de pantalla, de forma que el diseño de la interfaz se tenía que adaptar para aprovechar al máximo el espacio de pantalla en cualquiera de las orientaciones (<code>Landscape</code> y <code>Portrait</code>).</p>
+<p>Un fragmento o <code>Fragment</code> es una porción de la interfaz de usuario que está dentro de una actividad, de hecho tiene su propio diseño (recurso<code> Layout</code>) y tiene su propio ciclo de vida aunque está ligado al ciclo de vida de la <code>Activity</code> de la que depende. Por ejemplo, cuando la actividad está pausada, también lo están todos sus fragmentos, y cuando la actividad se destruye, todos los fragmentos que dependen de esa actividad se destruyen.</p>
+<p>Los fragmentos pueden ser de dos tipos:</p>
+<ul class="lista_verificacion">
+<li><strong>Estáticos</strong>: se declara directamente en el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> o <code>Layout</code> de la <code>Activity</code>. Este fragmento una vez que está visible no podrá ser eliminado ni sustituido por otro.</li>
+<li><strong>Dinámicos</strong>: se crea en código Java y se suelen añadir dentro de un <code>ViewGroup</code> normalmente <code>FrameLayout</code>. Este <code>Viewgroup</code> será el contenedor de los fragmentos que se añaden y eliminan en tiempo de ejecución.</li>
+</ul>
+<p>Nosotros utilizaremos fragmentos dinámicos, con lo cual la estructura de nuestras aplicaciones cambia, ya no hay que ir cambiando entre distintas actividades con el consiguiente gasto de memoria sino que dentro de una sola <code>Activity</code> se pueden lanzar varios <code>Fragments</code> que interaccionan entre ellos a través de su <code>Activity</code>, es lo que llamamos <strong>transacciones de fragmentos</strong>.</p>
+<p><span style="font-size: 1em;">Dentro de nuestra aplicación crearemos una clase que hereda de </span><code>Fragment</code><span style="font-size: 1em;"> y que implementará al menos estos tres métodos:</span></p>
+<ul class="lista_verificacion">
+<li><code>onCreate(): </code> este método lo llama el sistema operativo para crear el fragmento. Se deben inicializar los componentes del fragmento de forma que se conservarán si el fragmento se detiene y se reanuda.</li>
+<li><code>onCreateView(): </code>este método se llama para dibujar la interfaz gráfica del fragmento, de forma que será visible en la <code>Activity</code>. Este método devuelve un objeto <code>View</code> resultado de inflar el <span lang="en">Layout</span> del fragmento. Puede ser un valor nulo en el caso de que el fragmento no tenga IU.</li>
+<li><code>onPause()</code>: si la actividad que lo contiene entra en pausa, se llama automáticamente a este método. Se deben guardar los valores que se deban mostrar al usuario cuando la actividad se reanude de nuevo, mostrando la interfaz en el mismo estado que el usuario la dejó.</li>
+</ul>
+<p>Recuerda que es el sistema operativo quien se encarga del control de los ciclos de vida, es decir, de llamar a los métodos del ciclo de vida de los componentes cuando corresponda. Cuando se llama al método<code> onStart()</code> de la <code>Activity</code> se llama a continuación al método <code>onStart() </code>de todos sus fragmentos. Hasta que no terminan todos los métodos <code>onStart() </code> de los fragmentos no finaliza el método <code>onStart()</code> de la <code>Activity</code>.</p>
+<p class="destacado"><strong>Esta secuencia de llamadas que el sistema realiza (métodos <code>callback</code>) hay que tenerlas en cuenta y como desarrolladores no implementar operaciones largas en el tiempo que bloqueen el proceso de nuestra aplicación.</strong></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id451">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta451_148" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b451" class="block iDevice_content">
+<p><strong>El uso de fragmentos estáticos es más frecuente en diseños para <span lang="en">tablets</span> donde una parte de la interfaz interesa que quede fija. Si quieres ver cómo se implementan, visualiza el fichero <code>activity_main.xml</code> y verás que se añade el fragmento estático mediante el siguiente código:</strong></p>
+<div class="codigo elemento_centrado" style="width: 44.5em;">
+<div class="texto_izquierda">
+<pre><code><strong>&lt;fragment</strong></code></pre>
+<pre><code>      android:id="@+id/fragment"</code></pre>
+<pre><code><strong>      android:name="com.example.staticfragment.StaticFragment"</strong></code></pre>
+<pre><code>      android:layout_width="match_parent"</code></pre>
+<pre><code>      android:layout_height="match_parent"</code></pre>
+<pre><code>      android:layout_marginTop="10dp" /&gt;</code></pre>
+</div>
+</div>
+<p></p>
+<p style="text-align: center;"><a href="StaticFragment.zip" title="Acceder a la descarga del ejemplo StaticFragment Se abre en una nueva ventana [zip - 14.19 MB]" target="_blank" class="paquete">Descarga el ejemplo StaticFragment</a><span class="exe-link-data file-size"> (zip - 14.19 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.</p>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

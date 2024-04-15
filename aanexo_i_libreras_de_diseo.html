@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.Anexo I.- Librerías de diseño | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-97" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.Anexo I.- Librerías de diseño</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id452">
+<div class="iDevice emphasis0">
+<div id="ta452_154" class="block iDevice_content">
+<div class="exe-figure exe-image float-right license-copyright" style="width: 250px;"><img src="apps.jpg" width="230" height="158" alt="Ilustración que representa a un muñecto pulsando una tecla de un teclado enorme, en el que todas las teclas llevan escrita la palabra App." title="Librerías de diseño para Apps." style="float: right;" />
+<div class="figcaption"><a href="https://pixabay.com/es/illustrations/app-software-contorno-configuraci%C3%B3n-1013616/" target="_blank" class="author" title="Acceder a la imagen de Peggy_Marco en Pixabay. (Se abre en una nueva ventana)">Peggy_Marco</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/es/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)" target="_blank">Licencia </a></span><a href="https://pixabay.com/es/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)" target="_blank"><span>Pixabay</span></a><span class="sep">)</span></span></div>
+</div>
+<p>Es importante indicar que cuando desarrollamos una aplicación se intenta que se admitan múltiples versiones de <acronym title="Application Programming Interface" lang="en">API</acronym>, por eso se utilizan las <strong>librerías de soporte,</strong> de forma que podemos proporcionar funciones más recientes a versiones anteriores de <span lang="en">Android</span>. Estas librerías nos ofrecen  clases y funciones  adicionales que no están disponibles en la <acronym title="Application Programming Interface" lang="en">API</acronym> estándar del <span lang="en">Framework</span> de nuestro proyecto, y es una forma sencilla de dar soporte a más dispositivos.</p>
+<p>Si compruebas por ejemplo el proyecto <code>HelloWorld</code> podrás ver que las clases importadas comienzan con <code>android.support.*,</code> estas clases son de la librería de compatibilidad o soporte. Esta librería sólo llega hasta la versión 27. </p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><span>package </span>com.example.usuario.holamundo;<br /><br /><span>import </span>android.content.Intent;<br /><strong>import android.support.v7.app.AppCompatActivity;</strong><br />.................<br /><span>public class </span>MainActivity <span>extends </span>AppCompatActivity <span>implements </span>OnClickListener{</pre>
+</div>
+</div>
+<p><span style="font-size: 1em;">Con el lanzamiento de </span><span lang="en" style="font-size: 1em;">Android</span><span style="font-size: 1em;"> 9.0 (</span><acronym title="Application Programming Interface" lang="en" style="font-size: 1em;">API</acronym><span style="font-size: 1em;"> nivel 28), hay una nueva versión de la biblioteca de compatibilidad denominada </span><code>AndroidX</code><span style="font-size: 1em;"> que contiene la biblioteca de compatibilidad existente e incluye los últimos componentes de </span><strong style="font-size: 1em;"><span style="font-size: 1em;" lang="en">Jetpack</span></strong><span style="font-size: 1em;">.  Si compruebas el proyecto </span><code>ExampleFragments</code><span style="font-size: 1em;"> podrás comprobar que la clase que se ha importado comienza por </span><code>androidx.appcompat.*,</code></p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><span>package </span>com.example.examplefragment;<br /><strong>import androidx.appcompat.app.AppCompatActivity;</strong><br /><span>import </span>android.os.Bundle;<br /><span>public class </span>MainActivity <span>extends </span>AppCompatActivity {</pre>
+</div>
+</div>
+<p><span style="font-size: 1em;" lang="en">Es importante tener claro que no se puede trabajar con ambas librerías. Actualmente cuando creas un nuevo proyecto en Android Studio se utiliza <span> </span><code>AndroidX</code></span><span style="font-size: 1em;" lang="en">, así lo recomienda Google, pero algunos ejemplos de este módulo se realizan utilizando la librería de soporte.</span></p>
+<p>De cualquier forma siempre se puede migrar un proyecto a<span> </span><code>AndroidX</code>. Enumeramos los pasos a realizar:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Modificar el valor de <code>compileSdk</code> al menos a la versión 28 en el fichero <code>build.gradle</code> del módulo app.</li>
+<li>Tener al menos la versión <code>com.android.tools.build:gradle:3.2.0</code> en el fichero <code>build.grade</code> del proyecto. Recuerda que se puede modificar este valor mediante  <strong></strong><span lang="en"><strong>File</strong> -&gt; <strong>Project Structure</strong> -&gt; <strong>Project </strong></span><strong></strong> y modificar el valor de <code>Android Gradle Plugin Version</code>.</li>
+</ol>
+<div class="exe-figure exe-image position-center license-copyright" style="width: 459px;"><a href="projectstructre.1.png" title="Ampliar imagen para: Configurar la versión Android Gradle Plugin Version. (Se abre en una nueva ventana)" target="_blank"><img src="projectstructre_mini.jpg" width="459" height="200" alt="Se muestra el cuadro de diálogo  Project Structure en Android Studio. En el mismo, está seleccionada en el menú la opción Project -&gt; Project Structure, y muestra un cuadro de texto etiquetado como Android Gradle Plugin Version cuyo contenido es 3.6.1 y otro cuadro de texto etiquetado cmo Gradle Version, cuyo contenido es 5.6.4." title="Configurar la versión Android Gradle Plugin Version. " class="imagen_ampliable" /></a>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p><br /><br /></p>
+<p class="destacado"><strong>Aparecerán una serie de mensajes en <code>Build</code> indicando que se están descargando los paquetes necesarios. </strong></p>
+<p><span style="font-size: 1em;" lang="en">Si estas dos configuraciones se cumplen se puede realizar la opción <strong>Refactor</strong> -&gt; <strong>Refactor This</strong> -&gt;<strong> Migrate to AndroidX. </strong></span></p>
+<p>Una vez que ha finalizado la refactorización se puede comprobar que en el archivo <code>gradle.properties </code>se ha configurado a <code>true</code> los siguientes complementos:</p>
+<ul class="lista_verificacion">
+<li><code>android.useAndroidX=true</code>: que indica que se utilizará la biblioteca <code>AndroidX</code> de forma que cuando se añade una clase o un objeto <code>View</code> buscará en esta librería, no en la biblioteca de soporte.</li>
+<li><code>android.enableJetifier=true</code>: este complemento migra automáticamente las bibliotecas de terceros existentes a  <code>AndroidX.</code></li>
+</ul>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

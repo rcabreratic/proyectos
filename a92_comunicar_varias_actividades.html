@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.9.2.- Comunicar varias actividades | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-89" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.9.2.- Comunicar varias actividades</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id427">
+<div class="iDevice emphasis0">
+<div id="ta427_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R27_convencion.jpg" alt="Foto de una Convención de Android con mucha gente pasando por diferentes stands." title="Comunicación Actividades Android." width="250" height="188" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc" title="CC by-nc" href="http://creativecommons.org/licenses/by-nc/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc</span></a> <a title="Acceder a la web de descarga de la imagen de rkcr. (Se abre en una nueva ventana)." href="http://farm6.staticflickr.com/5254/5468417584_32cbd0a9b9_n.jpg" target="_blank">rkcr</a></div>
+</div>
+<p>¿Como comunicar las diferentes actividades de nuestra aplicación?</p>
+<p>Una vez que nuestra aplicación está compuesta por varias actividades, vamos a ver cómo se puede acceder desde la actividad principal al resto, que consideraremos secundarias.</p>
+<p>Siguiendo con el ejemplo anterior necesitamos modificar el <span lang="en">layout </span>principal para insertar un botón que nos sirva de enlace con la segunda actividad. Para eso hacemos lo siguiente:</p>
+<ol class="lista_esquema">
+<li>Abrir el fichero <code>/res/layout/activity_main.xml</code> correspondiente a la plantilla de la pantalla principal.</li>
+<li>Añadir un objeto de tipo <code>Button</code> debajo del <code>TextView</code>. Utiliza el recurso <code>strings.xml</code> para el texto del botón.</li>
+</ol>
+<p>En este momento podemos utilizar el evento <code>onClick</code> del objeto <code>Button</code> para indicar la acción deseada. Recordemos cómo se puede gestionar este evento desde<span lang="en"> Java</span> e implementamos el código de la siguiente forma (hay que recordar importar las clases que necesitaremos para dicho código, puedes utilizar <code>Alt</code> + <code></code><code>Intro</code>):</p>
+<div class="codigo elemento_centrado" style="width: 44.5em;">
+<div class="texto_izquierda">
+<pre><span>package </span>com.example.usuario.holamundo;<br /><br /><span>import </span>android.content.Intent;<br /><span>import </span>android.support.v7.app.AppCompatActivity;<br /><span>import </span>android.os.Bundle;<br /><span>import </span>android.view.View;<br /><span>import </span>android.widget.Button;<br /><span>import </span>android.view.View.OnClickListener;<br /><span>import </span>android.widget.Toast;<br /><br /></pre>
+<pre><span>public class </span>MainActivity <span>extends </span>AppCompatActivity <span>implements </span>OnClickListener{<br /><br />    <span>protected static final int </span><span>REQUESTCODE_SECOND_ACTIVITY </span>= <span>10</span>;<br />    <span>private </span>Button <span>btSend</span>;<br /><br />    <span>@Override<br /></span><span>    </span><span>protected void </span>onCreate(Bundle savedInstanceState) {<br />        <span>super</span>.onCreate(savedInstanceState);<br />        setContentView(R.layout.<span>activity_main</span>);<br />        <span>btSend</span>=findViewById(R.id.<span>btSend</span>);<br />        <span>btSend</span>.setOnClickListener(<span>this</span>);<br />    }<br />    <span>public void </span>onClick(View v){<br />        sendMessage();<br />    }<br /><br />    <span>public void </span>sendMessage(){<br />        Intent intent = <span>new </span>Intent(<span>this</span>,SecondActivity.<span>class</span>);<br />        startActivityForResult(intent, <span>REQUESTCODE_SECOND_ACTIVITY</span>);<br />    }</pre>
+</div>
+</div>
+<p></p>
+<p>Cuando declaramos el objeto <code>Intent</code> pasamos el propio contexto de la actividad (<code>this</code>) y el nombre de la clase <span lang="en">java</span> que debe lanzarse y finalmente se inicia la segunda actividad mediante el método <code>startActivityForResult()</code> (en lugar de <code>startActivity()</code>) indicando que queremos obtener el resultado obtenido por la segunda actividad en forma de otro objeto <code>Intent. </code>Se pasa por parámetro un identificador <code>REQUESTCODE_SECOND_ACTIVITY</code> que nos ayude a saber qué actividad hemos iniciado y de la cuál podemos obtener una respuesta. Hay que tener en cuenta que desde una actividad principal se puede llamar a varias actividades secundarias, así que necesitaremos identificar posteriormente el resultado de su ejecución.</p>
+<p>Cuando se añade una nueva actividad o pantalla a una aplicación debemos prestar atención al fichero <code>AndroidManifest.xml</code> y comprobar que se ha registrado correctamente un elemento nuevo de tipo <code>&lt;activity&gt;</code> como se muestra a continuación:</p>
+<div class="codigo elemento_centrado" style="width: 31.3em;">
+<div class="texto_izquierda">
+<pre><code>       ...</code></pre>
+<pre><code>        &lt;activity</code></pre>
+<pre><code>            android:name=".SecondActivity"&gt;</code></pre>
+<pre><code>        &lt;/activity&gt;</code></pre>
+<pre><code>       ...</code></pre>
+</div>
+</div>
+<p></p>
+<p>En caso de que no tuviésemos la actividad registrada en el fichero de manifiesto no será reconocida por la aplicación y por tanto nos dará error. Si nos fijamos bien en el atributo <code>android:name</code>, simplemente ponemos el símbolo de puntuación seguido del nombre de la nueva actividad.</p>
+<p>Cuando ejecutamos la aplicación comprobamos que al pulsar sobre el botón se abre la nueva actividad en cuyo <span lang="en">layout </span>se puede ver el <code>TextView </code>que dice “<code>Hasta Luego</code>”.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id428">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta428_50" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b428" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b428" class="block iDevice_content">
+<p><strong>Es necesario que una actividad nueva esté registrada en el fichero de manifiesto si queremos integrarla en la aplicación.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b428"><input type="radio" name="option0b428" id="true0b428" class="exe-radio-option exe-radio-option-0-2-0b428-truefalse" /> Verdadero</label> 
+<label for="false0b428"><input type="radio" name="option0b428" id="false0b428" class="exe-radio-option exe-radio-option-1-2-0b428-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b428" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b428-result" class="right">Verdadero</strong></p>
+<p>Es verdadero, porque en caso contrario la aplicaci&oacute;n no tendr&aacute; constancia del nuevo objeto.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

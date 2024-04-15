@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.5.2.- Según la configuración del idioma | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-76" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.5.2.- Según la configuración del idioma</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id396">
+<div class="iDevice emphasis0">
+<div id="ta396_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R18_flags.jpg" alt="Imagen de distintas banderas de varios países." title="Banderas de países." width="250" height="188" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Acceder a la web de descarga de la imagen de Börkur Sigurbjörnsson. (Se abre en una nueva ventana)" href="http://farm2.staticflickr.com/1161/691053039_f44fd3513d_n.jpg" target="_blank">Börkur Sigurbjörnsson</a></div>
+</div>
+<p>¿Has pensado en crear una aplicación que la puedan utilizar distintos tipos de personas según su idioma?</p>
+<p>Esto es fácil de implementar con los recursos alternativos de <span lang="en">Android</span>.</p>
+<p>Una buena práctica es abstraer los textos de la aplicación en sí. Por eso cuando insertamos cualquier objeto <code>View </code>que utiliza algún atributo que muestra un texto, por ejemplo <code>android:text</code>, podemos indicar que tome el valor de un fichero externo situado en la carpeta <code>/res/values/</code>. Concretamente nos estamos refiriendo al fichero <code>strings.xml </code>que ya has utilizado anteriormente. Si hacemos esto nos será muy fácil crear un recurso alternativo por ejemplo para otro idioma añadiendo el sufijo correspondiente a la carpeta <code>/values/</code>.</p>
+<p>Vamos a verlo utilizando el ejemplo del caso anterior. Supongamos que abrimos la aplicación anterior en un dispositivo cuya configuración tiene como idioma el inglés. Si no tenemos creado el recurso alternativo apropiado, se cogerá por defecto el fichero <code>strings.xml</code> de la carpeta <code>/res/values/</code>.</p>
+<p>Probablemente estás utilizando un emulador configurado en inglés. Puedes cambiar su configuración pulsando en el icono <code>Settings</code> que puedes encontrar en la pantalla inicial. Después selecciona <code>Language &amp; input</code> y ya podemos elegir el idioma español.</p>
+<p>Partiendo de que tenemos configurado el emulador en el idioma español, cuando ejecutamos la aplicación, ésta mostrará los textos por defecto de su carpeta de recursos. Pero fíjate cómo teniendo antes configurado el emulador con el idioma inglés, también nos mostraba los textos en español. Vamos a crear la carpeta de recursos alternativos para el idioma inglés.</p>
+<ul class="lista_verificacion">
+<li><strong>Paso 1:</strong> crear una carpeta llamada <code>/res/values-en/</code>. El nombre de la carpeta debe coincidir con el recurso por defecto añadiendo el sufijo <code>-en</code>. Para ello podemos proceder de la misma forma que en el apartado anterior. Desde el botón derecho del ratón sobre la carpeta<code> /res/</code> elegimos <code>New - Android Resource Directory</code>. En el tipo de recurso seleccionamos <code>Values </code>y entre los posibles atributos (<code>Available Qualifiers</code>) seleccionamos la localización (<code>Locale)</code> y elegimos el idioma (<code>Language) </code>que deseamos. Si nos fijamos en el nombre del directorio que se va a crear es el mismo que el original añadiendo el sufijo del idioma <code>-en (Inglés),</code> de esta manera cuando el dispositivo tenga la configuración en este idioma accederá a los recursos almacenados en dicha carpeta, como por ejemplo el fichero <code>strings.xml </code>que guardaría los textos de la aplicación traducidos a inglés.</li>
+<li><strong>Paso 2:</strong> crear el fichero <code>strings.xml </code>dentro de esta nueva carpeta y modificar los valores de los textos que queremos traducir. Para ello es buena idea copiar el fichero origen, pegarlo en esta nueva carpeta y a partir de ahí sustituir las cadenas de texto que queramos, por ejemplo las siguientes líneas:<br />
+<div class="codigo elemento_centrado" style="width: 29.650000000000002em;">
+<div class="texto_izquierda">
+<pre><code>&lt;string name="Button1"&gt;One&lt;/string&gt;</code></pre>
+<pre><code>&lt;string name="Button2"&gt;Two&lt;/string&gt;</code></pre>
+<pre><code>&lt;string name="Button3"&gt;Three&lt;/string&gt;</code></pre>
+<pre><code>&lt;string name="Button4"&gt;Four&lt;/string&gt;</code></pre>
+</div>
+</div>
+<p><strong>NOTA:</strong> los identificadores de los recursos no se deben cambiar. Se mantienen los mismos que aparecen en la plantilla para que puedan ser reconocidos de la misma forma. Sólo cambiaríamos los textos <span lang="en">One, Two, Three</span> y <span lang="en">Four</span> que corresponden a los valores que se mostrarán dentro de los botones.</p>
+</li>
+</ul>
+<p>Ya está todo listo para que puedas probar la aplicación. Si dejas la configuración en español deberían aparecer los valores de los textos del recurso por defecto y si cambias de nuevo la configuración del emulador a inglés la aplicación detecta el recurso alternativo de este idioma y cogerá los valores de la carpeta correspondiente.</p>
+<p>¡Ánimo, pruébalo!</p>
+<p>Y recuerda cambiar también el nombre de la aplicación, es conveniente modificar todos los valores de texto, no sólo los que aparecen en los objetos <code>View</code>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ReflectionfpdmodifIdevice em_iDevice em_iDevice_reflexionfpd" id="id397">
+<div class="iDevice emphasis_reflexionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_reflexionfpd.png)"><h1 class="iDeviceTitle">Reflexiona</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta397_36" class="block iDevice_content">
+<p>&iquest;Has pensado qu&eacute; ocurrir&aacute; si adem&aacute;s de mostrar los textos en ingl&eacute;s el usuario cambia la orientaci&oacute;n de su dispositivo?</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

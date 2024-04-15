@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.4.1.- Controles básicos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-67" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.4.1.- Controles básicos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id370">
+<div class="iDevice emphasis0">
+<div id="ta370_69" class="block iDevice_content">
+<p style="margin-bottom: 0cm;"><span style="font-size: 1em;">Llegados a este punto, nos planteamos algunas cuestiones,  como las siguientes:</span></p>
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R13_controlesbasicos.jpg" alt="Ilustración que muestra de forma esquemática distintos tipos de controles básicos." title="Controles básicos." width="175" height="131" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Acceder a la web de descarga de la imagen de Mårten Björk. (Se abre en una nueva ventana)" href="http://farm5.staticflickr.com/4014/4653377791_9e6b68174c_n.jpg" target="_blank">Mårten Björk</a></div>
+</div>
+<ul class="lista_verificacion">
+<li style="margin-bottom: 0cm;">¿Cómo puedes utilizar las aplicaciones instaladas en tu dispositivo móvil?</li>
+<li style="margin-bottom: 0cm;">¿Cómo rellenas un formulario con tus datos personales?</li>
+<li style="margin-bottom: 0cm;">¿Utilizas algún botón para confirmar alguna acción como “enviar”?</li>
+</ul>
+<p style="margin-bottom: 0cm;">Pues bien, todas estas acciones las podemos llevar a cabo porque las diferentes pantallas por las que navegamos en nuestra aplicación disponen de elementos o controles predeterminados que nos permiten interactuar con el dispositivo. Veremos a continuación cuáles son.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id371">
+<div class="iDevice emphasis0">
+<div id="ta371_154" class="block iDevice_content">
+<div class="exe-fx exe-accordion">
+<h2 span="" lang="en">TexView</h2>
+<p style="margin-bottom: 0cm;">Muestra un campo de texto al usuario. Este texto no es editable por el usuario. Se podrá modificar su estilo mediante los siguientes atributos:</p>
+<ul class="lista_verificacion">
+<li><code>android:text:</code> mediante este atributo se establece el texto por defecto. Se utilizará el recurso<code> @string</code> para poder mostrar el texto en diferentes idiomas. </li>
+<li><code>android:background:</code> permite establecer el color de fondo del <code>Textview</code>.</li>
+<li><code>android:textColor:</code> es un valor en hexadecimal que indica el color del texto.</li>
+<li><code>android:textSize:</code> en un valor en <acronym title="Scale-independent-Pixels " lang="en">sp</acronym> que indica el tamaño del texto. </li>
+<li><code>android:textStyle: </code>permite establecer el estilo de texto en normal, <strong>negrita</strong> (<span lang="en">bold</span>) o <em>cursiva</em> (<span lang="en">italic</span>).</li>
+</ul>
+<h2 lang="en">EditText</h2>
+<p style="margin-bottom: 0cm;">Es un campo de texto en el que, a diferencia de <code>TextView, </code>el usuario puede editar su contenido para introducir un dato en la aplicación. Se pueden utilizar los mismos atributos que para el control<code> TextView </code>y además los siguientes:</p>
+<ul class="lista_verificacion">
+<li style="margin-bottom: 0cm;"><strong><code>android:inputType:</code></strong> este atributo es importante porque indica el tipo de texto que el usuario introducirá. En base al tipo de entrada el sistema operativo configura el tipo de teclado que se muestra, los caracteres aceptables y la apariencia del texto de edición. Con <code>android:inputType="phone" </code> indicamos que el usuario sólo puede introducir caracteres válidos en un número de teléfono. Puedes comprobar cómo se visualiza el teclado en la documentación oficial: <a href="https://developer.android.com/training/keyboard-input/style?hl=es#Type" title="Acceder a la web sobre cómo especificar el tipo de teclado (Se abre en una nueva ventana))" target="_blank" class="html">Cómo especificar el tipo de método de entrada</a>.
+<p style="text-align: center;" class="destacado"><strong>Si se quiere poner más de un valor a un atributo se puede utilizar el carácter <span lang="en">pipe</span> "|" para separar los valores. </strong></p>
+</li>
+<li style="margin-bottom: 0cm;"><code>android:hint:</code> sirve para introducir un texto semitransparente que desaparece cuando el usuario pulsa sobre el <code>EditText</code>.</li>
+<li style="margin-bottom: 0cm;"><code>android:textColorHighlight:</code> es un valor en hexadecimal que indica el color del texto seleccionado.</li>
+</ul>
+<h2 lang="en">Button</h2>
+<p>Es el control básico que el usuario pulsa para realizar una acción. Esta acción nosotros la programamos en el evento <code>onClick(View v)</code>. Se puede utilizar el atributo <code>android:onclick="sendMessage"</code> de forma que se referencie un método definido en la clase <code>Activity</code> que tenga la siguiente declaración: </p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<pre><strong><code>public void sendMessage(View view)</code></strong></pre>
+</div>
+<p>Es el sistema operativo quien ejecuta el método <code>sentMessage</code> automáticamente cuando el usuario pulsa el botón sin tener que implementar el escuchador <code>onClickListener</code> en el botón.</p>
+<h2 lang="en">Switch</h2>
+<p>Es un botón a modo de interruptor que  tiene dos estados posibles: encendido y apagado. Se pueden usar los siguientes atributos:</p>
+<ul class="lista_verificacion">
+<li><code>android:checked:</code> para modificar su estado.</li>
+<li><code>android:text: </code>para establecer el texto en base a su estado </li>
+</ul>
+<h2 lang="en">CheckBox</h2>
+<p>Se utiliza para mostrar un listado de opciones que el usuario puede marcar o desmarcar. Este componente hereda indirectamente de <code>TextView</code> con lo cual se le pueden asignar los atributos que se han explicado además de los que listan a continuación:</p>
+<ul class="lista_verificacion">
+<li><code>android:checked</code> para inicializar el estado del control. Se asignará <code>true</code> si queremos que esté marcado o en otro caso <code>false</code>.</li>
+</ul>
+<h2 lang="en">RadioButton</h2>
+<p>Al igual que <code>CheckBox</code> puede tener dos valores: marcado o desmarcado con la diferencia que las opciones forman un grupo mediante la clase <code>RadioGroup </code>y sólo puede haber una opción marcada. Es decir,  si se marca una de las opciones se desmarcará automáticamente la que estuviera activa anteriormente. </p>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id372">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta372_129" class="block iDevice_content">
+<p>Puedes realizar el siguiente ejemplo que te explica cómo crear controles del tipo <code>CheckBox</code> y <code>RadioButton</code> y manejar estos eventos de estado para recoger la información que el usuario ha introducido:</p>
+<p style="text-align: center;"><a href="http://www.hermosaprogramacion.com/2016/04/radiobutton-android/" title="Acceder a una web con ejemplos para trabajar con los controles CheckBox y RadioButton. (Se abre en una nueva ventana)" target="_blank" class="html">Hermosa Programación</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id373">
+<div class="iDevice emphasis0">
+<div id="ta373_154" class="block iDevice_content">
+<div class="exe-fx exe-accordion">
+<h2 lang="en">ImageButton</h2>
+<p>Tiene la misma funcionalidad que <code>Button</code> pero se muestra una imagen en vez de texto. Se deben utilizar los siguientes atributos:</p>
+<ul class="lista_verificacion">
+<li><code>android:src</code> para indicar el recurso imagen que se encuentra en <code>/res/drawable</code>. Por ejemplo para acceder a una imagen <code>ic_calendar</code> sería <code>@drawable/ic_calendar</code>.</li>
+<li><code>android:contentDescription</code>: sirve para describir mediante texto la imagen del botón de forma que nuestra aplicación sea lo más accesible posible.</li>
+</ul>
+<h2 lang="en">ImageView</h2>
+<p>Este control sirve para introducir una imagen en nuestra aplicación a modo decorativo porque no tiene funcionalidad. Se utiliza el atributo <code>android:src</code> para indicar la imagen a visualizar.</p>
+<h2 lang="en">FloatingActionButton</h2>
+<p>Este componente aparece con Material Design y se trata de un botón redondo que se eleva por encima del contenido de la pantalla principal y permite al usuario realizar un acción que se destaca entre las demás. Por ejemplo, en un listado suele ser la opción <strong>Añadir</strong> o <strong> Add</strong> un elemento a la lista. Los botones de acción flotante vienen en un tamaño predeterminado y con unos atributos comunes donde se suele modificar el color que lo rellena mediante el atributo <code>colorAccent</code>y el icono que lo identifica con el atributo <code>android:src.</code></p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>&lt;android.support.design.widget.FloatingActionButton</code></pre>
+<pre><code>android:id="@+id/fab"</code></pre>
+<pre><code>android:layout_width="wrap_content"</code></pre>
+<pre><code>android:layout_height="wrap_content"</code></pre>
+<pre><code>android:layout_gravity="end|bottom"</code></pre>
+<pre><code>android:src="@drawable/ic_action_add_icon"</code></pre>
+<pre><code>android:contentDescription="@string/action_add"</code></pre>
+<pre><code>android:layout_margin="16dp" /&gt;</code></pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id374">
+<div class="iDevice emphasis0">
+<div id="ta374_154" class="block iDevice_content">
+<p><span>Hasta ahora hemos visto los diferentes tipos de controles más utilizados, pero si te fijas en la paleta que incorpora </span><span lang="en">Android Studio </span><span>puedes insertar en tus aplicaciones muchos controles más como por ejemplo: </span><code>TextClock, CalendarView, ProgressBar, RatingBar</code><span>, </span><abbr title="etcétera">etc</abbr><span>. Puedes probarlos en tus aplicaciones y consultar toda la información de cada una de las clases en la documentación oficial de </span><span lang="en">Android</span><span>.</span></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id375">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta375_131" class="block iDevice_content">
+<p>En el siguiente vídeo te mostramos cómo crear una interfaz con controles básicos y manejar los eventos que ocurren en ellos. </p>
+<div class="exe-figure exe-media position-center" style="width: 350px;">
+<div class="figcaption header"><strong>Crear Controles básicos y manejar sus eventos</strong></div>
+<iframe width="350" height="288" style="border: 0;" src="//www.youtube.com/embed/RTVpU2z1ipg" frameborder="0"></iframe><br />
+<div class="figcaption"><a href="https://www.youtube.com/channel/UCYP0nk48grsMwO3iL8YaAKA" target="_blank" class="author" title="Acceder al canal de youtube de VoidRealms. (Se abre en una nuevva ventana)">VoidRealms</a>.  <a href="descripcion_video_controles_basicos_v2.html" class="title" title="Acceder al Resumen textual alternativo para el vídeo Crear controles básicos y manejar sus eventos. (Se abre en una nueva ventana)">Resumen textual alternativo</a></div>
+</div>
+<div id="gtx-trans" style="position: absolute; left: 375px; top: 448.984px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id376">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta376_43" class="block iDevice_content">
+<p>En ocasiones necesitaremos dotar de alguna funcionalidad extra o dar una imagen más personal y original a nuestra aplicación. Por tanto, <span lang="en">Android</span> nos permite crear nuestros propios controles personalizados de varias formas. En este enlace puedes ver un ejemplo de cada una de ellas.</p>
+<p class="enlace_centrado"><a class="html" title="Acceder a un artículo web sobre “Controles personalizados”." href="http://acacha.org/mediawiki/index.php/Usuari:Ssubirats/Curs_Android/Tema_8_Controles_personalizados">Cómo crear un control personalizado</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id377">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-377_56" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion377_56" class="block question iDevice_content">
+<p><strong>Si queremos incluir un control u objeto <code>TextView</code> para introducir una contraseña utilizamos en el atributo <code>android:inputType</code> el valor:</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i377_59" class="sr-av"><a href="#answer-377_59">Opción 1</a></label><input type="radio" name="option377_56" id="i377_59" class="exe-radio-option exe-radio-option-0-4-377_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-377_59"><div id="taans377_59" class="block iDevice_content">
+<p><code>"text"</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i377_110" class="sr-av"><a href="#answer-377_110">Opción 2</a></label><input type="radio" name="option377_56" id="i377_110" class="exe-radio-option exe-radio-option-1-4-377_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-377_110"><div id="taans377_110" class="block iDevice_content">
+<p><code>"textPassword"</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i377_113" class="sr-av"><a href="#answer-377_113">Opción 3</a></label><input type="radio" name="option377_56" id="i377_113" class="exe-radio-option exe-radio-option-2-4-377_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-377_113"><div id="taans377_113" class="block iDevice_content">
+<p><code>"number"</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i377_116" class="sr-av"><a href="#answer-377_116">Opción 4</a></label><input type="radio" name="option377_56" id="i377_116" class="exe-radio-option exe-radio-option-3-4-377_56-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-377_116"><div id="taans377_116" class="block iDevice_content">
+<p><code>"phone"</code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b377_56" class="feedback js-hidden">
+<div id="taf377_59" class=" iDevice_content">
+<p>No es correcto.</p>
+</div>
+</section>
+<section id="sa1b377_56" class="feedback js-hidden">
+<div id="taf377_110" class=" iDevice_content">
+<p>&iexcl;Has acertado! Se trata de la opci&oacute;n correcta, ya que se introducen los caracteres en forma de puntos.</p>
+</div>
+</section>
+<section id="sa2b377_56" class="feedback js-hidden">
+<div id="taf377_113" class=" iDevice_content">
+<p>Incorrecto.</p>
+</div>
+</section>
+<section id="sa3b377_56" class="feedback js-hidden">
+<div id="taf377_116" class=" iDevice_content">
+<p>No es la opci&oacute;n correcta.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-377_59">Incorrecto</a><span> (<a href="#sa0b377_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-377_110">Opción correcta</a><span> (<a href="#sa1b377_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-377_113">Incorrecto</a><span> (<a href="#sa2b377_56">Retroalimentación</a>)</span></li>
+<li><a href="#answer-377_116">Incorrecto</a><span> (<a href="#sa3b377_56">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id378">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-378_136">
+<form name="multi-select-form-378_136" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion378_136" class="block question iDevice_content">
+<p><strong>Indica qué controles heredan de la clase <code>Button.</code></strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op378_1360" class="sr-av"><a href="#answer-378_139">Opción 1</a></label><input type="checkbox" id="op378_1360" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-378_139"><div id="taans378_139" class="block iDevice_content">
+<p><code>CheckBox</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-378_1360" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op378_1361" class="sr-av"><a href="#answer-378_1457">Opción 2</a></label><input type="checkbox" id="op378_1361" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-378_1457"><div id="taans378_1457" class="block iDevice_content">
+<p><code>RadioButton</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-378_1361" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op378_1362" class="sr-av"><a href="#answer-378_1459">Opción 3</a></label><input type="checkbox" id="op378_1362" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-378_1459"><div id="taans378_1459" class="block iDevice_content">
+<p><code>ToogleButton</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-378_1362" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op378_1363" class="sr-av"><a href="#answer-378_1461">Opción 4</a></label><input type="checkbox" id="op378_1363" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-378_1461"><div id="taans378_1461" class="block iDevice_content">
+<p><code>ImageView</code></p>
+<div id="gtx-trans" style="position: absolute; left: 43px; top: 31px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-378_1363" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-378_136" /> 
+</p>
+</div>
+<section id="f378_136" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-378_139" class="right">Correcto</a></li>
+<li><a href="#answer-378_1457" class="right">Correcto</a></li>
+<li><a href="#answer-378_1459" class="right">Correcto</a></li>
+<li><a href="#answer-378_1461" class="wrong">Incorrecto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

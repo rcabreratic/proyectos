@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.2.- Acceder a las vistas en código | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-57" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.2.- Acceder a las vistas en código</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id341">
+<div class="iDevice emphasis0">
+<div id="ta341_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R20_recursosAndroid.png" alt="Icono Android con iconos de recursos." title="Android utilizando recursos." /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Google Inc. (Se abre en una nueva ventana)" href="http://developer.android.com/images/develop/resources.png" target="_blank">Google Inc.</a></div>
+</div>
+<p>Llegados a este punto, ¿crees que podemos mejorarnuestras aplicaciones y hacerlas más accesibles y atractivas a los usuarios con independencia del dispositivo que utilicen? Seguro que sí. Veámoslo.</p>
+<p>Para finalizar este apartado es interesante saber cómo una aplicación puede acceder a estos recursos. Es cierto que lo hace de forma transparente al usuario, pero como desarrolladores debemos saber cómo se referencia a estos ficheros.</p>
+<p title="eXtended Markup Language.">Como ya se ha comentado, en la programación <span lang="en">Android</span> podemos utilizar el lenguaje <span lang="en">Java</span> o bien <acronym title="eXtended Markup Language" lang="en">XML</acronym> y de momento para todo el diseño de la interfaz de usuario estamos utilizando el segundo por ser más aconsejable en esta tarea. No obstante no debemos dejar de lado que la lógica de la aplicación se implementará mediante código <span lang="en">Java</span> y por tanto también será necesario acceder a los diferentes objetos y recursos creados mediante <acronym title="eXtended Markup Language" lang="en">XML</acronym>.</p>
+<p>Cuando se genera un proyecto con <span lang="en">Android Studio</span> automáticamente se crea el fichero <code>R.java</code> donde se identifican todos los objetos y recursos creados. <strong>Este fichero nunca debe ser modificado manualmente</strong>. Para acceder a los recursos lo haremos de dos formas:</p>
+<ul class="lista_verificacion">
+<li><strong>Mediante código <span lang="en">Java</span>:</strong> será necesario seguir la siguiente sintaxis:<br />
+<div class="codigo elemento_centrado" style="width: 39.550000000000004em;">
+<div class="texto_izquierda">
+<pre><code>[&lt;nombre_paquete&gt;.]R.&lt;tipo_recurso&gt;.&lt;nombre_recurso&gt;</code></pre>
+</div>
+</div>
+<p>Donde el nombre del paquete no es necesario si nos referimos a recursos que están dentro del mismo. Ejemplos:</p>
+<div class="codigo elemento_centrado" style="width: 41.75em;">
+<div class="texto_izquierda">
+<pre><code>setContentView(R.layout.activity_main);</code></pre>
+<pre><code>ImageView imageView = (ImageView) findViewById(R.id.myimageview);</code></pre>
+<pre><code>imageView.setImageResource(R.drawable.myimage);</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Mediante <acronym title="eXtended Markup Language" lang="en">XML</acronym></strong>: será necesario seguir la siguiente sintaxis:</p>
+<div class="codigo elemento_centrado" style="width: 39em;">
+<div class="texto_izquierda">
+<pre><code>@[&lt;nombre_paquete&gt;:]&lt;tipo_recurso&gt;/&lt;nombre_recurso&gt;</code></pre>
+</div>
+</div>
+<p>Donde el nombre del paquete no es necesario si nos referimos a recursos que están dentro del mismo. Ejemplos:</p>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>android:paddingBottom="@dimen/activity_vertical_margin"</code></pre>
+<pre><code>android:text="@string/hello_world"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id342">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta342_129" class="block iDevice_content">
+<p>A continuación os mostramos dos vídeos que explican de forma detallada cómo crear una interfaz de usuario en <span lang="en">Android Studio</span>. Fíjate que puedes hacerlo directamente de forma gráfica o bien por medio de código <acronym title="eXtender Markup Language." lang="en">XML</acronym>.</p>
+<div class="exe-layout-2-cols exe-layout-2-50-50 exe-clear">
+<div class="exe-col exe-col-1">
+<div class="figcaption header"><strong>Curso <span lang="en">Android</span>. Crear interfaz de usuario I.</strong></div>
+<iframe width="300" height="247" style="display: block; margin-left: auto; margin-right: auto;" src="//www.youtube.com/embed/giwVzPddKKU" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UCdulIs-x_xrRd1ezwJZR9ww" target="_blank" class="author" title="Acceder al canal &quot;Píldoras informáticas&quot;. (Se abre en una nueva ventana)">Pildorasinformáticas</a>. <a href="https://www.youtube.com/embed/giwVzPddKKU" target="_blank" class="title" title="Acceder al resumen textual alternativo del vídeo: Crear interfaz de usuario I. (Se abre en una nueva ventana)"><em>Curso Android.</em></a></div>
+<div class="figcaption"><a href="descripcion_video_interfazusuario_I.html" target="_blank" class="title" title="Acceder al resumen textual alteranativo del vídeo: Crear interfaz de usuario I. (Se abre en una nueva ventana)"><em>Resumen textual alternativo</em></a></div>
+</div>
+<div class="figcaption header"><strong>Curso <span lang="en">Android</span>. Crear interfaz de usuario II.</strong></div>
+<iframe width="300" height="247" style="display: block; margin-left: auto; margin-right: auto;" src="//www.youtube.com/embed/nG2qfzmxUh8" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UCdulIs-x_xrRd1ezwJZR9ww" target="_blank" class="author" title="Acceder al canal &quot;Píldoras informáticas&quot;. (Se abre en una nueva ventana)">Pildorasinformáticas</a>. <em><a href="https://www.youtube.com/embed/nG2qfzmxUh8" target="_blank" class="title">Curso Android</a>.</em><em><em><a href="descripcion_video_interfazusuario.html" title="Acceder al resumen textual alteranativo del vídeo: Crear interfaz de usuario II. (Se abre en una nueva ventana)"><br /></a></em></em></div>
+<div class="figcaption"><em><em><a href="descripcion_video_interfazusuario_II.html" title="Acceder al resumen textual alteranativo del vídeo: Crear interfaz de usuario II. (Se abre en una nueva ventana)" target="_blank">Resumen textual alternativo</a></em><br /></em></div>
+<div class="elemento_centrado credenciales"><em><a href="descripcion_video_interfazusuario.html" title="Acceder al resumen textual alteranativo del vídeo: Crear interfaz de usuario II. (Se abre en una nueva ventana)"></a><br /></em></div>
+</div>
+<div id="gtx-trans" style="position: absolute; left: 614px; top: 339.781px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id343">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta343_50" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b343" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b343" class="block iDevice_content">
+<p><strong>Si queremos acceder al fichero <code>R.java</code> desde un fichero <acronym title="eXtended Markup Languge" lang="en">XML</acronym> utilizamos el m&eacute;todo <code>findViewById</code>.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b343"><input type="radio" name="option0b343" id="true0b343" class="exe-radio-option exe-radio-option-0-2-0b343-truefalse" /> Verdadero</label> 
+<label for="false0b343"><input type="radio" name="option0b343" id="false0b343" class="exe-radio-option exe-radio-option-1-2-0b343-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b343" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b343-result" class="wrong">Falso</strong></p>
+<p>La afirmaci&oacute;n es falsa porque este m&eacute;todo se utiliza si queremos acceder al fichero desde c&oacute;digo <span lang="en">Java</span>.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

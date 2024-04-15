@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.7.1.- Creando un menú principal con submenús I | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-81" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.7.1.- Creando un menú principal con submenús I</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id411">
+<div class="iDevice emphasis0">
+<div id="ta411_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="menu_desbordamiento.png" alt="Móvil mostrando el menú desbordamiento desplegado, con las opciones Configuración, Ayuda, y Sobre nosotros." title="Menú aplicación" width="300" height="201" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio </span> <a title="Acceder a la información de licencia Apache 2.0. en Wikipedia.(Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p>¿Un menú es una opción importante dentro de una aplicación? </p>
+<p>Claro que sí, ya que <span lang="en">presenta una serie de opciones que permite realizar una serie de acciones en una aplicación Android. </span></p>
+<p><span>Las acciones más importantes se mostrarán con un icono en la barra de acción pero el espacio es limitado, con lo cual el resto de opciones estarán en el <strong>menú desbordamiento o ampliado</strong>. </span></p>
+<p>Para codificar los menús vamos a utilizar le lenguaje <acronym title="eXtensible Markup Language." lang="en">XML</acronym> al igual que hicimos en la elaboración de los <span lang="en">layouts</span>. No obstante se podría hacer mediante código <span lang="en">Java</span>. El fichero estará localizado en la carpeta de recursos <code>/res/menu/</code> y si <span lang="en">Android Studio no nos lo crea por defecto podremos hacerlo nosotros pulsando en el botón derecho sobre la carpeta </span><code>/res/</code> y a continuación elegimos <code>New - Android resource file </code> y elegimos como tipo de recurso (<code>Resource type</code>) <strong></strong><span lang="en"><strong>menu</strong></span> y le damos un nombre al fichero <acronym title="eXtensible Markup Language." lang="en">XML</acronym> que tendrá el menú.</p>
+<p><span style="text-align: left; font-size: 1em;">Para cada opción del menú se debe añadir un elemento </span><code style="text-align: left;">item</code><span style="text-align: left; font-size: 1em;">  que puede tener los siguientes</span><span style="font-size: 1em;"> atributos: un <abbr title="Identificador">ID</abbr> <code>(android:id)</code><span style="font-size: 1em;">, un icono (</span><code>android:icon)</code> o un título (<code>android:title). </code><span style="font-size: 1em;">Con el uso de la </span><code>ActionBar</code><span style="font-size: 1em;"> debemos tener en cuenta el atributo </span><code>app:showAsAction</code><span style="font-size: 1em;"> que puede tomar algunos de estos valores:</span></span></p>
+<ul class="lista_verificacion">
+<li style="text-align: left;"><code>"never"</code>: nunca se mostrará el botón en la barra.</li>
+<li><code>"ifRoom"</code>: se muestra el botón en la barra si hay sitio suficiente para ello.</li>
+<li><code>"always"</code>: se muestra siempre el botón en la barra de acción.</li>
+<li><code>"withText"</code>: se muestra también el texto en el botón.</li>
+</ul>
+<p>Es posible combinar varios valores de la siguiente forma:</p>
+<div class="codigo elemento_centrado">
+<div class="texto_izquierda">
+<pre><code><code>app:showAsAction<code>="ifRoom|withText"</code></code><br /></code></pre>
+</div>
+</div>
+<p></p>
+<p>Siguiendo con el ejemplo anterior, si deseas cambiar el menú principal para que se visualice en la barra de acción puedes añadir las líneas de código que se destacan con negrita en el siguiente ejemplo:</p>
+<div class="codigo elemento_centrado">
+<div class="texto_izquierda">
+<pre><span>&lt;?</span><span>xml version</span><span>="1.0" </span><span>encoding</span><span>="utf-8"</span><span>?&gt;<br /></span>&lt;<span>menu </span><span>xmlns:</span><span>android</span><span>="http://schemas.android.com/apk/res/android"<br /></span><span>    </span><span>xmlns:</span><span>app</span><span>="http://schemas.android.com/apk/res-auto"</span>&gt;<br />    &lt;<span>item<br /></span><span>        </span><span>android</span><span>:id</span><span>="@+id/action_order"<br /></span><span>        </span><span>android</span><span>:icon</span><span>="@drawable/ic_action_order"<br /></span><span>        </span><span>android</span><span>:title</span><span>="@string/action_order"<br /></span><strong>        app:showAsAction="always"</strong>&gt;&lt;/<span>item</span>&gt;<br />    &lt;<span>item<br /></span><span>        </span><span>android</span><span>:id</span><span>="@+id/action_share"<br /></span><span>        </span><span>android</span><span>:icon</span><span>="@drawable/ic_action_share"<br /></span><span>        </span><span>android</span><span>:title</span><span>="@string/action_share"<br /></span><span>        </span><strong>app:showAsAction="always"</strong>&gt;&lt;/<span>item</span>&gt;<br /><br />    &lt;<span>item<br /></span><span>        </span><span>android</span><span>:id</span><span>="@+id/action_settings"<br /></span><span>        </span><span>android</span><span>:title</span><span>="@string/menu_settings"<br /></span><span>        </span><span>android</span><span>:orderInCategory</span><span>="98"</span>/&gt;<br />    &lt;<span>item<br /></span><span><br /></span><span>        </span><span>android</span><span>:id</span><span>="@+id/action_help"<br /></span><span>        </span><span>android</span><span>:title</span><span>="@string/menu_help"<br /></span><span>        </span><span>android</span><span>:orderInCategory</span><span>="99"</span>/&gt;<br />    &lt;<span>item<br /></span><span><br /></span><span>        </span><span>android</span><span>:id</span><span>="@+id/action_aboutus"<br /></span><span>        </span><span>android</span><span>:title</span><span>="@string/menu_aboutus"<br /></span><span>        </span><span>android</span><span>:orderInCategory</span><span>="100"</span>/&gt;<br /><br />&lt;/<span>menu</span>&gt;</pre>
+</div>
+</div>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id412">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta412_43" class="block iDevice_content">
+<p>Para saber más sobre el recurso menú de <span lang="en">Android</span> puedes visitar la página oficial, donde encontrarás todos los atributos de dicho recurso. Si deseas insertar iconos en las opciones de menú puedes utilizar algunos que vienen por defecto en los recursos <code>drawable</code> del sistema y utilizar el atributo <code>android:icon</code><code>.</code> </p>
+<p style="text-align: center;"><a href="https://developer.android.com/guide/topics/resources/menu-resource.html" target="_blank" class="html" title="Acceder a la web oficial de Android sobre el Recurso Menú. (Se abre en una nueva ventana).">Recurso menú de Android</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

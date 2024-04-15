@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.10.- Creando un menú contextual | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-92" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.10.- Creando un menú contextual</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id436">
+<div class="iDevice emphasis0">
+<div id="ta436_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"> </div>
+</div>
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para &quot;Menú contextual&quot;" href="PMDM05_CONT_R31_menucontextual.png"><img src="PMDM05_CONT_R31_menucontextual_miniatura.png" alt="Captura pantalla de un menú contextual." title="Menu Contextual." class="imagen_ampliable" width="223" height="250" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span> <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p>Para construir un menú contextual seguiremos los mismos pasos que en el menú principal pero con ciertas particularidades que tenemos que tener en cuenta. Si tenemos varios elementos en la pantalla, ¿podemos abrir diferentes menús contextuales dependiendo del objeto en el que estamos haciendo una pulsación larga? ¿Se guardarán los menús como recursos al igual que veíamos en el menú principal?</p>
+<p>Vamos a definir un menú contextual para el objeto de tipo <code>TextView</code> que tenemos en la actividad principal del proyecto <code>HolaMundo</code>.</p>
+<p>Para ello primero creamos el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> en la carpeta <code>/res/menu/</code> como cualquier otro menú, pulsando el botón derecho y seleccionando <code>New - Menu resource file</code>.  Ponemos un nombre al fichero (<code>mcontextualetiqueta.xml</code>) y le damos la siguiente estructura:</p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;<br />    &lt;item android:id="@+id/opCtx1" android:title="@string/opCtx1"&gt;&lt;/item&gt;<br />    &lt;item android:id="@+id/opCtx2" android:title="@string/opCtx2"&gt;&lt;/item&gt;    <br />&lt;/menu&gt;</code></pre>
+</div>
+</div>
+<p>Hay que recordar editar el fichero <code>strings.xml </code>para completar los textos de las opciones que queremos que aparezcan en el menú.</p>
+<p>Dentro del fichero  <code>java </code>de la clase principal registramos en el método<code> OnCreate()</code> este menú mediante <code>registerForContextMenu() </code>donde pasamos como parámetro el identificador del elemento al que queremos aplicar el menú contextual. En nuestro caso el menú contextual lo haremos sobre la etiqueta cuyo identificador es <code>textView2</code>.</p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>TextView etiqueta = (TextView)findViewById(R.id.textView2);</code></pre>
+<pre><code>registerForContextMenu(etiqueta);</code></pre>
+</div>
+</div>
+<p>Y añadimos el siguiente método para poder mostrar el menú:</p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo){</code></pre>
+<pre><code>    super.onCreateContextMenu(menu, v, menuInfo);</code></pre>
+<pre> </pre>
+<pre><code>    MenuInflater inflater = getMenuInflater();</code></pre>
+<pre><code>    inflater.inflate(R.menu.mcontextualetiqueta, menu);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p>Y para asignar la funcionalidad correspondiente a la pulsación de la opción elegida utilizaremos el método:</p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>public boolean onContextItemSelected(MenuItem item) {</code></pre>
+<pre> </pre>
+<pre><code>    switch (item.getItemId()) {</code></pre>
+<pre><code>        case R.id.opCtx1:</code></pre>
+<pre><code>             Toast.makeText(getApplicationContext(),</code></pre>
+<pre><code>                    "Opción 1 del menú contextual", Toast.LENGTH_SHORT).show();</code></pre>
+<pre><code>            return true;</code></pre>
+<pre><code>        case R.id.opCtx2:</code></pre>
+<pre><code>             Toast.makeText(getApplicationContext(),</code></pre>
+<pre><code>                    "Opción 2 del menú contextual", Toast.LENGTH_SHORT).show();</code></pre>
+<pre><code>            return true;</code></pre>
+<pre><code>        default:</code></pre>
+<pre><code>            return super.onContextItemSelected(item);</code></pre>
+<pre><code>    }</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper RecomendacionfpdIdevice em_iDevice em_iDevice_recomendacionfpd" id="id437">
+<div class="iDevice emphasis_recomendacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_recomendacionfpd.png)"><h1 class="iDeviceTitle">Recomendación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta437_46" class="block iDevice_content">
+<p>En el siguiente enlace puedes descargarte el proyecto del ejemplo en su totalidad. Puedes estudiar su código con lo que se ha explicado anteriormente.</p>
+<p style="text-align: center;"><a href="EjemploMenus.zip" target="_blank" class="paquete" title="Descargar la aplicación de ejemplo sobre utilización de menús. [zip - 26.73 MB]">Aplicación de ejemplo sobre la utilización de menús.</a><span class="exe-link-data file-size"> (zip - 26.73 <abbr lang="en" title="MegaBytes">MB</abbr>)</span><span class="tamano"><br /></span></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id438">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta438_63" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b438" class="block iDevice_content">
+<ul class="lista_verificacion">
+<li><strong>Crea un nuevo objeto de tipo <code>TextView </code>en el <span lang="en">layout</span> de la actividad principal.</strong></li>
+<li><strong>Crea otro menú contextual que se abra si hacemos una pulsación larga sobre este nuevo elemento.</strong></li>
+<li><strong>Modifica el código del proyecto descargado anteriormente para poder visualizar ambos menús contextuales según pulsemos en una etiqueta o en la otra.</strong></li>
+</ul>
+</section>
+<form name="feedback-form-quesFeedback0b438" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedbackquesFeedback0b438text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-quesFeedback0b438" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-quesFeedback0b438" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p>Después de añadir el nuevo <code>TextView</code> y creado el fichero de menú correspondiente con las opciones a mostrar:</p>
+<ol class="lista_esquema">
+<li>Registra el nuevo menú en la clase.</li>
+<li>Para mostrar el menú que corresponda al elemento pulsado puedes utilizar este código cambiando los identificadores que tú hayas puesto. Fíjate que debemos comparar el identificador del objeto que se ha pulsado para mostrar el menú correspondiente.</li>
+</ol>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){</code></pre>
+<pre><code>    super.onCreateContextMenu(menu, v, menuInfo);</code></pre>
+<pre><code>    MenuInflater inflater = getMenuInflater();</code></pre>
+<pre> </pre>
+<pre><code>    if(v.getId() == R.id.textView1)</code></pre>
+<pre><code>        inflater.inflate(R.menu.mcontextualetiqueta1, menu);</code></pre>
+<pre><code>    else if(v.getId() == R.id.textView2)</code></pre>
+<pre><code>    {</code></pre>
+<pre><code>        inflater.inflate(R.menu.mcontextualetiqueta2, menu);</code></pre>
+<pre><code>    }</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div></section>
+</form>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id439">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-439_51">
+<form name="multi-select-form-439_51" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion439_51" class="block question iDevice_content">
+<p><strong>Tanto si estamos implementando un men&uacute; principal como si es contextual, si queremos programar la funcionalidad de sus opciones utilizamos el m&eacute;todo (o los m&eacute;todos):</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op439_510" class="sr-av"><a href="#answer-439_54">Opción 1</a></label><input type="checkbox" id="op439_510" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-439_54"><div id="taans439_54" class="block iDevice_content">
+<p><code>onContextItemSelected()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-439_510" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op439_511" class="sr-av"><a href="#answer-439_176">Opción 2</a></label><input type="checkbox" id="op439_511" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-439_176"><div id="taans439_176" class="block iDevice_content">
+<p><code>onCreateContextMenu()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-439_511" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op439_512" class="sr-av"><a href="#answer-439_178">Opción 3</a></label><input type="checkbox" id="op439_512" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-439_178"><div id="taans439_178" class="block iDevice_content">
+<p><code>onOptionsItemSelected()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-439_512" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op439_513" class="sr-av"><a href="#answer-439_180">Opción 4</a></label><input type="checkbox" id="op439_513" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-439_180"><div id="taans439_180" class="block iDevice_content">
+<p><code>onClickItemSelected()</code></p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-439_513" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-439_51" /> 
+</p>
+</div>
+<section id="f439_51" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+<div id="tafeedback439_51" class="feedback iDevice_content">
+<p><code>onClickItemSelected() </code>no es v&aacute;lido y <code>onCreateContextMenu()</code> se utiliza para mostrar el men&uacute;. Las otras dos opciones son las correctas,<code> onOptionsItemSelected()</code> para los men&uacute;s principales y <code>onContextItemSelected() </code>para los men&uacute;s contextuales.</p>
+</div>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-439_54" class="right">Correcto</a></li>
+<li><a href="#answer-439_176" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-439_178" class="right">Correcto</a></li>
+<li><a href="#answer-439_180" class="wrong">Incorrecto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

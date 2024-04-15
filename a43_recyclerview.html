@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.4.3.- RecyclerView | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-71" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.4.3.- RecyclerView</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id390">
+<div class="iDevice emphasis0">
+<div id="ta390_154" class="block iDevice_content">
+<p>¿Sabes que el componente <code>RecyclerView</code> es la versión mejorada de <code>ListView</code>?</p>
+<p>Al usar las listas era frecuente tener que personalizar el <code>Adapter</code> extendiendo de la clase <code>BaseAdapter</code>. Al manejar gran cantidad de datos se vio que las listas eran ineficientes ya que cada vez que se hacía un desplazamiento en la lista, se creaba de nuevo cada  objeto <code>View</code> con todos los controles que tuviera.</p>
+<p>Para agilizar la carga de los datos en el <code>Adapter</code> se creó el patrón <code>ViewHolder</code> que consiste en crear una clase que representara a la vista. Esta clase tiene como atributos los objetos <code>View</code> que se tengan que actualizar en cada fila.</p>
+<p>¿Qué se conseguía con esto? Al iniciar el listado se comprueba si la vista que se recicla (parámetro <code>convertView</code> del método <code>getView()</code>) del <span lang="en">adapter</span> es nulo. Si es así,  significa que no se ha creado ningún objeto <code>View</code> para esa fila y por tanto:</p>
+<ol>
+<li>Se crea un objeto <code>View</code> inflando el fichero <acronym title="eXtensible Markup Language" lang="en">XML</acronym> que representa a cada elemento de la fila. </li>
+<li>Se crea un objeto <code>ViewHolder.</code></li>
+<li>Se inicializan los atributos del objeto <code>ViewHolder</code> al resultado de buscar cada componente en el objeto <code>View</code> mediante el método <code>findById()</code>.</li>
+<li>Se almacena el objeto <code>ViewHolder</code> dentro del objeto <code>View</code> mediante el método <code>setTag(Object object)</code>.</li>
+<li>Se devuelve el objeto <code>View</code>.</li>
+</ol>
+<p>Si la vista a reciclar no es nula, se obtiene el objeto <code>ViewHolder</code> mediante el método <code>getTag()</code> de la vista. Con este truco se evitaba llamar continuamente al método <code>findViewById()</code> para actualizar los controles de la vista.</p>
+<div class="exe-figure exe-image position-center license-pd" style="width: 500px;">
+<div class="figcaption header"><strong>Diagrama que muestra el patrón ViewHolder</strong></div>
+<a title="Ampliar imagen para Diagrama patrón ViewHolder. (Se abre en una nueva ventana)" href="ViewHolder.jpg" target="_blank"> <img src="ViewHolder.jpg" width="500" height="260" alt="Este diagrama muestra el patrón ViewHolder donde encontramos la lista que contiene por cada fila un obnejto View.Este objeto View se infla desde un recurso Layout que se define en el proyecto, en la imagen llamado item_layout.xml La clase ViewHolder tiene por atributos cada elemento de la vista de la lista y una vez que se ha creado se guarda en la propiedad tag de la vista " title="Diagrama del patrón ViewHolder" style="display: block; margin-left: auto; margin-right: auto;" class="imagen_ampliable" /></a>
+<div class="figcaption"><span class="author">LRM</span>. <span class="title"><em>Diagrama DataSource-Adapter-AdapterView</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></div>
+</div>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id391">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta391_128" class="block iDevice_content">
+<p>Puedes aprender en la siguiente página web cómo se personaliza la clase <code>Adapter</code> y cómo se define la clase <code>ViewHolder</code>. Comprueba como en el método <code>getView()</code> del <code>Adapter</code> se construye el objeto <code>View</code> inflando una vista que se ha definido en un <strong><span lang="en">Layout</span></strong>. Además por cada fila se crea un objeto <code>ViewHolder</code> que se guarda en el atributo <code>Tag</code> de la vista y se actualiza con la información del elemento de la lista. </p>
+<p style="text-align: center;"><a href="https://enekodelatorre.com/el-patron-viewholder/" class="html" title="Acceder a una web con un ejemplo de patrón ViewHolder. (Se abre en una nueva ventana)" target="_blank">Ejemplo patrón <code>ViewHolder</code></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id392">
+<div class="iDevice emphasis0">
+<div id="ta392_154" class="block iDevice_content">
+<p>Este patrón no fue adoptado por <span lang="en">Android</span> hasta la aparición del componente <code>RecyclerView</code> que nos obliga a usar la clase <code>RecyclerView.ViewHolder</code>. Y añade una gran ventaja: <code>RecyclerView</code> reutiliza eficientemente las vistas sin tener que realizar por nuestra parte ninguna comprobación.</p>
+<p>Otra de las ventajas es que la información se puede mostrar de diferentes formas y se puede cambiar su diseño en tiempo de ejecución. El componente <code>ListView</code> sólo permite listar los elementos en formato vertical mientras que <code>RecyclerView</code> es mucho más flexible, ya que puede tener los siguientes <code>Manager</code>:</p>
+<ol>
+<li><code>LinearLayoutManager</code>: permite definir listas verticales y también horizontales.</li>
+<li><code>StaggeredLayoutManager</code>: permite definir listas escalonadas. Su mejor ejemplo es la aplicación <strong><span lang="en">Pinterest</span></strong>.</li>
+<li><code>GridLayoutManager</code>: en este diseño los elemento se visualizan en cuadrículas. Su mejor ejemplo son las aplicaciones  <strong>Galería</strong> que muestran las imágenes en este formato.</li>
+</ol>
+<p>Otra clase que se puede implementar es <code>RecyclerView.ItemDecorator</code> que permite a los desarrolladores decorar las filas del <code>RecyclerView</code> agregando bordes o líneas divisorias. También se puede agregar animaciones utilizando la clase <code>RecyclerView.ItemAnimator</code> de forma más fácil e intuitiva que con <code>ListView</code>.</p>
+<p>Ya se han comentado la múltiples ventajas de este componente, pero sí que hay un aspecto que complica la tarea a los desarrolladores, y es la implementación de los eventos clics dentro de un elemento. Con <code>ListView</code> es simple, ya que implementa la interfaz <code>AdapterView.OnItemClickListener</code>, pero en el caso de <code>RecyclerView</code> es nuestra tarea implementarlo y veremos en los próximos apartados cómo realizarlo.</p>
+<p></p>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.5.- TableLayout | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-60" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.5.- TableLayout</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id348">
+<div class="iDevice emphasis0">
+<div id="ta348_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R06_tablelayout.jpg" alt="Ejemplo de layout tipo TableLayout." title="TableLayout." height="173" width="169" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span> <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p>Este tipo de<span lang="en"> layout</span> dispone las vistas en forma de tabla, es decir mediante filas y columnas se organizan las vistas que queremos incorporar en el <span lang="en">layou</span>t. Las etiquetas que emplearemos para abrir y cerrar el <span lang="en">layout</span> son <code>&lt;TableLayout&gt;</code> y  <code>&lt;/TableLayout&gt;</code>. Además para definir cada una de las filas de nuestro <span lang="en">layout</span> utilizaremos las etiquetas <code>&lt;TableRow&gt;</code> y <code>&lt;/TableRow&gt;</code> dentro de las cuáles se insertaran los elementos que deseemos considerando cada uno de ellos como una columna de la tabla.</p>
+<p>Veamos un ejemplo de este tipo de <span lang="en">layout</span> tanto en la definición del fichero <acronym title="eXtensible Markup Language " lang="en">XML</acronym> como el aspecto que obtendríamos en el dispositivo.</p>
+<div class="codigo elemento_centrado" style="width: 46.7em;">
+<div class="texto_izquierda">
+<pre><code>&lt;TableLayout xmlns:android="http://schemas.android.com/apk/res/android"</code></pre>
+<pre><code>    android:layout_width="match_parent"</code></pre>
+<pre><code>    android:layout_height="match_parent"</code></pre>
+<pre><code>    android:paddingLeft="16dp"</code></pre>
+<pre><code>    android:paddingRight="16dp"&gt;</code></pre>
+<pre><code>    &lt;TableRow&gt;</code></pre>
+<pre><code>     &lt;EditText</code></pre>
+<pre><code>          android:layout_width="match_parent"</code></pre>
+<pre><code>          android:layout_height="wrap_content"</code></pre>
+<pre><code>                android:hint="@string/para" /&gt;</code></pre>
+<pre><code>     &lt;EditText</code></pre>
+<pre><code>                android:layout_width="match_parent"</code></pre>
+<pre><code>                  android:layout_height="wrap_content"</code></pre>
+<pre><code>                android:hint="@string/asunto" /&gt;      </code></pre>
+<pre><code>    &lt;/TableRow&gt;</code></pre>
+<pre><code>    &lt;TableRow&gt;</code></pre>
+<pre><code>     &lt;EditText</code></pre>
+<pre><code>                  android:layout_width="match_parent"</code></pre>
+<pre><code>                android:layout_height="200dp"</code></pre>
+<pre><code>                android:gravity="top"</code></pre>
+<pre><code>             android:hint="@string/mensaje" /&gt;</code></pre>
+<pre><code>     &lt;Button</code></pre>
+<pre><code>          android:layout_width="100dp"</code></pre>
+<pre><code>              android:layout_height="wrap_content"</code></pre>
+<pre><code>            android:layout_gravity="right"</code></pre>
+<pre><code>            android:text="@string/enviar" /&gt;</code></pre>
+<pre><code>    &lt;/TableRow&gt;</code></pre>
+<pre><code>&lt;/TableLayout&gt;</code></pre>
+</div>
+</div>
+<p> </p>
+<p>En este ejemplo se ha utilizado este tipo de <span lang="en">layout</span> para organizar las cuatro vistas en forma de tabla. En la primera fila se sitúan dos objetos <code>View </code>de tipo <code>EditText</code>, que formarán a su vez dos columnas, una por cada objeto. En la segunda fila se sitúa otro <code>EditText</code> al cual se le ha dado una altura de <code>200dp</code> y en la siguiente columna el objeto <code>Button</code>. En cuanto a los textos de cada objeto tipo <code>View</code> al igual que el caso anterior, se hace referencia al fichero <code>strings.xml</code> donde deben estar definidos.</p>
+<p>Hay que tener en cuenta que el ancho de cada columna viene definido por el máximo ancho de los elementos que hay en cada columna. Esto podemos modificarlo utilizando los atributos (como <code>android:stretchColumn</code>, <code>android:shrinkColumns</code> y <code>android:collapseColumns</code>) y recuerda que en la documentación oficial de <span lang="en">Android</span> puedes encontrar todos los atributos específicos de este <span lang="en">layout</span>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id349">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-349_141" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion349_141" class="block question iDevice_content">
+<p><strong>El atributo utilizado para indicar al objeto que tome más espacio que el resto de objetos contenidos en el mismo <span lang="en">layout</span> es...</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i349_144" class="sr-av"><a href="#answer-349_144">Opción 1</a></label><input type="radio" name="option349_141" id="i349_144" class="exe-radio-option exe-radio-option-0-4-349_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-349_144"><div id="taans349_144" class="block iDevice_content">
+<p><code>android:strechColumn</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i349_1247" class="sr-av"><a href="#answer-349_1247">Opción 2</a></label><input type="radio" name="option349_141" id="i349_1247" class="exe-radio-option exe-radio-option-1-4-349_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-349_1247"><div id="taans349_1247" class="block iDevice_content">
+<p><code>android:layout_height</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i349_1253" class="sr-av"><a href="#answer-349_1253">Opción 3</a></label><input type="radio" name="option349_141" id="i349_1253" class="exe-radio-option exe-radio-option-2-4-349_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-349_1253"><div id="taans349_1253" class="block iDevice_content">
+<p><code>android:layout_weight</code></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i349_1256" class="sr-av"><a href="#answer-349_1256">Opción 4</a></label><input type="radio" name="option349_141" id="i349_1256" class="exe-radio-option exe-radio-option-3-4-349_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-349_1256"><div id="taans349_1256" class="block iDevice_content">
+<p><code>android:layout_gravity</code></p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b349_141" class="feedback js-hidden">
+<div id="taf349_144" class=" iDevice_content">
+<p>No has acertado, es incorrecto.</p>
+</div>
+</section>
+<section id="sa1b349_141" class="feedback js-hidden">
+<div id="taf349_1247" class=" iDevice_content">
+<p>Fallaste, no es correcto.</p>
+</div>
+</section>
+<section id="sa2b349_141" class="feedback js-hidden">
+<div id="taf349_1253" class=" iDevice_content">
+<p>¡Muy bien! Es la única opción correcta. Indica al objeto el peso que tiene en el <span lang="en">layout</span> con respecto al resto de objetos.</p>
+</div>
+</section>
+<section id="sa3b349_141" class="feedback js-hidden">
+<div id="taf349_1256" class=" iDevice_content">
+<p>No es correcto.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-349_144">Incorrecto</a><span> (<a href="#sa0b349_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-349_1247">Incorrecto</a><span> (<a href="#sa1b349_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-349_1253">Opción correcta</a><span> (<a href="#sa2b349_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-349_1256">Incorrecto</a><span> (<a href="#sa3b349_141">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.7.- Barra de acción | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-80" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.7.- Barra de acción</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id415">
+<div class="iDevice emphasis0">
+<div id="ta415_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="toolbar.png" alt="Captura pantalla de un ActionBar, etiquetado como PersonalNote, y que tiene varios iconos para ordenar de la A a la Z, el típico icono de compartir, y el icono con los tres puntos verticales, para expandir un menú." title="Action Bar." width="339" height="49" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span> <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p>La barra de acción o <code>ActionBar</code> es el elemento encargado de presentar el nombre de la aplicación o actividad en la que nos encontramos, los botones de las acciones disponibles y el menú de desbordamiento u <em><span lang="en">Overflow</span> </em>representado por el icono de tres puntos verticales. Este componente apareció en <span lang="en">Android</span> 3.0 y es un componente nativo de <span lang="en">Android</span> de forma que se muestra de forma diferente según la versión del dispositivo <span lang="en">Android</span>.</p>
+<p>Para poder mostrar nuestra aplicación con el mismo diseño, independientemente de la versión de <span lang="en">Android,  Google</span> creó el componente <code>Toolbar</code> o barra de herramientas que se encuentra en la librería de soporte y que no depende de la versión de <span lang="en">Android</span>.</p>
+<p>Este componente hereda de <code>ViewGroup</code>, con lo cual puede contener otros componentes y aunque proporciona la misma funcionalidad que <code>ActionBar</code> es más flexible. Por ejemplo, se podría utilizar este componente para añadir un título dentro de una tarjeta <code>CardView</code>.</p>
+<p>Lo primero que hay que hacer es deshabitar la barra de acción aplicando un tema <code>NoActionBar</code> en el elemento <code>&lt;application&gt;</code> del fichero manifiesto:</p>
+<div class="codigo elemento_centrado" style="width: 28.55em;">
+<div class="texto_izquierda">
+<pre><code>android:theme="@android:style/Theme.AppCompat.Light.NoActionBar"</code></pre>
+</div>
+</div>
+<p></p>
+<p><span style="font-size: 1em;">Al establecer el tema dentro de este elemento ninguna de las actividades que contenga la aplicación mostrará la barra de acción, con lo cual habrá que añadir el </span><span lang="en" style="font-size: 1em;">widget</span><span style="font-size: 1em;"> </span><code>Toolbar</code><span style="font-size: 1em;"> en todos los diseños de las actividades con el siguiente código:</span></p>
+<div class="codigo elemento_centrado" style="width: 28.55em;">
+<div class="texto_izquierda">
+<pre><code>&lt;androidx.appcompat.widget.Toolbar</code></pre>
+<pre><code>  android:id="@+id/toolbar"</code></pre>
+<pre><code>  android:layout_width="match_parent"</code></pre>
+<pre><code>  android:layout_height="wrap_content"</code></pre>
+<pre><code>  android:background="?attr/colorPrimary"</code></pre>
+<pre><code>  android:elevation="4dp"</code></pre>
+<pre><code>  android:minHeight="?attr/actionBarSize"</code></pre>
+<pre><code>  android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"</code></pre>
+<pre><code>  app:popupTheme="@style/ThemeOverlay.AppCompat.Light" /&gt;  </code></pre>
+</div>
+</div>
+<p></p>
+<p><span style="font-size: 1em;">Ya en el código Java, identificamos la barra de herramientas y establecemos la barra de herramientas como la barra de acción de nuestra aplicación:</span></p>
+<div class="codigo elemento_centrado" style="width: 28.55em;">
+<div class="texto_izquierda">
+<pre><code>@Override protected void onCreate(Bundle savedInstanceState) {</code></pre>
+<pre><code>  super.onCreate(savedInstanceState); </code></pre>
+<pre><code>  setContentView(R.layout.activity_main); </code></pre>
+<pre><code>  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</code></pre>
+<pre><code>  setSupportActionBar(toolbar); }</code></pre>
+</div>
+</div>
+<p></p>
+<p><span style="font-size: 1em;" lang="en">A veces nos interesa que esta barra de herramientas se anime en base al desplazamiento o scroll que ocurre en la la vista del contenido, por ejemplo con un </span><code>RecyclerView</code><span style="font-size: 1em;">. Esto se consigue con la clase </span><code>CoordinatorLayout</code><span style="font-size: 1em;"> que se encarga de coordinar automáticamente todos los hijos: </span><code>AppBarLayout, RecyclerView</code><span style="font-size: 1em;"> y el botón flotante. En este caso la barra </span><code>Toolbar</code><span style="font-size: 1em;" lang="en"> está dentro de un Layout especial llamado </span><code>AppBarLayout</code><span style="font-size: 1em;"> que es el encargado de sincronizarse con el contenido que se desplaza mediante el atributo </span><code>layout_behavior</code><span style="font-size: 1em;">.</span></p>
+<div class="codigo elemento_centrado" style="width: 28.55em;">
+<div class="texto_izquierda">
+<pre><code>app:layout_behavior="@string/appbar_scrolling_view_behavior"</code></pre>
+</div>
+</div>
+<p></p>
+<p><span style="text-align: left; font-size: 1em;">Realmente es bastante sencillo, sólo tienes que utilizar el esquema que te planteamos en el siguiente archivo:</span></p>
+<p style="text-align: center;"><a href="plantilla_coordinatorlayout.xml" class="paquete" title="Descargar el archivo plantilla_coordinatorlayout.xml Se abre en una nueva ventana. [xml - 1.71 KB]" target="_blank">plantilla_coordinatorlayout.xml</a><span class="exe-link-data file-size"> (xml - 1.71 <abbr lang="en" title="KiloBytes">KB</abbr>)</span>.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id416">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta416_128" class="block iDevice_content">
+<p>El siguiente enlace muestra una serie de ejemplos que explican las diferentes animaciones que se pueden tener en un <code>CoordinatorLayout</code> y que dependen de los elementos hijos que tenga.</p>
+<p>¡Es muy interesante! Verás cómo interactúan los diferentes elementos de la interfaz en base a los atributos que se definan en los componentes.</p>
+<p style="text-align: center;"><a href="http://www.sgoliver.net/blog/animaciones-basicas-coordinatorlayout/" class="html" title="Acceder a una web con ejemplos de animaciones de un CoordinatorLayout. (Se abre en una nueva ventana)" target="_blank">Componentes CoordinatorLayout</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id417">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-417_141" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion417_141" class="block question iDevice_content">
+<p><strong>Indica qué elemento no forma parte de la <code>ActionBar</code></strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i417_144" class="sr-av"><a href="#answer-417_144">Opción 1</a></label><input type="radio" name="option417_141" id="i417_144" class="exe-radio-option exe-radio-option-0-4-417_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-417_144"><div id="taans417_144" class="block iDevice_content">
+<p>Barra de estado.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i417_1589" class="sr-av"><a href="#answer-417_1589">Opción 2</a></label><input type="radio" name="option417_141" id="i417_1589" class="exe-radio-option exe-radio-option-1-4-417_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-417_1589"><div id="taans417_1589" class="block iDevice_content">
+<p>Título de la aplicación.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i417_1592" class="sr-av"><a href="#answer-417_1592">Opción 3</a></label><input type="radio" name="option417_141" id="i417_1592" class="exe-radio-option exe-radio-option-2-4-417_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-417_1592"><div id="taans417_1592" class="block iDevice_content">
+<p>Botones de acción.</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i417_1595" class="sr-av"><a href="#answer-417_1595">Opción 4</a></label><input type="radio" name="option417_141" id="i417_1595" class="exe-radio-option exe-radio-option-3-4-417_141-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-417_1595"><div id="taans417_1595" class="block iDevice_content">
+<p>Menú desbordamiento</p>
+<div id="gtx-trans" style="position: absolute; left: 66px; top: 34px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b417_141" class="feedback js-hidden">
+<div id="taf417_144" class=" iDevice_content">
+<p>Lo tenías claro, ¡¡enhorabuena!!</p>
+</div>
+</section>
+<section id="sa1b417_141" class="feedback js-hidden">
+<div id="taf417_1589" class=" iDevice_content">
+<p>Incorrecto. </p>
+</div>
+</section>
+<section id="sa2b417_141" class="feedback js-hidden">
+<div id="taf417_1592" class=" iDevice_content">
+<p>No es correcto.</p>
+</div>
+</section>
+<section id="sa3b417_141" class="feedback js-hidden">
+<div id="taf417_1595" class=" iDevice_content">
+<p>No es la opción correcta.</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-417_144">Opción correcta</a><span> (<a href="#sa0b417_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-417_1589">Incorrecto</a><span> (<a href="#sa1b417_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-417_1592">Incorrecto</a><span> (<a href="#sa2b417_141">Retroalimentación</a>)</span></li>
+<li><a href="#answer-417_1595">Incorrecto</a><span> (<a href="#sa3b417_141">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

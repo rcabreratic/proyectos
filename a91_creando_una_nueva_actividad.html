@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.9.1.- Creando una nueva actividad | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-88" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.9.1.- Creando una nueva actividad</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id426">
+<div class="iDevice emphasis0">
+<div id="ta426_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para:  Crear nueva Activity. (Se abre en una nueva ventana)." href="actividadnueva.png" target="_blank"><img src="actividadnueva.png" alt="Captura pantalla de cómo crear una nueva Activity." title="Crear nueva Activity." class="imagen_ampliable" width="200" height="169" /></a></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Android Studio.</span> <a title="Acceder a la información sobre licencia Apache en Wikipedia. (Se abre en una nueva ventana)." href="https://es.wikipedia.org/wiki/Apache_License" target="_blank">Apache 2.0</a></div>
+</div>
+<p>Para crear una nueva actividad en nuestra aplicación debemos crear una nueva clase <span lang="en">Java</span> que se almacenará en la carpeta <code>/src/</code>. Este fichero utilizará como recurso una nueva plantilla que se guarda con formato <acronym title="eXtensible Markup Language" lang="en">XML</acronym> en la carpeta <code>/res/layout/</code>. Por tanto debemos generar dos ficheros nuevos en nuestro proyecto además de los ya creados por defecto desde el inicio por <span lang="en">Android Studio</span>.</p>
+<p>Para comenzar vamos a partir de un nuevo proyecto que vamos a crear con el <acronym title="Integrated Development Environment" lang="en">IDE </acronym><span lang="en">Android Studio</span> al que podemos llamar <code>HelloWorld</code> y a partir de éste crearemos la primera actividad (pantalla) que enviará un mensaje a una segunda actividad. Una vez hayas creado el proyecto y tengas los ficheros que genera de forma automática para la única actividad que tiene la aplicación, podemos crear una segunda actividad con los siguientes pasos:</p>
+<ol>
+<li>Desde la carpeta raíz o paquete donde se encuentra el fichero <code>MainActivity.java</code> de nuestra aplicación pulsamos con el botón derecho del ratón y elegimos <code>New</code> – <code>Activity - Empty Activity </code>y ponemos como nombre de la actividad (clase java) <code>SecondActivity</code>. Vemos cómo automáticamente se renombra la plantilla <acronym title="eXtensible Markup Language" lang="en">XML</acronym> que va asociada a dicha clase java (<code>activity_second</code>).</li>
+<li>Pulsamos en el botón <code>Finish</code> y vemos cómo ahora tenemos dos clases java y dos ficheros <span lang="en">layout</span> en nuestra aplicación.</li>
+<li>Editamos de forma gráfica (pestaña diseño) el <span lang="en">layout</span> de la nueva actividad y añadimos un objeto <code>TextView</code> que muestre por pantalla el texto “<code>Hasta Luego</code>” totalmente centrado vertical y horizontalmente. Recuerda utilizar el recurso de tipo <code>String</code> para almacenar el valor.</li>
+</ol>
+<p>Ahora mismo tenemos dos actividades o pantallas en nuestra aplicación, pero todavía no se comunican entre ellas. Pasemos a ver cómo se hace.</p>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

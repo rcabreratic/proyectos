@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.8.3.- El objeto SnackBar | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-86" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.8.3.- El objeto SnackBar</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id422">
+<div class="iDevice emphasis0">
+<div id="ta422_154" class="block iDevice_content">
+<div class="elemento_izquierda">
+<div class="elemento_centrado"><img src="snack_bar.jpg" width="230" height="173" alt="Ilustración que muestra un snack de pan. Es un símil con el componente snackbar" title="Objeto Snackbar" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/photos/snack-bar-knabberzeug-queso-nibble-233360/" target="_blank" class="author" title="Acceder a la web de descarga de la imagen de HolgersFotografie en Pixabay. (Se abre en una nueva ventana)">HolgersFotografie</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>¿Has oído hablar de la utilidad de <code>Snackbar</code>?</p>
+<p>El <span lang="en">widget</span> <code>Snackbar</code> proporciona un comentario breve respecto a una acción y se muestra en la parte inferior de la pantalla. La ventaja de este componente es que nos ofrece la capacidad de realizar una acción. El ejemplo más común es la acción <strong lang="en">UNDO</strong>, deshacer una acción que se acaba de realizar o bien <strong><span lang="en">RETRY</span>,</strong> reintentar en el caso que la acción haya fallado.</p>
+<p>Al igual que un mensaje <code>Toast</code>, los <code>Snackbars</code> desaparecen automáticamente después de un tiempo de espera, pero al contrario que el primero,  <code>Snackbar </code>se puede desactivar,  por ejemplo, cuando el usuario pulsa en otra parte de la pantalla o bien cuando se descarta desplazando el  <code>Snackbar</code> hacia un lateral. Para crear un mensaje  <code>Snackbar </code>utilizamos el método <code>make()</code>.</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>public void simpleSnackbar(View view){ </code></pre>
+<pre><code>    Snackbar.make(view, getString(R.string.message), Snackbar.LENGTH_SHORT) .show(); }</code></pre>
+</div>
+</div>
+<p></p>
+<p>El método <code>make() </code>acepta tres parámetros:</p>
+<ol>
+<li><code>view</code>: es el diseño raíz de la actividad.</li>
+<li><code>R.string.message</code>: este es el mensaje que debe aparecer en el <code>Snackbar</code>. Al utilizar un recurso se puede personalizar e internacionalizar.</li>
+<li><code>Snackbar.LENGTH_LONG</code>: se indica límite de tiempo que se mostrará la barra del <code>SnackBar.</code></li>
+</ol>
+<p class="destacado"><strong>Observa cómo se encadena la llamada del método <code>show()</code> para mostrar <code>Snackbar</code> en la pantalla una vez ha finalizado el método <code>make()</code>. Esta técnica se llama <em></em><span lang="en"><em>Method chaining</em></span> y evita utilizar variables intermedias en la obtención de un resultado. </strong></p>
+<p>Se debe utilizar como diseño raíz un <code>CoordinartorLayout</code> en el caso que nuestro diseño tenga el botón <code>FloatingActionButton</code>. De esta forma el botón se desplaza automáticamente hacia arriba para mostrar el mensaje en la parte inferior de la pantalla y cuando desaparece el mensaje, el botón vuelve a su posición original.</p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id423">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta423_128" class="block iDevice_content">
+<p><span>Para saber definir una acción dentro del componente <code>Snackbar</code>  puedes visitar la siguiente página, que te guía sobre cómo hacerlo. Intenta realizar el ejemplo por ti mismo. </span></p>
+<p><span>¡Seguro que puedes! </span></p>
+<p style="text-align: center;"><a href="https://danielme.com/2015/07/30/diseno-android-notificaciones-con-snackbar/" class="html" title="Acceder a una web con información sobre cómo definir una acción dentro e un Snackbar. (Se abre en una nueva ventana)." target="_blank">Añadir una acción en una notificación Snackbar</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

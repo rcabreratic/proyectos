@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.11.3.- Pasar argumentos a un fragmento | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-96" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.11.3.- Pasar argumentos a un fragmento</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id447">
+<div class="iDevice emphasis0">
+<div id="ta447_154" class="block iDevice_content">
+<p>Ya hemos comunicado el primer fragmento con la <code>Activity</code>. A continuación, es el segundo fragmento el que tiene que recibir el objeto <code>Note</code> como un argumento.</p>
+<div class="elemento_centrado"><a title="Ampliar imagen para:  Diagrama comunicación Fragment-Activity (Se abre en una nueva ventana)" href="comunicacion_fargmentos.png" target="_blank"><img src="comunicacion_fragmentos.png" alt="Este diagrama muestra un fragmento llamado ListNoteFragment que contiene un listado. Cuando se pulsa sobre uno de los elementos de la lista se lo comunica a la Activity que lo contiene para que inicie un fragmento llamado ViewNoteFragment. Éste frgamento recibe la información del elemento seleccioando y lo muestra" title="Esquema comunicación-paso argumentos en un fragmento." class="imagen_ampliable" width="400" height="233" /></a></div>
+<div class="figcaption"><span class="author">LRM</span>. <span class="title"><em>Diagrama comunicación Fragment-Activity</em></span> <span class="license"><span class="sep">(</span><span>Dominio público</span><span class="sep">)</span></span></div>
+<p></p>
+<p>Debemos asegurarnos que los argumentos se pasan al fragmento justo cuando se usa un método estático <code>newInstance()</code> para crear el fragmento, poniendo los parámetros que se desee en un objeto <code>Bundle</code> que estará disponible al crear una nueva instancia:</p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>public static Fragment newInstance(Bundle bundle) {</code></pre>
+<pre><code>        ViewNoteFragment fragment = new ViewNoteFragment();</code></pre>
+<pre><code>        if (bundle != null) {</code></pre>
+<pre><code><strong>            fragment.setArguments(bundle);</strong></code></pre>
+<pre><code>        }</code></pre>
+<pre><code>        return fragment;</code></pre>
+<pre><code>    }</code></pre>
+</div>
+</div>
+<p><span>Más adelante en el fragmento se puede acceder al objeto <code>Bundle</code> mediante el método <code>getArguments()</code>:</span></p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code>@Override</code></pre>
+<pre><code>    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {</code></pre>
+<pre><code>        super.onViewCreated(view, savedInstanceState);</code></pre>
+<pre><code>        tvTitle = view.findViewById(R.id.tvTitle);</code></pre>
+<pre><code>        tvContent = view.findViewById(R.id.tvContent);</code></pre>
+<pre><code>        if (getArguments() != null) {</code></pre>
+<pre><code><strong>         Note note = getArguments().getParcelable(Note.TAG);</strong></code></pre>
+<pre><code>            tvTitle.setText(note.getTitle());</code></pre>
+<pre><code>            tvContent.setText(note.getContent());</code></pre>
+<pre><code>        }</code></pre>
+<pre><code>    } </code></pre>
+</div>
+</div>
+<p>Finalmente la actividad inicia el fragmento mediante el método <code>newInstance()</code> con un parámetro de tipo <code>Bundle</code> que contiene el objeto <code>Note</code>: </p>
+<div class="codigo elemento_centrado" style="width: 38.45em;">
+<div class="texto_izquierda">
+<pre><code> @Override</code></pre>
+<pre><code>     public void onNoteView(Note note) {</code></pre>
+<pre><code>         FragmentManager fm=getSupportFragmentManager();</code></pre>
+<pre><code>         viewNoteFragment = (ViewNoteFragment) fm.findFragmentByTag(ViewNoteFragment.TAG);</code></pre>
+<pre><code>         if (viewNoteFragment == null) {</code></pre>
+<pre><code>             Bundle bundle= null;</code></pre>
+<pre><code>             if (note!=null){</code></pre>
+<pre><code>                 bundle= new Bundle();</code></pre>
+<pre><code>                 bundle.putParcelable(Note.TAG,note);</code></pre>
+<pre><code>             }</code></pre>
+<pre><code><strong>             viewNoteFragment = (ViewNoteFragment) viewNoteFragment.newInstance(bundle);</strong></code></pre>
+<pre><code>         }</code></pre>
+<pre><code>         FragmentTransaction ft = fm.beginTransaction();</code></pre>
+<pre><code>         ft.replace(R.id.fragmentcontainer, viewNoteFragment, ViewNoteFragment.TAG);</code></pre>
+<pre><code>         ft.addToBackStack(null);</code></pre>
+<pre><code>         ft.commit();</code></pre>
+<pre><code>} </code></pre>
+</div>
+</div>
+<p>Para que un objeto de la clase <code>Note</code> se pueda pasar como argumento debe implementar la interfaz <code>Parcelable,</code>  añadiendo <code>implements Parcelable</code> en la declaración de la clase. Cuando se añade esa línea automáticamente <span lang="en">Android Studio</span> implementa por nosotros el código pulsando <strong><span lang="en">Alt+Intro -&gt; Implement Method</span></strong>. A continuación nos da un error en <code>Note</code> que se soluciona de la misma forma <strong><span lang="en">Alt+Intro -&gt; Add Parcelable Implementation</span>.</strong> Si quieres conocer el sentido de los métodos creados puedes consultar el siguiente enlace:</p>
+<p style="text-align: center;"><a href="https://sekthdroid.wordpress.com/2014/01/06/implementar-la-interface-parcelable-en-una-clase-en-android/" class="html" title="Acceder a una web con información sobre cómo implementar la interface Parcelable en una clase Android. (Se abre en una nueva ventana)" target="_blank">Implementar la <span lang="en">interface</span> <code>Parcelable</code> en una clase en <span lang="en">Android</span></a></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id448">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta448_148" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b448" class="block iDevice_content">
+<p><strong>Puedes descargar el ejercicio entero en el siguiente enlace:</strong></p>
+<p style="text-align: center;"><a href="PerdonalNoteFragmentSolucion.zip" class="paquete" title="Descargar el proyecto PersonalNoteFragment. Se abre en una nueva ventana [zip - 1.23 MB]" target="_blank"> Proyecto <code>PersonalNoteFragment</code> con todo el proceso realizado en los apartados</a><span class="exe-link-data file-size"> (zip - 1.23 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.<span class="exe-link-data file-size"><br /></span></p>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

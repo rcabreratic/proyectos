@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.4.2.1.- ArrayAdapter | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-69" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.4.2.1.- ArrayAdapter</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id379">
+<div class="iDevice emphasis0">
+<div id="ta379_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><a title="Ampliar imagen para Controles de Selección. (se abre en una nueva ventana)" href="ejercicio_spinner.png" target="_blank"><img src="ejercicio_spinner.1.png" alt="Listas en Android. se ve una captura de pantalla de un móvil que muestra como título de la app CitySpinner, y debajo un formulario de registro en la app, para introducir nombre, email, contraseña y ciudad, éste últmo mediante un desplegable que permite seleccionarla.." title="Controles de selección." class="imagen_ampliable" width="150" height="268" style="float: right;" /></a>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Google Inc. (Se abre en una nueva ventana)" href="http://developer.android.com/design/media/selection_context_menu.png" target="_blank">Google Inc.</a></div>
+</div>
+</div>
+<p>Ya se ha explicado que un adaptador se encarga de poblar de datos a la vista. En el ejemplo que realizaremos tendremos un<code> Spinner</code> que mostrará un listado de ciudades. Cada ciudad estará identificada por su código postal y nombre. Utilizaremos <code>ArrayAdapter</code>, que tendrá una lista de elementos del tipo ciudad.</p>
+<p>Lo primero que haremos será definir el <strong>modelo</strong> o clase Java:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre>public class City {<br /><br />   private String <span>code</span>;<br />    <span>private </span>String <span>name</span>;<br /><br />    <span>public </span>City(int code, String name) {<br />        <span>this</span>.<span>code </span>= code;<br />        <span>this</span>.<span>name </span>= name;<br />    }<br /><br />    <span>@NonNull<br /></span><span>    @Override<br /></span><span>    </span><span>public </span>String toString() {<br />        <span>return this</span>.<span>name</span>;<br />    }</pre>
+</div>
+</div>
+<p><br style="clear: both;" />Es importante implementar el método <code>toString()</code> ya que de forma predeterminada <code>ArrayAdapter</code> crea una vista para cada elemento de la lista llamando a este método y colocando el contenido en un <code>TextView</code> de un <span lang="en">layout</span> que se pasa como parámetro al construir el objeto <code>ArrayAdapter</code>, como muestra el siguiente ejemplo:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;City&gt;(this,
+android.R.layout.simple_spinner_item, listCity);</code></pre>
+</div>
+</div>
+<p>Al crear un objeto de la clase <code>ArrayAdapter</code> se ha pasado tres parámetros:</p>
+<ol>
+<li>El contexto, es decir la Activity que contiene el control <strong></strong><span lang="en"><strong>Spinner</strong></span>.</li>
+<li>El <strong><span lang="en">Layout</span></strong> que se usará para dibujar cada elemento del <code>Spinner</code> (en este caso <code>android.R.layout.simple_spinner_item</code> que ya viene definido por <span lang="en">Android</span> y contiene un <code>TextView</code> con un <strong><abbr title="Identificador">id</abbr></strong> llamado <code>text1.</code> Es este componente lo que se actualiza con el valor que devuelve el método <code>toString()</code> de la clase modelo <code>City</code></li>
+<li>Como tercer parámetro, la <strong>colección de datos</strong> que hemos tenido que crear previamente</li>
+</ol>
+<p>Para inicializar el <code>ArrayAdapter</code>  se crea una lista de ciudades llamada <code>listCity:</code></p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>ArrayList&lt;City&gt; listCity = new ArrayList&lt;&gt;();<br />listCity.add(new City(1,"Sevilla"));<br />listCity.add(new City(2,"Málaga"));<br />listCity.add(new City(3,"Huelva"));<br />listCity.add(new City(4,"Jaén"));<br />listCity.add(new City(5,"Córdoba"));<br />listCity.add(new City(6,"Almería"));<br />listCity.add(new City(7,"Cádiz"));</code></pre>
+</div>
+</div>
+<p></p>
+<p>Sólo queda definir un <strong>Layout</strong> o diseño, ya que cuando se pincha sobre el control <code>Spinner</code> aparece una lista debajo y hay que definir el diseño de la misma mediante el método <code>setDropDownViewResource(int)</code> del <code>Adapter</code>. En el ejemplo utilizaremos de nuevo un diseño y definido en <span lang="en">Android</span>: <code>simple_spinner_dropdown_item</code>:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</code></pre>
+</div>
+</div>
+<p></p>
+<p>A continuación, se debe identificar el <code>Spinner</code> que se ha creado en el diseño:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>spCity=findViewById(R.id.spCity);</code></pre>
+</div>
+</div>
+<p></p>
+<p>Finalmente, unimos el <code>Spinner</code> que ya hemos identificado con el <code>Adapter</code> que hemos creado y definido, utilizando el método <code>setAdapter()</code> como mostramos a continuación:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>spCity.setAdapter(arrayAdapter);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

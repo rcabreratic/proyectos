@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.11.1.- Transacciones de fragmentos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-94" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.11.1.- Transacciones de fragmentos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id440">
+<div class="iDevice emphasis0">
+<div id="ta440_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="transaction.jpg" width="300" height="131" title="Transacciones de Fragmentos." alt="Ilustración que muestra una transacción entre dos personas que están conectadas a través de dos portátiles" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/photos/ecommerce-la-venta-en-l%C3%ADnea-2140604/" target="_blank" class="author" title="Acceder a la web de descarga de la imagen de Mediamodifier en Pixabay. (Se abre en una nueva ventana)">Mediamodifier</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>Ya sabemos que las actividades se organizan en una pila (la <strong>pila de actividades</strong>) en el orden en que se abre cada actividad. Pero ahora son los fragmentos los que se añaden y eliminan mediante transacciones que se guardan en una pila interna que gestiona cada actividad. Como estas transacciones se guardan en la <code>Activity</code> que se encuentra en la pila de actividades, cuando el usuario presiona el botón <em><strong>Atrás</strong>,</em> el sistema operativo que gestiona la pila de actividades, deshace la última transacción de fragmentos de la actividad que se encuentra en la cima la pila de actividades.</p>
+<p>Si hay un giro de pantalla sabemos que la <code>Activity</code> se destruye ¿pero qué pasa con la pila de fragmentos?:</p>
+<p>El sistema <span lang="en">Android</span> restaura automáticamente esa pila de fragmentos de forma que no se pierde, y si creamos un nuevo fragmento se posicionará encima de los que ya estaban guardados. </p>
+<p>Ya tenemos clara la teoría así que vamos a crear nuestro primer proyecto con fragmentos. Para ello partimos del ejercicio <code>PersonalNote </code> que hemos renombrado como <code>PersonalNoteFragment</code> y que usaremos de base para entender los fragmentos.</p>
+<p class="destacado"><strong>Si tienes duda de cómo copiar o renombrar un proyecto  consulta el siguiente enlace: </strong><a href="https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/appendix/appendix-utilities/appendix-utilities.html#copy_project" class="html" title="Acceder a una web con información sobre cómo copiar y renombrar proyectos (en inglés). (Se abre en una nueva ventana)" target="_blank">Cómo copiar y renombrar un proyecto</a>. <a href="https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/appendix/appendix-utilities/appendix-utilities.html#copy_project"><br /></a></p>
+<p>Resumimos los cambios que hemos realizado:</p>
+<ul class="lista_verificacion">
+<li>Se crea una clase <code>MainActivity</code> con su correspondiente <code>Layout</code>. Hemos copiado toda la estructura que contiene la barra de acción y el botón flotante y lo hemos colocado en este <code>Layout</code>. Además hemos añadido un <code>Framelayout</code> que será el contenedor de nuestros fragmentos.</li>
+<li>La clase <code>ListNoteActivity</code> pasa a llamarse <code>ListNoteFragment</code> y hereda de la clase <code> Fragment. </code>Se ha creado el método <code>onCreateView()</code> que infla la vista y el código que estaba en <code>onCreate()</code> lo hemos pasado al método <code>onViewCreated().</code></li>
+<li>Ahora, cuando el fragmento necesite referenciar a la <code>Activity</code> que lo contiene, se utilizará el método<code> getActivity().</code></li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id441">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta441_148" class="block story iDevice_content">
+
+</section>
+<section id="taquesQuestion0b441" class="block iDevice_content">
+<p><strong>Descárgate el código del proyecto en el siguiente enlace que hemos transformado para usar <code>Fragments</code>:</strong></p>
+<p style="text-align: center;"><a href="PerdonalNoteFragment.zip" class="paquete" title="Descargar el ejercicio PersonalNoteFragment. Se abre en una nueva ventana. [zip - 1.12 MB]" target="_blank">Ejercicio PersonalNoteFragment</a><span class="exe-link-data file-size"> (zip - 1.12 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id442">
+<div class="iDevice emphasis0">
+<div id="ta442_154" class="block iDevice_content">
+<p>Si ejecutas el código no aparecerá nada, ya que no se ha añadido el fragmento a la actividad. La clase encargada de agregar, quitar o reemplazar fragmentos es <code>FragementManager</code>. Esta clase contiene y gestiona todos los fragmentos que estén presentes en nuestra aplicación, así como si son visibles o no. El proceso es similar a las transacciones de bases de datos donde cualquier operación debe ejecutarse en una transacción mediante un objeto <code>FragmentTransaction</code>. Para añadir el fragmento <code>NoteListFragment</code> a nuestra <code>Activity</code> se tienen que realizar las siguientes operaciones:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Crear una transacción.</li>
+<li>Añadir, reemplazar o eliminar un fragmento a través de los métodos <code>add(), replace()</code> y <code>remove().</code></li>
+<li>Confirmar la transacción o hacer un <code>commit.</code></li>
+</ol>
+<p>Mostramos a continuación el código que implementa estas operaciones:</p>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>FragmentManager fm=getSupportFragmentManager();</code></pre>
+<pre><code>ft.replace(R.id.fragmentcontainer,new ListNoteFragment(),ListNoteFragment.TAG);</code></pre>
+<pre><code>ft.addToBackStack(null);<br /></code></pre>
+<pre>ft.commit();</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id443">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta443_128" class="block iDevice_content">
+<p>Te proponemos que realices el ejemplo que proponen los desarrolladores de <span lang="en">Google</span> a través de su <strong>plataforma <span lang="en">Codelabs,</span></strong> que contiene pequeños tutoriales que explican cómo implementar ciertas características en pequeños proyectos o aplicaciones. El tutorial que te proponemos explica paso a paso cómo crear fragmentos dinámicos:</p>
+<p style="text-align: center;"><a href="https://codelabs.developers.google.com/codelabs/advanced-android-training-fragments/index.html#0" class="html" title="Acceder a la web de la plataforma Codelabs, con un proyecto para practicar con fragmentos. (Se abre en una nueva ventana)." target="_blank">Proyecto para practicar con fragmentos  en Codelabs</a></p>
+<p></p>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper SeleccionmultiplefpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id444">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<div id="actitity-444_136">
+<form name="multi-select-form-444_136" action="#" class="activity-form multi-select-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion444_136" class="block question iDevice_content">
+<p><strong>Indica las acciones que se pueden realizar en una transacción de fragmentos.</strong></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op444_1360" class="sr-av"><a href="#answer-444_139">Opción 1</a></label><input type="checkbox" id="op444_1360" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-444_139"><div id="taans444_139" class="block iDevice_content">
+<p>Añadir.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-444_1360" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op444_1361" class="sr-av"><a href="#answer-444_3566">Opción 2</a></label><input type="checkbox" id="op444_1361" value="False" />
+</p>
+<div class="iDevice_answer-content" id="answer-444_3566"><div id="taans444_3566" class="block iDevice_content">
+<p>Editar.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-444_1361" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op444_1362" class="sr-av"><a href="#answer-444_3568">Opción 3</a></label><input type="checkbox" id="op444_1362" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-444_3568"><div id="taans444_3568" class="block iDevice_content">
+<p>Reemplazar.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-444_1362" style="display:none"></section>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="op444_1363" class="sr-av"><a href="#answer-444_3570">Opción 4</a></label><input type="checkbox" id="op444_1363" value="True" />
+</p>
+<div class="iDevice_answer-content" id="answer-444_3570"><div id="taans444_3570" class="block iDevice_content">
+<p>Eliminar.</p>
+</div>
+</div>
+<section class="iDevice_answer-feedback feedback" id="feedback-444_1363" style="display:none"></section>
+</section>
+</section>
+<div class="block iDevice_buttons feedback-button js-required">
+<p>
+<input type="button" name="submitSelect" class="feedbackbutton multi-select-feedback-toggler" value="Mostrar retroalimentación" id="multi-select-feedback-toggler-4-444_136" /> 
+</p>
+</div>
+<section id="f444_136" class="js-hidden js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-444_139" class="right">Correcto</a></li>
+<li><a href="#answer-444_3566" class="wrong">Incorrecto</a></li>
+<li><a href="#answer-444_3568" class="right">Correcto</a></li>
+<li><a href="#answer-444_3570" class="right">Correcto</a></li>
+</ol>
+</section>
+</div>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

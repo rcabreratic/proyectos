@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.1.- Atributos genéricos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-56" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.1.- Atributos genéricos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id339">
+<div class="iDevice emphasis0">
+<div id="ta339_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R04_pantallas.jpg" alt="Distintos tipos de plantillas para cada dispositivo." title="Plantillas android." /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank" rel="noopener"><span class="transparente">CC by</span></a> <a title="mhdbadi. (Se abre en una nuveva ventana)" href="http://farm8.staticflickr.com/7345/9142692613_0e619fb1b5_n.jpg" target="_blank">mhdbadi</a></div>
+</div>
+<p>¿Cómo podemos definir el tamaño, la orientación, alineación y otras características de una pantalla?</p>
+<p>Como hemos comentado, utilizaremos ficheros <acronym title="eXtensible Markup Language" lang="en">XML</acronym> para crear los <span lang="en">layouts</span> y organizar nuestras pantallas. Los ficheros <acronym title="eXtensible Markup Language" lang="en">XML</acronym> están formados por etiquetas y atributos que nos permitirán realizar pantallas de forma muy fácil.</p>
+<p>Antes de comenzar a ver cada uno de los <span lang="en">layouts</span> y las vistas que pueden contener nuestras pantallas, veamos qué atributos comunes tienen estos objetos y para qué sirven.</p>
+<p>Los atributos de <code>View</code> y <code>ViewGroup</code> permiten modificar las propiedades de cada objeto de forma personalizada. Para ello, debemos conocer qué atributos podemos modificar según el tipo de objeto al que haga referencia el atributo. Estos atributos se definen en la clase <code>LayoutParams</code> de cada <code>ViewGroup</code>. Éstos siguen el formato <code>android:nombre_atributo</code>. Algunos ejemplos serían <code>android:layout_width</code>, <code>android:layout_height</code>, <code>android:paddingLeft</code>, <abbr title="etcétera.">etc.</abbr></p>
+<p>Vamos a ver algunos de los atributos más comunes que pueden aparecer en los objetos de tipo <code>GroupView</code> o <span lang="en">layouts</span>. Debemos recordar que la clase <code>GroupView</code> hereda de la clase <code>View</code>, por tanto estos atributos también estarán presentes cuando veamos los objetos<code> View</code> o vistas.</p>
+<ul class="lista_verificacion">
+<li><strong><span lang="en"><abbr title="Identificador">ID</abbr></span>:</strong> cualquier objeto de tipo <code>View</code> debe tener un identificador asociado que lo identifique de forma única. En los ficheros <acronym title="eXtensible Markup Language" lang="en">XML</acronym> a este atributo se le asigna un tipo de dato <code>String</code> pero cuando la aplicación sea compilada, el <span lang="en"><acronym title="Identificador">ID</acronym></span> será referenciado como un <code>integer</code>. La sintaxis para este atributo será:<br />
+<div class="codigo elemento_centrado" style="width: 19.200000000000003em;">
+<div class="texto_izquierda">
+<pre><strong><code>android:id=”@+id/texto1”</code></strong></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong><span lang="en">Height </span>y <span lang="en">Width</span></strong>: se utilizan para definir la altura y la anchura del objeto tanto de un<span lang="en"> layout</span> como en una vista o <code>View</code>. Los valores podemos asignarlos directamente usando las dimensiones que queremos definir aunque no suele ser la práctica habitual. Es más recomendable utilizar los valores <code>WRAP_CONTENT</code> y <code>MATCH_PARENT</code>. Desde la versión <acronym title="Application Programming Interface." lang="en">API</acronym> 8 el valor <code>MATCH_PARENT</code> ha sustituido al valor <code>FILL_PARENT</code> aunque éste puede seguir usándose sin problemas. Con el valor <code>WRAP_CONTENT</code>, el objeto sólo cogerá el espacio necesario para representarse con respecto al objeto contenedor o padre y con el valor <code>MATCH_PARENT</code> cogerá el espacio entero del padre.</p>
+</li>
+<li>
+<p><strong><span lang="en">Paddin</span><span lang="en">g</span> y <span lang="en">Margins</span></strong>: ambos se utilizan para crear espacio alrededor de los objetos. Esto le da una mejor apariencia a nuestra interfaz de usuario. Con el atributo <code>margin </code>establecemos un espacio fuera del objeto con respecto a los otros objetos de alrededor, mientras que el atributo<code> padding</code> establece un espacio dentro del objeto, por ejemplo en el caso de tener un <code>Button</code>, la distancia desde el texto del botón a las líneas del mismo.</p>
+</li>
+<li>
+<p><strong><span lang="en">Gravity</span></strong>: este atributo se utiliza para alinear los objetos. Por defecto se alinean a la izquierda, si deseamos poner alguna otra alineación debemos utilizarlo.</p>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper VerdaderofalsofpdIdevice em_iDevice em_iDevice_autoevaluacionfpd" id="id340">
+<div class="iDevice emphasis_autoevaluacionfpd" >
+<header class="iDevice_header" style="background-image:url(icon_autoevaluacionfpd.gif)"><h1 class="iDeviceTitle">Autoevaluación</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta340_50" class="block iDevice_content">
+
+</div>
+<section class="question">
+<form name="true-false-form-0b340" action="#" class="activity-form">
+<h1 class="js-sr-av">Pregunta 1</h1>
+<div id="taquestion0b340" class="block iDevice_content">
+<p><strong>El valor <code>MATCH_PARENT</code> y <code>WRAP_CONTENT</code> realizan la misma acci&oacute;n en los atributos <code>Height</code> y <code>Width</code>.</strong></p>
+</div>
+<p class="iDevice_answer js-required">
+<label for="true0b340"><input type="radio" name="option0b340" id="true0b340" class="exe-radio-option exe-radio-option-0-2-0b340-truefalse" /> Verdadero</label> 
+<label for="false0b340"><input type="radio" name="option0b340" id="false0b340" class="exe-radio-option exe-radio-option-1-2-0b340-truefalse" /> Falso</label>
+</p>
+</form>
+<section id="s0b340" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p><strong id="s0b340-result" class="wrong">Falso</strong></p>
+<p>La afirmaci&oacute;n es falsa. El valor<code> MATCH_PARENT</code> indica al objeto que abarque todo el espacio del padre mientras que el valor <code>WRAP_CONTENT</code> indica al objeto que coja el espacio necesario para mostrarse.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

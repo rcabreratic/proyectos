@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.7.1.- Posición y tamaño de las vistas | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-63" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.7.1.- Posición y tamaño de las vistas</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id353">
+<div class="iDevice emphasis0">
+<div id="ta353_154" class="block iDevice_content">
+<p><span style="font-size: 1em;">Para posicionar una vista en </span><code>ConstraintLayout </code><span style="font-size: 1em;">se debe añadir una restricción (</span><em style="font-size: 1em;"><span style="font-size: 1em;" lang="en">constraint</span></em><span style="font-size: 1em;">) con respecto a otra vista o bien con respecto al nodo raíz y debe cumplir las siguientes reglas:</span></p>
+<ol>
+<li>Cada vista debe tener al menos dos restricciones: una para el <strong>eje horizontal</strong>  (comienzo y final) y otra restricción en el <strong>eje vertical</strong>  (arriba, abajo y línea base).</li>
+<li>Al crear una restricción se debe realizar entre puntos de anclaje que compartan el mismo plano, es decir, un punto de anclaje al comienzo de una vista sólo se puede unir a otro anclaje que esté al comienzo o final de otra vista.</li>
+<li>Cada punto de anclaje sólo puede utilizarse para crear una sola restricción, pero puede ser el destino de varias restricciones siempre y cuando sean de vistas diferentes. </li>
+</ol>
+<p style="text-align: center;"><img src="constraint_constraintlayout_2_word.png" width="600" height="181" alt="Esta imagen muestra cómo se posicionan las vistas dentro de ConstraintLayout" title="Ejemplo posicionamiento de una vista en ConstraintLayout" style="text-align: center; font-size: 1em;" /></p>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse.</span> <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+<p>A continuación vamos a analizar los elementos que aparecen en la imagen:</p>
+<ol>
+<li><strong>Guías cuadradas:</strong>  aparece en las esquinas de<code> edtUser</code> y se usan para ajustar el tamaño de la vista en <em><acronym title="Density-Independent Pixel" lang="en">dp</acronym></em>.</li>
+<li><strong>Guía base:</strong> es el rectángulo con orillas redondas que se encuentra dentro de<code> edtUser</code> y se usa para alinear el contenido de la vista con la línea base de <code>txvuser</code>. Mediante este atributo se establece que <code>edtUser</code> se posiciona a la misma altura que <code>txvUser </code>en el eje y:
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>app:layout_constraintBaseline_toBaselineOf="@+id/txvUser"<br /></code></pre>
+</div>
+</div>
+</li>
+<li><strong>Restricciones</strong>: son los puntos de anclaje y se representan como círculos. Cuando hay una restricción entre dos vistas puede ser:
+<ul class="lista_verificacion">
+<li><strong>Una línea en zig-zag.</strong> Este caso ocurre cuando hay dos restricciones que actúan como fuerzas opuestas que separan el componente y hay espacio sobrante a ambos lados del componente porque bien el ancho o el alto tiene asignado el valor<code> wrap_content</code>. Es lo que sucede con el componente <code>edtUser</code>. A la izquierda hay una restricción que indica que la vista comienza donde finaliza <code> txvUser</code> y a la derecha hay otra restricción que indica que finaliza en el padre o <code>parent</code>. Si este componente no ocupa todo el ancho de la ventana, ¿dónde se coloca finalmente la vista? Lo que hace el sistema es centrar la vista en el espacio disponible.
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>app:layout_constraintStart_toEndOf="@+id/txvUser"</code></pre>
+<pre><code>app:layout_constraintEnd_toEndOf="parent"</code></pre>
+</div>
+</div>
+</li>
+<li><strong>Una línea continua.</strong> En el caso de <code>txvUser</code> no hay dos restricciones opuestas, sino que se sitúa al inicio del padre y en la parte de arriba del padre.
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>app:layout_constraintStart_toStartOf="parent"<br /></code></pre>
+<pre><code>app:layout_constraintTop_toTopOf="parent"</code></pre>
+</div>
+</div>
+</li>
+<li><strong>Márgenes.</strong> Aparecen señalados mediante líneas continuas junto con el valor del margen en <acronym title="Density-Independent Pixel" lang="en">dp</acronym>. La vista <code>txvUser</code> tiene un margen superior de 60<acronym title="Density-Independent Pixel" lang="en">dp</acronym> y un margen inicial de 36<acronym title="Density-Independent Pixel" lang="en">dp</acronym>.
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>android:layout_marginStart="32dp"<br /></code></pre>
+<pre><code>android:layout_marginTop="64dp"</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p><span style="font-size: 1em;">Si seleccionamos el componente </span><code>edtUSer</code><span style="font-size: 1em;"> aparece el <em><span lang="en">widget</span></em> <strong><span lang="en">Attributes </span></strong>y se pueden realizar las siguientes operaciones:</span></p>
+<ol>
+<li><strong>Modificar los márgenes</strong> que se han aplicado. Mediante el desplegable se puede seleccionar valores por defecto o bien escribir directamente el valor del margen.</li>
+<li><strong>Crear conexiones</strong> con respecto al padre.</li>
+<li><strong>Eliminar una restricción</strong> ya creada pulsando sobre el círculo o punto de anclaje.</li>
+<li><strong>Seleccionar las restricciones</strong> que se han creado en la pestaña <strong><span lang="en">Design</span></strong> del <strong>Editor.</strong></li>
+<li><strong>Modificar el tamaño de los componentes.</strong> Estos símbolos representan cómo se calcula el tamaño de la vista. Si haces clic en el símbolo cambiarás entre los diferentes tipos de configuración:</li>
+<ol style="list-style-type: lower-alpha;">
+<li><strong><img src="fixed.png" width="30" height="16" alt="Icono que muestra que una vista tiene un tamaño específico en dp" title="Tamaño fijo en dp" style="vertical-align: middle;" /><span lang="en">Fixed</span></strong>: se ha especificado un tamaño fijo en el cuadro de texto en <acronym title="Density-Independent Pixel">dp</acronym>. </li>
+<li><strong> <img src="wrap.png" width="30" height="16" alt="Icono que muestra que una vista tiene un tamaño en base al contenido" title="Tamaño de la vista en base a su contenido" style="vertical-align: middle;" /><span lang="en">Wrap Content</span>:</strong> el tamaño de la vista será el tamaño necesario para poder mostrar el contenido.</li>
+<li><strong><img src="match.png" width="30" height="16" alt="Icono que muestra que el tamaño de una vista se basa en las restricciones de la misma." title="Tamaño de la vista en base a las restricciones." style="vertical-align: middle;" /><span lang="en">Match Constraints</span></strong>: la vista se expande tanto como sea posible para cumplir con las restricciones de cada lado después de aplicar los márgenes de la vista. Para que se cumpla esta restricción se debe asignar el valor 0<acronym title="Density-Independent Pixel" lang="en">dp</acronym> a <code>layout_width</code> si se quiere que se expanda horizontalmente o a <code>layout_height</code> para que se expanda verticalmente. </li>
+</ol></ol>
+<p style="text-align: center;"><span style="font-size: 1em;"><img src="attributes_constraint_2.png" width="700" height="309" alt="Se muestra la ventana de diseño del ejercicio realizado junto con el panel  de atributos" title="Ventana de diseño y panel atributos" /></span></p>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span>. <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id354">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta354_148" class="block story iDevice_content">
+<p>Puedes descargarte el proyecto que se ha utilizado en este apartado en el caso que quieras resolver alguna duda en el siguiente enlace.</p>
+<p style="text-align: center;"><a href="ContraintLayoutLogin.zip" class="paquete" title="Descargar el archivo comprimido con el proyecto Ejemplo de ConstraintLayoutLogin. Se abre en una nueva ventana [zip - 0.46 MB]" target="_blank">Ejemplo ConstraintLayoutLogin</a><span class="exe-link-data file-size"> (zip - 0.46 <abbr lang="en" title="MegaBytes">MB</abbr>)</span></p>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id355">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta355_129" class="block iDevice_content">
+<p>Consulta la sección <em>Cómo crear una <abbr title="Interfaz de Usuario">IU</abbr> receptiva con <strong><span lang="en">ConstraintLayout</span></strong></em>  de la documentación oficial, donde aprenderás las siguientes operaciones:</p>
+<ol>
+<li>Crear una restricción.</li>
+<li>Crear dos restricciones opuestas.</li>
+<li>Eliminar una restricción.</li>
+<li>Aplicar un margen a una vista</li>
+<li>Alinear una vista con otra</li>
+<li>Establecer el tamaño como una relación</li>
+</ol>
+<p class="enlace_centrado"><a class="html" title="Acceder a la página web oficial de Android  para crear una IU con el layout Constraintlayout. (Se abre en una nueva ventana)" href="http://developer.android.com/guide/practices/screens_support.html" target="_blank">Cómo crear una interfaz de usuario con ConstraintLayout.</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

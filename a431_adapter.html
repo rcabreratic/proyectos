@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.4.3.1.- Adapter | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-72" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.4.3.1.- Adapter</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id384">
+<div class="iDevice emphasis0">
+<div id="ta384_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="adapter.png" width="200" height="200" alt="Ilustración que muestra una lista de opciones. Es un símil con nuestra Adapter que contiene una lista." title="Componente Adapter dentro de un listado." /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/illustrations/lista-icono-s%C3%ADmbolo-de-papel-signo-2389219/" target="_blank" class="author" title="Acceder a la web de descarga de la imagen de LoveYouAll en Pixabay. (Se abre en una nueva ventana) ">Pettycon</a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p>La clase <code>RecyclerView.Adapter</code> es un Adapter específico de <code>RecyclerView</code> y se encarga de manejar la colección de datos y vincularla con la vista. Esta vista será un objeto de la clase <code>RecyclerView.ViewHolder</code> que como ya se ha explicado contiene las referencias de los componentes visuales o <code>View</code> de cada elemento de la lista. A continuación se explicarán los pasos para crear un Adapter:</p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Crear la clase <code>ViewHolder</code>, que permite obtener referencias de los componentes visuales o <code>View</code> de cada elemento de la lista. Es dentro del constructor de esta clase donde se<span> inicializa los componentes visuales que pertenecen a cada fila del  <code>RecyclerView</code></span></li>
+<li>Crear el constructor de <code>RecyclerView</code> que reciba el conjunto de datos. Se suele utilizar  un <code>ArrayList</code> de objetos</li>
+<li>Crear los métodos (añadir, editar o eliminar elementos) para gestionar el conjunto de datos</li>
+<li>Sobrescribir el método <code>onCreateViewHolder()</code> que infla el <strong><span lang="en">Layout</span></strong> que representa a nuestros elementos, y devuelve una instancia de la clase<code> ViewHolder</code> que se ha definido previamente. Recuerda que puedes utilizar la opción <strong><span lang="en">Code -&gt; Override Methods...</span></strong> Si introduces los primeros caracteres del método, aparece el componente de texto <strong><span lang="en">Search for</span> </strong>y filtra el listado en base a los caracteres introducidos.</li>
+</ol>
+<p class="destacado"><strong>En herencia sabemos que un método se ha modificado porque aparece la anotación <code>override</code> en la declaración del método. </strong></p>
+<ol class="auto-numbered" style="list-style-type: decimal;">
+<li>Sobrescribir el  método <code>onBindViewHolder()</code> que enlaza cada dato con cada <code>ViewHolder</code>.</li>
+<li>Y no menos importante, sobreescribir el método <code>getItemCount()</code> que devuelve el número de elementos a mostrar en el <code>RecyclerView. </code></li>
+</ol>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id385">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta385_129" class="block iDevice_content">
+<p>En el siguiente enlace se explica cómo crear un listado con el componente <code>RecyclerView</code>. Intenta realizar el ejercicio siguiendo los pasos de la página.</p>
+<p style="text-align: center;"><a href="https://code.tutsplus.com/es/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465" title="Acceder a una web con un ejemplo guiado de cómo crear un listado con RecyclerView. (Se abre en una ventana nueva)" class="html" target="_blank">Ejemplo guiado</a></p>
+<p>En el caso de no poder haberlo realizado puedes descargarte el código en el siguiente enlace a <span lang="en">GitHub</span>.</p>
+<p style="text-align: center;"><a href="https://github.com/tutsplus/Android-CardViewRecyclerView" title="Descarga ejemplo guiado de cómo crear un listado con el componente RecyclerView. (Se abre en una nueva ventana)" class="html" target="_blank">Ejemplo guiado ya resuelto</a> </p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper ParasabermasfpdIdevice em_iDevice em_iDevice_parasabermasfpd" id="id386">
+<div class="iDevice emphasis_parasabermasfpd" >
+<header class="iDevice_header" style="background-image:url(icon_parasabermasfpd.png)"><h1 class="iDeviceTitle">Para saber más</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta386_128" class="block iDevice_content">
+<p>Si quieres ampliar tus conocimientos sobre el componente <code>RecyclerView,</code> como por ejemplo, personalizar la decoración de los elementos de la lista, consulta la siguiente guía:</p>
+<p style="text-align: center;"><a href="https://guides.codepath.com/android/using-the-recyclerview" title="Acceder a la guía, en inglés, Using the recuclerview. (Se abre en una nueva ventana)" class="html" target="_blank">Using the RecyclerView</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

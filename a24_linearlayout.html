@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.4.- LinearLayout | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-59" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.4.- LinearLayout</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id345">
+<div class="iDevice emphasis0">
+<div id="ta345_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R05_linearlayout.png" alt="Ejemplo de layout tipo LinearLayout." title="LinearLayout" height="278" width="165" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span> <a title="Acceder a la información sobre Eclipse Public License (EPL) en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+</div>
+<p>Este tipo de <span lang="en">layout</span> dispone los elementos <code>View </code>o vistas de forma consecutiva en la pantalla. Puede utilizarse de forma vertical u horizontal mediante el atributo <code>android:orientation</code>. Las etiquetas que se utilizan para abrir y cerrar el <span lang="en">layout </span>son <code>&lt;LinearLayout&gt; </code>y <code>&lt;/LinearLayout&gt;</code></p>
+<p>En el siguiente ejemplo puedes ver algunos de los atributos más utilizados en este tipo de <span lang="en">layout</span>. Recuerda que los valores de textos están introducidos mediante el fichero <code>strings.xml</code> de la carpeta <code>/res/values/</code>, aquí tan sólo se referencia al contenido de ese tipo de recurso.</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"</code></pre>
+<pre><code>    android:layout_width="match_parent"</code></pre>
+<pre><code>    android:layout_height="match_parent"</code></pre>
+<pre><code>    android:paddingLeft="16dp"</code></pre>
+<pre><code>    android:paddingRight="16dp"</code></pre>
+<pre><code>    android:orientation="vertical" &gt;</code></pre>
+<pre><code>    &lt;EditText</code></pre>
+<pre><code>        android:layout_width="match_parent"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:hint="@string/para" /&gt;</code></pre>
+<pre><code>    &lt;EditText</code></pre>
+<pre><code>        android:layout_width="match_parent"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:hint="@string/asunto" /&gt;</code></pre>
+<pre><code>    &lt;EditText</code></pre>
+<pre><code>        android:layout_width="match_parent"</code></pre>
+<pre><code>        android:layout_height="0dp"</code></pre>
+<pre><code>        android:layout_weight="1"</code></pre>
+<pre><code>        android:gravity="top"</code></pre>
+<pre><code>        android:hint="@string/mensaje" /&gt;</code></pre>
+<pre><code>    &lt;Button</code></pre>
+<pre><code>        android:layout_width="100dp"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:layout_gravity="right"</code></pre>
+<pre><code>        android:text="@string/enviar" /&gt;</code></pre>
+<pre><code>&lt;/LinearLayout&gt;</code></pre>
+<pre> </pre>
+</div>
+</div>
+<p> </p>
+<p>Este ejemplo de <code>LinearLayout</code> tiene asignada la anchura y altura del objeto padre, en este caso, la pantalla. Se define un espacio interior izquierdo y derecho de <code>16dp</code> y la orientación es vertical.</p>
+<p>En este <span lang="en">layout </span>se organizan tres objetos <code>View</code> o vistas de tipo <code>EditText</code> y un objeto <code>Button</code>. Fíjate que el botón se alinea a la derecha con el atributo de la vista:<code> layout_gravity</code>. Por ahora nos centraremos en los atributos del <span lang="en">layout</span>, ya que cada objeto <code>View</code> tiene su propia lista de atributos que veremos más adelante.</p>
+<p>En este tipo de <span lang="en">layout</span> es interesante ver cómo algunas vistas tienen más espacio reservado que otras. Por defecto, si no se indica lo contrario, el sistema reparte todo el espacio del<span lang="en"> layout</span> entre las vistas que lo contienen. Si nos fijamos en el tercer objeto de tipo <code>EditText</code>, comprobamos que tiene más espacio reservado que los dos anteriores. Esto se consigue con el atributo<code> android:layout_weight</code> que según el número que le asignamos tendrá más o menos peso a la hora de repartir el espacio disponible. Si no indicamos nada cogerá el espacio necesario, si indicamos algún valor 1, 2, <abbr title="etcétera.">etc.</abbr>, repartirá el espacio total del <span lang="en">layout</span> dejando más espacio para las vistas que tengan el valor más alto y menos para el valor más bajo.</p>
+<p class="destacado"><strong>Para que el peso se ajuste correctamente y se repartan el espacio sobrante de la pantalla, es importante que el atributo <code>android:layout_width</code> sea igual a<code> 0dp</code> en un diseño horizontal. Si se trata de un diseño vertical el atributo <code>android:layout_heigh</code> debe ser igual a <code>0dp</code>.</strong></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id346">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta346_44" class="block iDevice_content">
+<p>Es muy recomendable que revises todos los atributos específicos de este tipo de <span lang="en">layout</span>, puedes consultar la guía de referencia <span lang="en">Android</span> donde encontrarás la lista completa de parámetros que podrás utilizar.</p>
+<p class="enlace_centrado"><a class="html" title="Acceder a la página web oficial de Android sobre “Parámetros del LinearLayout”. (Se abre en una nueva ventana)" href="http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html" target="_blank">Parámetros del LinearLayout</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id347">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta347_148" class="block story iDevice_content">
+<div id="quesQuestion0b138-viewer">
+<p>Crea una aplicación que contenga tres botones que estén alineados horizontalmente y cuyo texto sea el siguiente:</p>
+<ol>
+<li>Botón 1</li>
+<li>Soy el botón 2</li>
+<li>Soy el último botón</li>
+</ol>
+<p>Comprueba cómo el sistema operativo reparte el ancho de la ventana en base a la longitud del texto de los diferentes botones.</p>
+<p>A continuación, asigna el siguiente peso a los botones:</p>
+<ol>
+<li>50%</li>
+<li>30%</li>
+<li>20%</li>
+</ol>
+<p>Comprueba el comportamiento de la interfaz cuando se asigna el peso a cada botón.</p>
+</div>
+</section>
+<section id="taquesQuestion0b347" class="block iDevice_content">
+
+</section>
+<form name="feedback-form-quesFeedback0b347" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedbackquesFeedback0b347text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-quesFeedback0b347" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-quesFeedback0b347" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<div class="pre-code">
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /></code></pre>
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br /></code></pre>
+<pre><code>    android:layout_width="match_parent"<br /></code></pre>
+<pre><code>    android:layout_height="match_parent"<br /></code></pre>
+<pre><code>    android:orientation="horizontal"<br /></code></pre>
+<pre><code>    android:gravity="center_vertical"<br /></code></pre>
+<pre><code>    android:layout_margin="@dimen/margin"&gt;</code></pre>
+<pre><code>    &lt;Button<br /></code></pre>
+<pre><code>        android:layout_height="wrap_content"<br /></code></pre>
+<pre><code>        android:layout_width="0dp"<br /></code></pre>
+<pre><code>        style="?android:attr/buttonBarButtonStyle"<br /></code></pre>
+<pre><code>        android:layout_weight="50"<br /></code></pre>
+<pre><code>        android:gravity="end"<br /></code></pre>
+<pre><code>        android:text="@string/fifty_weight"/&gt;</code></pre>
+<pre><code>    &lt;Button<br /></code></pre>
+<pre><code>        android:layout_height="wrap_content"<br /></code></pre>
+<pre><code>        android:layout_width="0dp"<br /></code></pre>
+<pre><code>        style="?android:attr/buttonBarButtonStyle"<br /></code></pre>
+<pre><code>        android:layout_weight="30"<br /></code></pre>
+<pre><code>        android:gravity="end"<br /></code></pre>
+<pre><code>        android:text="@string/thirty_weight"/&gt;</code></pre>
+<pre><code>    &lt;Button<br /></code></pre>
+<pre><code>        android:layout_width="0dp"<br /></code></pre>
+<pre><code>        style="?android:attr/buttonBarButtonStyle"<br /></code></pre>
+<pre><code>        android:layout_height="wrap_content"<br /></code></pre>
+<pre><code>        android:text="@string/twenty_weight"<br /></code></pre>
+<pre><code>        android:layout_weight="30"<br /></code></pre>
+<pre><code>        android:gravity="end"/&gt;</code></pre>
+<pre><code>&lt;/LinearLayout&gt;</code></pre>
+</div></section>
+</form>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

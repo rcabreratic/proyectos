@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.5.- Recursos de la interfaz de usuario | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-74" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.5.- Recursos de la interfaz de usuario</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id406">
+<div class="iDevice emphasis0">
+<div id="ta406_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R15_recursos.jpg" alt="Logo de Android pidiendo ayuda a otros." title="Recursos." height="160" width="240" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by" title="CC by" href="http://creativecommons.org/licenses/by/3.0/deed.es" target="_blank"><span class="transparente">CC by</span></a> <a title="Acceder a la web de la imagen de Morten Rand-Hendriksen. (Se abre en una nueva ventana)" href="http://farm5.staticflickr.com/4094/4903310317_6d3de35f4d_m.jpg" target="_blank">Morten Rand-Hendriksen</a></div>
+</div>
+<p>¿Es importante que una aplicación funcione en el mayor número de dispositivos móviles posible?</p>
+<p>Nuestro objetivo como desarrolladores de aplicaciones <span lang="en">Android </span>es precisamente que éstas funcionen en un gran número de ellos. Debemos saber la gran variedad de dispositivos que existen en cuanto a características de pantalla, diferentes idiomas o incluso las diferentes versiones <acronym title="Application Programming Interface." lang="en">API</acronym> de <span lang="en">Android</span> que usan. Es por tanto fundamental tener en cuenta cuantas más características mejor para poder crear recursos alternativos y que la aplicación pueda mostrarse de la mejor forma posible.</p>
+<p>¿Qué tipo de recursos podemos identificar?</p>
+<p>En la carpeta<code> res/</code> de cualquier proyecto <span lang="en">Android</span> podemos ver diferentes subcarpetas donde se almacenan los ficheros que contienen estos recursos. Cuando compilamos nuestro proyecto se genera automáticamente la clase <code>R.java</code> que contiene un <span><abbr title="Identificador">ID</abbr></span> por cada recurso definido en el directorio <code>res/</code>. Este <span><abbr title="Identificador">ID</abbr></span> es un número entero estático que nos permite acceder al recurso desde un fichero Java. <span>Para cada tipo de recurso, hay una subclase <code>R</code> que indicamos en la siguiente tabla:  </span></p>
+<table class="tabla" summary="La tabla muestra algunos tipos de pantalla comunes según tamaño y densidad. Cada columna representa una densidad y cada fila un tamaño." border="0"><caption>Recursos usados en una aplicación</caption>
+<tbody>
+<tr><th scope="col">Recurso <acronym title="eXtensible Markup Language" lang="en">XML</acronym></th><th scope="col">Recurso Java</th><th scope="col">Funcionalidad</th></tr>
+<tr>
+<td><span><code>res/anim/</code></span></td>
+<td><span><code>R.anim</code></span></td>
+<td><span>Contiene las animaciones del proyecto.</span></td>
+</tr>
+<tr>
+<td><span><code>res/drawable/</code></span></td>
+<td><span><code>R.drawable</code></span></td>
+<td>
+<p>Contiene diferentes subcarpetas que almacenan los gráficos o imágenes dependiendo de la densidad de la pantalla del dispositivo (<code>hdpi, mdpi, ldpi,</code> <abbr title="etcétera.">etc.</abbr>).</p>
+</td>
+</tr>
+<tr>
+<td><span><code>res/font/</code></span></td>
+<td><code>R.font</code></td>
+<td>
+<p>Contiene las fuentes personalizadas del proyecto (ficheros <code>.ttf, .ttc, .otf </code>o <code>.xml</code>)</p>
+</td>
+</tr>
+<tr>
+<td><code>res/layout/</code></td>
+<td><code>R.layout</code></td>
+<td>
+<p>Almacena las plantillas en formato<acronym title="eXtensible Markup Language" lang="en"> XML</acronym> de nuestras pantallas.</p>
+</td>
+</tr>
+<tr>
+<td><code>res/menu/</code></td>
+<td><code>R.menu</code></td>
+<td>
+<p>Contiene los ficheros de menú de las actividades y <code>fragments</code>.</p>
+</td>
+</tr>
+<tr>
+<td><code>res/mimap/</code></td>
+<td><code>R.mipmap</code></td>
+<td>
+<p>Contiene el icono de la aplicación. Se debe identificar el icono de la pantalla por cada tipo de densidad y colocar el icono en diferentes carpetas <code>mipmap</code>.</p>
+</td>
+</tr>
+<tr>
+<td><code>res/raw/</code></td>
+<td><code>R.raw</code></td>
+<td>
+<p>Contiene recursos en formato binario, entre los más comunes vídeos y sonido.</p>
+</td>
+</tr>
+<tr>
+<td><code>res/values/</code></td>
+<td></td>
+<td>
+<p>En este directorio se almacenan varios recursos entre los más comunes el color, el estilo, las cadenas de caracteres.</p>
+</td>
+</tr>
+<tr>
+<td><code>res/xml/</code></td>
+<td><code>R.xml</code></td>
+<td>Contiene otros ficheros <acronym title="eXtensible Markup Language" lang="en">XML</acronym>. En esta carpeta se suelen guardar los ficheros que hacen referencia a las preferencias.</td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 1em;">En el directorio </span><code>res/values/</code><span style="font-size: 1em;"> se almacenan varios recursos:</span></p>
+<ol>
+<li><code>strings.xml: </code>los textos que se muestran en los objetos objetos <code>View</code>.</li>
+<li><code>dimens.xml:</code> almacena medidas expresadas en <acronym title="Density-Independent Pixels" lang="en">dp</acronym> que se aplican a ciertos atributos de las vistas como <code>margin</code>, <code>padding</code>... </li>
+<li><code>arrays.xml</code>: para matrices de recursos.</li>
+<li><code>styles.xml:</code> guarda los estilos creados.</li>
+<li><code>colors.xml:</code> guarda los colores que se utilizan en toda la aplicación. </li>
+</ol>
+<p>Si se quiere crear subcarpetas para organizar ficheros no se puede utilizar la carpeta <code>res/</code> , se podría crear la carpeta <code>assets/</code> en el mismo que nivel que <code>res/</code>. Además se pueden utilizar nombres de archivos que contengan mayúsculas o signos, lo que no está permitido dentro de <code>res/</code>. A estos recursos no se les asigna un <abbr title="Identificador">ID</abbr> en el fichero <code>R.java</code>, son leídos mediante la clase <code>AssetManager </code>como un flujo  de <span lang="en">bytes</span>.</p>
+<p>Android distingue entre dos tipos de recursos:</p>
+<ul class="lista_verificacion">
+<li><strong>Recursos por defecto:</strong> son aquellos que toma la aplicación cuando no se define ninguna configuración especial o no encuentra un recurso alternativo.</li>
+<li><strong>Recursos alternativos:</strong> son aquellos que se guardan en una carpeta específica mediante un sufijo para indicar cuándo deben ser utilizados.</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id407">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta407_44" class="block iDevice_content">
+<p>En el siguiente vídeo puedes ver un tutorial donde se explican los diferentes tipos de recursos alternativos y se dan algunos ejemplos sobre su utilización.</p>
+<div class="elemento_centrado">
+<div class="elemento_centrado titulo">Recursos alternativos de un proyecto <span class="elemento_centrado titulo" lang="en">Android</span></div>
+<div class="elemento_centrado">
+<p><iframe width="350" height="288" src="https://www.youtube.com/embed/jwzjK7M2WkQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></p>
+</div>
+<div class="elemento_centrado credenciales"><a title="Ver el resumen textual alternativo del vídeo: Recursos alternativos de un proyecto Android. (Se abre en una nueva ventana)" href="descripcion_video_recursos_alternativos.html" target="_blank">Resumen textual alternativo. </a></div>
+</div>
+<p></p>
+<p><span style="font-size: small;">En el siguiente enlace puedes consultar los posibles sufijos a utilizar en tu proyecto si quieres añadir diferentes recursos alternativos. Recuerda que se pueden utilizar sufijos concatenados. En los siguientes apartados veremos algunos de estos recursos más utilizados.</span></p>
+<p class="enlace_centrado"><a class="html" title="Acceder a la página web oficial de Android sobre “Manejando los Recursos”. (Se abre en una nueva ventana)" href="http://developer.android.com/guide/topics/resources/providing-resources.html" target="_blank">Tipos de recursos y sufijos</a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

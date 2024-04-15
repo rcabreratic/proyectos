@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.4.3.2.- Eventos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-73" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.4.3.2.- Eventos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id387">
+<div class="iDevice emphasis0">
+<div id="ta387_154" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="evento_click.png" width="200" height="200" alt="Ilustración que muestra una flecha con ondas simulando el click de en ratón." title="Evento click" /></div>
+<div class="figcaption elemento_centrado credenciales"><a href="https://pixabay.com/es/vectors/plana-dise%C3%B1o-s%C3%ADmbolo-icono-www-2126879/" target="_blank" class="author" title="Acceder a la web de descarga de la imagen de janjf93 en Pixabay. (Se abre en una nueva ventana)">janjf93 </a> <span class="license"><span class="sep">(<a href="https://pixabay.com/service/license/" title="Acceder a los términos de la Licencia Pixabay. (Se abre en una nueva ventana)">Licencia Pixabay</a></span><span></span><span class="sep">)</span></span></div>
+</div>
+<p><span lang="en">Para implementar un evento dentro de cada vista de un <code>RecyclewView</code> hay que crear un listener que se encargue de controlar este comportamiento en el adapter. Hay tres posibles soluciones que planteamos a continuación:</span></p>
+<ol>
+<li>Que sea el propio <code>RecyclerView</code> el encargado de implementar la interfaz <code>View.OnClickListener</code></li>
+<li>Que sea la clase <code>ViewHolder</code> quien implemente la interfaz <code>View.OnClickListener</code>.</li>
+<li>Que la clase que implemente la interfaz <code>View.OnClickListener</code> esté en la <span lang="en">Activity</span> a través de un listener y el <code>RecyclerView</code> tenga que llamar al listener de la Activity.</li>
+</ol>
+<p>La opción a escoger dependerá de la complejidad de nuestra aplicación. Las dos primeras opciones se explican en el vídeo de esta sección, con lo cual nos centraremos en explicar cómo implementar la tercera opción.</p>
+<p>Lo primero que hay que hacer es pasar el oyente como parámetro al constructor y luego asignarlo cuando enlazo los datos a la vista en el método <code>onBindViewHolder()</code>. Dentro de la clase del <span lang="en">Adapter</span> hay que declarar una interfaz que especifique el comportamiento del oyente. En el siguiente ejemplo, mostramos un listado de notas o <strong lang="en">Note</strong> con lo cual por lo que el clic devolverá un elemento de ese tipo: </p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>public interface OnItemClickListener {</code></pre>
+<pre><code>        void onItemClick(Note note);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p></p>
+<p>El constructor recibirá un objeto que implementa esta interfaz, junto con la lista que contendrá el Adapter:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>private final List list;</code></pre>
+<pre><code>private final OnItemClickListener listener;</code></pre>
+<pre><code>public ContentAdapter(List list, OnItemClickListener listener) {</code></pre>
+<pre><code>  this.list = list;</code></pre>
+<pre><code>  this.listener = listener;</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p></p>
+<p>Ahora, en el método en <code>onBindViewHolder()</code>, <code>ViewHolder</code> recibirá el <span lang="en">listener</span> del constructor mediante un método de enlace que crearemos llamado <code>bind()</code> en el método de enlace personalizado:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>@Override public void onBindViewHolder(ViewHolder holder, int position) {</code></pre>
+<pre><code>holder.bind(list.get(position), listener);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p></p>
+<p>Este método <code>bind()</code> tendría el siguiente código:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>public void bind(final Note note, final OnItemClickListener listener) {</code></pre>
+<pre><code>    ...</code></pre>
+<pre><code>    itemView.setOnClickListener(new View.OnClickListener() {</code></pre>
+<pre><code>        @Override public void onClick(View v) {</code></pre>
+<pre><code>            listener.onItemClick(note);</code></pre>
+<pre><code>        }</code></pre>
+<pre><code>    });</code></pre>
+<pre><code>}<br /></code></pre>
+</div>
+</div>
+<p></p>
+<p>A continuación, desde la actividad se inicia todos los componentes y se muestra un mensaje indicando la nota selecionada:</p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code> //Se identifica el RecyclerView </code></pre>
+<pre><code>        rvnote = findViewById(R.id.rvnote);</code></pre>
+<pre><code>        rvnote.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));</code></pre>
+<pre><code>        listener = new NoteAdapter.OnItemClickListener() {</code></pre>
+<pre><code>        @Override</code></pre>
+<pre><code>        public void onItemClick(Note note) {</code></pre>
+<pre><code>                Toast.makeText(ListNoteActivity.this, "Nota seleccionada:" + note.toString(),</code></pre>
+<pre><code>                Toast.LENGTH_LONG).show();</code></pre>
+<pre><code> 		} </code></pre>
+<pre><code>        };</code></pre>
+<pre><code>        adapternote = new NoteAdapter(list, listener);</code></pre>
+<pre><code>        rvnote.setAdapter(adapternote);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id388">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta388_129" class="block iDevice_content">
+<p>Como ya se ha indicado en este vídeo se explica cómo el <strong>Adapter</strong> o bien la clase <code>ViewHolder</code> pueden implementar el evento clic cuando se pulsa sobre un elemento de la lista.</p>
+<div class="exe-figure exe-media position-center" style="width: 425px;">
+<div class="figcaption header"></div>
+<div class="figcaption header"><strong>Asignar eventos a un RecyclerView</strong></div>
+<iframe width="425" height="350" src="//www.youtube.com/embed/ZZ91wIny3C4" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UCu8XNyZcpo_KV2GR7-ksmpw" target="_blank" class="author">Programación y más</a>. <a href="https://youtu.be/iukLnlnzdQQ?t=2" target="_blank" class="title"><em>Eventos en cada elemento de un RecyclerView </em></a>
+<div class="elemento_centrado credenciales"><a href="descripcion_video_recyclerview.html"><em>Acceder a la descripción del vídeo</em></a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper EjercicioresueltofpdIdevice em_iDevice em_iDevice_ejercicioresueltofpd" id="id389">
+<div class="iDevice emphasis_ejercicioresueltofpd" >
+<header class="iDevice_header" style="background-image:url(icon_ejercicioresueltofpd.png)"><h1 class="iDeviceTitle">Ejercicio Resuelto</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section id="ta389_148" class="block story iDevice_content">
+<p>Intenta realizar el ejercicio que hemos planteado en este apartado. </p>
+<ol>
+<li>Crear el modelo de la clase nota o <strong>Note</strong>. </li>
+<li>Crear la clase <strong>Adapter</strong> e implementa los métodos necesarios para manejar los datos y crear la vista.</li>
+<li>Crear la clase <code>ViewHolder</code> con las vistas que creas conveniente por ejemplo un título y  un contenido.</li>
+<li>Implementar el evento clic dentro de unos de los elementos de la lista. </li>
+</ol>
+</section>
+<section id="taquesQuestion0b389" class="block iDevice_content">
+
+</section>
+<form name="feedback-form-quesFeedback0b389" action="#" onsubmit="return false" class="feedback-form">
+<div class="block iDevice_buttons feedback-button js-required">
+<p><script type="text/javascript">var feedbackquesFeedback0b389text = "Mostrar retroalimentación";</script><input type="button" name="toggle-feedback-quesFeedback0b389" value="Mostrar retroalimentación" class="feedbackbutton feedback-toggler" /></p>
+</div>
+<section id="feedback-quesFeedback0b389" class="feedback js-feedback js-hidden">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<p>¡Seguro que lo has conseguido!  Recuerda que siempre que esté bien implementado la solución que has adoptado puede ser diferente a la que te proponemos. Todo depende de la complejidad y la arquitectura de la aplicación. </p>
+<p style="text-align: center;"><a href="PersonalNote.zip" class="paquete" title="[zip - 10.31 MB]">PersonalNote: ejercicio que implementa eventos en RecyclerView</a><span class="exe-link-data file-size"> (zip - 10.31 <abbr lang="en" title="MegaBytes">MB</abbr>)</span>.</p></section>
+</form>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.7.2.- Sesgo, guías, barreras y cadenas | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-64" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.7.2.- Sesgo, guías, barreras y cadenas</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id356">
+<div class="iDevice emphasis0">
+<div id="ta356_154" class="block iDevice_content">
+<p>Seguimos con el ejercicio planteado <code>ConstraintLatoutLogin</code>. Como ya se comentó el componente<code> edtUser</code> no ocupa todo el ancho de la pantalla, con lo cual se centra en el espacio disponible si tiene el atributo<code> android:layout_width="wrap_content"</code>. Este <strong>Layout</strong> ofrece un parámetro _<code class=" language-default">bias</code> que permite desplazar una vista en términos de porcentajes (0<abbr title="tanto por ciento">%</abbr>  a 100<abbr title="tanto por ciento">%</abbr>) o fracciones (0 a 1) en el eje horizontal o vertical con respecto a los anclajes que tiene el componente, es lo que se conoce como <strong>sesgo.</strong></p>
+<p>Si se mueve el sesgo horizontal en <code>edtUser </code>al valor 30%, lo que hace es que la vista se desplaza hacia la izquierda dejando 1/3 del espacio disponible a la izquierda y 2/3 a la derecha. Este comportamiento se utiliza para garantizar que una vista tenga la misma posición independientemente de la densidad y tamaño de la pantalla.</p>
+<p><a href="bias.png" title="Ampliar imagen para Modificar sesgo de una vista. (Se abre en una nueva ventana)" target="_blank"><span style="font-size: 1em;"><img src="bias_mini.jpg" width="533" height="200" alt="Ejemplo que muestra cómo modificar el sesgo de una vista" title="Modificar sesgo de una vista" style="display: block; margin-left: auto; margin-right: auto;" class="imagen_ampliable" /></span></a></p>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span>. <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+<p></p>
+<p>La <strong>guía</strong> es una herramienta que se utiliza en la vista de diseño para poder alinear las vistas en base a un elemento pero que no se verá en el diseño de nuestra aplicación. Esta guía evita añadir en todos las vistas un margen concreto sino que se añade la restricción que la vista empieza al principio de la guía:</p>
+<p style="text-align: center;"><code><span class="codigo"> app:layout_constraintStart_toStartOf="@+id/guideline"</span></code></p>
+<p>En la parte superior del diseño aparece el icono de la guía <img src="icno_guia_2.png" width="25" height="30" alt="Icono de una guía en el diseño ConstraintLayout" title="Icono de una guía en ConstraintLayout" style="vertical-align: middle;" /> y se puede alternar entre los tipos haciendo clic repetidamente en el icono. Por defecto se indica un desplazamiento fijo en <acronym title="Density-Independent Pixel" lang="en">dp</acronym> desde el borde inicial del layout<code> ConstraintLayout</code>, a continuación el desplazamiento fijo contando desde el final de la pantalla y finalmente el porcentaje del  desplazamiento en base al ancho de la pantalla.</p>
+<p>La <strong>barrera</strong> es una vista "invisible", pero que su efecto se muestra en tiempo de ejecución. Al igual que pasa con la guía, las vistas se limitan a la barrera, de forma que si una vista crece (porque el texto a mostrar aumenta ya que hay un cambio de idioma en el dispositivo), la barrera ajustará su tamaño a la altura o anchura más grande de los elementos referenciados sin que se solape ninguna vista. Las barreras pueden ser verticales u horizontales y pueden crearse en la parte superior, inferior, izquierda o derecha de las vistas referenciadas. </p>
+<p class="destacado"><strong>Es curioso ver el código de las barreras en <acronym title="eXtended Markup Language" lang="en">XML</acronym>. En primer lugar se debe establecer la dirección de la barrera. En el ejemplo<code> ConstraintLayoutLogin</code> la barrera se posiciona al final de <code>txvUser</code> o <code>txvPassword</code> dependiendo de cuál sea el más grande. A continuación se necesita un atributo para definir los <abbr title="Identificadores">ID</abbr> de las múltiples vistas a las que hace referencia la barrera.</strong></p>
+<div class="codigo elemento_centrado" style="width: 47.25em;">
+<div class="texto_izquierda">
+<pre><code>&lt;android.support.constraint.Barrier"<br /></code></pre>
+<pre><code>android:id="@+id/barrier"<br /></code></pre>
+<pre><code>android:layout_width="wrap_content"<br /></code></pre>
+<pre><code>android:layout_height="wrap_content"<br /></code></pre>
+<pre><code>app:constraint_referenced_ids="edtUser,edtPassword"<br /></code></pre>
+</div>
+</div>
+<p>En el siguiente vídeo se muestra cómo crear una barrera:</p>
+<div class="exe-figure exe-media position-center" style="width: 350px;">
+<div class="figcaption header"><strong>Crear una restricción "barrera" en el layout ConstraintLayout</strong></div>
+<iframe width="350" height="288" src="//www.youtube.com/embed/ZZ91wIny3C4" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UCRcPg978ebs-O6X_94dPzcA" target="_blank" class="author" title="Acceder al canal de Fran López en Youtube.">Fran Lopez</a>. <em>Barrier ConstraintLayout Betabeers</em>
+<div class="elemento_centrado credenciales"><a href="descripcion_video_barrera.1.html" title="Acceder al resumen textual alternativo para el vídeo Crear una restricción &quot;barrera&quot; en el layout ConstraintLayout. (Se abre en una nueva ventana)" target="_blank">Resumen textual alternativo</a></div>
+</div>
+</div>
+<p>Finalmente, las <strong>cadenas</strong> son un tipo específico de restricción que permite compartir espacio entre las vistas que pertenecen a la cadena y controlar cómo se divide el espacio disponible entre ellas. Esta restricción se utiliza mucho para centrar dos botones con respecto al eje horizontal. Para crear una cadena se siguen los siguientes pasos:</p>
+<ol>
+<li>Añadir dos botones <code>btnLogin </code>y <code>btnSignUp</code>. </li>
+<li>Seleccionar los botones pulsando la tecla <strong><abbr title="Control" lang="en">Ctrl</abbr></strong> -&gt; opción <strong><span lang="en">Chains</span></strong> del menú contextual -&gt;<strong> <span lang="en">Create Horizontal Chain</span></strong>. </li>
+</ol>
+<p>Se puede comprobar como una cadena une las dos vistas. </p>
+<p><a href="constraint_chains_2.1.png" title="Ampliar imagen para Modos de las cadenas. (Se abre en una nueva ventana)" target="_blank"><img src="constraint_chains_2.1_mini.jpg" width="407" height="200" alt="Explorar los modos de las cadenas" title="Modos de las cadenas" style="display: block; margin-left: auto; margin-right: auto;" class="imagen_ampliable" /></a></p>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span>. <a title="Acceder a la información sobre EPL en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+<p><span style="font-size: 1em;">Si se quiere </span><span style="font-size: 1em;">explorar algunos de los modos de cadena, hay que hacer clic en una de las vistas de la cadena en el panel <strong><span lang="en">Component Tree</span></strong>, mostrar el menú contextual y seleccionar la opción  <strong><span lang="en">Cicle Chain Mode</span></strong>. Se puede simplificar en tres modos:</span></p>
+<ol>
+<li><strong>Empaquetado (<em></em><span lang="en"><em>paqued</em>)</span></strong>: los elementos se agrupan en el centro del espacio disponible. En esta opción se puede utilizar márgenes para separar las vistas ligeramente. Con esta opción y utilizando las <code> _bias</code> se pueden centrar todas las vistas aplicando un sesgo de 0.5 o bien desplazar la cadena hacia un lado.</li>
+<li><strong> Distribución (<span lang="en">spread</span>):</strong> los elementos se extienden por el espacio disponible, como se muestra arriba.</li>
+<li><strong>Separación en el interior (<em><span lang="en">spread_inside</span></em>):</strong> similar a la opción anterior, pero las vistas finales de la cadena no se extienden.</li>
+</ol>
+<p class="destacado"><strong>No existe un atributo específico en <acronym title="eXtended Markup Language" lang="en">XML</acronym> que se asigne a todas las vistas sino que se establece el atributo<code> app:layout_constraintHorizontal_chainStyle="spread"</code> en una de las vistas de la cadena.</strong></p>
+<p></p>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id357">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta357_129" class="block iDevice_content">
+<p>En el caso que tengas dudas te mostramos a continuación dos  vídeos en inglés que explican de forma detallada cómo crear los contenidos estudiados en este apartado.</p>
+<div class="exe-layout-2-cols exe-layout-2-50-50 exe-clear">
+<div class="exe-col exe-col-1">
+<div class="figcaption header"><strong> <span lang="en">ConstraintLayout Tutorial Part 3. <em>- </em></span></strong></div>
+<div class="figcaption header"><strong><span lang="en"><em><span lang="en">GONE MARGIN, CHAINS and GUIDELINES</span></em></span></strong></div>
+<iframe width="350" height="288" style="display: block; margin-left: auto; margin-right: auto;" src="//www.youtube.com/embed/_NBJbOI2Rkw" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UC_Fh8kvtkVPkeihBs42jGcA" target="_blank" class="author" title="Acceder al canal de youtube  Coding in Flow. (Se abre en una nueva ventana)">Coding in Flow</a>. <a href="descripcion_video_restricciones_constraintlayout_I.html" title="Acceder al resumen textual alternativo para el vídeo ConstraintLayout Tutorial Part 3.  - GONE MARGIN, CHAINS and GUIDELINES. (Se abre en una nueva ventana)" target="_blank">Resumen textual alternativo.</a><em><br /></em></div>
+</div>
+<div class="figcaption header"><strong><span lang="en">ConstraintLayout Tutorial Part 4. -</span></strong></div>
+<div class="figcaption header"><strong><span lang="en"><em><span lang="en">BARRIERS AND GROUPS</span></em></span></strong></div>
+<iframe width="350" height="288" style="display: block; margin-left: auto; margin-right: auto;" src="//www.youtube.com/embed/Ngz5cgLC7m4" frameborder="0"></iframe>
+<div class="figcaption"><a href="https://www.youtube.com/channel/UC_Fh8kvtkVPkeihBs42jGcA" target="_blank" class="author" title="Acceder al canal de youtube  Coding in Flow. (Se abre en una nueva ventana)">Coding in Flow</a>. <a href="descripcion_video_restricciones_constraintlayout_II.html" title="Acceder al resumen textual alternativo para el vídeo ConstraintLayout Tutorial Part 4. - BARRIERS AND GROUPS. (Se abre en una nueva ventana)" target="_blank">Resumen textual alternativo</a></div>
+</div>
+<div id="gtx-trans" style="position: absolute; left: 645px; top: 390.172px;">
+<div class="gtx-trans-icon"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

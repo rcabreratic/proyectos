@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.2.3.- FrameLayout | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-58" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.2.3.- FrameLayout</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id344">
+<div class="iDevice emphasis0">
+<div id="ta344_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R09_framelayout.png" alt="Ejemplo de layout tipo FrameLayout, que contiene un botón con el texto &quot;Botón&quot;" title="FrameLayout." height="147" width="165" /></div>
+<div class="elemento_centrado credenciales">Captura del <acronym title="Integrated Development Environment" lang="en">IDE</acronym> <span lang="en">Eclipse</span> <br /><a title="Acceder a la información sobre Eclipse Public License (EPL) en Wikipedia. (Se abre en una nueva ventana)" href="http://es.wikipedia.org/wiki/Eclipse_Public_License" target="_blank">Eclipse Public License</a></div>
+<div class="elemento_centrado credenciales"></div>
+</div>
+<p>Este tipo de <span lang="en">layout</span> organiza todos los objetos de tipo <code>View</code> en la esquina superior izquierda uno encima de otro. En este tipo de contenedor se hace necesario utilizar el atributo <code>android:visibility</code> de los objetos <code>View</code> que lo componen para definir la transparencia de aquellos elementos que no queramos mostrar en un momento determinado de la aplicación.</p>
+<p>Aquí vemos un ejemplo donde se insertan tres objetos <code>View</code> como son un <code>TextView</code>, un <code>Button</code> y un <code>ProgressBar</code> o barra de progreso y sólo dejamos visible el botón. Durante la ejecución se podrá cambiar el estado del atributo <code>android:visibility </code>de los demás objetos <code>View</code> para que se muestren por pantalla.</p>
+<p></p>
+<div class="codigo elemento_centrado" style="width: 46.7em;">
+<div class="texto_izquierda">
+<pre><code>&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"</code></pre>
+<pre><code>    xmlns:tools="http://schemas.android.com/tools"</code></pre>
+<pre><code>    android:layout_width="match_parent"</code></pre>
+<pre><code>    android:layout_height="match_parent"</code></pre>
+<pre><code>    tools:context=".MainActivity" &gt;</code></pre>
+<pre> </pre>
+<pre><code>    &lt;TextView</code></pre>
+<pre><code>        android:id="@+id/textView1"</code></pre>
+<pre><code>        android:layout_width="wrap_content"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:text="@string/Texto"</code></pre>
+<pre><code>        android:visibility="invisible"</code></pre>
+<pre><code>        android:textAppearance="?android:attr/textAppearanceLarge" /&gt;</code></pre>
+<pre> </pre>
+<pre><code>    &lt;Button</code></pre>
+<pre><code>        android:id="@+id/button1"</code></pre>
+<pre><code>        android:layout_width="wrap_content"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:text="@string/Boton" /&gt;</code></pre>
+<pre> </pre>
+<pre><code>    &lt;ProgressBar</code></pre>
+<pre><code>        android:id="@+id/progressBar1"</code></pre>
+<pre><code>        style="?android:attr/progressBarStyleLarge"</code></pre>
+<pre><code>        android:layout_width="wrap_content"</code></pre>
+<pre><code>        android:layout_height="wrap_content"</code></pre>
+<pre><code>        android:visibility="invisible" /&gt;</code></pre>
+<pre> </pre>
+<pre><code>&lt;/FrameLayout&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

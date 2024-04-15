@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.9.3.- Pasar parámetros de la actividad principal a otra secundaria | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_effects.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_effects.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-90" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.9.3.- Pasar parámetros de la actividad principal a otra secundaria</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id429">
+<div class="iDevice emphasis0">
+<div id="ta429_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R28_parametrosActividades.png" alt="Esquema del paso de parámetros entre dos actividades." title="Paso de parámetros." height="157" width="200" /></div>
+</div>
+<p>Lo que pretendemos realizar en las siguientes secciones es pasar ciertos parámetros entre dos actividades.</p>
+<p>La primera pasará los parámetros a través del objeto <code>Intent</code> y la segunda informará a la primera actividad cuando finalice también mediante parámetros siguiendo el esquema de la imagen de la derecha.</p>
+<p>Vamos a ver cómo la primera actividad puede enviar información a la segunda. Mostraremos las dos opciones: </p>
+<div class="exe-fx exe-accordion">
+<h2><strong>A través de los métodos que nos ofrece el objeto <code>Intent</code>.</strong> </h2>
+<ul class="lista_verificacion">
+<li><strong>A través de los métodos que nos ofrece el objeto <code>Intent</code>.</strong> Para insertar un parámetro se debe especificar un nombre al valor que queremos pasar para después recogerlo mediante ese mismo nombre. Estos pares clave-valor se conocen como <code>Extra</code> de un <code>Intent</code> y se guardan en un objeto interno llamado <code>Bundle</code> mediante el método <code>putExtra(). </code>Se pueden adjuntar números enteros, valores de coma flotante, <span lang="en">bytes</span>, caracteres y algunos otros tipos de datos como puedes comprobar en la <a href="https://developer.android.com/reference/android/content/Intent" class="html" title="Acceder a la web de documentación oficial sobre Intent. (Se abre en una nueva ventana)" target="_blank">documentación oficial</a>.</li>
+</ul>
+<div class="codigo elemento_centrado" style="width: 25.55em;">
+<div class="texto_izquierda">
+<pre><code>putExtra(<span>String name, String value)</span><br /></code></pre>
+<pre><code>getExtra(String name)</code></pre>
+</div>
+</div>
+<p class="destacado" style="margin-left: 60px;"><strong>El parámetro <code>name</code> funciona como un nombre de variable donde se almacena el valor que pasamos como segundo parámetro.</strong></p>
+<p style="margin-left: 30px;">Utilicemos el ejemplo anterior para ver cómo funciona el paso de parámetros. Vamos a pasar en una variable llamada <code>message</code> el valor de “<code>Nos vemos a las 12:00</code>” desde la actividad principal a la secundaria. Para ello añadimos la siguiente línea en el método <code>sendMessage()</code>:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda" style="margin-left: 30px;">
+<pre style="margin-left: 30px;"><code>public void sendMessage(){</code></pre>
+<pre><code>     Intent intent = new Intent(this,SecondActivity.class);</code></pre>
+<pre><code>     intentAbrir.<strong>putExtra</strong>("message", "<span>Nos vemos a las 12:00</span>");</code></pre>
+<pre><code>     startActivity(intent);</code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p></p>
+<p style="margin-left: 30px;">En la actividad secundaria completaremos el método <code>onCreate() </code>con el siguiente código:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre>Intent intent = getIntent();</pre>
+<pre>String message = intent.<strong>getStringExtra</strong>(<span>"message"</span>)</pre>
+<pre><br /><br /><span>txvCaption</span>=findViewById(R.id.<span>txvCaption</span>);<br /><span>txvCaption</span>.setText(<span>" Mensaje recibido: " </span>+ message);</pre>
+</div>
+</div>
+<p></p>
+<p style="margin-left: 30px;">Donde declaramos un objeto <code>Intent</code> para recuperar el que pasamos desde la actividad principal y así poder recuperar el valor del parámetro pasado mediante el método <code>getExtra()</code> según el tipo del valor introducido en nuestro caso como es <code>String</code> se usa  <code>getStringExtra() </code>. Con las dos últimas líneas buscamos el objeto <code>TextView</code> y le añadimos el valor del parámetro que hemos recibido de la actividad principal. Prueba a ejecutar de nuevo la aplicación y verás cómo en la segunda pantalla se recibe el nombre que pasamos desde la primera.</p>
+<h2><strong>Creando nosotros un objeto <code>Bundle.</code></strong></h2>
+<ul class="lista_verificacion">
+<li><strong>Creando nosotros un objeto <code>Bundle<code> </code></code></strong>y utilizar los métodos específicos <span> </span><strong><code>putType()</code></strong><span> y </span><strong><code>getType()</code></strong><span> para almacenar y recuperar datos de él.</span> Para insertar el objeto que nosotros hemos creado se utiliza el método <code>putExtras()</code>. Hay que tener cuidado con no confundir con el método <code>putExtra()</code> anteriormente utilizado. Para explicar esta segunda opción ponemos un código de ejemplo genérico:</li>
+</ul>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre><code>//1. Se crea el objeto Bundle</code></pre>
+<pre><code>Bundle bundle = new Bundle();</code></pre>
+<pre><code>//2. Se añade los parámetros mediante clave-valor</code></pre>
+<pre><code>bundle</code>.putString("student","Andrés Pandora");</pre>
+<pre><code>bundle</code>.putInt("studentid", 12);</pre>
+<pre><code>bundle</code>.putIntArray("notes", [5, 7, 2, 10, 8]);</pre>
+...
+<pre><code>//3. Se crea e inicializa el objeto Intent</code></pre>
+<pre><code>Intent intent = new Intent(this, ThirdActivity.class);</code></pre>
+<pre><code>//4. Se añade el objeto Bundle al intent</code></pre>
+<pre><code><strong>intent.putExtras(bundle);</strong></code></pre>
+<pre><code>//5. Finalmente se inicia la actividad</code></pre>
+<pre><code>startActivity(intent);</code></pre>
+</div>
+</div>
+<p></p>
+<p style="margin-left: 30px;">Al igual que en el ejemplo anterior la tercera actividad tiene que recoger los parámetros pero están recogidos en un único objeto<code> Bundle</code> que se obtiene mediante el método <code>getExtras()</code> del objeto <code>Intent</code>. A continuación se va obtenido uno a uno los parámetros según el tipo de dato a obtener:</p>
+<div class="codigo elemento_centrado" style="width: 42.300000000000004em;">
+<div class="texto_izquierda">
+<pre><code>//1. Se recoge el Intent que ha recibido la actividad al inicio</code></pre>
+<pre><code>Intent intent = getIntent();</code></pre>
+<pre><strong><code>//2. Se recoge el objeto Bundle</code></strong></pre>
+<pre><strong><code>Bundle bundle = <strong>intent.getExtras();</strong></code></strong></pre>
+<pre><code>//3. Se van obteniendo los parámetros del objeto Bundle</code></pre>
+<pre><code>String user_name =<strong>bundle.getString("student");</strong></code></pre>
+<pre><code>Integer user_id = <strong>bundle.getInt("studentid");</strong></code></pre>
+<pre><code>...</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

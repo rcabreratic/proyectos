@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.8.1.- El objeto Toast | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-84" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.8.1.- El objeto Toast</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id418">
+<div class="iDevice emphasis0">
+<div id="ta418_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R24_tostada.png" alt="Una tostada con forma de corazón servida en un plato" title="Objeto Toast." height="250" width="250" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc-sa" title="CC by-nc-sa" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc-sa</span></a> <a title="Acceder a la web de descarga de la imagen de mhlosh. (Se abre en una nueva ventana)." href="http://farm1.staticflickr.com/54/128371323_1d8c3dec55_m.jpg" target="_blank"> mhlosh</a></div>
+</div>
+<p>¿Cómo mostrar un mensaje breve al usuario?</p>
+<p>Podemos emplear el <strong>objeto <code>Toast</code>.</strong> Este objeto utiliza el método <code>makeText()</code> al que se le pasan tres parámetros:</p>
+<ul class="lista_verificacion">
+<li>El <strong>contexto</strong> de la aplicación que se puede recuperar con el método <code>getApplicationContext()</code>.</li>
+<li>El <strong>mensaje de texto</strong>, que no debe ser muy extenso.</li>
+<li>La <strong>duración</strong> que puede tomar los valores <code>LENGTH_SHORT</code> o <code>LENGTH_LONG</code> dependiendo de si queremos que sea corta o larga. Debemos tener en cuenta que este tipo de mensaje no dura más de 5 segundos por tanto el texto a mostrar debe ser breve para que el usuario pueda leerlo.</li>
+</ul>
+<p>Por último utilizamos el método <code>show()</code> para mostrar el objeto<code> Toast</code> en pantalla.</p>
+<p>Vamos a ver un ejemplo:</p>
+<div class="codigo elemento_centrado">
+<div class="texto_izquierda">
+<pre><code>Toast.makeText(getApplicationContext(),</code><code>”Este es el texto a mostrar”, </code><code>Toast.LENGTH_SHORT).show();</code></pre>
+</div>
+</div>
+<p></p>
+<p>Por defecto el mensaje nos aparecerá en la parte inferior de la pantalla, pero si queremos cambiar su alineación podemos utilizar el método <code>setGravity()</code> al cual le indicamos mediante alguna de las constantes de la clase <code>Gravity</code> qué posición debe ocupar (<code>CENTER, BOTTOM, LEFT</code>, <abbr title="etcétera.">etc.</abbr>). También se pueden combinar algunas de ellas.</p>
+<div class="codigo elemento_centrado" style="width: 36.25em;">
+<div class="texto_izquierda">
+<pre><code>Context context = getApplicationContext();</code></pre>
+<pre><code>Toast toast = Toast.makeText(context, text, duration);</code></pre>
+<pre><code>toast.setGravity(Gravity.CENTER|Gravity.RIGHT 0, 0);</code></pre>
+<pre><code>toast.show();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>

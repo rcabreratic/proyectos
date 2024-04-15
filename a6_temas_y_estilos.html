@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>A.6.- Temas y estilos | Creación de una aplicación móvil </title>
+<meta name="author" content="José Luis Camuñas Taguas" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="SCORM_API_wrapper.js"></script>
+<script type="text/javascript" src="SCOFunctions.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body id="exe-node-79" class="exe-scorm" onunload="unloadPage()"><script type="text/javascript">document.body.className+=" js";jQuery(function(){loadPage()})</script>
+<div id="outer">
+<section id="main">
+<header id="nodeDecoration"><div id="headerContent"><h1 id="nodeTitle">A.6.- Temas y estilos</h1></div></header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id409">
+<div class="iDevice emphasis0">
+<div id="ta409_69" class="block iDevice_content">
+<div class="elemento_derecha">
+<div class="elemento_centrado"><img src="PMDM05_CONT_R21_painting.jpg" alt="Paleta de colores para pintar." title="Dibujando estilos." height="170" width="250" /></div>
+<div class="elemento_centrado credenciales"><a class="cc-by-nc-sa" title="CC by-nc-sa" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es" target="_blank"><span class="transparente">CC by-nc-sa</span></a> <a title="Acceder a la web de descarga de la imagen de Valerie Everett. (Se abre en una nueva ventana)." href="http://farm4.staticflickr.com/3497/4018381856_aa31ae3ff7_n.jpg" target="_blank">Valerie Everett</a></div>
+</div>
+<p>La apariencia de una aplicación es un detalle muy importante a tener en cuenta para que tenga éxito o no. Hay que cuidar, por ejemplo, los colores que se utilizan como fondo o para el tipo de fuente, el tamaño, <abbr title="etcétera.">etc.</abbr></p>
+<p>Un <strong>estilo</strong> y un <strong>tema</strong> son dos conceptos muy similares, ya que ambos recopilan las características de apariencia común a los objetos a los que se vayan a aplicar. La única diferencia es que un estilo se puede asociar a objetos de tipo <code>View </code>mientras que un tema se asocia a objetos de tipo <code>Activity</code>.</p>
+<p>Los estilos se almacenan en la carpeta de recursos <code>/res/values/</code> en el fichero de nombre<code> style.xml</code>. Existen estilos ya predefinidos y el desarrollador puede crear otros nuevos heredando de un estilo padre y creando los ítems correspondientes a los atributos <acronym title="eXtensible Markup Language." lang="en">XML</acronym> que queremos personalizar.</p>
+<div class="codigo elemento_centrado" style="width: 49.45em;">
+<div class="texto_izquierda">
+<pre><code>&lt;resources&gt;</code></pre>
+<pre><code>    &lt;style name="EstiloNuevo" parent="@android:style/TextAppearance.Medium"&gt;</code></pre>
+<pre><code>     &lt;item name="android:textColor"&gt;#00FF00&lt;/item&gt;</code></pre>
+<pre><code>     &lt;!-- Escribir el resto de items que se desean personalizar --&gt;</code></pre>
+<pre><code>    &lt;/style&gt;</code></pre>
+<pre><code>&lt;/resources&gt;</code></pre>
+</div>
+</div>
+<p>Para aplicar un estilo a un objeto de tipo <code>View </code>se utiliza el atributo <code>style</code> y se asigna el valor del recurso. Por ejemplo, si tenemos definido un estilo llamado <code>EstiloNuevo</code> y queremos aplicarlo a un <code>TextView</code> escribiremos lo siguiente:</p>
+<div class="codigo elemento_centrado" style="width: 27.450000000000003em;">
+<div class="texto_izquierda">
+<pre><code>&lt;TextView style=”@style/EstiloNuevo”</code></pre>
+<pre><code>     android:text=”@string/Saludo” &gt;</code></pre>
+</div>
+</div>
+<p></p>
+<p><strong>Los temas son estilos que se aplican a una actividad completa en lugar de cada elemento.</strong></p>
+<p>Sólo se aplicarán aquellas características que soporte cada uno de los elementos. Como veremos más adelante, una aplicación tendrá varias pantallas o <code>Activity</code>, por tanto también podemos aplicar el tema a toda la aplicación. En ambos casos tenemos que editar el fichero de manifiesto<code> AndroidManifest.xml</code> con las siguientes líneas dependiendo de dónde queramos aplicar el tema:</p>
+<ul class="lista_verificacion">
+<li>En la etiqueta <code>&lt;application&gt;</code>:<br />
+<div class="codigo elemento_centrado" style="width: 32.400000000000006em;">
+<div class="texto_izquierda">
+<pre><code>&lt;application android:theme="@style/TemaNuevo"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>En la etiqueta <code>&lt;activity&gt;</code>:</p>
+<div class="codigo elemento_centrado" style="width: 31.3em;">
+<div class="texto_izquierda">
+<pre><code>&lt;activity android:theme="@style/TemaNuevo"&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper DebesconocerfpdIdevice em_iDevice em_iDevice_debesconocerfpd" id="id410">
+<div class="iDevice emphasis_debesconocerfpd" >
+<header class="iDevice_header" style="background-image:url(icon_debesconocerfpd.png)"><h1 class="iDeviceTitle">Debes conocer</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta410_44" class="block iDevice_content">
+<p>En el siguiente vídeo se explica cómo crear y aplicar tanto estilos como temas. También la posibilidad de heredar de otros estilos ya creados. Es fundamental que le eches un vistazo.</p>
+<div class="elemento_centrado">
+<div class="elemento_centrado titulo">Estilos y temas en Android</div>
+<div class="elemento_centrado">
+<p><iframe width="400" height="225" src="//www.youtube.com/embed/10ugleF1fNM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></p>
+</div>
+<div class="elemento_centrado credenciales"><a title="Acceder al resumen textual alternativo del vídeo: Estilos y temas en Android. (Se abre en una nueva ventana)." href="PMDM05_Descripcion_Video_EstilosYTemasAndroid.html" target="_blank">Resumen textual alternativo.</a></div>
+<div class="elemento_centrado credenciales"><a title="Ver el resumen del vídeo: Estilos y temas en Android" href="PMDM05_Descripcion_Video_EstilosYTemasAndroid.html"> </a></div>
+</div>
+<p>También es interesante ver qué estilos y temas hay predefinidos para poder utilizarlos y heredar de ellos.</p>
+<p class="enlace_centrado"><a class="html" title="Acceder a la página web oficial de Android sobre “la clase R.style”. (Se abre en una nueva ventana)." href="http://developer.android.com/reference/android/R.style.html" target="_blank">Lista de estilos y temas predefinidos en <span lang="en">Android</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</section>
+<div id="packageLicense" class="cc cc-by-nc-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Reconocimiento No comercial Compartir igual 4.0</a></p>
+</div>
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body></html>
