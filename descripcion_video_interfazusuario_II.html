@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Descripción del vídeo Crear una Interfaz II</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Lourdes Rodríguez Morón" />
+<meta name="generator" content="eXeLearning 2.3.1 - exelearning.net" />
+<meta name="description" content="En este documento se ha explicado el contenido del vídeo y los pasos que realiza . " />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-single-page"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<header id="header">
+<div id="headerContent">
+<h1>Descripción del vídeo Crear una Interfaz II</h1>
+</div>
+</header>
+<section id="main">
+<article class="node level-1-node" id="exe-node-0">
+<header class="nodeDecoration">
+<h1 id="exenode_0_Inicio" class="nodeTitle">Inicio</h1>
+</header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id0-0">
+<div class="iDevice emphasis0">
+<div id="ta0_154" class="block iDevice_content">
+<p>Este vídeo es la continuación del vídeo anterior, donde se explicó cómo crear una interfaz en código <span class="separador" lang="en">Java</span>. En este vídeo se utilizará <span class="separador" lang="en">Android Studio </span>y el lenguaje <acronym title="eXtensible Markup Language" lang="en">XML</acronym> y partimos del ejemplo que se realizó. Partimos del método <code>setContentView()</code> de la clase <code>Activity</code> que indica la vista que tiene que mostrar y descomentamos la siguiente línea de código:</p>
+<div class="codigo elemento_centrado">
+<div class="texto_izquierda">
+<pre><code>setContentView(R.layout.activity_main);</code></pre>
+</div>
+</div>
+<p></p>
+<p>Comprobamos que compila ejecutando la aplicación mediante la opción <strong><span class="separador" lang="en">Run -&gt; Run app.</span> </strong></p>
+<p>Para localizar la clase <strong>R</strong>, se tiene que cambiar el panel que hay a la izquierda de <span class="separador" lang="en">Android Studio</span> donde inicialmente pone <strong><span class="separador" lang="en">Android</span></strong> por la opción <strong></strong><span class="separador" lang="en"><strong><span class="separador" lang="en">Project</span></strong></span>. Vamos al directorio <strong><span class="separador" lang="en">app - &gt; build -&gt; generated -&gt; source -&gt; r -&gt; debug</span></strong> y vemos el archivo <strong>R</strong>. Cada clase es un recurso que carga en código <strong><span class="separador" lang="en">Java</span></strong>. </p>
+<p>Vamos a la opción <strong><span class="separador" lang="en">Edit -&gt; Find -&gt; Find</span></strong> y buscamos el recurso <code>activity_main</code> y veremos el identificador de este recurso que se crea automáticamente, si se modifica, cuando se compile el recurso tendrá otro identificador con lo cual este fichero R no debe modificarse nunca manualmente. </p>
+<p>Volvemos a la vista <strong><span class="separador" lang="en">Android</span> </strong>y vemos el contenido del fichero <code>activity_main.xml</code> que incluye etiquetas <acronym title="eXtensible Markup Language" lang="en">XML</acronym>. Dependiendo de la versión de <span class="separador" lang="en">Android Studio</span> el contenido de este fichero puede variar. Este fichero se puede modificar tanto de la pestaña <strong><span class="separador" lang="en">Text</span></strong> o desde la pestaña <strong><span class="separador" lang="en">Design</span></strong>. En la vista <strong></strong><span class="separador" lang="en"><strong><span class="separador" lang="en">Text</span></strong></span>, el autor explica la ventaja de usar la etiqueta <code>&lt;include&gt;</code> que permite reutilizar el código de la interfaz. </p>
+<p>Para incluir un comentario se puede realizar pulsando la tecla de acceso rápido <strong></strong><span class="separador" lang="en"><strong>Ctrl+z</strong></span>. </p>
+<p>En la vista <strong></strong><span class="separador" lang="en"><strong>Design</strong></span> o diseño es bastante fácil trabajar arrastrando los componentes desde el panel <strong></strong><span class="separador" lang="en"><strong>Components Tree</strong></span> que muestra todos los controles gráficos separados por categorías. Cuando se selecciona en la vista un objeto se muestra a la derecha el panel propiedades o <strong></strong><span class="separador" lang="en"><strong>Properties</strong></span> que es muy intuitivo ya que evita aprender todos los atributos de un componente. Finalmente el autor comprueba cómo lo que se ha modificado en modo diseño aparece en el panel del texto. </p>
+<p>Para eliminar un componente es fácil ya que se selecciona el elemento y se pulsa sobre la tecla <strong><span class="separador" lang="en">Supr</span></strong><span class="separador" lang="en">, y propone agregar un componente del tipo</span><strong><span class="separador" lang="en"> Button. </span></strong><span class="separador" lang="en">Selecciona este componente dentro del <strong><span lang="en">Editor</span></strong> y lo arrastra modificando por tanto la propiedad <code>align</code> y la propiedad <code>margin</code> del componente.</span></p>
+</div>
+</div>
+</article>
+</article>
+</section>
+
+
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body>
+</html>

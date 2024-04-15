@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Ciclo de vida de un Fragment</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Lourdes Rodríguez Morón" />
+<meta name="generator" content="eXeLearning 2.3.1 - exelearning.net" />
+<meta name="description" content="Ciclo de vida de un Fragment" />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-single-page"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<header id="header">
+<div id="headerContent">
+<h1>Ciclo de vida de un  <code>Fragment</code></span></h1>
+</div>
+</header>
+<section id="main">
+<article class="node level-1-node" id="exe-node-0">
+<header class="nodeDecoration">
+<h1 id="exenode_0_DescripcindelvdeocrearbarreraenellayoutConstraintLayout" class="nodeTitle"> Ciclo de vida de un  <code>Fragment</code></h1>
+</header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id0-0">
+<div class="iDevice emphasis0">
+<div id="ta0_154" class="block iDevice_content">
+<p>En esta imagen se muestra un diagrama de flujo con el texto en inglés, que describe el ciclo de vida de un fragment.</p>
+<ol class=lista_esquema" span lang="en">
+  <li><p>Fragment is added.</p>  
+    <ol>
+	   <li><code>onAttach()</code> </li>
+	   <li><code>onCreate()</code> </li>
+	   <li><code>onCreateView()</code> </li>
+	   <li><code>onAtivityCreate()</code></li>
+	   <li><code>onStart()</code> </li>
+	   <li><code>onResume()</code> </li>
+	</ol>
+  </li>
+  <li> <p> Fragment is active.</p>
+    <ul class="lista_verificacion">
+	    <li>The fragment is added to the back stack, then removed/replaced. </li>
+		  <ol start="7">
+		    <li><code>onPause()</code> </li>
+            <li><code>onStop()</code> </li>
+			<li><code>onDestroyView()</code>  
+			    <ol start="3"> 
+				  <li>The fragment returns to the layout from the back stack (go back to <code>onCreateView()</code>)</li>
+				</ol> 
+			</li>
+		  </ol>
+		<li>User navigate backward or fragment is removed/replaced
+		  <ol start="7">
+		    <li><code>onPause()</code> </li>
+            <li><code>onStop()</code/> </li>
+			<li><code>onDestroyView()</code>
+            <li><code>onDestroy()</code> </li>
+            <li><code>onDetach()</code> </li>			
+		  </ol>
+		</li>
+	</ul>
+  </li>
+  <li><p> Fragment is destroyed.</p> </li>
+</ol>
+</div>
+</div>
+</article>
+</article>
+</section>
+
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body>
+</html>

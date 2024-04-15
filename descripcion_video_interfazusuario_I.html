@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Descripción del vídeo Interfaz de Usuario I</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Lourdes Rodríguez Morón" />
+<meta name="generator" content="eXeLearning 2.3.1 - exelearning.net" />
+<meta name="description" content="En este documento se ha explicado el contenido del vídeo y los pasos que realiza . " />
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /></head>
+<body class="exe-single-page"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<header id="header">
+<div id="headerContent">
+<h1>Descripción del vídeo Interfaz de Usuario I</h1>
+</div>
+</header>
+<section id="main">
+<article class="node level-1-node" id="exe-node-0">
+<header class="nodeDecoration">
+<h1 id="exenode_0_Inicio" class="nodeTitle">Inicio</h1>
+</header>
+<article class="iDevice_wrapper FreeTextfpdIdevice" id="id0-0">
+<div class="iDevice emphasis0">
+<div id="ta0_154" class="block iDevice_content">
+<p>Este primer vídeo comienza explicando cuáles son las características que debe tener una interfaz para que tenga éxito: que sea atractiva y amigable. Muestra la imagen de un móvil, cuya pantalla tiene una serie de opciones: rutinas, ejercicios, calentamiento y entrenamiento. Cada opción tiene una imagen colorida y descriptiva de la acción.</p>
+<p>A continuación menciona las tres formas de cómo crear una interfaz mediante: código en java, lenguaje <acronym title="eXtensible Markup Language" lang="en">XML</acronym> y editando manualmente el componente mediante el panel <strong><span lang="en" class="separador">Attributes</span></strong>. La primera opción no es la más habitual ya que supone muchas líneas de código y tener un alto conocimiento en <span class="separador" lang="en">Java</span>. Expone que muchos de sus lectores en otros cursos le preguntan por qué escribir el código cuando un <acronym title="Integrated Development Environment" lang="en">IDE</acronym>, por ejemplo <span class="separador" lang="en">Netbeans</span>, puede generar el código por nosotros. En el vídeo el autor expone que es posible que cuando estemos trabajando necesitemos ese conocimiento.</p>
+<p>Para demostrar cómo se realiza esta primera opción crea un proyecto en blanco en <span class="separador" lang="en">Android Studio</span>. Abre en el <strong></strong><span class="separador" lang="en"><strong>Editor</strong></span> los ficheros <code>MainActivity.java</code> que guarda la parte lógica y <code>content_main.xml</code> que guarda la parte gráfica. Se separa la lógica del diseño por comodidad. El autor quiere modificar el mensaje que aparece por defecto <span lang="en" class="separador">"Hello World"</span>. Para ello introduce el siguiente código:</p>
+<div class="codigo elemento_centrado">
+<div class="texto_izquierda">
+<pre><code>@Override</code></pre>
+<pre><code>protected void onCreate(Bundle savedInstanceState) {</code></pre>
+<pre><code>   super.onCreate(savedInstanceState);</code></pre>
+<pre><code>   //setContentView(R.layout.activity_main);</code></pre>
+<pre><code>   TextView textView= new TextView(this);</code></pre>
+<pre><code>   textView.setText("Hola alumnos, ¿qué tal estáis?");</code></pre>
+<pre><code>   setContentView(textView);</code></pre>
+<pre><code></code></pre>
+<pre><code>}</code></pre>
+</div>
+</div>
+<p></p>
+<p>Después lo ejecutamos pulsando sobre la opción <strong><span lang="en">Run -&gt; Run app </span></strong>y si tenemos el emulador arrancado se verá un mensaje con el texto que se ha añadido. Cuando el autor explica el código se basa en una imagen que muestra cómo todos los componentes, en concreto <code>ViewGroup, TextView e ImageView </code>heredan de la clase <code>View</code>. Para crear una vista hay que tener un elemento que herede de<code> View</code>. </p>
+<p>A continuación el autor recomienda consultar la <acronym title="Application Programming Interface" lang="en">API</acronym> de Android que puede consultar en el siguiente enlace <a href="https://developer.android.com/reference/android/view/View" title="Acceder a la documentación de la clase View en Android Developer. (Se abre en una nueva ventana en ingés)" target="_blank" class="html">Información de la clase View</a> y muestra cómo en la documentación de muestra las clases que heredan de esta clase y los diferentes constructores. Para explicar cómo se crea un componente mediante código hace referencia de nuevo a la documentación oficial de <span class="separador" lang="en">Android Developer </span>y consulta la información de la clase <code>Context</code> que se muestra en el siguiente enlace <a href="https://developer.android.com/reference/android/content/Context" target="_blank" class="html" title="Acceder a la documentación de la clase Context en Android Developer. (Se abre en una nueva ventana en inglés)">Información de la clase Context</a> y comprueba como la clase <code>AppCompatActivity</code>  hereda de <code>Context</code> con lo cual el código es correcto. Después comprueba la funcionalidad del método <code>setText()</code> en el siguiente enlace <a href="https://developer.android.com/reference/android/widget/TextView" title="Acceder a la documentación de la clase TextView en Android Developer. (Se abre en una nueva ventana en inglés)" target="_blank" class="html">Información de la clase TextView </a>y comprueba como efectivamente con este método se modifica el texto que debe mostrar el componente. Finalmente consulta la documentación de la clase <code>Activity</code> para ver el en qué consiste el método <code>setContentView()</code>. Puedes consultar la información en el siguiente enlace <a href="https://developer.android.com/reference/android/support/v7/app/AppCompatActivity" title="Acceder a la documentación de la clase Activity en Android Developer. (Se abre en una nueva ventana en inglés)" target="_blank" class="html">Información de la clase Activity.</a> </p>
+</div>
+</div>
+</article>
+</article>
+</section>
+
+
+</div>
+<script type="text/javascript" src="_fpd_js.js"></script></body>
+</html>
